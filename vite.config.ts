@@ -12,11 +12,11 @@ export default defineConfig({
 		target: 'es2020',
 		rollupOptions: {
 			// Polyfill Buffer for production build
-			plugins: [
-				inject({
-					modules: { Buffer: ['buffer', 'Buffer'] }
-				})
-			]
+			// plugins: [
+			// 	inject({
+			// 		modules: { Buffer: ['buffer', 'Buffer'] }
+			// 	})
+			// ]
 		}
 	},
 	optimizeDeps: {
