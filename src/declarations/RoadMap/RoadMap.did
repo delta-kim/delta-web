@@ -1,0 +1,75 @@
+type VoteSB = 
+ record {
+   content: text;
+   mark: VoteMark;
+   timestamp: Timestamp;
+ };
+type VoteMark = 
+ variant {
+   no;
+   yes;
+ };
+type Vote = 
+ record {
+   content: text;
+   did: DID;
+   mark: VoteMark;
+   timestamp: Timestamp;
+ };
+type Token = text;
+type Timestamp = nat;
+type Suggestion = 
+ record {
+   adoptedRoadNodeId: opt nat;
+   content: text;
+   did: DID;
+   nickname: Nickname;
+   timestamp: Timestamp;
+   title: text;
+   totalVotes: record {
+                 no: nat;
+                 yes: nat;
+               };
+ };
+type Status = 
+ variant {
+   completed;
+   inprogress;
+   queuing;
+ };
+type RoadNode = 
+ record {
+   content: text;
+   progressLine: vec record {
+                       Status;
+                       Timestamp;
+                     };
+   status: Status;
+   suggestionId: vec nat;
+   title: text;
+ };
+type Nickname = text;
+type Main = 
+ service {
+   addRoadNode: (RoadNode) -> (bool);
+   addSuggestion: (text, text, AppIdentityToken) -> (Index, Suggestion,
+    Avatar);
+   addVote: (nat, VoteMark, text, AppIdentityToken) -> (Vote);
+   editSuggestion: (nat, text, AppIdentityToken) -> (bool);
+   listHeat90Sugg: (nat) -> (vec Suggestion) query;
+   listRoadNodes: () -> (vec RoadNode) query;
+   listSuggestion: (nat) -> (vec Suggestion) query;
+   listVote: (nat, nat) -> (vec Vote) query;
+   myVote: (nat, AppIdentityToken) -> (opt VoteSB) query;
+ };
+type Index = nat;
+type DID = text;
+type CanisterId = text;
+type Avatar = text;
+type AppIdentityToken = 
+ record {
+   canisterId: CanisterId;
+   did: DID;
+   token: Token;
+ };
+service : () -> Main
