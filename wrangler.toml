@@ -83,3 +83,5 @@ pages_build_output_dir = ".svelte-kit/cloudflare"
 # [[env.production.kv_namespaces]]
 # binding = "MY_KV_NAMESPACE"
 # id = "<PRODUCTION_NAMESPACE_ID>"
+
+compatibility_flags = ["nodejs_compat_v2"]
