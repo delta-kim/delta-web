@@ -12,7 +12,7 @@ interface Cata {
 
 export const load: PageLoad = async ({ params, fetch }) => {
     //let html = await import(`./${params.lang}.html?raw`);
-    let res = await fetch(`/whitepaper/${params.lang}.html`);
+    let res = await fetch(`/whitepaper/${params.lang}.htm`);
     let html = await res.text();
     const $ = cheerio.load(html, null, false);
     //const itms = $("h1,h2,h3,h4");
