@@ -7,22 +7,22 @@ export const langs: langObject = {
     "zh-CN": "简体中文",
     "es": "Español",
     "fr": "Français",
-    "ar": "العربية",
+    "ar": "العربية", // -
     "ru": "Русский",
     "pt": "Português",
-    "hi": "हिंदी", // 印地语
-    "it":"Italiano",
+    // "hi": "हिंदी", // 印地语 --
+    "it": "Italiano",
     "de": "Deutsch",
     "ja": "日本語",
     "zh-TW": "繁體中文",
-    "ko" :"중국인",
-    "bn" : "বাংলা", // 孟加拉语
-    "th":"แบบไทย", // 泰语
-    "nl":"Nederlands", // 荷兰语
-    "vi" :"Tiếng Việt", //越南语
-    "pl":"Polski", // 波兰语
-    "uk":"українська", // 乌克兰语
-    "el":"Ελληνικά" //希腊语
+    "ko": "중국인",
+    "bn": "বাংলা", // 孟加拉语 google
+    "th": "แบบไทย", // 泰语 google
+    "nl": "Nederlands", // 荷兰语
+    "vi": "Tiếng Việt", //越南语 -
+    "pl": "Polski", // 波兰语 
+    "uk": "українська", // 乌克兰语
+    "el": "Ελληνικά" //希腊语
 }
 
 
