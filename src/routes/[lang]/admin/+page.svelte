@@ -12,7 +12,7 @@
         const authClient = await AuthClient.create();
         await new Promise((resolve, reject) => {
             authClient.login({
-                //identityProvider: iiUrl,
+                identityProvider: "http://aovwi-4maaa-aaaaa-qaagq-cai.localhost:8000/",
                 onSuccess: resolve,
                 onError: reject,
             });
