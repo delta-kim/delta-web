@@ -19,7 +19,7 @@ export const langs: langObject = {
     "bn": "বাংলা", // 孟加拉语 google
     "th": "แบบไทย", // 泰语 google
     "nl": "Nederlands", // 荷兰语
-    "vi": "Tiếng Việt", //越南语 -
+    "vi": "Tiếng Việt", //越南语
     "pl": "Polski", // 波兰语 
     "uk": "українська", // 乌克兰语
     "el": "Ελληνικά" //希腊语

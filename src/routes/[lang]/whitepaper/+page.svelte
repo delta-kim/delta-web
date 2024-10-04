@@ -66,7 +66,9 @@
 			document.head.appendChild(script);
 			console.log("src");
 		} else {
-			(window as any).MathJax.typeset();
+			if ((window as any).MathJax && (window as any).MathJax.typeset) {
+				(window as any).MathJax.typeset();
+			}
 		}
 	});
 	afterUpdate(function () {
