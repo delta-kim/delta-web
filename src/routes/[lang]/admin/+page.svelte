@@ -1,6 +1,11 @@
 <script lang="ts">
     import { AuthClient } from "@dfinity/auth-client";
+    import { createActor } from '../../../declarations/delta/index';
     // import { t } from 'svelte-i18n';
+
+
+    let mainCanisterId = 'be2us-64aaa-aaaaa-qaabq-cai';
+    let host = 'http://192.168.137.1:8000';
 
     async function login() {
         console.log("login");
@@ -14,7 +19,9 @@
         });
 
         const identity = authClient.getIdentity();
-        console.log("identity", identity);
+        const actor = createActor(canisterId, { agentOptions: { host } });
+        const principal = await actor.whoami();
+        console.log(principal);
     }
 </script>
 

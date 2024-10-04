@@ -1,0 +1,379 @@
+type VerifyStatus = 
+ variant {
+   partSuccs;
+   success;
+   waiting;
+ };
+type VerificationPack = 
+ record {
+   accessNumbers: vec MobileNumber;
+   encryptKey: text;
+   verifyText: text;
+ };
+type Update2Main = 
+ variant {
+   LedgerArchiveId: record {
+                      CoinCode;
+                      CanisterId;
+                    };
+   SubMiningCredit: nat;
+ };
+type USCTSummary = 
+ variant {
+   AdRewards;
+   AdRewardsReferralLevel1: DID__2;
+   AdRewardsReferralLevel2: DID__2;
+   ConvertToUSDT: record {
+                    float64;
+                    nat64;
+                  };
+ };
+type USCTHistory64 = 
+ record {
+   adId: text;
+   advertiser: text;
+   amount: int64;
+   checkTime: nat64;
+   created: nat64;
+   did: DID__2;
+   index: nat64;
+   summary: USCTSummary;
+ };
+type TransformArgs = 
+ record {
+   context: blob;
+   response: HttpResponsePayload;
+ };
+type TransferFee = 
+ record {
+   max: nat;
+   min: nat;
+   rate: nat;
+ };
+type TotalCredit = 
+ record {
+   consensusDev: nat;
+   ecolog: nat;
+   fuel: nat;
+   mining: nat;
+ };
+type Token = text;
+type Timestamp = nat;
+type Summary = 
+ variant {
+   DSMSVerifyReward: DID__1;
+   ICPCrowdfunding: nat32;
+   Mining: text;
+   MiningReferralLevel1: text;
+   MiningReferralLevel2: text;
+   PreMint1DTCInEcosystem: nat64;
+   RecommendNewcomers: DID__1;
+   RegisterFromReferrer: DID__1;
+   ReleaseToMintDTC: nat64;
+ };
+type Status = 
+ variant {
+   running;
+   stopped;
+   stopping;
+ };
+type MobileNumber = text;
+type MobileApplastVersion = 
+ variant {
+   android: record {
+              apk: text;
+              store: text;
+              version: text;
+            };
+   ios: record {
+          store: text;
+          version: text;
+        };
+ };
+type MobileAppType = 
+ variant {
+   android;
+   ios;
+ };
+type LedgerInitArgs = 
+ record {
+   code: CoinCode;
+   crossChainConfs: vec CrossChainConf;
+   decimals: nat;
+   name: CoinName;
+   symbol: text;
+   transferFee: TransferFee;
+   web: text;
+ };
+type Index = nat;
+type IdentityToken = 
+ record {
+   did: DID;
+   token: Token;
+ };
+type HttpResponsePayload = 
+ record {
+   body: vec nat8;
+   headers: vec HttpHeader;
+   status: nat;
+ };
+type HttpHeader = 
+ record {
+   name: text;
+   value: text;
+ };
+type HistoryByType = 
+ variant {
+   DTCT: vec DTCTHistory64;
+   USCT: vec USCTHistory64;
+ };
+type Expiration = nat;
+type E164Code2 = text;
+type E164Code = text;
+type E164AndISOCode = 
+ record {
+   E164Code;
+   E164Code2;
+   CountryCode;
+ };
+type Delta = 
+ service {
+   _isAdmin: (CanisterId) -> (bool) query;
+   _ledgerArchive_wasm_module: () -> (blob) query;
+   addAccessNumber: (DID, text, text, Expiration) -> (bool);
+   addNewLedgerCanister: (CoinCode) -> (CanisterId);
+   appendCredits: (HistoryByType) -> (bool);
+   basicInfo: () -> (BasicInfo) query;
+   callbackVerification: (text, AppIdentityTokenArgs) -> (text);
+   checkAccessNumberLimit: (CountryCode) ->
+    (record {
+       acNum: nat;
+       allowedNum: nat;
+       err: text;
+     }) composite_query;
+   countAccessNumberRecord: () -> (vec record {
+                                         CountryCode;
+                                         nat;
+                                       }) query;
+   countDids: () -> (Index) query;
+   createLogin: (text, DID, text) -> (CanisterId, DID, Token);
+   createVerification: (vec text, vec DID, text, E164Code, CountryCode,
+    text) -> (VerificationPack);
+   cyclesBalance: () -> (nat) query;
+   filterOptionalAccessNumbers: (CountryCode) ->
+    (vec record {
+           DID;
+           AccessNumberRecordAgrs;
+         }) query;
+   getAccessNumberRecord: (CountryCode, DID) ->
+    (AccessNumberRecordAgrs) query;
+   getCanisterId: (CanisterCodeType) -> (CanisterId) query;
+   getCanisterIdMap: () -> (vec ActorCanisterId) query;
+   getCanisterStatus: (vec CanisterId) ->
+    (vec record {
+           CanisterId;
+           CanisterStatus;
+         });
+   getDSMSencryptKey: (MobileNumber, AppIdentityTokenArgs) ->
+    (text) composite_query;
+   getMobileApplastVersion: (MobileAppType) -> (MobileApplastVersion) query;
+   getXCreditCanisterData: (CreditType) -> (vec CreditCanisterData) query;
+   httpTransform: (TransformArgs) -> (HttpResponsePayload) query;
+   init: (blob, blob) -> (vec text);
+   isAccountPrincipal: (principal) -> (bool) query;
+   isCanAddAccessNumber: (CountryCode, E164Code, MobileNumber) ->
+    (bool) composite_query;
+   listAccountCanisterDate: () -> (vec CanisterDate) query;
+   listAllCanisterStatus: () -> (vec record {
+                                       CanisterId;
+                                       CanisterStatus;
+                                     });
+   listE164map: () -> (vec E164AndISOCode) query;
+   matchAccountCanister: (DID) -> (opt CanisterId) query;
+   matchAccountCanisters: (vec DID) ->
+    (vec record {
+           CanisterId;
+           vec DID;
+         }) query;
+   parseDID: (DID) -> (Index) query;
+   queryVerifyStatus: (text) -> (VerifyStatus) query;
+   receiveUpdates: (Update2Main) -> () oneway;
+   reconcileUSCT: (text, vec text, vec nat64, nat64) -> (bool);
+   remainingTotalCredit: () -> (TotalCredit) query;
+   renewalAccessNumber: (DID, CountryCode, Expiration) -> (bool);
+   reset: () -> (bool);
+   rts_info: () -> (vec record {
+                          text;
+                          nat;
+                        }) query;
+   setGlobalAccessNumberByAdmin: (text, text) -> (text);
+   test: () -> (vec record {
+                      text;
+                      text;
+                    }) query;
+   testAppend_DTCT: () -> (bool);
+   /// public composite query func accountIdentifierDefault() : async (Hex.Hex, Nat64) {
+   ///     let accountIdentifier = LedgerAccount.accountIdentifier(Principal.fromActor(this), LedgerAccount.defaultSubaccount());
+   ///     Debug.print(debug_show (Blob.fromArray(accountIdentifier)));
+   ///     let Tokens = await ICPledger.account_balance({ account = accountIdentifier });
+   ///     let hex = Hex.encode(accountIdentifier);
+   ///     Debug.print(debug_show (Hex.decode(hex)));
+   ///     (hex, Tokens.e8s);
+   ///   };
+   /// 
+   /// 
+   ///   public shared (msg) func transferInICP(from_subaccount : [Nat8], amount : ICPledger.Tokens) : async ICPledger.TransferResult {
+   ///     if (not Lib.isFromAccountCanister(msg.caller)) {
+   ///       throw Error.reject("No access rights");
+   ///     };
+   ///     let toAccountIdentifier = LedgerAccount.accountIdentifier(Principal.fromActor(this), LedgerAccount.defaultSubaccount());
+   /// 
+   ///     let balance = await ICPledger.account_balance({
+   ///       account = LedgerAccount.accountIdentifier(Principal.fromActor(this), from_subaccount);
+   ///     });
+   ///     Debug.print("balance: ");
+   ///     Debug.print(debug_show (balance));
+   ///     let args : ICPledger.TransferArgs = {
+   ///       memo = 0;
+   ///       amount;
+   ///       fee = { e8s = 10_000 };
+   ///       from_subaccount = ?from_subaccount;
+   ///       to = toAccountIdentifier;
+   ///       created_at_time = null;
+   ///     };
+   ///     Debug.print(debug_show (args));
+   ///     await ICPledger.transfer(args);
+   ///   };
+   /// 
+   ///   public func topUpICP(address : Hex.Hex, amount : Nat) : async ICPledger.TransferResult {
+   ///     let accountIdentifier = Hex.decode(address);
+   ///     let isOk = LedgerAccount.validateAccountIdentifier(accountIdentifier);
+   ///     if (not isOk) {
+   ///       Debug.trap("AccountIdentifier verification failed");
+   ///     };
+   ///     await ICPledger.transfer({
+   ///       memo = 0;
+   ///       amount = { e8s = Nat64.fromNat(amount * 10 ** 8) };
+   ///       fee = { e8s = 10_000 };
+   ///       from_subaccount = ?LedgerAccount.defaultSubaccount();
+   ///       to = accountIdentifier;
+   ///       created_at_time = null;
+   ///     });
+   ///   };
+   /// *
+   testWalletAddress: (Index, nat) -> (text, nat, nat, nat);
+   updateLedgersArgs: (LedgerInitArgs) -> () oneway;
+   updateMobileApplastVersion: (MobileApplastVersion) -> (bool);
+   upgradeCanister: (CanisterCodeType, blob) -> (text);
+   upload_wasm_module: (blob, blob) -> (bool);
+   verifyConfirmation: (text) -> (VerifyStatus, MobileNumber);
+   whoami: () -> (CanisterId) query;
+ };
+type DTCTHistory64 = 
+ record {
+   amount: int64;
+   did: DID__1;
+   index: nat64;
+   summary: Summary;
+   timestamp: nat64;
+ };
+type DID__2 = text;
+type DID__1 = text;
+type DID = text;
+type CrossChainConf = 
+ variant {
+   Delta;
+   contract: ContractConf;
+   native: record {
+             chainIdent: ChainIdent;
+             inputDecimals: nat;
+           };
+ };
+type CreditType = 
+ variant {
+   DTCT;
+   USCT;
+ };
+type CreditCanisterData = 
+ record {
+   canisterId: CanisterId;
+   fulled: bool;
+   length: Index;
+   skip: Index;
+ };
+type CountryCode = text;
+type ContractConf = 
+ record {
+   chainIdent: ChainIdent;
+   inputDecimals: nat;
+   standard: text;
+   tokenAddress: text;
+ };
+type CoinName = text;
+type CoinCode = text;
+type ChainIdent = text;
+type CanisterStatus = 
+ record {
+   cycles: nat;
+   memory_size: nat;
+   module_hash: opt blob;
+   settings: CanisterSettings;
+   status: Status;
+ };
+type CanisterSettings = 
+ record {
+   compute_allocation: opt nat;
+   controllers: opt vec principal;
+   freezing_threshold: opt nat;
+   memory_allocation: opt nat;
+ };
+type CanisterId = text;
+type CanisterDate = 
+ record {
+   canisterId: CanisterId;
+   end: Index;
+   fulled: bool;
+   start: Index;
+ };
+type CanisterCodeType = 
+ variant {
+   DappCenter;
+   ICPfunds;
+   Ledgers: CoinCode;
+   MultiChainWallet;
+   PendingUSCT;
+   RoadMap;
+   account;
+   mobile;
+   stats;
+   xCredits;
+ };
+type BasicInfo = 
+ record {
+   baseRate: nat;
+   population: nat;
+ };
+type AppIdentityTokenArgs = 
+ record {
+   accCanisterId: CanisterId;
+   dAppIdentToken: IdentityToken;
+ };
+type ActorCanisterId = 
+ record {
+   text;
+   variant {
+     list: vec CanisterId;
+     one: CanisterId;
+   };
+ };
+type AccessNumberRecordAgrs = 
+ record {
+   accessNumber: MobileNumber;
+   carrier: text;
+   expiration: Expiration;
+   online: Timestamp;
+   reqNum: nat;
+   rewards: nat;
+   succNum: nat;
+ };
+service : (CanisterId) -> Delta
