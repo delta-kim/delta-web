@@ -19,7 +19,7 @@
         });
 
         const identity = authClient.getIdentity();
-        const actor = createActor(mainCanisterId, { agentOptions: { host , identity} });
+        const actor = await createActor(mainCanisterId, { agentOptions: { host , identity} });
         const principal = await actor.whoami();
         console.log(principal);
     }
