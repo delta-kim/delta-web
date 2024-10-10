@@ -321,8 +321,8 @@ export const idlFactory = ({ IDL }) => {
         [IDL.Vec(IDL.Tuple(IDL.Text, IDL.Nat))],
         ['query'],
       ),
-    'setGlobalAccessNumberByAdmin' : IDL.Func(
-        [IDL.Text, IDL.Text],
+    'setGlobalAccessNumber' : IDL.Func(
+        [IDL.Text, IDL.Text, IDL.Opt(IDL.Text)],
         [IDL.Text],
         [],
       ),
@@ -335,10 +335,10 @@ export const idlFactory = ({ IDL }) => {
       ),
     'updateLedgersArgs' : IDL.Func([LedgerInitArgs], [], ['oneway']),
     'updateMobileApplastVersion' : IDL.Func(
-        [MobileApplastVersion],
-        [IDL.Bool],
-        [],
-      ),
+      [IDL.Vec(MobileApplastVersion)],
+      [IDL.Bool],
+      [],
+    ),
     'upgradeCanister' : IDL.Func(
         [CanisterCodeType, IDL.Vec(IDL.Nat8)],
         [IDL.Text],

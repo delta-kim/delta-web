@@ -41,6 +41,7 @@
     "@dfinity/agent": "^2.1.1",
     "@dfinity/auth-client": "^2.1.2",
     "@dfinity/candid": "^2.1.1",
+    "@dfinity/identity-secp256k1": "^2.1.2",
     "@types/negotiator": "^0.6.3",
     "cheerio": "^1.0.0-rc.12",
     "svelte-i18n": "^4.0.0"

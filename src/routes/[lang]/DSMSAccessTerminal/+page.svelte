@@ -7,8 +7,7 @@
 <section class="2xl:px-9 h-full flex flex-col justify-center items-center">
 	<div class="flex flex-col-reverse md:flex-row px-4 md:px-0">
 		<figure class="flex-1 items-center">
-			<section class="img-bg" />
-			<img src="/img/dsms_verifier_terminal.jpg" width="280" alt="delta app Home Screen" />
+			<img src="/img/dsms_verifier_terminal.png" width="280" alt="delta app Home Screen" />
 		</figure>
 		<div class="flex flex-col justify-evenly flex-1 py-10 mt:py-0">
 			<h4 class="h4 md:w-5/6 leading-normal font-bold">

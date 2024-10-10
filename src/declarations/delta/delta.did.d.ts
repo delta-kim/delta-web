@@ -162,7 +162,10 @@ export interface Delta {
   'renewalAccessNumber' : ActorMethod<[DID, CountryCode, Expiration], boolean>,
   'reset' : ActorMethod<[], boolean>,
   'rts_info' : ActorMethod<[], Array<[string, bigint]>>,
-  'setGlobalAccessNumberByAdmin' : ActorMethod<[string, string], string>,
+  'setGlobalAccessNumber' : ActorMethod<
+    [string, string, [] | [string]],
+    string
+  >,
   'test' : ActorMethod<[], Array<[string, string]>>,
   'testAppend_DTCT' : ActorMethod<[], boolean>,
   'testWalletAddress' : ActorMethod<

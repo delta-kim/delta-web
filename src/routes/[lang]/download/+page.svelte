@@ -6,8 +6,7 @@
 <section class="2xl:px-9 h-full flex flex-col justify-center items-center">
 	<div class="flex flex-col-reverse md:flex-row">
 		<figure class="flex-1 items-center">
-			<section class="img-bg" />
-			<img src="/img/appMain.png" width="280" alt="delta app Home Screen" />
+			<img src="/img/appMain1.png" width="280" alt="delta app Home Screen" />
 		</figure>
 		<div class="flex flex-col justify-evenly flex-1 px-3">
 			<h2 class="h2 lg:w-5/6 leading-normal font-bold">
@@ -56,9 +55,9 @@
 	figure {
 		@apply flex relative flex-col;
 	}
-	figure, .img-bg {
+	/* figure, .img-bg {
 		@apply w-64 h-64 md:w-80 md:h-80;
-	}
+	} */
 	.img-bg {
 		@apply absolute z-[-1] rounded-full blur-[50px] transition-all;
 		animation:
