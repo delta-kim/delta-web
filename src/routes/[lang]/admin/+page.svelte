@@ -6,8 +6,8 @@
     import { principal, delta } from "../../../lib/store";
     import { Secp256k1KeyIdentity } from "@dfinity/identity-secp256k1";
 
-    let mainCanisterId = "be2us-64aaa-aaaaa-qaabq-cai";
-    let host = "http://192.168.137.1:8000";
+    let mainCanisterId = "wk3vs-2aaaa-aaaak-qlowa-cai";
+    let host = "https://ic0.app";
 
     let pemKeyString = "";
 
