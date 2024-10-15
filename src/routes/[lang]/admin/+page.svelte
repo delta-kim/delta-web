@@ -3,26 +3,15 @@
     import { createActor } from "../../../declarations/delta/index";
     import { onMount } from "svelte";
     // import { t } from 'svelte-i18n';
-    import { principal, delta } from "../../../lib/store";
+    import { principal, delta, ic_host } from "../../../lib/store";
     import { Secp256k1KeyIdentity } from "@dfinity/identity-secp256k1";
 
     let mainCanisterId = "wk3vs-2aaaa-aaaak-qlowa-cai";
-    let host = "https://ic0.app";
 
     let pemKeyString = "";
 
     async function login() {
         console.log("login");
-        // const authClient = await AuthClient.create();
-        // await new Promise((resolve, reject) => {
-        //     authClient.login({
-        //         identityProvider:
-        //             "http://aovwi-4maaa-aaaaa-qaagq-cai.localhost:8000/",
-        //         onSuccess: resolve,
-        //         onError: reject,
-        //     });
-        // });
-
         // const identity = authClient.getIdentity();
         if (pemKeyString.startsWith("-----BEGIN EC PRIVATE KEY-----") == false)
             return alert("Please enter a valid pemKey");
@@ -30,7 +19,7 @@
         let identity = Secp256k1KeyIdentity.fromPem(pemKeyString);
 
         const actor = await createActor(mainCanisterId, {
-            agentOptions: { host, identity },
+            agentOptions: { host : $ic_host, identity },
         });
         delta.set(actor);
         let _principal = await actor.whoami();

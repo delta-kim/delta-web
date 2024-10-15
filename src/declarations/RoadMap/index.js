@@ -13,7 +13,7 @@ export { idlFactory } from "./RoadMap.did.js";
 //   process.env.CANISTER_ID_ROADMAP ||
 //   process.env.ROADMAP_CANISTER_ID;
 
-export const createActor = (canisterId, options = {}) => {
+export const createActor = async (canisterId, options = {}) => {
   const agent = options.agent || new HttpAgent({ ...options.agentOptions });
 
   if (options.agent && options.agentOptions) {
@@ -22,17 +22,10 @@ export const createActor = (canisterId, options = {}) => {
     );
   }
 
-  // Fetch root key for certificate validation during development
-  console.log("options.agentOptions.host", options.agentOptions.host);
-
-  if (options.agentOptions.host.includes("ic0") == false) {
-    console.log("fetchRootKey");
-    agent.fetchRootKey().catch((err) => {
-      console.warn(
-        "Unable to fetch root key. Check to ensure that your local replica is running"
-      );
-      console.error(err);
-    });
+  if (options.agentOptions.host.startsWith("http://")) {
+    console.log("fetchRootKey start");
+    await agent.fetchRootKey();
+    console.log("fetchRootKey end");
   }
 
 
