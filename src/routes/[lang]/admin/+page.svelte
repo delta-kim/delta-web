@@ -6,7 +6,7 @@
     import { principal, delta, ic_host } from "../../../lib/store";
     import { Secp256k1KeyIdentity } from "@dfinity/identity-secp256k1";
 
-    let mainCanisterId = "wk3vs-2aaaa-aaaak-qlowa-cai";
+    let mainCanisterId = "ojpsk-siaaa-aaaam-adtea-cai";
 
     let pemKeyString = "";
 

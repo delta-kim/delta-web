@@ -7,7 +7,7 @@
 	import { ic_host } from "../../../lib/store";
 	import StatusTag from "../../../components/StatusTag.svelte";
 
-	let canisterId = "ufamd-fyaaa-aaaak-qlo2q-cai";
+	let canisterId = "mgul3-nqaaa-aaaam-adtiq-cai";
 	let roadNodes: any[] = [];
 	let index2s: number[] = [];
 	let max = 0;
