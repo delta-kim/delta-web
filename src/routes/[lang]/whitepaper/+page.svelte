@@ -78,11 +78,11 @@
 	});
 </script>
 
-<div class="flex-auto w-full h-full flex gap-8">
+<div class="flex-auto w-full h-full flex flex-col md:flex-row gap-8">
 	<aside
 		id="sidebar-left"
-		class="w-auto sticky top-0"
-		style="display: block; height: min-content;width:30%"
+		class="md:sticky md:top-0 md:w-1/3"
+		style="display: block; height: min-content"
 	>
 		<h3 class="h3 my-4">{data.catas.shift()?.text}</h3>
 		<nav
@@ -103,10 +103,7 @@
 			</ul>
 		</nav>
 	</aside>
-	<div class="my-36 text-end" style="display: none;"></div>
-	<div
-		class="container 2xl:px-10 h-full mx-auto flex flex-col justify-center items-center"
-	>
+	<div class="container px-0.5 2xl:px-10 h-full mx-auto flex flex-col justify-center items-center">
 		<div use:tocCrawler id="whitePaper">
 			{@html data.content}
 		</div>
