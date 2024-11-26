@@ -103,7 +103,7 @@
 			</ul>
 		</nav>
 	</aside>
-	<div class="container px-0.5 2xl:px-10 h-full mx-auto flex flex-col justify-center items-center">
+	<div class="container px-1 2xl:px-10 h-full mx-auto flex flex-col justify-center items-center">
 		<div use:tocCrawler id="whitePaper">
 			{@html data.content}
 		</div>
