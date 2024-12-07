@@ -16,9 +16,23 @@ export const handle: Handle = async ({ event, resolve }) => {
         let language = negotiator.language(langKeys) || 'en';
         throw redirect(302, `/${language}/home`);
     }
-    let lang = event.url.pathname.split("/")[1];
+    let urlSegmen = event.url.pathname.split("/");
+    let lang = urlSegmen[1]
+    //console.log("event.url.pathname.split(/)", event.url.pathname.split("/"));
     if (!langKeys.includes(lang)) {
-        throw redirect(302, `/en/home`);
+        const negotiator = new Neg({
+            headers: {
+                "accept-language": event.request.headers.get('accept-language') || "en"
+            }
+        });
+        let language = negotiator.language(langKeys) || 'en';
+        if (urlSegmen[2] == undefined) {
+            throw redirect(302, `/${language}/home`);
+        }
+        throw redirect(302, `/${language}/${urlSegmen.slice(2).join("/")}`);
+    }
+    if (urlSegmen[2] == undefined) {
+        throw redirect(302, `/${lang}/home`);
     }
     await initialLocale(lang);
     return resolve(event);
