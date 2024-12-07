@@ -1,33 +1,64 @@
 <!-- YOU CAN DELETE EVERYTHING IN THIS PAGE -->
 <script lang="ts">
-	import { t } from 'svelte-i18n';
+	import { t } from "svelte-i18n";
 </script>
 
 <section class="2xl:px-9 h-full flex flex-col justify-center items-center">
 	<div class="flex flex-col-reverse md:flex-row">
 		<figure class="flex-1 items-center">
-			<img src="/img/appMain1.png" width="280" alt="delta app Home Screen" />
+			<img
+				src="/img/appMain1.png"
+				width="280"
+				alt="delta app Home Screen"
+			/>
 		</figure>
 		<div class="flex flex-col justify-evenly flex-1 px-3">
 			<h2 class="h2 lg:w-5/6 leading-normal font-bold">
-				{$t('download_heading')}
+				{$t("download_heading")}
 			</h2>
 			<ul class="lg:w-5/6 my-4">
-				<li class="my-2">{@html $t('download_desc1')}</li>
+				<li class="my-2">{@html $t("download_desc1")}</li>
 				<li class="my-2">
-					{$t('is_no_referrer_DID_yet')}，
+					{$t("is_no_referrer_DID_yet")}，
 					<a
 						class="underline underline-offset-2"
 						target="_blank"
 						href="https://www.google.com/search?q=Delta+referrer+DID"
 					>
-						{$t('search_find_delta_referrer')}
+						{$t("search_find_delta_referrer")}
 					</a>
 				</li>
-				<li class="my-2">{$t('download_desc2')}</li>
+				<li class="my-2">{$t("download_desc2")}</li>
 			</ul>
 
-			<div class="flex flex-row justify-evenly mb-8 md:mb-40 lg:w-5/6">
+			<div class="flex flex-row justify-evenly mb-2 lg:w-5/6">
+				<figure class="w-2/6">
+					<a
+						target="_blank"
+						href="https://global.app.mi.com/details?id=kim.delta.mobile"
+					>
+						<img
+							class="border-2 rounded-md w-full card-hover"
+							src="/img/xiaomi_GetApps.png"
+							alt="Xiaomi GetApps"
+							title="Xiaomi GetApps"
+						/>
+					</a>
+				</figure>
+				<figure class="w-2/6">
+					<a target="_blank" href="/download/kim.delta.mobile.apk">
+						<img
+							style="aspect-ratio:165/61"
+							class="border-2 rounded-md w-full card-hover"
+							src="/img/android_apk.png"
+							alt="Android apk"
+							title="Android apk"
+						/>
+					</a>
+				</figure>
+			</div>
+			<div class="flex flex-row justify-evenly mb-8 md:mb-20 lg:w-5/6">
+				<!--
 				<figure class="w-2/6">
 					<a target="_blank" href="https://play.google.com/store/apps/details?id">
 						<img
@@ -37,12 +68,15 @@
 						/>
 					</a>
 				</figure>
+				-->
 				<figure class="w-2/6">
-					<a target="_blank" href="https://apps.apple.com/us/app/">
+					<a target="_blank" href="https://apps.apple.com/app/delta-kim/id6738377112">
 						<img
+							style="aspect-ratio:165/61"
 							class="border-2 rounded-md w-full card-hover"
 							src="/img/apple_store.svg"
-							alt="apple store"
+							alt="Apple store"
+							title="Apple store"
 						/>
 					</a>
 				</figure>
