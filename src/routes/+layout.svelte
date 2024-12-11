@@ -138,9 +138,9 @@
 					</ul>
 					<ul>
 						<li><a href="./whitepaper">{$t('whitepaper')}</a></li>
-						<li><a href="./faq">{$t('faq')}</a></li>
 						<li><a href="./terms_of_service">{$t('termsOfService')}</a></li>
 						<li><a href="./privacy_policy">{$t('privacy_policy')}</a></li>
+						<li><a href="./support">{$t('support')}</a></li>
 					</ul>
 					<div class="hidden md:block md:w-px"></div>
 					<a class="w-1/3 md:w-80" href="./home"

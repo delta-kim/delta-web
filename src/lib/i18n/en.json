@@ -56,5 +56,8 @@
     "completed": "Completed",
     "processing": "Processing",
     "queuing": "Queuing",
-    "launch" : "Launch"
+    "launch" : "Launch",
+    "read_faqs":"Read FAQs",
+    "contact_via_email":"Contact via email",
+    "support" : "Support"
 }

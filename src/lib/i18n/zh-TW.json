@@ -56,5 +56,8 @@
     "completed": "已完成",
     "processing": "進行中",
     "queuing": "排隊中",
-    "launch": "發射"
+    "launch": "發射",
+    "read_faqs": "閱讀常見問題",
+    "contact_via_email": "透過電子郵件聯絡",
+    "support": "支 援"
 }

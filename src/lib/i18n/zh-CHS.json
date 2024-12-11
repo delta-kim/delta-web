@@ -56,5 +56,8 @@
     "completed": "已完成",
     "processing": "进行中",
     "queuing": "排队中",
-    "launch": "发射"
+    "launch": "发射",
+    "read_faqs": "阅读常见问题解答",
+    "contact_via_email": "通过电子邮件联系",
+    "support": "支 持"
 }
