@@ -31,7 +31,6 @@
                 });
             }
             accessNumberList = accessNumberList;
-
         }
     });
 
@@ -45,14 +44,22 @@
         return new Date(Number(bi) * 1000).toLocaleString();
     }
     let setArgs = {
-        accessNumber : "",
-        carrier : "",
-        globalDidOpt : [],
+        accessNumber: "",
+        carrier: "",
+        globalDidOpt: [],
     };
-    async function setGlobalAccessNumber(accessNumber : string, carrier: string, globalDidOpt: string[]) {
+    async function setGlobalAccessNumber(
+        accessNumber: string,
+        carrier: string,
+        globalDidOpt: string[],
+    ) {
         try {
             if (window.confirm("Are you sure to submit?")) {
-                let res = await $delta.setGlobalAccessNumber(accessNumber, carrier, globalDidOpt);
+                let res = await $delta.setGlobalAccessNumber(
+                    accessNumber,
+                    carrier,
+                    globalDidOpt,
+                );
                 alert(`执行结果: ${res}`);
             }
         } catch (error) {
@@ -86,7 +93,7 @@
             {#each accessNumberList as row}
                 <tr>
                     <td>
-                        {row.did} 
+                        {row.did}
                     </td>
                     <td>
                         <input
@@ -109,9 +116,17 @@
                     <td>{`${row.succNum} / ${row.reqNum}`}</td>
                     <td>{row.rewards}</td>
                     <td>
-                        <button 
-                        class="btn variant-filled"
-                        on:click={() => setGlobalAccessNumber(row.accessNumber, row.carrier, [row.did])}> 更新 </button>
+                        <button
+                            class="btn variant-filled"
+                            on:click={() => setGlobalAccessNumber(row.accessNumber, row.carrier,[row.did])}
+                        > 更新</button>
+
+                        <button
+                            class="btn bg-initial"
+                            on:click={() =>
+                                setGlobalAccessNumber("", row.carrier, [
+                                    row.did,
+                                ])}>删除</button>
                     </td>
                 </tr>
             {/each}
@@ -138,9 +153,17 @@
                 <td></td>
                 <td></td>
                 <td>
-                    <button 
-                    class="btn variant-filled"
-                    on:click={() => setGlobalAccessNumber(setArgs.accessNumber, setArgs.carrier, [])}> 添加 </button>
+                    <button
+                        class="btn variant-filled"
+                        on:click={() =>
+                            setGlobalAccessNumber(
+                                setArgs.accessNumber,
+                                setArgs.carrier,
+                                [],
+                            )}
+                    >
+                        添加
+                    </button>
                 </td>
             </tr>
         </table>
