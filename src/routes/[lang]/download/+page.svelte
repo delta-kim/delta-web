@@ -46,7 +46,7 @@
 					</a>
 				</figure>
 				<figure class="w-2/6">
-					<a target="_blank" href="https://pub-127e19f7b07747c6b37b142adc82ba6b.r2.dev/delta_mobile.apk">
+					<a target="_blank" href="https://pub-127e19f7b07747c6b37b142adc82ba6b.r2.dev/delta_mobile_1.0.4.apk">
 						<img
 							style="aspect-ratio:165/61"
 							class="border-2 rounded-md w-full card-hover"
