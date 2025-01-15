@@ -30,7 +30,7 @@
 				</li>
 				<li class="my-2">{$t("download_desc2")}</li>
 			</ul>
-
+<!--
 			<div class="flex flex-row justify-evenly mb-2 lg:w-5/6">
 				<figure class="w-2/6">
 					<a
@@ -57,18 +57,18 @@
 					</a>
 				</figure>
 			</div>
+ -->
 			<div class="flex flex-row justify-evenly mb-8 md:mb-20 lg:w-5/6">
-				<!--
-				<figure class="w-2/6">
-					<a target="_blank" href="https://play.google.com/store/apps/details?id">
+				<figure class="w-2/6 pt-1">
+					<a target="_blank" href="https://pub-127e19f7b07747c6b37b142adc82ba6b.r2.dev/delta_mobile_1.0.4.apk">
 						<img
 							class="border-2 rounded-md w-full card-hover"
-							src="/img/google_play.svg"
-							alt="google play"
+							src="/img/android_apk.png"
+							alt="Android apk"
+							title="Android apk"
 						/>
 					</a>
 				</figure>
-				-->
 				<figure class="w-2/6">
 					<a target="_blank" href="https://apps.apple.com/app/delta-kim/id6738377112">
 						<img
