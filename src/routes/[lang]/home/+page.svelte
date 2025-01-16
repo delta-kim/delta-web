@@ -8,6 +8,9 @@
 	});
 </script>
 
+<svelte:head>
+	<title>{$t('title_prefix')} - {$t('title_home')}</title>
+</svelte:head>
 <div class="2xl:px-9 h-full flex flex-col justify-center items-center">
 	<section class="space-y-10 text-center flex flex-col md:flex-row items-stretch" style="">
 		<div class="flex flex-col flex-1 px-3 justify-evenly gap-6 md:gap-0">

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { afterUpdate, onMount } from "svelte";
+	import { t } from 'svelte-i18n';
 	//import { TableOfContents, tocCrawler } from '@skeletonlabs/skeleton';
 	import type { PageData } from "./$types";
 	export let data: PageData;
@@ -77,7 +78,9 @@
 		}
 	});
 </script>
-
+<svelte:head>
+	<title>{$t("title_prefix")} - {$t("whitepaper")}</title>
+</svelte:head>
 <div class="flex-auto w-full h-full flex flex-col md:flex-row gap-8">
 	<aside
 		id="sidebar-left"

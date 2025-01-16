@@ -30,8 +30,11 @@
 	// Call the IC
 </script>
 
+<svelte:head>
+	<title>{$t("title_prefix")} - {$t("roadmap")}</title>
+</svelte:head>
 <div>
-	<h1 class="h1 my-10">路线图</h1>
+	<h1 class="h1 my-10">{$t("roadmap")}</h1>
 
 	{#each index2s as key, i}
 		<div class="flex flex-row items-center">

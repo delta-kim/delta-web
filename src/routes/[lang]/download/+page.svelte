@@ -2,7 +2,9 @@
 <script lang="ts">
 	import { t } from "svelte-i18n";
 </script>
-
+<svelte:head>
+	<title>{$t('title_prefix')} - {$t('download')}</title>
+</svelte:head>
 <section class="2xl:px-9 h-full flex flex-col justify-center items-center">
 	<div class="flex flex-col-reverse md:flex-row">
 		<figure class="flex-1 items-center">

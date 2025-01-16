@@ -1,6 +1,9 @@
 <script lang="ts">
 	import { t } from 'svelte-i18n';
 </script>
+<svelte:head>
+	<title>{$t("title_prefix")} - {$t("termsOfService")}</title>
+</svelte:head>
 <div class="mx-4 sm:mx-8 xl:mx-80">
 	<h1 class="h1">{$t('termsOfService')}</h1>
 	<p>

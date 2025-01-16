@@ -2,6 +2,8 @@
     "home": "Home",
     "download": "Download",
     "whitepaper": "Whitepaper",
+    "title_prefix": "Delta",
+    "title_home": "Opening a new era of digital money without private keys for all mankind!",
     "home_mianheading": "Delta has pioneered a new era of decentralized digital money for all mankind, which does not require custody of private-key!",
     "home_subheading": "You can start using the Delta mobile app now to mine delta digital money for free and energy-savingly, and easily manage cross-chain assets…",
     "no_private_key": "No private key",
@@ -56,8 +58,8 @@
     "completed": "Completed",
     "processing": "Processing",
     "queuing": "Queuing",
-    "launch" : "Launch",
-    "read_faqs":"Read FAQs",
-    "contact_via_email":"Contact via email",
-    "support" : "Support"
+    "launch": "Launch",
+    "read_faqs": "Read FAQs",
+    "contact_via_email": "Contact via email",
+    "support": "Support"
 }

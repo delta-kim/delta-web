@@ -8,7 +8,9 @@
 		console.log("faq", data);
 	});
 </script>
-
+<svelte:head>
+	<title>{$t("title_prefix")} - {$t("support")}</title>
+</svelte:head>
 <div class="flex-auto w-full h-full flex flex-col md:flex-row gap-8 xl:px-20">
 	<aside
 		id="sidebar-left"
