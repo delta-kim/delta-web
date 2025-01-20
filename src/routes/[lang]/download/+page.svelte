@@ -62,7 +62,7 @@
  -->
 			<div class="flex flex-row justify-evenly mb-8 md:mb-20 lg:w-5/6">
 				<figure class="w-2/6 pt-1">
-					<a target="_blank" href="https://pub-127e19f7b07747c6b37b142adc82ba6b.r2.dev/delta_mobile_1.0.4.apk">
+					<a target="_blank" href="https://link.storjshare.io/s/jxskbjhyffliqk66fx57yuljasja/delta/delta_mobile_1.0.5.apk">
 						<img
 							class="border-2 rounded-md w-full card-hover"
 							src="/img/android_apk.png"
