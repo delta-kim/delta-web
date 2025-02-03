@@ -62,7 +62,7 @@
  -->
 			<div class="flex flex-row justify-evenly mb-8 md:mb-20 lg:w-5/6">
 				<figure class="w-2/6 pt-1">
-					<a target="_blank" href="https://link.storjshare.io/s/jxskbjhyffliqk66fx57yuljasja/delta/delta_mobile_1.0.5.apk">
+					<a target="_blank" href="https://link.storjshare.io/s/juw3nxmi4cbpwewvz7khdxlzpnbq/delta/apk/delta_mobile_1.0.6.apk">
 						<img
 							class="border-2 rounded-md w-full card-hover"
 							src="/img/android_apk.png"
@@ -70,6 +70,7 @@
 							title="Android apk"
 						/>
 					</a>
+					<div>Latest version:1.0.6<br/>Date:2025-02-03</div>
 				</figure>
 				<figure class="w-2/6">
 					<a target="_blank" href="https://apps.apple.com/app/delta-kim/id6738377112">
