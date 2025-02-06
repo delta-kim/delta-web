@@ -1,9 +1,15 @@
 <!-- YOU CAN DELETE EVERYTHING IN THIS PAGE -->
 <script lang="ts">
-	import { t } from "svelte-i18n";
+	import { t, locale } from "svelte-i18n";
+	export let lang = "en";
+	locale.subscribe((_lang) => {
+		console.log("locale.subscribe", _lang);
+		lang = _lang || "en";
+	});
 </script>
+
 <svelte:head>
-	<title>{$t('title_prefix')} - {$t('download')}</title>
+	<title>{$t("title_prefix")} - {$t("download")}</title>
 </svelte:head>
 <section class="2xl:px-9 h-full flex flex-col justify-center items-center">
 	<div class="flex flex-col-reverse md:flex-row">
@@ -32,7 +38,7 @@
 				</li>
 				<li class="my-2">{$t("download_desc2")}</li>
 			</ul>
-<!--
+			<!--
 			<div class="flex flex-row justify-evenly mb-2 lg:w-5/6">
 				<figure class="w-2/6">
 					<a
@@ -62,7 +68,12 @@
  -->
 			<div class="flex flex-row justify-evenly mb-8 md:mb-20 lg:w-5/6">
 				<figure class="w-2/6 pt-1">
-					<a target="_blank" href="https://link.storjshare.io/s/juw3nxmi4cbpwewvz7khdxlzpnbq/delta/apk/delta_mobile_1.0.6.apk">
+					<a
+						target="_blank"
+						href={lang == "zh-CN"
+							? "https://punks.oss-ap-southeast-1.aliyuncs.com/mobile_app_apk/delta_mobile_1.0.6.apk"
+							: "https://raw.githubusercontent.com/delta-kim/document/main/mobile_app_apk/delta_mobile_1.0.6.apk"}
+					>
 						<img
 							class="border-2 rounded-md w-full card-hover"
 							src="/img/android_apk.png"
@@ -70,10 +81,13 @@
 							title="Android apk"
 						/>
 					</a>
-					<div>Latest version:1.0.6<br/>Date:2025-02-03</div>
+					<div>Latest version:1.0.6<br />Date:2025-02-03</div>
 				</figure>
 				<figure class="w-2/6">
-					<a target="_blank" href="https://apps.apple.com/app/delta-kim/id6738377112">
+					<a
+						target="_blank"
+						href="https://apps.apple.com/app/delta-kim/id6738377112"
+					>
 						<img
 							style="aspect-ratio:165/61"
 							class="border-2 rounded-md w-full card-hover"
