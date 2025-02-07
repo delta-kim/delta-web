@@ -71,8 +71,8 @@
 					<a
 						target="_blank"
 						href={lang == "zh-CN"
-							? "https://punks.oss-ap-southeast-1.aliyuncs.com/mobile_app_apk/delta_mobile_1.0.6.apk"
-							: "https://raw.githubusercontent.com/delta-kim/document/main/mobile_app_apk/delta_mobile_1.0.6.apk"}
+							? "https://punks.oss-ap-southeast-1.aliyuncs.com/mobile_app_apk/delta_mobile_1.0.7.apk"
+							: "https://raw.githubusercontent.com/delta-kim/document/main/mobile_app_apk/delta_mobile_1.0.7.apk"}
 					>
 						<img
 							class="border-2 rounded-md w-full card-hover"
@@ -81,7 +81,7 @@
 							title="Android apk"
 						/>
 					</a>
-					<div>Latest version:1.0.6<br />Date:2025-02-03</div>
+					<div>Latest version:1.0.7<br />Date:2025-02-07</div>
 				</figure>
 				<figure class="w-2/6">
 					<a
