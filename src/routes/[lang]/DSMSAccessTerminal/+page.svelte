@@ -1,7 +1,12 @@
 <!-- YOU CAN DELETE EVERYTHING IN THIS PAGE -->
 <script lang="ts">
-	import { t } from "svelte-i18n";
+	import { t, locale } from "svelte-i18n";
 	import { Accordion, AccordionItem } from "@skeletonlabs/skeleton";
+	export let lang = "en";
+	locale.subscribe((_lang) => {
+		console.log("locale.subscribe", _lang);
+		lang = _lang || "en";
+	});
 </script>
 
 <svelte:head>
@@ -105,23 +110,31 @@
 				<figure class="w-2/6">
 					<a
 						target="_blank"
-						href="https://play.google.com/store/apps/details?id"
+						href={lang == "zh-CN"
+							? "https://punks.oss-ap-southeast-1.aliyuncs.com/mobile_app_apk/delta_dsms_terminal_1.0.1.apk"
+							: "https://raw.githubusercontent.com/delta-kim/document/main/apk/delta_dsms_terminal_1.0.1.apk"}
 					>
 						<img
 							class="border-2 rounded-md w-full card-hover"
-							src="/img/google_play.svg"
-							alt="google play"
+							src="/img/android_apk.png"
+							alt="Android apk"
 						/>
 					</a>
+					<div style="font-size: xx-small">
+						Latest version:1.0.1<br />Date:2025-02-28
+					</div>
 				</figure>
 				<figure class="w-2/6">
-					<a target="_blank" href="https://apps.apple.com/us/app/">
-						<img
-							class="border-2 rounded-md w-full card-hover"
-							src="/img/apple_store.svg"
-							alt="apple store"
-						/>
-					</a>
+					<img
+						class="border-2 rounded-md w-full card-hover"
+						src="/img/apple_store.svg"
+						alt="apple store"
+					/>
+					<div
+						style="color: brown; margin-top:-12px;text-align: center;"
+					>
+						Not supported
+					</div>
 				</figure>
 			</div>
 		</div>
