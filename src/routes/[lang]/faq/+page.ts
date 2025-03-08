@@ -15,7 +15,6 @@ export const load: PageLoad = async ({ params, fetch }) => {
     let html = await res.text();
     const $ = cheerio.load(html, null, false);
     //const itms = $("h1,h2,h3,h4");
-    // 假设你想遍历所有的<p>元素
     let items: item[][] = [];
     let group: item[] = [];
     $('h2,div').each(function (index, element: cheerio.Element) {
