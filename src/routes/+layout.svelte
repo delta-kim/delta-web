@@ -185,6 +185,16 @@
 						<i class="fa-brands fa-github"></i>
 						<span class="hidden md:inline">GitHub</span>
 					</a>
+
+					<a
+						href="https://t.me/deltacoinmining"
+						target="_blank"
+						title="Created by the community"
+					>
+						<i class="fa-brands fa-telegram"></i>
+						<!--Creator: kbuhfils@gmail.com -->
+						<span class="hidden md:inline" style="font-size: small;">DELTA COIN MINAGE</span>
+					</a>
 				</svelte:fragment>
 			</AppBar>
 		</div>
