@@ -1,26 +1,28 @@
 <script lang="ts">
-    import { delta } from "../../../../lib/store";
+    import { roadMap } from "../../../../lib/store";
     import { onMount } from "svelte";
 
     let androidVersion = {
         apk: "",
         version: "",
         store: "",
+        notes: "",
     };
     let iosVersion = {
         version: "",
         store: "",
+        notes: "",
     };
 
     onMount(async () => {
-        if ($delta != null) {
-            let androidData = await $delta.getMobileApplastVersion({
+        if ($roadMap != null) {
+            let androidData = await $roadMap.getMobileApplastVersion({
                 android: null,
             });
 
             androidVersion = androidData["android"];
             console.log(androidVersion);
-            let iosData = await $delta.getMobileApplastVersion({
+            let iosData = await $roadMap.getMobileApplastVersion({
                 ios: null,
             });
             iosVersion = iosData["ios"];
@@ -35,7 +37,7 @@
         ];
         try {
             if (window.confirm("Are you sure to submit?")) {
-                let bool = await $delta.updateMobileApplastVersion(
+                let bool = await $roadMap.updateMobileApplastVersion(
                     MobileApplastVersions,
                 );
                 alert(`执行结果: ${bool}`);
@@ -48,7 +50,7 @@
 </script>
 
 <section class="2xl:px-9 h-full flex flex-col justify-center">
-    {#if $delta == null}
+    {#if $roadMap == null}
         <a
             href="/en/admin"
             class="btn variant-filled"
@@ -92,6 +94,16 @@
                             />
                         </label>
                     </li>
+                    <li>
+                        <label class="label">
+                            <span>notes</span>
+                            <textarea
+                                class="input"
+                                placeholder="notes"
+                                bind:value={androidVersion.notes}
+                            ></textarea>
+                        </label>
+                    </li>
                 </ul>
             </li>
             <li>
@@ -117,6 +129,16 @@
                                 placeholder="store url"
                                 bind:value={iosVersion.store}
                             />
+                        </label>
+                    </li>
+                    <li>
+                        <label class="label">
+                            <span>notes</span>
+                            <textarea
+                                class="input"
+                                placeholder="notes"
+                                bind:value={iosVersion.notes}
+                            ></textarea>
                         </label>
                     </li>
                 </ul>

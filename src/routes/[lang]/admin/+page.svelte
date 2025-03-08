@@ -3,7 +3,13 @@
     import { createActor } from "../../../declarations/delta/index";
     import { onMount } from "svelte";
     // import { t } from 'svelte-i18n';
-    import { principal, delta, ic_host } from "../../../lib/store";
+    import {
+        principal,
+        delta,
+        roadMap,
+        ic_host,
+        roadMapCanisterId,
+    } from "../../../lib/store";
     import { Secp256k1KeyIdentity } from "@dfinity/identity-secp256k1";
 
     let mainCanisterId = "ojpsk-siaaa-aaaam-adtea-cai";
@@ -18,11 +24,16 @@
 
         let identity = Secp256k1KeyIdentity.fromPem(pemKeyString);
 
-        const actor = await createActor(mainCanisterId, {
-            agentOptions: { host : $ic_host, identity },
+        const actor_delta = await createActor(mainCanisterId, {
+            agentOptions: { host: $ic_host, identity },
         });
-        delta.set(actor);
-        let _principal = await actor.whoami();
+        const actor_roadMap = await createActor($roadMapCanisterId, {
+            agentOptions: { host: $ic_host, identity },
+        });
+
+        delta.set(actor_delta);
+        roadMap.set(actor_roadMap);
+        let _principal = await actor_delta.whoami();
         principal.set(_principal);
         localStorage.setItem("pemKeyString", pemKeyString);
     }
@@ -37,10 +48,10 @@
     <div>Welcome !</div>
     {#if $delta == null}
         <div>
-            
             <label class="label">
                 <div>pemKey</div>
-                <textarea bind:value={pemKeyString} rows="3" cols="50"></textarea>
+                <textarea bind:value={pemKeyString} rows="3" cols="50"
+                ></textarea>
             </label>
             <button class="btn variant-filled" on:click={login}>登录</button>
         </div>
