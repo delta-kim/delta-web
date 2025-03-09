@@ -35,12 +35,13 @@
             { android: androidVersion },
             { ios: iosVersion },
         ];
+        console.log("MobileApplastVersions", MobileApplastVersions);
         try {
             if (window.confirm("Are you sure to submit?")) {
                 let bool = await $roadMap.updateMobileApplastVersion(
                     MobileApplastVersions,
                 );
-                alert(`执行结果: ${bool}`);
+                alert(`Execution result: ${bool}`);
             }
         } catch (error) {
             console.log(error);
@@ -98,7 +99,8 @@
                         <label class="label">
                             <span>notes</span>
                             <textarea
-                                class="input"
+                                rows="3"
+                                cols="50"
                                 placeholder="notes"
                                 bind:value={androidVersion.notes}
                             ></textarea>
@@ -135,7 +137,8 @@
                         <label class="label">
                             <span>notes</span>
                             <textarea
-                                class="input"
+                                rows="3"
+                                cols="50"
                                 placeholder="notes"
                                 bind:value={iosVersion.notes}
                             ></textarea>
