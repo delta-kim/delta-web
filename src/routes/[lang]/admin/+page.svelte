@@ -1,6 +1,7 @@
 <script lang="ts">
     import { AuthClient } from "@dfinity/auth-client";
-    import { createActor } from "../../../declarations/delta/index";
+    import { createActor as createDelta } from "../../../declarations/delta/index";
+    import { createActor as createRoadMap } from "../../../declarations/RoadMap/index";
     import { onMount } from "svelte";
     // import { t } from 'svelte-i18n';
     import {
@@ -24,17 +25,17 @@
 
         let identity = Secp256k1KeyIdentity.fromPem(pemKeyString);
 
-        const actor_delta = await createActor(mainCanisterId, {
+        const actor_delta = await createDelta(mainCanisterId, {
             agentOptions: { host: $ic_host, identity },
         });
-        const actor_roadMap = await createActor($roadMapCanisterId, {
+        const actor_roadMap = await createRoadMap($roadMapCanisterId, {
             agentOptions: { host: $ic_host, identity },
         });
-
         delta.set(actor_delta);
         roadMap.set(actor_roadMap);
         let _principal = await actor_delta.whoami();
         principal.set(_principal);
+
         localStorage.setItem("pemKeyString", pemKeyString);
     }
 
