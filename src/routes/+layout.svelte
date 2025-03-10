@@ -185,16 +185,6 @@
 						<i class="fa-brands fa-github"></i>
 						<span class="hidden md:inline">GitHub</span>
 					</a>
-
-					<a
-						href="https://t.me/deltacoinmining"
-						target="_blank"
-						title="Created by the community"
-					>
-						<i class="fa-brands fa-telegram"></i>
-						<!--Creator: kbuhfils@gmail.com -->
-						<span class="hidden md:inline" style="font-size: small;">DELTA COIN MINAGE</span>
-					</a>
 				</svelte:fragment>
 			</AppBar>
 		</div>
@@ -230,14 +220,50 @@
 						</li>
 						<li><a href="./support">{$t("support")}</a></li>
 					</ul>
-					<div class="hidden md:block md:w-px"></div>
-					<a class="w-1/3 md:w-80" href="./home"
-						><img
-							src="/img/delta.logo.svg"
-							style="opacity: 0.5"
-							alt="Delta"
-						/></a
+					<div
+						class="footerLogoBack pr-4 lg:pr-32 md:pr-16"
+						style="min-height : 96px; margin-top: -30px"
 					>
+						<div style="color:green;" class="pl-1"> Community social media channels</div>
+						<div class="flex flex-row">
+							<ul class="pl-4">
+								<li>
+									<a
+										href="https://t.me/deltacoinmining"
+										target="_blank"
+									>
+										<i
+											class="fa-brands fa-telegram"
+											style="color:#0088CC"
+										></i>
+										<!--Creator: kbuhfils@gmail.com -->
+										<span
+											style="font-size: small;"
+											>DELTA COIN MINAGE</span
+										>
+									</a>
+								</li>
+							</ul>
+							<ul class="pl-4">
+								<li>
+									<a
+										href="https://t.me/deltafrancophone"
+										target="_blank"
+									>
+										<i
+											class="fa-brands fa-telegram"
+											style="color:#0088CC"
+										></i>
+										<!--Creator: josephangengang@gmail.com -->
+										<span
+											style="font-size: small;"
+											>DELTA FR ZONE</span
+										>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
 				</div>
 				<p class="text-center py-4">
 					© Delta Web Project 2023-{new Date().getFullYear()} Released
@@ -302,6 +328,15 @@
 		padding-top: 3rem;
 		background-image: url(/img/footer-bg.svg);
 		background-repeat: no-repeat;
+	}
+
+	.footerLogoBack {
+		background-color: rgba(255, 255, 255, 0.5); /* 灰色 + 透明度 */
+		background-image: url(/img/delta.logo.svg);
+		background-repeat: no-repeat; /* 禁止重复 */
+		background-position: center center; /* 居中 */
+		background-size: auto 90px;
+		background-blend-mode: overlay; /* 混合模式 */
 	}
 
 	ul.lang .list:hover {
