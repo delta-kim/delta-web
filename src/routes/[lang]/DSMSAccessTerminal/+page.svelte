@@ -111,8 +111,8 @@
 					<a
 						target="_blank"
 						href={lang == "zh-CN"
-							? "https://punks.oss-ap-southeast-1.aliyuncs.com/mobile_app_apk/delta_dsms_terminal_1.0.1.apk"
-							: "https://raw.githubusercontent.com/delta-kim/document/main/apk/delta_dsms_terminal_1.0.1.apk"}
+							? "https://punks.oss-ap-southeast-1.aliyuncs.com/apk/delta_dsms_terminal_1.0.2.apk"
+							: "https://github.com/delta-kim/dsms_verifier_terminal/releases/download/1.0.2/delta_dsms_terminal_1.0.2.apk"}
 					>
 						<img
 							class="border-2 rounded-md w-full card-hover"
@@ -121,7 +121,7 @@
 						/>
 					</a>
 					<div style="font-size: xx-small">
-						Latest version:1.0.1<br />Date:2025-02-28
+						<a  style="text-decoration: underline;" href="https://github.com/delta-kim/dsms_verifier_terminal/releases" target="_blank">Version:1.0.2  Latest:2025-03-11</a>
 					</div>
 				</figure>
 				<figure class="w-2/6">
