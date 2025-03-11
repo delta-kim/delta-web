@@ -224,7 +224,9 @@
 						class="footerLogoBack pr-4 lg:pr-32 md:pr-16"
 						style="min-height : 96px; margin-top: -30px"
 					>
-						<div style="color:green;" class="pl-1"> Community social media channels</div>
+						<div style="color:green;" class="pl-1">
+							Community social media channels
+						</div>
 						<div class="flex flex-row">
 							<ul class="pl-4">
 								<li>
@@ -237,9 +239,23 @@
 											style="color:#0088CC"
 										></i>
 										<!--Creator: kbuhfils@gmail.com -->
-										<span
-											style="font-size: small;"
+										<span style="font-size: small;"
 											>DELTA COIN MINAGE</span
+										>
+									</a>
+								</li>
+								<li>
+									<a
+										href="https://t.me/DeltaCoinMiners"
+										target="_blank"
+									>
+										<i
+											class="fa-brands fa-telegram"
+											style="color:#0088CC"
+										></i>
+										<!--Creator: magnohoved@gmail.com -->
+										<span style="font-size: small;"
+											>Delta Coin</span
 										>
 									</a>
 								</li>
@@ -255,8 +271,7 @@
 											style="color:#0088CC"
 										></i>
 										<!--Creator: josephangengang@gmail.com -->
-										<span
-											style="font-size: small;"
+										<span style="font-size: small;"
 											>DELTA FR ZONE</span
 										>
 									</a>
@@ -331,12 +346,12 @@
 	}
 
 	.footerLogoBack {
-		background-color: rgba(255, 255, 255, 0.5); /* 灰色 + 透明度 */
+		background-color: rgba(255, 255, 255, 0.5);
 		background-image: url(/img/delta.logo.svg);
-		background-repeat: no-repeat; /* 禁止重复 */
-		background-position: center center; /* 居中 */
+		background-repeat: no-repeat;
+		background-position: center center;
 		background-size: auto 90px;
-		background-blend-mode: overlay; /* 混合模式 */
+		background-blend-mode: overlay;
 	}
 
 	ul.lang .list:hover {
