@@ -221,7 +221,7 @@
 						<li><a href="./support">{$t("support")}</a></li>
 					</ul>
 					<div
-						class="footerLogoBack pr-4 lg:pr-32 md:pr-16"
+						class="footerLogoBack pr-1 lg:pr-48 md:pr-16"
 						style="min-height : 96px; margin-top: -30px"
 					>
 						<div style="color:green;" class="pl-1">
@@ -274,6 +274,19 @@
 										<span style="font-size: small;"
 											>DELTA FR ZONE</span
 										>
+									</a>
+								</li>
+								<li>
+									<a
+										href="https://discord.gg/8XNeDAun75"
+										target="_blank"
+									>
+										<i
+											class="fa-brands fa-discord"
+											style="color:rgb(88, 101, 242)"
+										></i>
+										<!--Creator: magnohoved@gmail.com -->
+										<span style="font-size: small;">Delta Coin</span>
 									</a>
 								</li>
 							</ul>
