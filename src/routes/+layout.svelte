@@ -222,13 +222,13 @@
 					</ul>
 					<div
 						class="footerLogoBack pr-1 lg:pr-48 md:pr-16"
-						style="min-height : 96px; margin-top: -30px"
+						style="min-height : 96px; margin-top: -36px"
 					>
 						<div style="color:green;" class="pl-1">
 							Community social media channels
 						</div>
 						<div class="flex flex-row">
-							<ul class="pl-4">
+							<ul class="pl-2 lg:pl-4">
 								<li>
 									<a
 										href="https://t.me/deltacoinmining"
@@ -259,8 +259,29 @@
 										>
 									</a>
 								</li>
+								<li>
+									<a	href="https://x.com/DeltaCoinNews" target="_blank" >
+										<i class="fa-brands fa-square-x-twitter"	style="color:black"></i>
+										<!--Creator: princejames.biz@gmail.com -->
+										<span style="font-size: small;">DeltaCoinNews</span>
+									</a>
+								</li>
+								<li>
+									<a	href="https://t.me/DeltaCoinNews" target="_blank" >
+										<i class="fa-brands fa-telegram"	style="color:#0088CC"></i>
+										<!--Creator: princejames.biz@gmail.com -->
+										<span style="font-size: small;">DELTA COIN CHANNEL</span>
+									</a>
+								</li>
+								<li>
+									<a	href="https://www.youtube.com/@DeltaCoinNews" target="_blank" >
+										<i class="fa-brands fa-youtube"	style="color:rgb(255, 0, 51)"></i>
+										<!--Creator: princejames.biz@gmail.com -->
+										<span style="font-size: small;">Delta Coin Minage</span>
+									</a>
+								</li>
 							</ul>
-							<ul class="pl-4">
+							<ul class="pl-2 lg:pl-4">
 								<li>
 									<a
 										href="https://t.me/deltafrancophone"
@@ -277,16 +298,17 @@
 									</a>
 								</li>
 								<li>
-									<a
-										href="https://discord.gg/8XNeDAun75"
-										target="_blank"
-									>
-										<i
-											class="fa-brands fa-discord"
-											style="color:rgb(88, 101, 242)"
-										></i>
+									<a	href="https://discord.gg/8XNeDAun75" target="_blank" >
+										<i class="fa-brands fa-discord"	style="color:rgb(88, 101, 242)"></i>
 										<!--Creator: magnohoved@gmail.com -->
 										<span style="font-size: small;">Delta Coin</span>
+									</a>
+								</li>
+								<li>
+									<a	href="https://www.facebook.com/share/14rvbXR1fv9/" target="_blank" >
+										<i class="fa-brands fa-facebook"	style="color:rgb(8, 102, 255)"></i>
+										<!--Creator: kbuhfils@gmail.com -->
+										<span style="font-size: small;">Delta Coin Minage</span>
 									</a>
 								</li>
 							</ul>
