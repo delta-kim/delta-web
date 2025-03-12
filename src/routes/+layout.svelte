@@ -293,7 +293,7 @@
 										></i>
 										<!--Creator: josephangengang@gmail.com -->
 										<span style="font-size: small;"
-											>DELTA FR ZONE</span
+											>DELTA 🇫🇷</span
 										>
 									</a>
 								</li>
@@ -311,7 +311,23 @@
 										<span style="font-size: small;">Delta Coin Minage</span>
 									</a>
 								</li>
+								<li>
+									<a	href="https://www.youtube.com/@DeltaOnICPBlockchain" target="_blank" >
+										<!--Creator: choudharysushobhan97@gmail.com -->
+										<i class="fa-brands fa-youtube"	style="color:rgb(255, 0, 51)"></i>
+										<span style="font-size: small;">Delta On ICP</span>
+									</a>
+								</li>
+								<li>
+									<a	href="https://chat.whatsapp.com/ERxqenilgXc9RG13RwWAdP" target="_blank" >
+										<!--Creator: kbuhfils@gmail.com -->
+										<i class="fa-brands fa-whatsapp"	style="color:#25d366"></i>
+										<span style="font-size: small;">DELTA NETWORK</span>
+									</a>
+								</li>
+															
 							</ul>
+							
 						</div>
 					</div>
 				</div>
