@@ -132,4 +132,5 @@ dist
 
 .svelte-kit
 DeepL.mjs
+svelte.config.js
 google.fy.mjs
