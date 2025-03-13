@@ -280,6 +280,13 @@
 										<span style="font-size: small;">Delta Coin Minage</span>
 									</a>
 								</li>
+								<li>
+									<a	href="https://t.co/JlN1ieKUeQ" target="_blank" >
+										<i class="fa-brands fa-facebook s-7IPF32Wcq3s8" style="color: rgb(8, 102, 255);"></i>
+										<!--Creator: adimadojoel08@gmail.com -->
+										<span style="font-size: small;">Delta in Africa</span>
+									</a>
+								</li>
 							</ul>
 							<ul class="pl-2 lg:pl-4">
 								<li>
@@ -325,7 +332,13 @@
 										<span style="font-size: small;">DELTA NETWORK</span>
 									</a>
 								</li>
-															
+								<li>
+									<a	href="https://www.youtube.com/@deltakimfr" target="_blank" >
+										<!--Creator: josephangengang@gmail.com -->
+										<i class="fa-brands fa-youtube"	style="color:rgb(255, 0, 51)"></i>
+										<span style="font-size: small;">Delta kim 🇫🇷</span>
+									</a>
+								</li>						
 							</ul>
 							
 						</div>
