@@ -106,8 +106,8 @@
 				</a>
 			</p>
 
-			<div class="flex flex-row justify-evenly lg:w-5/6">
-				<figure class="w-2/6">
+			<div class="flex flex-row justify-evenly">
+				<figure class="lg:w-2/6 w-48 pt-1">
 					<a
 						target="_blank"
 						href={lang == "zh-CN"
@@ -120,18 +120,22 @@
 							alt="Android apk"
 						/>
 					</a>
-					<div style="font-size: xx-small">
-						<a  style="text-decoration: underline;" href="https://github.com/delta-kim/dsms_verifier_terminal/releases" target="_blank">Version:1.0.2  Latest:2025-03-11</a>
+					<div style="font-size: xx-small;text-align: center">
+						<a
+							style="text-decoration: underline;"
+							href="https://github.com/delta-kim/dsms_verifier_terminal/releases"
+							target="_blank">Version:1.0.2 Latest:2025-03-11</a
+						>
 					</div>
 				</figure>
-				<figure class="w-2/6">
+				<figure class="lg:w-2/6 w-48 pt-1">
 					<img
 						class="border-2 rounded-md w-full card-hover"
 						src="/img/apple_store.svg"
 						alt="apple store"
 					/>
 					<div
-						style="color: brown; margin-top:-12px;text-align: center;"
+						style="color: brown;margin-top:-12px;text-align: center; font-size: xx-small"
 					>
 						Not supported
 					</div>

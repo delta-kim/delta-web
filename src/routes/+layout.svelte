@@ -196,33 +196,38 @@
 	<svelte:fragment slot="pageFooter">
 		<div class="footerBack">
 			<div class="container mx-auto">
-				<div class="flex flex-row justify-around">
-					<ul>
-						<li><a href="./download">Delta App</a></li>
-						<li>
-							<a href="./DSMSAccessTerminal"
-								>DSMS {$t("access_terminal")}</a
-							>
-						</li>
-						<li><a href="./roadmap">{$t("roadmap")}</a></li>
-						<li><a href="./explore">{$t("explore")}</a></li>
-					</ul>
-					<ul>
-						<li><a href="./whitepaper">{$t("whitepaper")}</a></li>
-						<li>
-							<a href="./terms_of_service"
-								>{$t("termsOfService")}</a
-							>
-						</li>
-						<li>
-							<a href="./privacy_policy">{$t("privacy_policy")}</a
-							>
-						</li>
-						<li><a href="./support">{$t("support")}</a></li>
-					</ul>
+				<div class="flex md:flex-row flex-col justify-around">
+					<div class="flex flex-row justify-around  md:w-1/2">
+						<ul>
+							<li><a href="./download">Delta App</a></li>
+							<li>
+								<a href="./DSMSAccessTerminal"
+									>DSMS {$t("access_terminal")}</a
+								>
+							</li>
+							<li><a href="./roadmap">{$t("roadmap")}</a></li>
+							<li><a href="./explore">{$t("explore")}</a></li>
+						</ul>
+						<ul>
+							<li>
+								<a href="./whitepaper">{$t("whitepaper")}</a>
+							</li>
+							<li>
+								<a href="./terms_of_service"
+									>{$t("termsOfService")}</a
+								>
+							</li>
+							<li>
+								<a href="./privacy_policy"
+									>{$t("privacy_policy")}</a
+								>
+							</li>
+							<li><a href="./support">{$t("support")}</a></li>
+						</ul>
+					</div>
 					<div
-						class="footerLogoBack pr-1 lg:pr-48 md:pr-16"
-						style="min-height : 96px; margin-top: -36px"
+						class="footerLogoBack pr-1 lg:pr-48 md:pr-16 md:-mt-8 mt-1 md:w-1/2"
+						style="min-height : 96px;"
 					>
 						<div style="color:green;" class="pl-1">
 							Community social media channels
@@ -260,31 +265,63 @@
 									</a>
 								</li>
 								<li>
-									<a	href="https://x.com/DeltaCoinNews" target="_blank" >
-										<i class="fa-brands fa-square-x-twitter"	style="color:black"></i>
+									<a
+										href="https://x.com/DeltaCoinNews"
+										target="_blank"
+									>
+										<i
+											class="fa-brands fa-square-x-twitter"
+											style="color:black"
+										></i>
 										<!--Creator: princejames.biz@gmail.com -->
-										<span style="font-size: small;">DeltaCoinNews</span>
+										<span style="font-size: small;"
+											>DeltaCoinNews</span
+										>
 									</a>
 								</li>
 								<li>
-									<a	href="https://t.me/DeltaCoinNews" target="_blank" >
-										<i class="fa-brands fa-telegram"	style="color:#0088CC"></i>
+									<a
+										href="https://t.me/DeltaCoinNews"
+										target="_blank"
+									>
+										<i
+											class="fa-brands fa-telegram"
+											style="color:#0088CC"
+										></i>
 										<!--Creator: princejames.biz@gmail.com -->
-										<span style="font-size: small;">DELTA COIN CHANNEL</span>
+										<span style="font-size: small;"
+											>DELTA COIN CHANNEL</span
+										>
 									</a>
 								</li>
 								<li>
-									<a	href="https://www.youtube.com/@DeltaCoinNews" target="_blank" >
-										<i class="fa-brands fa-youtube"	style="color:rgb(255, 0, 51)"></i>
+									<a
+										href="https://www.youtube.com/@DeltaCoinNews"
+										target="_blank"
+									>
+										<i
+											class="fa-brands fa-youtube"
+											style="color:rgb(255, 0, 51)"
+										></i>
 										<!--Creator: princejames.biz@gmail.com -->
-										<span style="font-size: small;">Delta Coin Minage</span>
+										<span style="font-size: small;"
+											>Delta Coin Minage</span
+										>
 									</a>
 								</li>
 								<li>
-									<a	href="https://t.co/JlN1ieKUeQ" target="_blank" >
-										<i class="fa-brands fa-facebook s-7IPF32Wcq3s8" style="color: rgb(8, 102, 255);"></i>
+									<a
+										href="https://t.co/JlN1ieKUeQ"
+										target="_blank"
+									>
+										<i
+											class="fa-brands fa-facebook s-7IPF32Wcq3s8"
+											style="color: rgb(8, 102, 255);"
+										></i>
 										<!--Creator: adimadojoel08@gmail.com -->
-										<span style="font-size: small;">Delta in Africa</span>
+										<span style="font-size: small;"
+											>Delta in Africa</span
+										>
 									</a>
 								</li>
 							</ul>
@@ -305,42 +342,114 @@
 									</a>
 								</li>
 								<li>
-									<a	href="https://discord.gg/8XNeDAun75" target="_blank" >
-										<i class="fa-brands fa-discord"	style="color:rgb(88, 101, 242)"></i>
+									<a
+										href="https://discord.gg/8XNeDAun75"
+										target="_blank"
+									>
+										<i
+											class="fa-brands fa-discord"
+											style="color:rgb(88, 101, 242)"
+										></i>
 										<!--Creator: magnohoved@gmail.com -->
-										<span style="font-size: small;">Delta Coin</span>
+										<span style="font-size: small;"
+											>Delta Coin</span
+										>
 									</a>
 								</li>
 								<li>
-									<a	href="https://www.facebook.com/share/14rvbXR1fv9/" target="_blank" >
-										<i class="fa-brands fa-facebook"	style="color:rgb(8, 102, 255)"></i>
+									<a
+										href="https://www.facebook.com/share/14rvbXR1fv9/"
+										target="_blank"
+									>
+										<i
+											class="fa-brands fa-facebook"
+											style="color:rgb(8, 102, 255)"
+										></i>
 										<!--Creator: kbuhfils@gmail.com -->
-										<span style="font-size: small;">Delta Coin Minage</span>
+										<span style="font-size: small;"
+											>Delta Coin Minage</span
+										>
 									</a>
 								</li>
 								<li>
-									<a	href="https://www.youtube.com/@DeltaOnICPBlockchain" target="_blank" >
+									<a
+										href="https://www.youtube.com/@DeltaOnICPBlockchain"
+										target="_blank"
+									>
 										<!--Creator: choudharysushobhan97@gmail.com -->
-										<i class="fa-brands fa-youtube"	style="color:rgb(255, 0, 51)"></i>
-										<span style="font-size: small;">Delta On ICP</span>
+										<i
+											class="fa-brands fa-youtube"
+											style="color:rgb(255, 0, 51)"
+										></i>
+										<span style="font-size: small;"
+											>Delta On ICP</span
+										>
 									</a>
 								</li>
 								<li>
-									<a	href="https://chat.whatsapp.com/ERxqenilgXc9RG13RwWAdP" target="_blank" >
+									<a
+										href="https://chat.whatsapp.com/ERxqenilgXc9RG13RwWAdP"
+										target="_blank"
+									>
 										<!--Creator: kbuhfils@gmail.com -->
-										<i class="fa-brands fa-whatsapp"	style="color:#25d366"></i>
-										<span style="font-size: small;">DELTA NETWORK</span>
+										<i
+											class="fa-brands fa-whatsapp"
+											style="color:#25d366"
+										></i>
+										<span style="font-size: small;"
+											>DELTA NETWORK</span
+										>
 									</a>
 								</li>
 								<li>
-									<a	href="https://www.youtube.com/@deltakimfr" target="_blank" >
+									<a
+										href="https://www.youtube.com/@deltakimfr"
+										target="_blank"
+									>
 										<!--Creator: josephangengang@gmail.com -->
-										<i class="fa-brands fa-youtube"	style="color:rgb(255, 0, 51)"></i>
-										<span style="font-size: small;">Delta kim 🇫🇷</span>
+										<i
+											class="fa-brands fa-youtube"
+											style="color:rgb(255, 0, 51)"
+										></i>
+										<span style="font-size: small;"
+											>Delta kim 🇫🇷</span
+										>
 									</a>
-								</li>						
+								</li>
 							</ul>
-							
+							<ul class="pl-2 lg:pl-4">
+								<li>
+									<a
+										href="https://t.me/+n-bytOLp7NcyN2M0"
+										target="_blank"
+									>
+										<i
+											class="fa-brands fa-telegram"
+											style="color:#0088CC"
+										></i>
+										<!--Creator: josephangengang@gmail.com -->
+										<span style="font-size: small;"
+											>DTC Afrique</span
+										>
+									</a>
+								</li>
+								<li>
+									<a
+										href="https://t.me/DeltaNetworkPioneers"
+										target="_blank"
+									>
+										<i
+											class="fa-brands fa-telegram"
+											style="color:#0088CC"
+										></i>
+										<!--Creator: josephangengang@gmail.com -->
+										<span style="font-size: small;"
+											>Delta Pioneers</span
+										>
+									</a>
+								</li>
+								
+							</ul>
 						</div>
 					</div>
 				</div>

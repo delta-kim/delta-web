@@ -66,8 +66,8 @@
 				</figure>
 			</div>
  -->
-			<div class="flex flex-row justify-evenly mb-8 md:mb-20 lg:w-5/6">
-				<figure class="w-2/6 pt-1">
+			<div class="flex flex-row justify-evenly mb-8 md:mb-20">
+				<figure class="lg:w-2/6 w-48 pt-1">
 					<a
 						target="_blank"
 						href={lang == "zh-CN"
@@ -81,11 +81,11 @@
 							title="Android apk"
 						/>
 					</a>
-					<div style="font-size: xx-small">
+					<div style="font-size:xx-small " class="text-center">
 						<a  style="text-decoration: underline;" href="https://github.com/delta-kim/delta_mobile_app/releases" target="_blank">Version:1.1.2  Latest:2025-03-13</a>
 					</div>
 				</figure>
-				<figure class="w-2/6">
+				<figure class="lg:w-2/6 w-48 pt-1">
 					<a
 						target="_blank"
 						href="https://apps.apple.com/app/delta-kim/id6738377112"

@@ -44,7 +44,7 @@
 			></path>
 			md:grid-cols-2 lg:grid-cols-3
 		</svg> -->
-	<div class="w-full text-token flex flex-wrap p-10">
+	<div class="w-full text-token flex flex-wrap py-10 lg:px-10  pl-4">
 		<div class="pb-8 pr-8 w-full md:w-1/2 lg:w-1/3">
 			<div
 				class="card variant-soft card-hover py-4 pl-4 flex flex-row leading-none"
