@@ -7,6 +7,11 @@ import { langs } from '$lib/i18n/langs';
 let langKeys = Object.keys(langs);
 
 export const handle: Handle = async ({ event, resolve }) => {
+    if (event.url.pathname == '/google412d55fb8d43b8ef.html') {
+        return new Response('google-site-verification: google412d55fb8d43b8ef.html', {
+            headers: { 'Content-Type': 'text/plain' }
+        });
+    }
     if (event.url.pathname == "/") {
         const negotiator = new Neg({
             headers: {
