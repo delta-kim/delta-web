@@ -131,6 +131,6 @@ dist
 
 
 .svelte-kit
-DeepL.mjs
 svelte.config.js
+DeepL.mjs
 google.fy.mjs
