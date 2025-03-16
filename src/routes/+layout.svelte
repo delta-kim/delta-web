@@ -197,7 +197,7 @@
 		<div class="footerBack">
 			<div class="container mx-auto">
 				<div class="flex md:flex-row flex-col justify-around">
-					<div class="flex flex-row justify-around  md:w-1/2">
+					<div class="flex flex-row justify-around md:w-1/2">
 						<ul>
 							<li><a href="./download">Delta App</a></li>
 							<li>
@@ -226,13 +226,13 @@
 						</ul>
 					</div>
 					<div
-						class="footerLogoBack pr-1 lg:pr-48 md:pr-16 md:-mt-8 mt-1 md:w-1/2"
+						class="footerLogoBack pr-1 md:-mt-8 mt-1 md:w-1/2"
 						style="min-height : 96px;"
 					>
 						<div style="color:green;" class="pl-1">
 							Community social media channels
 						</div>
-						<div class="flex flex-row">
+						<div class="flex flex-row justify-around">
 							<ul class="pl-2 lg:pl-4">
 								<li>
 									<a
@@ -315,7 +315,7 @@
 										target="_blank"
 									>
 										<i
-											class="fa-brands fa-facebook s-7IPF32Wcq3s8"
+											class="fa-brands fa-facebook"
 											style="color: rgb(8, 102, 255);"
 										></i>
 										<!--Creator: adimadojoel08@gmail.com -->
@@ -418,6 +418,7 @@
 								</li>
 							</ul>
 							<ul class="pl-2 lg:pl-4">
+								<!--
 								<li>
 									<a
 										href="https://t.me/+n-bytOLp7NcyN2M0"
@@ -427,9 +428,56 @@
 											class="fa-brands fa-telegram"
 											style="color:#0088CC"
 										></i>
-										<!--Creator: josephangengang@gmail.com -->
+										< Creator: 色情 >
 										<span style="font-size: small;"
 											>DTC Afrique</span
+										>
+									</a>
+								</li>-->
+
+								<li>
+									<a
+										href="https://x.com/Deltapioneers?t=jVLBg-2g-ATJbEbmMi_X7w&s=09"
+										target="_blank"
+									>
+										<i
+											class="fa-brands fa-square-x-twitter"
+											style="color:black"
+										></i>
+										<!--Creator: josephangengang@gmail.com -->
+										<span style="font-size: small;"
+											>DeltaPioneers</span
+										>
+									</a>
+								</li>
+
+								<li>
+									<a
+										href="https://facebook.com/groups/1394421291722968/"
+										target="_blank"
+									>
+										<i
+											class="fa-brands fa-facebook"
+											style="color: rgb(8, 102, 255);"
+										></i>
+										<!--Creator: josephangengang@gmail.com -->
+										<span style="font-size: small;"
+											>Delta facebook</span
+										>
+									</a>
+								</li>
+								<li>
+									<a
+										href="https://chat.whatsapp.com/EKPHb5BuX5p3yiQVEJ5z72"
+										target="_blank"
+									>
+										<i
+											class="fa-brands fa-whatsapp"
+											style="color:#25d366"
+										></i>
+										<!--Creator: josephangengang@gmail.com -->
+										<span style="font-size: small;"
+											>Delta Pioneers</span
 										>
 									</a>
 								</li>
@@ -448,8 +496,15 @@
 										>
 									</a>
 								</li>
-								
 							</ul>
+							<div class="lg:w-2/6 hidden lg:block" style="color: orange;font-size: x-small;">
+								ann.: New links are not accepted for the
+								time being. Since some channels are found to
+								spread pornographic content, we plan to develop
+								a "media center" driven and managed by the
+								community in the future to eliminate unhealthy
+								content (2025-03-16)
+							</div>
 						</div>
 					</div>
 				</div>
