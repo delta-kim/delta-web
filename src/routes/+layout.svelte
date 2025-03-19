@@ -496,6 +496,40 @@
 										>
 									</a>
 								</li>
+								<li>
+									<a
+										href="https://chat.whatsapp.com/HelA80BXOt6JpfJBAUTWKU"
+										target="_blank"
+									>
+										<i
+											class="fa-brands fa-whatsapp"
+											style="color:#25d366"
+										></i>
+										<!--Creator: josephangengang@gmail.com -->
+										<span style="font-size: small;"
+											>DTC NETWORK</span
+										>
+									</a>
+								</li>
+								<li>
+									<a
+										href="https://chat.whatsapp.com/GF3UGmKnBdQ5FlXS6QWhyM"
+										target="_blank"
+									>
+										<i
+											class="fa-brands fa-whatsapp"
+											style="color:#25d366"
+										></i>
+										<!--Creator: josephangengang@gmail.com -->
+										<span style="font-size: small;"
+											>deploy DSMS t.</span
+										>
+									</a>
+								</li>
+
+								
+
+								
 							</ul>
 							<div class="lg:w-2/6 hidden lg:block" style="color: orange;font-size: x-small;">
 								ann.: New links are not accepted for the
