@@ -71,8 +71,8 @@
 					<a
 						target="_blank"
 						href={lang == "zh-CN"
-							? "https://punks.oss-ap-southeast-1.aliyuncs.com/apk/delta_mobile_1.1.2.apk"
-							: "https://github.com/delta-kim/delta_mobile_app/releases/download/1.1.2/delta_mobile_1.1.2.apk"}
+							? "http://47.236.16.100:88/download/delta_mobile_1.1.3.apk"
+							: "https://github.com/delta-kim/delta_mobile_app/releases/download/1.1.3/delta_mobile_1.1.3.apk"}
 					>
 						<img
 							class="border-2 rounded-md w-full card-hover"
@@ -82,7 +82,11 @@
 						/>
 					</a>
 					<div style="font-size:xx-small " class="text-center">
-						<a  style="text-decoration: underline;" href="https://github.com/delta-kim/delta_mobile_app/releases" target="_blank">Version:1.1.2  Latest:2025-03-13</a>
+						<a
+							style="text-decoration: underline;"
+							href="https://github.com/delta-kim/delta_mobile_app/releases"
+							target="_blank">Version:1.1.3 Latest:2025-03-21</a
+						>
 					</div>
 				</figure>
 				<figure class="lg:w-2/6 w-48 pt-1">
