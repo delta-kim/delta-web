@@ -71,7 +71,7 @@
 					<a
 						target="_blank"
 						href={lang == "zh-CN"
-							? "http://47.236.16.100:88/download/delta_mobile_1.1.3.apk"
+							? "https://buy2out.oss-cn-shenzhen.aliyuncs.com/apk/delta_mobile_1.1.3_arm64.apk"
 							: "https://github.com/delta-kim/delta_mobile_app/releases/download/1.1.3/delta_mobile_1.1.3.apk"}
 					>
 						<img
