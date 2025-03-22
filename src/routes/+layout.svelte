@@ -513,7 +513,7 @@
 								</li>
 								<li>
 									<a
-										href="https://chat.whatsapp.com/GF3UGmKnBdQ5FlXS6QWhyM"
+										href="https://chat.whatsapp.com/K8hgtui0nEy0wTBCYJPAa1"
 										target="_blank"
 									>
 										<i
