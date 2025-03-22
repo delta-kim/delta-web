@@ -324,6 +324,22 @@
 										>
 									</a>
 								</li>
+								<li>
+									<a
+										href="https://medium.com/@DeltaCoinNews"
+										target="_blank"
+									>
+										<img
+											style="width: 15px;display: inline;"
+											alt="delta medium"
+											src="/img/medium.png"
+										/>
+										<!--Creator: princejames.biz@gmail.com -->
+										<span style="font-size: small;"
+											>DeltaCoin News</span
+										>
+									</a>
+								</li>
 							</ul>
 							<ul class="pl-2 lg:pl-4">
 								<li>
@@ -526,16 +542,15 @@
 										>
 									</a>
 								</li>
-
-								
-
-								
 							</ul>
-							<div class="lg:w-2/6 hidden lg:block" style="color: orange;font-size: x-small;">
-								ann.: New links are not accepted for the
-								time being. Since some channels are found to
-								spread pornographic content, we plan to develop
-								a "media center" driven and managed by the
+							<div
+								class="lg:w-2/6 hidden lg:block"
+								style="color: orange;font-size: x-small;"
+							>
+								ann.: New links are not accepted for the time
+								being. Since some channels are found to spread
+								pornographic content, we plan to develop a
+								"media center" driven and managed by the
 								community in the future to eliminate unhealthy
 								content (2025-03-16)
 							</div>
