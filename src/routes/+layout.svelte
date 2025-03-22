@@ -432,6 +432,21 @@
 										>
 									</a>
 								</li>
+								<li>
+									<a
+										href="https://www.facebook.com/groups/9774910459215134"
+										target="_blank"
+									>
+										<i
+											class="fa-brands fa-facebook"
+											style="color:rgb(8, 102, 255)"
+										></i>
+										<!--Creator: kbuhfils@gmail.com -->
+										<span style="font-size: small;"
+											>Delta δ بالعربي</span
+										>
+									</a>
+								</li>								
 							</ul>
 							<ul class="pl-2 lg:pl-4">
 								<!--
@@ -542,6 +557,21 @@
 										>
 									</a>
 								</li>
+								<li>
+									<a
+										href="https://t.me/deltakimtr"
+										target="_blank"
+									>
+										<i
+											class="fa-brands fa-telegram"
+											style="color:#0088CC"
+										></i>
+										<!--Creator: josephangengang@gmail.com -->
+										<span style="font-size: small;"
+											>Delta Türkiye</span>
+									</a>
+								</li>
+								
 							</ul>
 							<div
 								class="lg:w-2/6 hidden lg:block"
