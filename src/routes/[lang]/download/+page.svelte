@@ -72,7 +72,7 @@
 						target="_blank"
 						href={lang == "zh-CN"
 							? "https://buy2out.oss-cn-shenzhen.aliyuncs.com/apk/delta_mobile_1.1.3_arm64.apk"
-							: "https://github.com/delta-kim/delta_mobile_app/releases/download/1.1.3/delta_mobile_1.1.3.apk"}
+							: "https://github.com/delta-kim/delta_mobile_app/releases/download/1.1.4/delta_mobile_1.1.4.apk"}
 					>
 						<img
 							class="border-2 rounded-md w-full card-hover"
