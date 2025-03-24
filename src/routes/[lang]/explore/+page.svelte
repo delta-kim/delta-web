@@ -1,28 +1,107 @@
 <!-- YOU CAN DELETE EVERYTHING IN THIS PAGE -->
 <script lang="ts">
-	import { t, locale } from "svelte-i18n";
-	import { onMount } from "svelte";
-	import type { PageData } from "./$types";
+  import { t, locale } from "svelte-i18n";
+  import { onMount } from "svelte";
+  import type { PageData } from "./$types";
 
-	export let data: PageData;
+  export let data: PageData;
 
-	export let lang = data.lang;
-	locale.subscribe((_lang) => {
-		console.log("locale.subscribe", _lang);
-		lang = _lang || "en";
-	});
+  export let lang = data.lang;
+  locale.subscribe((_lang) => {
+    console.log("locale.subscribe", _lang);
+    lang = _lang || "en";
+  });
+
+  const explore_apps = [
+    {
+      image: "/img/3-No-verification.svg",
+      alt: "3-No-verification",
+      title: $t("3No-Verification"),
+      subtitle: $t("3No-Verification_desc"),
+      link: "./whitepaper#3-no-verification",
+    },
+    {
+      image: "/img/decentralization.svg",
+      alt: "decentralization",
+      title: $t("decentralization"),
+      subtitle: $t("decentralization_desc"),
+    },
+    {
+      image: "/img/mobilePriority.svg",
+      alt: "mobile Priority",
+      title: $t("mobile_first"),
+      subtitle: $t("mobile_first_desc"),
+      link: "./whitepaper#mobile_phone_mining",
+    },
+    {
+      image: "/img/environmentallyFriendly.svg",
+      alt: "environmentally Friendly",
+      title: $t("environment_friendly"),
+      subtitle: $t("environment_friendly_desc"),
+      link: "./whitepaper#energy_consumption_and_environmental_issues",
+    },
+    {
+      image: "/img/safetyCircle.svg",
+      alt: "safety Circle",
+      title: $t("safety_circle"),
+      subtitle: $t("safety_circle_desc"),
+      link: "./whitepaper#safety_circle",
+    },
+    {
+      image: "/img/fairness.svg",
+      alt: "fairness",
+      title: $t("fair_distribution"),
+      subtitle: $t("fair_distribution_desc"),
+      link: "./whitepaper#economic_model",
+    },
+    {
+      image: "/img/multiChainWallet.svg",
+      alt: "multiChain Wallet",
+      title: $t("decentralized_multi-chain_wallet"),
+      subtitle: $t("decentralized_multi-chain_wallet_desc"),
+      link: "./whitepaper#decentralized_multi-chain_wallet",
+    },
+    {
+      image: "/img/multiChainWallet.svg",
+      alt: "multiChain Wallet",
+      title: $t("decentralized_multi-chain_wallet"),
+      subtitle: $t("decentralized_multi-chain_wallet_desc"),
+      link: "./whitepaper#decentralized_multi-chain_wallet",
+    },
+    {
+      image: "/img/Web3.svg",
+      alt: "Web3",
+      title: $t("web3_application_center"),
+      subtitle: $t("web3_application_center_desc"),
+      link: "./whitepaper#dApp_square",
+    },
+    {
+      image: "/img/ICPicon.svg",
+      alt: "ICP",
+      title: $t("ICP_smart_blockchain"),
+      subtitle: $t("ICP_smart_blockchain_desc"),
+      link: "./whitepaper#technology_and_implementation",
+    },
+    {
+      image: "/img/DAO.svg",
+      alt: "DAO",
+      title: $t("DAO_governance_model"),
+      subtitle: $t("ICP_smart_blockchain_desc"),
+      link: "./whitepaper#DAO_mode",
+    },
+  ];
 </script>
 
 <svelte:head>
-	<title>{$t("title_prefix")} - {$t("explore")}</title>
+  <title>{$t("title_prefix")} - {$t("explore")}</title>
 </svelte:head>
 <div class="2xl:px-9 h-full flex flex-col justify-center items-center">
-	<div style="margin-bottom :-8rem;" class="pt-10 pb-32">
-		<h2 class="h2 leading-normal text-center" style="opacity: 0.8;">
-			{@html $t("explore_delta_heading")}
-		</h2>
-	</div>
-	<!-- <svg
+  <div style="margin-bottom :-8rem;" class="pt-10 pb-32">
+    <h2 class="h2 leading-normal text-center" style="opacity: 0.8;">
+      {@html $t("explore_delta_heading")}
+    </h2>
+  </div>
+  <!-- <svg
 			style="height: 8rem;fill :white; width: 100%;"
 			class="nectar-shape-divider"
 			aria-hidden="true"
@@ -44,209 +123,34 @@
 			></path>
 			md:grid-cols-2 lg:grid-cols-3
 		</svg> -->
-	<div class="w-full text-token flex flex-wrap py-10 lg:px-10  pl-4">
-		<div class="pb-8 pr-8 w-full md:w-1/2 lg:w-1/3">
-			<div
-				class="card variant-soft card-hover py-4 pl-4 flex flex-row leading-none"
-			>
-				<figure class="mr-4 flex-none">
-					<img
-						width="80"
-						alt="3-No-verification"
-						src="/img/3-No-verification.svg"
-					/>
-				</figure>
-				<div>
-					<h3 class="h3">{$t("3No-Verification")}</h3>
-					<p>
-						{$t("3No-Verification_desc")}
-					</p>
-					<p class="-mt-3 text-right pr-4 underline">
-						<a href="./whitepaper#3-no-verification"
-							>{$t("more…")}</a
-						>
-					</p>
-				</div>
-			</div>
-		</div>
-
-		<div class="pb-8 pr-8 w-full md:w-1/2 lg:w-1/3">
-			<div class="card variant-soft card-hover py-4 px-8 flex flex-row">
-				<figure class="mr-4 flex-none">
-					<img
-						class=""
-						width="100"
-						alt="decentralization"
-						src="/img/decentralization.svg"
-					/>
-				</figure>
-				<div>
-					<h3 class="h3">{$t("decentralization")}</h3>
-					<p>{$t("decentralization_desc")}</p>
-				</div>
-			</div>
-		</div>
-
-		<div class="pb-8 pr-8 w-full md:w-1/2 lg:w-1/3">
-			<div class="card variant-soft card-hover py-4 px-8 flex flex-row">
-				<figure class="mr-4 flex-none">
-					<img
-						class=""
-						width="100"
-						alt="mobile Priority"
-						src="/img/mobilePriority.svg"
-					/>
-				</figure>
-				<div>
-					<h3 class="h3">{$t("mobile_first")}</h3>
-					<p>{$t("mobile_first_desc")}</p>
-					<p class="text-right">
-						<a href="./whitepaper#mobile_phone_mining"
-							>{$t("more…")}</a
-						>
-					</p>
-				</div>
-			</div>
-		</div>
-
-		<div class="pb-8 pr-8 w-full md:w-1/2 lg:w-1/3">
-			<div class="card variant-soft card-hover py-4 px-8 flex flex-row">
-				<figure class="mr-4 flex-none">
-					<img
-						width="100"
-						alt="environmentally Friendly"
-						src="/img/environmentallyFriendly.svg"
-					/>
-				</figure>
-				<div>
-					<h3 class="h3">{$t("environment_friendly")}</h3>
-					<p>{$t("environment_friendly_desc")}</p>
-					<p class="text-right -mt-3">
-						<a
-							href="./whitepaper#energy_consumption_and_environmental_issues"
-							>{$t("more…")}</a
-						>
-					</p>
-				</div>
-			</div>
-		</div>
-		<div class="pb-8 pr-8 w-full md:w-1/2 lg:w-1/3">
-			<div
-				class="card variant-soft card-hover py-4 {lang.startsWith('zh')
-					? 'px-8'
-					: 'pl-8'} flex flex-row"
-			>
-				<figure class="mr-4 flex-none">
-					<img
-						width="100"
-						alt="safety Circle"
-						src="/img/safetyCircle.svg"
-					/>
-				</figure>
-				<div>
-					<h3 class="h3">{$t("safety_circle")}</h3>
-					<p>{$t("safety_circle_desc")}</p>
-					<p class="text-right -mt-3 pr-4">
-						<a href="./whitepaper#safety_circle">{$t("more…")}</a>
-					</p>
-				</div>
-			</div>
-		</div>
-		<div class="pb-8 pr-8 w-full md:w-1/2 lg:w-1/3">
-			<div
-				class="card variant-soft card-hover py-4 pl-8 flex flex-row {lang.startsWith(
-					'zh',
-				)
-					? ''
-					: 'leading-none'}"
-			>
-				<figure class="mr-4 flex-none">
-					<img width="100" alt="fairness" src="/img/fairness.svg" />
-				</figure>
-				<div>
-					<h3 class="h3">{$t("fair_distribution")}</h3>
-					<p>{$t("fair_distribution_desc")}</p>
-					<p class="text-right -mt-3 pr-4">
-						<a href="./whitepaper#economic_model">{$t("more…")}</a>
-					</p>
-				</div>
-			</div>
-		</div>
-		<div class="pb-8 pr-8 w-full md:w-1/2 lg:w-1/3">
-			<div class="card variant-soft card-hover py-4 px-8 flex flex-row">
-				<figure class="mr-4 flex-none">
-					<img
-						width="100"
-						alt="multi chain wallet"
-						src="/img/multiChainWallet.svg"
-					/>
-				</figure>
-				<div>
-					<h3 class="h3">
-						{@html $t("decentralized_multi-chain_wallet")}
-					</h3>
-					<p>{$t("decentralized_multi-chain_wallet_desc")}</p>
-					<p class="text-right pr-4 -mt-3">
-						<a href="./whitepaper#decentralized_multi-chain_wallet"
-							>{$t("more…")}</a
-						>
-					</p>
-				</div>
-			</div>
-		</div>
-		<div class="pb-8 pr-8 w-full md:w-1/2 lg:w-1/3">
-			<div class="card variant-soft card-hover py-4 px-8 flex flex-row">
-				<figure class="mr-4 flex-none justify-center">
-					<img width="100" alt="Web3" src="/img/Web3.svg" />
-				</figure>
-				<div>
-					<h3 class="h3">{@html $t("web3_application_center")}</h3>
-					<p>{$t("web3_application_center_desc")}</p>
-					<p class="text-right pr-4 -mt-3">
-						<a href="./whitepaper#dApp_square">{$t("more…")}</a>
-					</p>
-				</div>
-			</div>
-		</div>
-		<div class="pb-8 pr-8 w-full md:w-1/2 lg:w-1/3">
-			<div class="card variant-soft card-hover py-4 pl-4 flex flex-row">
-				<figure class="mr-4 flex-none justify-center">
-					<img width="100" alt="ICP" src="/img/ICPicon.svg" />
-				</figure>
-				<div>
-					<h3 class="h3">{$t("ICP_smart_blockchain")}</h3>
-					<p>{$t("ICP_smart_blockchain_desc")}</p>
-					<p class="text-right pr-4 -mt-3">
-						<a href="./whitepaper#technology_and_implementation"
-							>{$t("more…")}</a
-						>
-					</p>
-				</div>
-			</div>
-		</div>
-		<div class="pb-8 pr-8 w-full md:w-1/2 lg:w-1/3">
-			<div
-				class="card variant-soft card-hover py-4 {lang.startsWith('zh')
-					? 'px-8'
-					: 'pl-8'} flex flex-row col-start-2"
-			>
-				<figure class="mr-4 flex-none">
-					<img width="100" alt="DAO" src="/img/DAO.svg" />
-				</figure>
-				<div>
-					<h3 class="h3">{@html $t("DAO_governance_model")}</h3>
-					<p>{$t("DAO_governance_model_desc")}</p>
-					<p class="text-right pr-4">
-						<a href="./whitepaper#DAO_mode">{$t("more…")}</a>
-					</p>
-				</div>
-			</div>
-		</div>
-	</div>
+  <div
+    class="w-full text-token grid md:grid-cols-4 gap-4 py-10 px-4 lg:px-10 pl-4"
+  >
+    {#each explore_apps as app}
+      <div
+        class=" bg-white shadow-xl flex flex-col items-center justify-center border border-slate-400 rounded-xl p-5"
+      >
+        <div class="py-4 pl-4 flex flex-col items-center text-center gap-3">
+          <figure class="mr-4 flex-none">
+            <img width="80" alt={app.alt} src={app.image} />
+          </figure>
+          <div>
+            <h3 class="h3">{@html app.title}</h3>
+            <p>
+              {@html app.subtitle}
+            </p>
+            {#if app.link != null}
+              <a href={app.link} class="mt-2 underline">{$t("more…")}</a>
+            {/if}
+          </div>
+        </div>
+      </div>
+    {/each}
+  </div>
 </div>
 
 <style lang="postcss">
-	figure {
-		@apply flex relative flex-col;
-	}
+  figure {
+    @apply flex relative flex-col;
+  }
 </style>
