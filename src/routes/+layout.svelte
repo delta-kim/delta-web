@@ -340,6 +340,18 @@
 										>
 									</a>
 								</li>
+								<li>
+									<a
+										href="https://www.reddit.com/r/Delta_Crypto/"
+										target="_blank"
+									>
+									<i class="fa-brands fa-reddit" style="color:rgb(255, 69, 0);"></i>
+										<!--Creator: princejames.biz@gmail.com -->
+										<span style="font-size: small;"
+											>Delta Crypto</span
+										>
+									</a>
+								</li>
 							</ul>
 							<ul class="pl-2 lg:pl-4">
 								<li>
