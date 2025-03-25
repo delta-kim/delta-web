@@ -8,6 +8,7 @@
 		console.log("faq", data);
 	});
 </script>
+
 <svelte:head>
 	<title>{$t("title_prefix")} - {$t("support")}</title>
 </svelte:head>
@@ -53,10 +54,19 @@
 				</AccordionItem>
 			{/each}
 		</Accordion>
-		<h2 class="h2 mt-10" id="contact_via_email">{$t("contact_via_email")}</h2>
+		<h2 class="h2 mt-10" id="contact_via_email">discord support</h2>
 		<div class="card p-4 my-4">
-			<article>If you have any questions, please feel free to contact us by email.</article>
-			<h3 class="h3 mt-4">contact@delta.kim</h3>
+			<article>Community support has moved to Discord</article>
+			<h3 class="h3 mt-4">https://discord.com/invite/fw7mTD8Gha</h3>
+		</div>
+		<h3 class="h2 mt-10" id="contact_via_email">
+			{$t("contact_via_email")}
+		</h3>
+		<div class="card p-4 my-4">
+			<article>
+				Please do not email except under special circumstances.
+			</article>
+			<h5 class="h3 mt-4">contact#delta.kim</h5>
 		</div>
 	</div>
 </div>
