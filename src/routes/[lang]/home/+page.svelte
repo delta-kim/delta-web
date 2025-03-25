@@ -67,19 +67,18 @@
           </div>
         </div>
         <div class="flex flex-col md:w-[35%]">
-          <!-- <figure class="pl-9 -mb-16">
-            <section class="img-bg" />
-            <div class="img-edge-cover xl:w-5/6">
-              <img alt="delta moble" src="/img/handheld.delta.png" />
-            </div>
-          </figure> -->
           <figure class="flex-1 items-center">
+            <section class="img-bg" />
+
+            <img alt="delta moble" src="/img/handheld.delta.png" width="480" />
+          </figure>
+          <!-- <figure class="flex-1 items-center">
             <img
               src="/img/appMain1.png"
               width="280"
               alt="delta app Home Screen"
             />
-          </figure>
+          </figure> -->
         </div>
       </section>
     </div>

@@ -64,8 +64,8 @@
 				</figure>
 			</div>
  -->
-      <div class="flex flex-row justify-evenly items-start mb-8 md:mb-20">
-        <figure>
+      <div class="flex flex-row items-center gap-8 mb-10">
+        <figure class="mt-7">
           <a
             target="_blank"
             href={lang == "zh-CN"
@@ -94,7 +94,7 @@
           >
             <img
               style="aspect-ratio:165/61"
-              class="rounded-xl w-[200px] object-contain"
+              class="rounded-[20px] w-[190px] object-contain"
               src="/img/apple_store.svg"
               alt="Apple store"
               title="Apple store"
