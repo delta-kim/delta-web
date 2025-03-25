@@ -190,6 +190,12 @@
       link: "https://t.me/deltakimtr",
       creator: "josephangengang@gmail.com",
     },
+    {
+      icon: `<i class="fa-brands fa-reddit" style="color:rgb(255, 69, 0);"></i>`,
+      label: "Delta Crypto",
+      link: "https://www.reddit.com/r/Delta_Crypto",
+      creator: "princejames.biz@gmail.com",
+    },
   ];
 </script>
 
