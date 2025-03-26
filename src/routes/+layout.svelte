@@ -213,7 +213,7 @@
             <figure class="ml-4 hidden lg:block">
               <img
                 src="/img/delta.logo.svg"
-                width="150"
+                width="180"
                 alt="Delta"
                 class="object-contain"
               />

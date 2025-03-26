@@ -96,16 +96,14 @@
         >
           {#each items as item}
             <figure
-              class="w-[145px] md:w-[200px] h-[100px] bg-white shadow-xl flex flex-col items-center justify-center border border-slate-200 rounded-lg"
+              class="w-[145px] md:w-[200px] bg-white shadow-xl flex flex-col items-center justify-center border border-slate-200 rounded-lg py-2 md:py-4"
             >
               <img
-                class="-mb-4"
-                width="80"
-                height="80"
+                class="w-[80px] md:w-[150px] object-contain"
                 alt={item.label}
                 src={item.image}
               />
-              <div class="text-sm md:text-md font-normal mt-5">
+              <div class="text-sm md:text-md font-normal">
                 {item.label}
               </div>
             </figure>
