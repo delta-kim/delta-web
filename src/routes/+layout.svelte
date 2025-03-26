@@ -366,7 +366,7 @@
 
   <svelte:fragment slot="pageFooter">
     <div class="footerBack bg-slate-900 text-white px-6 md:px-0">
-      <div class="py-10 container mx-auto">
+      <div class="py-9 container mx-auto">
         <div class="flex md:flex-row flex-col justify-around items-start">
           <div class="flex flex-row flex-wrap md:justify-around md:w-1/2 gap-5">
             <ul>
