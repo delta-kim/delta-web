@@ -196,6 +196,18 @@
       link: "https://www.reddit.com/r/Delta_Crypto",
       creator: "princejames.biz@gmail.com",
     },
+    {
+      icon: `<i class="fa-brands fa-telegram" style="color:#0088CC"></i>`,
+      label: "Delta Global",
+      link: "https://t.me/GlobalDeltaCoin",
+      creator: "josephangengang@gmail.com",
+    },
+    {
+      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
+      label: "DELTA FORCE",
+      link: "https://chat.whatsapp.com/HeUXuQtdP390MDu6pnpAij",
+      creator: "kbuhfils@gmail.com",
+    },
   ];
 </script>
 
