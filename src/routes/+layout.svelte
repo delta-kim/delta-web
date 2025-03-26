@@ -458,7 +458,22 @@
 											>Delta δ بالعربي</span
 										>
 									</a>
-								</li>								
+								</li>
+								<li>
+									<a
+										href="https://chat.whatsapp.com/HeUXuQtdP390MDu6pnpAij"
+										target="_blank"
+									>
+										<!--Creator: kbuhfils@gmail.com -->
+										<i
+											class="fa-brands fa-whatsapp"
+											style="color:#25d366"
+										></i>
+										<span style="font-size: small;"
+											>DELTA FORCE</span
+										>
+									</a>
+								</li>	
 							</ul>
 							<ul class="pl-2 lg:pl-4">
 								<!--
@@ -583,6 +598,21 @@
 											>Delta Türkiye</span>
 									</a>
 								</li>
+								<li>
+									<a
+										href="https://t.me/GlobalDeltaCoin"
+										target="_blank"
+									>
+										<i
+											class="fa-brands fa-telegram"
+											style="color:#0088CC"
+										></i>
+										<!--Creator: josephangengang@gmail.com -->
+										<span style="font-size: small;"
+											>Delta Global</span>
+									</a>
+								</li>
+								
 								
 							</ul>
 							<div
