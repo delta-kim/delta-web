@@ -124,7 +124,7 @@
 			md:grid-cols-2 lg:grid-cols-3
 		</svg> -->
   <div
-    class="w-full text-token grid md:grid-cols-4 gap-4 py-10 px-4 lg:px-10 pl-4"
+    class="w-full text-token grid lg:grid-cols-3 xl:grid-cols-4 gap-4 py-10 px-4 lg:px-10 pl-4"
   >
     {#each explore_apps as app}
       <div

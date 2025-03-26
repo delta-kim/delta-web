@@ -398,7 +398,9 @@
               />
             </div>
             <div class="flex flex-row justify-between">
-              <ul class="grid md:grid-cols-5 gap-3 justify-between">
+              <ul
+                class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-2 justify-between"
+              >
                 {#each communities as community}
                   <li class="text-md font-[500] text-blue-600 mb-1">
                     <a
