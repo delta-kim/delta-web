@@ -95,7 +95,7 @@
 <svelte:head>
   <title>{$t("title_prefix")} - {$t("explore")}</title>
 </svelte:head>
-<div class="2xl:px-9 h-full flex flex-col justify-center items-center">
+<div class="container mx-auto h-full flex flex-col justify-center items-center">
   <div style="margin-bottom :-8rem;" class="pt-10 pb-32">
     <h2 class="h2 leading-normal text-center" style="opacity: 0.8;">
       {@html $t("explore_delta_heading")}
