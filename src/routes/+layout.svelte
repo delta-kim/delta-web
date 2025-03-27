@@ -1,709 +1,495 @@
 <script lang="ts">
-	import "../app.postcss";
-	import "@fortawesome/fontawesome-free/css/fontawesome.css";
-	import "@fortawesome/fontawesome-free/css/brands.css";
-	import "@fortawesome/fontawesome-free/css/solid.css";
+  import "../app.postcss";
+  import "@fortawesome/fontawesome-free/css/fontawesome.css";
+  import "@fortawesome/fontawesome-free/css/brands.css";
+  import "@fortawesome/fontawesome-free/css/solid.css";
 
-	import {
-		AppShell,
-		AppBar,
-		TabGroup,
-		TabAnchor,
-		popup,
-	} from "@skeletonlabs/skeleton";
-	import {
-		computePosition,
-		autoUpdate,
-		offset,
-		shift,
-		flip,
-		arrow,
-	} from "@floating-ui/dom";
-	import { storePopup } from "@skeletonlabs/skeleton";
-	import { page } from "$app/stores";
-	import { t } from "svelte-i18n";
-	import { langs } from "$lib/i18n/langs";
-	import { onMount } from "svelte";
-	import type { LayoutData } from "./$types";
+  import {
+    AppShell,
+    AppBar,
+    TabGroup,
+    TabAnchor,
+    popup,
+  } from "@skeletonlabs/skeleton";
+  import {
+    computePosition,
+    autoUpdate,
+    offset,
+    shift,
+    flip,
+    arrow,
+  } from "@floating-ui/dom";
+  import { storePopup } from "@skeletonlabs/skeleton";
+  import { page } from "$app/stores";
+  import { t } from "svelte-i18n";
+  import { langs } from "$lib/i18n/langs";
+  import { onMount } from "svelte";
+  import type { LayoutData } from "./$types";
 
-	export let data: LayoutData;
+  export let data: LayoutData;
 
-	storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
-	onMount(() => {
-		console.log("layout onMount");
-		// console.log($page.url);
-		// console.log(data.lang);
-	});
+  storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
+  onMount(() => {
+    console.log("layout onMount");
+    // console.log($page.url);
+    // console.log(data.lang);
+  });
+
+  const deltaApps = [
+    {
+      link: "./download",
+      label: "Mobile App",
+    },
+    {
+      link: "./DSMSAccessTerminal",
+      label: `DSMS ${$t("access_terminal")}`,
+    },
+    {
+      link: "./explore",
+      label: $t("explore"),
+    },
+  ];
+  const usefulLinks = [
+    {
+      link: "./roadmap",
+      label: $t("roadmap"),
+    },
+    {
+      link: "./whitepaper",
+      label: $t("whitepaper"),
+    },
+    {
+      link: "./terms_of_service",
+      label: $t("termsOfService"),
+    },
+    {
+      link: "./privacy_policy",
+      label: $t("privacy_policy"),
+    },
+  ];
+
+  const communities = [
+    {
+      icon: `<i class="fa-brands fa-discord"style="color:rgb(88, 101, 242)"></i>`,
+      label: "Delta Kim DAO",
+      link: "https://discord.gg/fw7mTD8Gha",
+      creator: "",
+    },
+    {
+      icon: `<i class="fa-brands fa-telegram" style="color:#0088CC"></i>`,
+      label: "DELTA COIN",
+      link: "https://t.me/DeltaCoinMiners",
+      creator: "magnohoved@gmail.com",
+    },
+    {
+      icon: `<i class="fa-brands fa-square-x-twitter" style="color:black"></i>`,
+      label: "DeltaCoinNews",
+      link: "https://x.com/DeltaCoinNews",
+      creator: "princejames.biz@gmail.com",
+    },
+    {
+      icon: `<i class="fa-brands fa-telegram" style="color:#0088CC"></i>`,
+      label: "DeltaCoinNews",
+      link: "https://t.me/DeltaCoinNews",
+      creator: "princejames.biz@gmail.com",
+    },
+    {
+      icon: `<img style="width: 15px;display: inline;"alt="delta medium"src="/img/medium.png"/>`,
+      label: "DeltaCoinNews",
+      link: "https://medium.com/@DeltaCoinNews",
+      creator: "princejames.biz@gmail.com",
+    },
+    {
+      icon: `<i class="fa-brands fa-youtube"style="color:rgb(255, 0, 51)"></i>`,
+      label: "DeltaCoinNews",
+      link: "https://www.youtube.com/@DeltaCoinNews",
+      creator: "princejames.biz@gmail.com",
+    },
+    {
+      icon: `<i class="fa-brands fa-facebook" style="color: rgb(8, 102, 255);"></i>`,
+      label: "Delta in Africa",
+      link: "https://t.co/JlN1ieKUeQ",
+      creator: "adimadojoel08@gmail.com",
+    },
+    {
+      icon: ` <i class="fa-brands fa-telegram" style="color:#0088CC"></i>`,
+      label: "DELTA 🇫🇷",
+      link: "https://t.me/deltafrancophone",
+      creator: "josephangengang@gmail.com",
+    },
+    {
+      icon: `<i class="fa-brands fa-discord"style="color:rgb(88, 101, 242)"></i>`,
+      label: "Delta Coin",
+      link: "https://discord.gg/8XNeDAun75",
+      creator: "magnohoved@gmail.com",
+    },
+    {
+      icon: `<i class="fa-brands fa-youtube"style="color:rgb(255, 0, 51)"></i>`,
+      label: "Delta On ICP",
+      link: "https://www.youtube.com/@DeltaOnICPBlockchain",
+      creator: "choudharysushobhan97@gmail.com",
+    },
+
+    {
+      icon: `<i class="fa-brands fa-facebook"style="color:rgb(8, 102, 255)"></i>`,
+      label: "Delta δ بالعربي",
+      link: "https://www.facebook.com/groups/9774910459215134",
+      creator: "kbuhfils@gmail.com",
+    },
+    // {
+    //   icon: `<i class="fa-brands fa-telegram"style="color:#0088CC"></i>`,
+    //   label: "DTC Afrique",
+    //   link: "https://t.me/+n-bytOLp7NcyN2M0",
+    //   creator: "色情",
+    // },
+    {
+      icon: `<i class="fa-brands fa-square-x-twitter" style="color:black"></i>`,
+      label: "DeltaPioneers",
+      link: "https://x.com/Deltapioneers?t=jVLBg-2g-ATJbEbmMi_X7w&s=09",
+      creator: "josephangengang@gmail.com",
+    },
+    {
+      icon: `<i class="fa-brands fa-square-x-twitter" style="color:black"></i>`,
+      label: "DeltaPioneers",
+      link: "https://x.com/Deltapioneers?t=jVLBg-2g-ATJbEbmMi_X7w&s=09",
+      creator: "josephangengang@gmail.com",
+    },
+    {
+      icon: `<i class="fa-brands fa-facebook"style="color: rgb(8, 102, 255);"></i>`,
+      label: "Delta facebook",
+      link: "https://facebook.com/groups/1394421291722968/",
+      creator: "josephangengang@gmail.com",
+    },
+    {
+      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
+      label: "Delta Pioneers",
+      link: "https://chat.whatsapp.com/EKPHb5BuX5p3yiQVEJ5z72",
+      creator: "josephangengang@gmail.com",
+    },
+    {
+      icon: `<i class="fa-brands fa-telegram" style="color:#0088CC"></i>`,
+      label: "Delta Pioneers",
+      link: "https://t.me/DeltaNetworkPioneers",
+      creator: "josephangengang@gmail.com",
+    },
+    {
+      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
+      label: "DTC NETWORK",
+      link: "https://chat.whatsapp.com/HelA80BXOt6JpfJBAUTWKU",
+      creator: "josephangengang@gmail.com",
+    },
+    {
+      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
+      label: "Deploy DSMS t.",
+      link: "https://chat.whatsapp.com/K8hgtui0nEy0wTBCYJPAa1",
+      creator: "josephangengang@gmail.com",
+    },
+    {
+      icon: `<i class="fa-brands fa-telegram" style="color:#0088CC"></i>`,
+      label: "Delta Türkiye",
+      link: "https://t.me/deltakimtr",
+      creator: "josephangengang@gmail.com",
+    },
+    {
+      icon: `<i class="fa-brands fa-reddit" style="color:rgb(255, 69, 0);"></i>`,
+      label: "Delta Crypto",
+      link: "https://www.reddit.com/r/Delta_Crypto",
+      creator: "princejames.biz@gmail.com",
+    },
+    {
+      icon: `<i class="fa-brands fa-telegram" style="color:#0088CC"></i>`,
+      label: "Delta Global",
+      link: "https://t.me/GlobalDeltaCoin",
+      creator: "josephangengang@gmail.com",
+    },
+    {
+      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
+      label: "DELTA FORCE",
+      link: "https://chat.whatsapp.com/HeUXuQtdP390MDu6pnpAij",
+      creator: "kbuhfils@gmail.com",
+    },
+  ];
 </script>
 
 <!-- App Shell -->
 <AppShell regionPage="relative" slotHeader="top-0" slotPageFooter="mt-4">
-	<!-- <svelte:fragment slot="header">header</svelte:fragment> -->
-	<!--  <svelte:fragment slot="pageHeader"> -->
-	<svelte:fragment slot="header">
-		<!-- App Bar -->
-		<div class="container mx-auto">
-			<AppBar background="">
-				<svelte:fragment slot="lead">
-					<figure class="ml-4 hidden lg:block">
-						<img
-							src="/img/delta.logo.svg"
-							width="300"
-							alt="Delta"
-						/>
-					</figure>
-					<ul class="menu lg:hidden">
-						<li><i class="fa-solid fa-bars"></i></li>
-						<li class="list">
-							<TabGroup
-								justify="flex-col"
-								active="bg-surface-500"
-								border=""
-								rounded="rounded-full"
-								class=""
-							>
-								<TabAnchor
-									href="./home"
-									selected={$page.url.pathname.endsWith(
-										"/home",
-									)}
-								>
-									<span>{$t("home")}</span>
-								</TabAnchor>
-								<TabAnchor
-									href="./download"
-									selected={$page.url.pathname.endsWith(
-										"/download",
-									)}
-								>
-									<span>{$t("download")}</span>
-								</TabAnchor>
-								<TabAnchor
-									href="./explore"
-									selected={$page.url.pathname.endsWith(
-										"/explore",
-									)}
-								>
-									<span>{$t("explore")}</span>
-								</TabAnchor>
-								<TabAnchor
-									href="./DSMSAccessTerminal"
-									selected={$page.url.pathname.endsWith(
-										"/DSMSAccessTerminal",
-									)}
-								>
-									<span>{$t("access_terminal")}</span>
-								</TabAnchor>
+  <!-- <svelte:fragment slot="header">header</svelte:fragment> -->
+  <!--  <svelte:fragment slot="pageHeader"> -->
+  <svelte:fragment slot="header">
+    <!-- App Bar -->
+    <!-- <div class="bg-primary"> -->
+    <div>
+      <div class="container mx-auto">
+        <AppBar background="">
+          <svelte:fragment slot="lead">
+            <figure class="ml-4 hidden lg:block">
+              <img
+                src="/img/delta.logo.png"
+                width="300"
+                alt="Delta"
+                class="object-contain"
+              />
+            </figure>
+            <ul class="menu lg:hidden">
+              <li><i class="fa-solid fa-bars"></i></li>
+              <li class="list">
+                <TabGroup
+                  justify="flex-col"
+                  active="bg-surface-500"
+                  border=""
+                  rounded="rounded-full"
+                  class="text-black"
+                >
+                  <TabAnchor
+                    href="./home"
+                    selected={$page.url.pathname.endsWith("/home")}
+                  >
+                    <span>{$t("home")}</span>
+                  </TabAnchor>
+                  <TabAnchor
+                    href="./download"
+                    selected={$page.url.pathname.endsWith("/download")}
+                  >
+                    <span>{$t("download")}</span>
+                  </TabAnchor>
+                  <TabAnchor
+                    href="./explore"
+                    selected={$page.url.pathname.endsWith("/explore")}
+                  >
+                    <span>{$t("explore")}</span>
+                  </TabAnchor>
+                  <TabAnchor
+                    href="./DSMSAccessTerminal"
+                    selected={$page.url.pathname.endsWith(
+                      "/DSMSAccessTerminal"
+                    )}
+                  >
+                    <span>{$t("access_terminal")}</span>
+                  </TabAnchor>
 
-								<TabAnchor
-									href="./whitepaper"
-									selected={$page.url.pathname.endsWith(
-										"/whitepaper",
-									)}
-								>
-									<span>{$t("whitepaper")}</span>
-								</TabAnchor>
-							</TabGroup>
-						</li>
-					</ul>
-				</svelte:fragment>
-				<figure class="w-5/6 sm:w-4/6 lg:hidden">
-					<img src="/img/delta.logo.svg" alt="Delta" />
-				</figure>
-				<TabGroup
-					justify="justify-center"
-					border=""
-					class="hidden lg:block"
-				>
-					<TabAnchor
-						href="./home"
-						selected={$page.url.pathname.endsWith("/home")}
-					>
-						<span>{$t("home")}</span>
-					</TabAnchor>
-					<TabAnchor
-						href="./download"
-						selected={$page.url.pathname.endsWith("/download")}
-					>
-						<span>{$t("download")}</span>
-					</TabAnchor>
-					<TabAnchor
-						href="./explore"
-						selected={$page.url.pathname.endsWith("/explore")}
-					>
-						<span>{$t("explore")}</span>
-					</TabAnchor>
-					<TabAnchor
-						href="./DSMSAccessTerminal"
-						selected={$page.url.pathname.endsWith(
-							"/DSMSAccessTerminal",
-						)}
-					>
-						<span>{$t("access_terminal")}</span>
-					</TabAnchor>
+                  <TabAnchor
+                    href="./whitepaper"
+                    selected={$page.url.pathname.endsWith("/whitepaper")}
+                  >
+                    <span>{$t("whitepaper")}</span>
+                  </TabAnchor>
+                  <TabAnchor
+                    href="./support"
+                    selected={$page.url.pathname.endsWith("/support")}
+                  >
+                    <span>{$t("faq")}</span>
+                  </TabAnchor>
+                </TabGroup>
+              </li>
+            </ul>
+          </svelte:fragment>
+          <figure class="w-5/6 sm:w-4/6 lg:hidden">
+            <img src="/img/delta.logo.png" alt="Delta" />
+          </figure>
+          <TabGroup
+            justify="justify-center"
+            border=""
+            class="hidden lg:block text-black"
+          >
+            <TabAnchor
+              href="./home"
+              selected={$page.url.pathname.endsWith("/home")}
+            >
+              <span>{$t("home")}</span>
+            </TabAnchor>
+            <TabAnchor
+              href="./download"
+              selected={$page.url.pathname.endsWith("/download")}
+            >
+              <span>{$t("download")}</span>
+            </TabAnchor>
+            <TabAnchor
+              href="./explore"
+              selected={$page.url.pathname.endsWith("/explore")}
+            >
+              <span>{$t("explore")}</span>
+            </TabAnchor>
+            <TabAnchor
+              href="./DSMSAccessTerminal"
+              selected={$page.url.pathname.endsWith("/DSMSAccessTerminal")}
+            >
+              <span>{$t("access_terminal")}</span>
+            </TabAnchor>
 
-					<TabAnchor
-						href="./whitepaper"
-						selected={$page.url.pathname.endsWith("/whitepaper")}
-					>
-						<span>{$t("whitepaper")}</span>
-					</TabAnchor>
-				</TabGroup>
-				<svelte:fragment slot="trail">
-					<ul class="lang">
-						<li class="lable">
-							<i
-								class="fa-solid fa-language text-surface-600 text-xl"
-							></i>
-							<span class="hidden md:inline"
-								>{langs[data.lang]}</span
-							>
-						</li>
-						<li class="list">
-							<ul>
-								{#each Object.keys(langs) as key}
-									<li>
-										<a
-											href={$page.url.pathname.replace(
-												data.lang,
-												key,
-											)}
-										>
-											{langs[key]}</a
-										>
-									</li>
-								{/each}
-							</ul>
-						</li>
-					</ul>
-					<a
-						class="btn btn-sm variant-ghost-surface"
-						href="https://github.com/delta-kim"
-						target="_blank"
-						rel="noreferrer"
-					>
-						<i class="fa-brands fa-github"></i>
-						<span class="hidden md:inline">GitHub</span>
-					</a>
-				</svelte:fragment>
-			</AppBar>
-		</div>
-	</svelte:fragment>
-	<!-- Page Route Content -->
-	<div class="container mx-auto">
-		<slot />
-	</div>
-	<svelte:fragment slot="pageFooter">
-		<div class="footerBack">
-			<div class="container mx-auto">
-				<div class="flex md:flex-row flex-col justify-around">
-					<div class="flex flex-row justify-around md:w-1/2">
-						<ul>
-							<li><a href="./download">Delta App</a></li>
-							<li>
-								<a href="./DSMSAccessTerminal"
-									>DSMS {$t("access_terminal")}</a
-								>
-							</li>
-							<li><a href="./roadmap">{$t("roadmap")}</a></li>
-							<li><a href="./explore">{$t("explore")}</a></li>
-						</ul>
-						<ul>
-							<li>
-								<a href="./whitepaper">{$t("whitepaper")}</a>
-							</li>
-							<li>
-								<a href="./terms_of_service"
-									>{$t("termsOfService")}</a
-								>
-							</li>
-							<li>
-								<a href="./privacy_policy"
-									>{$t("privacy_policy")}</a
-								>
-							</li>
-							<li><a href="./support">{$t("support")}</a></li>
-						</ul>
-					</div>
-					<div
-						class="footerLogoBack pr-1 md:-mt-8 mt-1 md:w-1/2"
-						style="min-height : 96px;"
-					>
-						<div style="color:green;" class="pl-1">
-							Community social media channels
-						</div>
-						<div class="flex flex-row justify-around">
-							<ul class="pl-2 lg:pl-4">
-								<li>
-									<a
-										href="https://t.me/deltacoinmining"
-										target="_blank"
-									>
-										<i
-											class="fa-brands fa-telegram"
-											style="color:#0088CC"
-										></i>
-										<!--Creator: kbuhfils@gmail.com -->
-										<span style="font-size: small;"
-											>DELTA COIN MINAGE</span
-										>
-									</a>
-								</li>
-								<li>
-									<a
-										href="https://t.me/DeltaCoinMiners"
-										target="_blank"
-									>
-										<i
-											class="fa-brands fa-telegram"
-											style="color:#0088CC"
-										></i>
-										<!--Creator: magnohoved@gmail.com -->
-										<span style="font-size: small;"
-											>Delta Coin</span
-										>
-									</a>
-								</li>
-								<li>
-									<a
-										href="https://x.com/DeltaCoinNews"
-										target="_blank"
-									>
-										<i
-											class="fa-brands fa-square-x-twitter"
-											style="color:black"
-										></i>
-										<!--Creator: princejames.biz@gmail.com -->
-										<span style="font-size: small;"
-											>DeltaCoinNews</span
-										>
-									</a>
-								</li>
-								<li>
-									<a
-										href="https://t.me/DeltaCoinNews"
-										target="_blank"
-									>
-										<i
-											class="fa-brands fa-telegram"
-											style="color:#0088CC"
-										></i>
-										<!--Creator: princejames.biz@gmail.com -->
-										<span style="font-size: small;"
-											>DELTA COIN CHANNEL</span
-										>
-									</a>
-								</li>
-								<li>
-									<a
-										href="https://www.youtube.com/@DeltaCoinNews"
-										target="_blank"
-									>
-										<i
-											class="fa-brands fa-youtube"
-											style="color:rgb(255, 0, 51)"
-										></i>
-										<!--Creator: princejames.biz@gmail.com -->
-										<span style="font-size: small;"
-											>Delta Coin Minage</span
-										>
-									</a>
-								</li>
-								<li>
-									<a
-										href="https://t.co/JlN1ieKUeQ"
-										target="_blank"
-									>
-										<i
-											class="fa-brands fa-facebook"
-											style="color: rgb(8, 102, 255);"
-										></i>
-										<!--Creator: adimadojoel08@gmail.com -->
-										<span style="font-size: small;"
-											>Delta in Africa</span
-										>
-									</a>
-								</li>
-								<li>
-									<a
-										href="https://medium.com/@DeltaCoinNews"
-										target="_blank"
-									>
-										<img
-											style="width: 15px;display: inline;"
-											alt="delta medium"
-											src="/img/medium.png"
-										/>
-										<!--Creator: princejames.biz@gmail.com -->
-										<span style="font-size: small;"
-											>DeltaCoin News</span
-										>
-									</a>
-								</li>
-								<li>
-									<a
-										href="https://www.reddit.com/r/Delta_Crypto/"
-										target="_blank"
-									>
-									<i class="fa-brands fa-reddit" style="color:rgb(255, 69, 0);"></i>
-										<!--Creator: princejames.biz@gmail.com -->
-										<span style="font-size: small;"
-											>Delta Crypto</span
-										>
-									</a>
-								</li>
-							</ul>
-							<ul class="pl-2 lg:pl-4">
-								<li>
-									<a
-										href="https://t.me/deltafrancophone"
-										target="_blank"
-									>
-										<i
-											class="fa-brands fa-telegram"
-											style="color:#0088CC"
-										></i>
-										<!--Creator: josephangengang@gmail.com -->
-										<span style="font-size: small;"
-											>DELTA 🇫🇷</span
-										>
-									</a>
-								</li>
-								<li>
-									<a
-										href="https://discord.gg/8XNeDAun75"
-										target="_blank"
-									>
-										<i
-											class="fa-brands fa-discord"
-											style="color:rgb(88, 101, 242)"
-										></i>
-										<!--Creator: magnohoved@gmail.com -->
-										<span style="font-size: small;"
-											>Delta Coin</span
-										>
-									</a>
-								</li>
-								<li>
-									<a
-										href="https://www.facebook.com/share/14rvbXR1fv9/"
-										target="_blank"
-									>
-										<i
-											class="fa-brands fa-facebook"
-											style="color:rgb(8, 102, 255)"
-										></i>
-										<!--Creator: kbuhfils@gmail.com -->
-										<span style="font-size: small;"
-											>Delta Coin Minage</span
-										>
-									</a>
-								</li>
-								<li>
-									<a
-										href="https://www.youtube.com/@DeltaOnICPBlockchain"
-										target="_blank"
-									>
-										<!--Creator: choudharysushobhan97@gmail.com -->
-										<i
-											class="fa-brands fa-youtube"
-											style="color:rgb(255, 0, 51)"
-										></i>
-										<span style="font-size: small;"
-											>Delta On ICP</span
-										>
-									</a>
-								</li>
-								<li>
-									<a
-										href="https://chat.whatsapp.com/ERxqenilgXc9RG13RwWAdP"
-										target="_blank"
-									>
-										<!--Creator: kbuhfils@gmail.com -->
-										<i
-											class="fa-brands fa-whatsapp"
-											style="color:#25d366"
-										></i>
-										<span style="font-size: small;"
-											>DELTA NETWORK</span
-										>
-									</a>
-								</li>
-								<li>
-									<a
-										href="https://www.youtube.com/@deltakimfr"
-										target="_blank"
-									>
-										<!--Creator: josephangengang@gmail.com -->
-										<i
-											class="fa-brands fa-youtube"
-											style="color:rgb(255, 0, 51)"
-										></i>
-										<span style="font-size: small;"
-											>Delta kim 🇫🇷</span
-										>
-									</a>
-								</li>
-								<li>
-									<a
-										href="https://www.facebook.com/groups/9774910459215134"
-										target="_blank"
-									>
-										<i
-											class="fa-brands fa-facebook"
-											style="color:rgb(8, 102, 255)"
-										></i>
-										<!--Creator: kbuhfils@gmail.com -->
-										<span style="font-size: small;"
-											>Delta δ بالعربي</span
-										>
-									</a>
-								</li>
-								<li>
-									<a
-										href="https://chat.whatsapp.com/HeUXuQtdP390MDu6pnpAij"
-										target="_blank"
-									>
-										<!--Creator: kbuhfils@gmail.com -->
-										<i
-											class="fa-brands fa-whatsapp"
-											style="color:#25d366"
-										></i>
-										<span style="font-size: small;"
-											>DELTA FORCE</span
-										>
-									</a>
-								</li>	
-							</ul>
-							<ul class="pl-2 lg:pl-4">
-								<!--
-								<li>
-									<a
-										href="https://t.me/+n-bytOLp7NcyN2M0"
-										target="_blank"
-									>
-										<i
-											class="fa-brands fa-telegram"
-											style="color:#0088CC"
-										></i>
-										< Creator: 色情 >
-										<span style="font-size: small;"
-											>DTC Afrique</span
-										>
-									</a>
-								</li>-->
+            <TabAnchor
+              href="./whitepaper"
+              selected={$page.url.pathname.endsWith("/whitepaper")}
+            >
+              <span>{$t("whitepaper")}</span>
+            </TabAnchor>
+            <TabAnchor
+              href="./support"
+              selected={$page.url.pathname.endsWith("/support")}
+            >
+              <span>{$t("faq")}</span>
+            </TabAnchor>
+          </TabGroup>
+          <svelte:fragment slot="trail">
+            <ul class="lang">
+              <li class="lable">
+                <i class="fa-solid fa-language text-black text-xl"></i>
+                <span class="hidden md:inline">{langs[data.lang]}</span>
+              </li>
+              <li class="list">
+                <ul>
+                  {#each Object.keys(langs) as key}
+                    <li>
+                      <a href={$page.url.pathname.replace(data.lang, key)}>
+                        {langs[key]}</a
+                      >
+                    </li>
+                  {/each}
+                </ul>
+              </li>
+            </ul>
+            <a
+              class="btn btn-sm border border-black"
+              href="https://github.com/delta-kim"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <i class="fa-brands fa-github"></i>
+              <span class="hidden md:inline">GitHub</span>
+            </a>
+          </svelte:fragment>
+        </AppBar>
+      </div>
+    </div>
+  </svelte:fragment>
+  <!-- Page Route Content -->
+  <slot />
 
-								<li>
-									<a
-										href="https://x.com/Deltapioneers?t=jVLBg-2g-ATJbEbmMi_X7w&s=09"
-										target="_blank"
-									>
-										<i
-											class="fa-brands fa-square-x-twitter"
-											style="color:black"
-										></i>
-										<!--Creator: josephangengang@gmail.com -->
-										<span style="font-size: small;"
-											>DeltaPioneers</span
-										>
-									</a>
-								</li>
+  <svelte:fragment slot="pageFooter">
+    <div class="footerBack bg-slate-900 text-white px-6 md:px-0">
+      <div class="py-9 container mx-auto">
+        <div class="flex md:flex-row flex-col justify-around items-start">
+          <div class="flex flex-row flex-wrap md:justify-around md:w-1/2 gap-5">
+            <ul>
+              <li class="text-lg font-[600] mb-3">Apps</li>
+              {#each deltaApps as item}
+                <li class="text-lg font-[300]">
+                  <a href={item.link}>{item.label}</a>
+                </li>
+              {/each}
+            </ul>
+            <ul>
+              <li class="text-lg font-[600] mb-3">Useful Links</li>
+              {#each usefulLinks as item}
+                <li class="text-lg font-[300]">
+                  <a href={item.link}>{item.label}</a>
+                </li>
+              {/each}
+            </ul>
+          </div>
+          <div class="footerLogoBack p-4 mt-5 md:mt-0 md:w-1/2">
+            <div class="flex justify-between mb-2">
+              <p class="text-xl font-bold text-primary">
+                Community social media channels
+              </p>
+              <img
+                src="/img/delta.logo.png"
+                alt="DELTA LOGO"
+                class="w-[60px] object-contain"
+              />
+            </div>
+            <div class="flex flex-row justify-between">
+              <ul
+                class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-2 justify-between"
+              >
+                {#each communities as community}
+                  <li class="text-md font-[500] text-blue-600 mb-1">
+                    <a
+                      href={community.link}
+                      target="_blank"
+                      class="flex items-center gap-x-1"
+                    >
+                      {@html community.icon}
 
-								<li>
-									<a
-										href="https://facebook.com/groups/1394421291722968/"
-										target="_blank"
-									>
-										<i
-											class="fa-brands fa-facebook"
-											style="color: rgb(8, 102, 255);"
-										></i>
-										<!--Creator: josephangengang@gmail.com -->
-										<span style="font-size: small;"
-											>Delta facebook</span
-										>
-									</a>
-								</li>
-								<li>
-									<a
-										href="https://chat.whatsapp.com/EKPHb5BuX5p3yiQVEJ5z72"
-										target="_blank"
-									>
-										<i
-											class="fa-brands fa-whatsapp"
-											style="color:#25d366"
-										></i>
-										<!--Creator: josephangengang@gmail.com -->
-										<span style="font-size: small;"
-											>Delta Pioneers</span
-										>
-									</a>
-								</li>
-								<li>
-									<a
-										href="https://t.me/DeltaNetworkPioneers"
-										target="_blank"
-									>
-										<i
-											class="fa-brands fa-telegram"
-											style="color:#0088CC"
-										></i>
-										<!--Creator: josephangengang@gmail.com -->
-										<span style="font-size: small;"
-											>Delta Pioneers</span
-										>
-									</a>
-								</li>
-								<li>
-									<a
-										href="https://chat.whatsapp.com/HelA80BXOt6JpfJBAUTWKU"
-										target="_blank"
-									>
-										<i
-											class="fa-brands fa-whatsapp"
-											style="color:#25d366"
-										></i>
-										<!--Creator: josephangengang@gmail.com -->
-										<span style="font-size: small;"
-											>DTC NETWORK</span
-										>
-									</a>
-								</li>
-								<li>
-									<a
-										href="https://chat.whatsapp.com/K8hgtui0nEy0wTBCYJPAa1"
-										target="_blank"
-									>
-										<i
-											class="fa-brands fa-whatsapp"
-											style="color:#25d366"
-										></i>
-										<!--Creator: josephangengang@gmail.com -->
-										<span style="font-size: small;"
-											>deploy DSMS t.</span
-										>
-									</a>
-								</li>
-								<li>
-									<a
-										href="https://t.me/deltakimtr"
-										target="_blank"
-									>
-										<i
-											class="fa-brands fa-telegram"
-											style="color:#0088CC"
-										></i>
-										<!--Creator: josephangengang@gmail.com -->
-										<span style="font-size: small;"
-											>Delta Türkiye</span>
-									</a>
-								</li>
-								<li>
-									<a
-										href="https://t.me/GlobalDeltaCoin"
-										target="_blank"
-									>
-										<i
-											class="fa-brands fa-telegram"
-											style="color:#0088CC"
-										></i>
-										<!--Creator: josephangengang@gmail.com -->
-										<span style="font-size: small;"
-											>Delta Global</span>
-									</a>
-								</li>
-								
-								
-							</ul>
-							<div
-								class="lg:w-2/6 hidden lg:block"
-								style="color: orange;font-size: x-small;"
-							>
-								ann.: New links are not accepted for the time
-								being. Since some channels are found to spread
-								pornographic content, we plan to develop a
-								"media center" driven and managed by the
-								community in the future to eliminate unhealthy
-								content (2025-03-16)
-							</div>
-						</div>
-					</div>
-				</div>
-				<p class="text-center py-4">
-					© Delta Web Project 2023-{new Date().getFullYear()} Released
-					under the MIT license
-				</p>
-			</div>
-		</div>
-	</svelte:fragment>
+                      <span style="font-size: small;" class="underline"
+                        >{community.label}</span
+                      >
+                    </a>
+                  </li>
+                {/each}
+              </ul>
+            </div>
+            <div
+              class="hidden lg:block text-sm text-center"
+              style="color: orange;"
+            >
+              "ann.: New links are not accepted for the time being. Since some
+              channels are found to spread pornographic content, we plan to
+              develop a "media center" driven and managed by the community in
+              the future to eliminate unhealthy content (2025-03-16)"
+            </div>
+          </div>
+        </div>
+        <p class="text-center text-md mt-10">
+          {`© Delta Web Project 2023-${new Date().getFullYear()} Released under the
+          MIT license`}
+        </p>
+      </div>
+    </div>
+  </svelte:fragment>
 </AppShell>
 
 <style lang="postcss">
-	ul.lang,
-	ul.menu {
-		position: relative;
-	}
-	ul.lang .lable::after {
-		content: ">";
-		display: inline-block;
-		padding-left: 5px;
-		opacity: 0.6;
-	}
-	ul.lang:hover .lable::after {
-		transform: rotate(90deg);
-	}
+  ul.lang,
+  ul.menu {
+    position: relative;
+  }
+  ul.lang .lable::after {
+    content: ">";
+    display: inline-block;
+    padding-left: 5px;
+    opacity: 0.6;
+  }
+  ul.lang:hover .lable::after {
+    transform: rotate(90deg);
+  }
 
-	ul.lang .list,
-	ul.menu .list {
-		display: none;
-		right: 0;
-		position: absolute;
-		background-color: #ffffffd9;
-		padding: 13px;
-		border: 1px solid #dfdfdf;
-		white-space: nowrap;
-		z-index: 100;
-	}
-	ul.menu .list {
-		right: unset;
-	}
-	ul.lang:hover .list,
-	ul.menu:hover .list {
-		display: block;
-	}
-	ul.lang .list a:hover {
-		text-decoration: underline;
-	}
+  ul.lang .list,
+  ul.menu .list {
+    display: none;
+    right: 0;
+    position: absolute;
+    background-color: #ffffffd9;
+    padding: 13px;
+    border: 1px solid #dfdfdf;
+    white-space: nowrap;
+    z-index: 100;
+  }
+  ul.menu .list {
+    right: unset;
+  }
+  ul.lang:hover .list,
+  ul.menu:hover .list {
+    display: block;
+  }
+  ul.lang .list a:hover {
+    text-decoration: underline;
+  }
 
-	.footerBack {
-		background-image: radial-gradient(
-				at 0% 0%,
-				rgba(var(--color-secondary-500) / 0.33) 0px,
-				transparent 50%
-			),
-			radial-gradient(
-				at 98% 1%,
-				rgba(var(--color-error-500) / 0.33) 0px,
-				transparent 50%
-			);
-		//background-position: top;
-	}
-	.footerBack .container {
-		padding-top: 3rem;
-		background-image: url(/img/footer-bg.svg);
-		background-repeat: no-repeat;
-	}
+  footer {
+    margin-top: 0 !important;
+  }
+  .footerBack .container {
+    padding: 5rem 0;
+    background-image: url(/img/footer-bg.svg);
+    background-repeat: no-repeat;
+  }
 
-	.footerLogoBack {
-		background-color: rgba(255, 255, 255, 0.5);
-		background-image: url(/img/delta.logo.svg);
-		background-repeat: no-repeat;
-		background-position: center center;
-		background-size: auto 90px;
-		background-blend-mode: overlay;
-	}
+  .footerLogoBack {
+    background-color: white;
+    border-radius: 20px;
+  }
 
-	ul.lang .list:hover {
-		display: block;
-	}
+  ul.lang .list:hover {
+    display: block;
+  }
 </style>

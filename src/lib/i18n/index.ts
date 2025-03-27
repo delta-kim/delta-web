@@ -29,6 +29,7 @@ register('vi', () => import('./vi.json'));
 register('pl', () => import('./pl.json'));
 register('uk', () => import('./uk.json'));
 register('el', () => import('./el.json'));
+register('bg', () => import('./bg.json'));
 
 
 init({
