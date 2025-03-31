@@ -136,12 +136,6 @@
       link: "https://www.facebook.com/groups/9774910459215134",
       creator: "kbuhfils@gmail.com",
     },
-    // {
-    //   icon: `<i class="fa-brands fa-telegram"style="color:#0088CC"></i>`,
-    //   label: "DTC Afrique",
-    //   link: "https://t.me/+n-bytOLp7NcyN2M0",
-    //   creator: "色情",
-    // },
     {
       icon: `<i class="fa-brands fa-square-x-twitter" style="color:black"></i>`,
       label: "DeltaPioneers",
@@ -208,6 +202,30 @@
       link: "https://chat.whatsapp.com/HeUXuQtdP390MDu6pnpAij",
       creator: "kbuhfils@gmail.com",
     },
+    {
+      icon: `<i class="fa-brands fa-telegram" style="color:#0088CC"></i>`,
+      label: "Delta India 🇮🇳",
+      link: "https://t.me/delta_in",
+      creator: "",
+    },
+    {
+      icon: `<img style="width: 15px;display: inline;"alt="delta medium"src="/img/medium.png"/>`,
+      label: "Delta on ICP",
+      link: "https://medium.com/@DeltaKimonICP/",
+      creator: "",
+    },
+    {
+      icon: `<i class="fa-brands fa-youtube"style="color:rgb(255, 0, 51)"></i>`,
+      label: "delta Kim 🇫🇷",
+      link: "https://www.youtube.com/@deltakimfr",
+      creator: "",
+    },
+    {
+      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
+      label: "Deploy DSMS t.",
+      link: "https://chat.whatsapp.com/KdLc4CnGYIl1fjAd49G7jy",
+      creator: "",
+    },
   ];
 </script>
 
@@ -261,7 +279,7 @@
                   <TabAnchor
                     href="./DSMSAccessTerminal"
                     selected={$page.url.pathname.endsWith(
-                      "/DSMSAccessTerminal"
+                      "/DSMSAccessTerminal",
                     )}
                   >
                     <span>{$t("access_terminal")}</span>
