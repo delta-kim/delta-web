@@ -226,6 +226,12 @@
       link: "https://chat.whatsapp.com/KdLc4CnGYIl1fjAd49G7jy",
       creator: "",
     },
+    {
+      icon: `<i class="fa-brands fa-telegram" style="color:#0088CC"></i>`,
+      label: "DELTA MINAGE",
+      link: "https://t.me/deltacoinmining",
+      creator: "kbuhfils@gmail.com",
+    },
   ];
 </script>
 
