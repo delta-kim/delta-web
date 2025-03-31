@@ -143,12 +143,6 @@
       creator: "josephangengang@gmail.com",
     },
     {
-      icon: `<i class="fa-brands fa-square-x-twitter" style="color:black"></i>`,
-      label: "DeltaPioneers",
-      link: "https://x.com/Deltapioneers?t=jVLBg-2g-ATJbEbmMi_X7w&s=09",
-      creator: "josephangengang@gmail.com",
-    },
-    {
       icon: `<i class="fa-brands fa-facebook"style="color: rgb(8, 102, 255);"></i>`,
       label: "Delta facebook",
       link: "https://facebook.com/groups/1394421291722968/",
