@@ -257,16 +257,15 @@
               {/each}
             </ul>
           </div>
-          <div class="flex flex-row justify-between mt-3 md:mt-0">
-            <ul
-              class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-2 justify-between"
-            >
+          <div class="mt-3 md:mt-0">
+            <ul class="flex flex-col items-end">
+              <li class="text-lg font-[600] mb-3">Official Socials</li>
               {#each socials as social}
                 <li class="text-md font-[500] text-blue-600 mb-1">
                   <a
                     href={social.link}
                     target="_blank"
-                    class="flex items-center gap-x-1 bg-white rounded-full p-2"
+                    class="bg-white rounded-full p-2 w-[40px] h-[40px] flex items-center justify-center"
                     title={social.label}
                   >
                     {@html social.icon}
