@@ -62,13 +62,6 @@
       link: "./whitepaper#decentralized_multi-chain_wallet",
     },
     {
-      image: "/img/multiChainWallet.svg",
-      alt: "multiChain Wallet",
-      title: $t("decentralized_multi-chain_wallet"),
-      subtitle: $t("decentralized_multi-chain_wallet_desc"),
-      link: "./whitepaper#decentralized_multi-chain_wallet",
-    },
-    {
       image: "/img/Web3.svg",
       alt: "Web3",
       title: $t("web3_application_center"),

@@ -84,31 +84,26 @@
     </div>
   </div>
   <!-- class="min-h-[30vh] bg-white flex items-center justify-center py-10 md:py-0" -->
-  <div class="min-h-[30vh] flex items-center justify-center py-10 md:py-0">
-    <div class="px-4 md:px-0 md:w-[40vw] mx-auto">
-      <div class=" gap-10">
-        <p class="text-md md:text-2xl font-[400] text-center">
-          {$t("home_mianheading")}
-        </p>
-
+  <div class="min-h-[30vh] flex justify-center py-10 md:py-0">
+    <div class="px-4 md:px-0 mx-auto">
+      <div class="gap-10">
         <div
-          class="flex flex-wrap gap-5 md:gap-4 items-center justify-center mt-10"
+          class="flex flex-wrap gap-5 lg:gap-10 items-center justify-center mb-10"
         >
           {#each items as item}
             <figure
               class="w-[145px] md:w-[200px] bg-white shadow-xl flex flex-col items-center justify-center border border-slate-200 rounded-lg py-2 md:py-4"
             >
-              <img
-                class="w-[80px] md:w-[150px] object-contain"
-                alt={item.label}
-                src={item.image}
-              />
-              <div class="text-sm md:text-md font-normal">
+              <img class="object-contain" alt={item.label} src={item.image} />
+              <div class="text-sm md:text-md -mt-6 font-normal">
                 {item.label}
               </div>
             </figure>
           {/each}
         </div>
+        <p class="text-md md:text-2xl font-[400] text-center">
+          {$t("home_mianheading")}
+        </p>
       </div>
     </div>
   </div>
