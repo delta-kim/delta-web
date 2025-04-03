@@ -113,7 +113,7 @@
     },
     {
       icon: ` <i class="fa-brands fa-telegram" style="color:#0088CC"></i>`,
-      label: "DELTA 🇫🇷",
+      label: "DELTA.🇫🇷 Kim",
       link: "https://t.me/deltafrancophone",
       creator: "josephangengang@gmail.com",
     },
@@ -198,7 +198,7 @@
     },
     {
       icon: `<i class="fa-brands fa-telegram" style="color:#0088CC"></i>`,
-      label: "Delta India 🇮🇳",
+      label: "Delta.🇮🇳 India",
       link: "https://t.me/delta_in",
       creator: "",
     },
@@ -210,7 +210,7 @@
     },
     {
       icon: `<i class="fa-brands fa-youtube"style="color:rgb(255, 0, 51)"></i>`,
-      label: "delta Kim 🇫🇷",
+      label: "delta.🇫🇷 Kim",
       link: "https://www.youtube.com/@deltakimfr",
       creator: "",
     },
@@ -226,6 +226,37 @@
       link: "https://t.me/deltacoinmining",
       creator: "kbuhfils@gmail.com",
     },
+    {
+      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
+      label: "DELTA NETWORK",
+      link: "https://chat.whatsapp.com/KM17LYtiafpCbkmkQa8Pau",
+      creator: "",
+    },
+    {
+      icon: `<i class="fa-brands fa-facebook" style="color: rgb(8, 102, 255);"></i>`,
+      label: "DELTA Minage",
+      link: "https://www.facebook.com/share/195yPi4xKa/",
+      creator: "",
+    },
+    {
+      icon: `<i class="fa-brands fa-telegram" style="color:#0088CC"></i>`,
+      label: "DSMS validators",
+      link: "https://t.me/+9CtwcPRD3-YxNGY0",
+      creator: "",
+    },
+    {
+      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
+      label: "DELTA.🇳🇬 Nigerian",
+      link: "https://chat.whatsapp.com/IspshMN2PTA2UCl27Jg48V",
+      creator: "",
+    },
+    {
+      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
+      label: "Delta miners",
+      link: "https://chat.whatsapp.com/KoRkXd7VqSeDtu0DlxbYIS",
+      creator: "",
+    },
+    
   ];
 </script>
 
