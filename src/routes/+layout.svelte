@@ -274,8 +274,12 @@
       link: "https://x.com/DeltaCoreTeam",
       creator: "",
     },
-    
-    
+    {
+      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
+      label: "PIONEERS global",
+      link: "https://chat.whatsapp.com/KERNMTagC5I3xvOw33Whp3",
+      creator: "",
+    },
   ];
 </script>
 
