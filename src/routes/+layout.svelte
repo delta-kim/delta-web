@@ -256,6 +256,18 @@
       link: "https://chat.whatsapp.com/KoRkXd7VqSeDtu0DlxbYIS",
       creator: "",
     },
+    {
+      icon: `<i class="fa-brands fa-facebook" style="color: rgb(8, 102, 255);"></i>`,
+      label: "DELTA کوردی",
+      link: "https://www.facebook.com/share/g/1A9jYD7BnQ/",
+      creator: "viko.bradosty@gmail.com",
+    },
+    {
+      icon: `<i class="fa-brands fa-telegram" style="color:#0088CC"></i>`,
+      label: "Delta کوردی",
+      link: "https://t.me/deltakurdish",
+      creator: "viko.bradosty@gmail.com",
+    },
     
   ];
 </script>
