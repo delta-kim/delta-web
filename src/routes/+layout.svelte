@@ -139,7 +139,7 @@
     {
       icon: `<i class="fa-brands fa-square-x-twitter" style="color:black"></i>`,
       label: "DeltaPioneers",
-      link: "https://x.com/Deltapioneers?t=jVLBg-2g-ATJbEbmMi_X7w&s=09",
+      link: "https://x.com/Deltapioneers",
       creator: "josephangengang@gmail.com",
     },
     {
@@ -268,6 +268,13 @@
       link: "https://t.me/deltakurdish",
       creator: "viko.bradosty@gmail.com",
     },
+    {
+      icon: `<i class="fa-brands fa-square-x-twitter" style="color:black"></i>`,
+      label: "δ Network",
+      link: "https://x.com/DeltaCoreTeam",
+      creator: "",
+    },
+    
     
   ];
 </script>
