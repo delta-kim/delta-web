@@ -169,7 +169,7 @@
     {
       icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
       label: "Deploy DSMS t.",
-      link: "https://chat.whatsapp.com/K8hgtui0nEy0wTBCYJPAa1",
+      link: "https://chat.whatsapp.com/D45kYvG8EH7GQkouqYvmH2",
       creator: "josephangengang@gmail.com",
     },
     {
@@ -276,7 +276,7 @@
     },
     {
       icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
-      label: "PIONEERS global",
+      label: "DELTA DISCUSSIONS",
       link: "https://chat.whatsapp.com/KERNMTagC5I3xvOw33Whp3",
       creator: "",
     },
