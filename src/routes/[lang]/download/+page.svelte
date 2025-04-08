@@ -69,7 +69,7 @@
           <a
             target="_blank"
             href={lang == "zh-CN"
-              ? "http://8.138.24.79/delta_mobile_1.1.6_arm64.apk"
+              ? "http://delta.cdn.paibi.vip/apk/delta_mobile_1.1.6_arm64.apk"
               : "https://github.com/delta-kim/delta_mobile_app/releases/download/1.1.6/delta_mobile_1.1.6.apk"}
           >
             <img
