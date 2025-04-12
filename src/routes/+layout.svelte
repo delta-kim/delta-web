@@ -77,7 +77,13 @@
       icon: `<i class="fa-brands fa-discord"style="color:rgb(88, 101, 242)"></i>`,
       label: "Delta Kim DAO",
       link: "https://discord.gg/fw7mTD8Gha",
-      creator: "",
+      creator: "CoreTeam",
+    },
+    {
+      icon: `<i class="fa-brands fa-square-x-twitter" style="color:black"></i>`,
+      label: "Delta Kim DAO",
+      link: "https://x.com/TheDeltaKim",
+      creator: "CoreTeam",
     },
   ];
 </script>
@@ -260,18 +266,20 @@
           <div class="mt-3 md:mt-0">
             <ul class="flex flex-col items-end">
               <li class="text-lg font-[600] mb-3">Official Socials</li>
-              {#each socials as social}
-                <li class="text-md font-[500] text-blue-600 mb-1">
-                  <a
-                    href={social.link}
-                    target="_blank"
-                    class="bg-white rounded-full p-2 w-[40px] h-[40px] flex items-center justify-center"
-                    title={social.label}
-                  >
-                    {@html social.icon}
-                  </a>
-                </li>
-              {/each}
+              <ul class="flex items-end gap-4">
+                {#each socials as social}
+                  <li class="text-md font-[500] text-blue-600 mb-1">
+                    <a
+                      href={social.link}
+                      target="_blank"
+                      class="bg-white rounded-full p-2 w-[40px] h-[40px] flex items-center justify-center"
+                      title={social.label}
+                    >
+                      {@html social.icon}
+                    </a>
+                  </li>
+                {/each}
+              </ul>
             </ul>
           </div>
         </div>
