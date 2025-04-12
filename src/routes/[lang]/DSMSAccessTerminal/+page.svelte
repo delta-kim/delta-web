@@ -95,6 +95,12 @@
           {$t("link…")}
         </a>
       </p>
+      <p class="mb-4">
+        <i class="fa-brands fa-youtube"style="color:rgb(255, 0, 51)"></i>
+        <a class="underline text-tertiary-500" href="https://www.youtube.com/watch?v=Y5UwsM654gU" target="_blank"
+          >How to Setup DSMS Terminal + Troubleshooting!
+        </a>
+      </p>
 
       <div class="flex flex-row items-center gap-3">
         <figure class="pt-1 flex items-center flex-col">

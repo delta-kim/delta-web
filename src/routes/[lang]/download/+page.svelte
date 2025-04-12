@@ -69,8 +69,8 @@
           <a
             target="_blank"
             href={lang == "zh-CN"
-              ? "https://buy2out.oss-cn-shenzhen.aliyuncs.com/apk/delta_mobile_1.1.3_arm64.apk"
-              : "https://github.com/delta-kim/delta_mobile_app/releases/download/1.1.4/delta_mobile_1.1.4.apk"}
+              ? "http://delta.cdn.paibi.vip/apk/delta_mobile_1.1.6_arm64.apk"
+              : "https://github.com/delta-kim/delta_mobile_app/releases/download/1.1.6/delta_mobile_1.1.6.apk"}
           >
             <img
               class="rounded-md w-[180px] object-contain"
@@ -83,7 +83,7 @@
             <a
               style="text-decoration: underline;"
               href="https://github.com/delta-kim/delta_mobile_app/releases"
-              target="_blank">Version:1.1.3 Latest:2025-03-21</a
+              target="_blank">Version:1.1.6 Latest:2025-04-07</a
             >
           </div>
         </figure>
