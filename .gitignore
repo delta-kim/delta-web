@@ -134,3 +134,4 @@ dist
 svelte.config.js
 DeepL.mjs
 google.fy.mjs
+postcss.*
