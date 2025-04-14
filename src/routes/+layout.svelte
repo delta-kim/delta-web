@@ -58,6 +58,10 @@
       link: "./whitepaper",
       label: $t("whitepaper"),
     },
+    // {
+    //   link: "./communities",
+    //   label: $t("communities"),
+    // },
     {
       link: "./terms_of_service",
       label: $t("termsOfService"),
@@ -73,13 +77,13 @@
       icon: `<i class="fa-brands fa-discord"style="color:rgb(88, 101, 242)"></i>`,
       label: "Delta Kim DAO",
       link: "https://discord.gg/fw7mTD8Gha",
-      creator: "",
+      creator: "CoreTeam",
     },
     {
-      icon: `<i class="fa-brands fa-telegram" style="color:#0088CC"></i>`,
-      label: "DELTA COIN",
-      link: "https://t.me/DeltaCoinMiners",
-      creator: "magnohoved@gmail.com",
+      icon: `<i class="fa-brands fa-square-x-twitter" style="color:black"></i>`,
+      label: "Delta Kim DAO",
+      link: "https://x.com/TheDeltaKim",
+      creator: "CoreTeam",
     },
     {
       icon: `<i class="fa-brands fa-square-x-twitter" style="color:black"></i>`,
@@ -339,7 +343,7 @@
                   <TabAnchor
                     href="./DSMSAccessTerminal"
                     selected={$page.url.pathname.endsWith(
-                      "/DSMSAccessTerminal",
+                      "/DSMSAccessTerminal"
                     )}
                   >
                     <span>{$t("access_terminal")}</span>
