@@ -290,6 +290,14 @@
       link: "https://chat.whatsapp.com/HxNu5J2sO8yGRAYWgSTvvu",
       creator: "joshuanicholaus22@gmail.com",
     },
+    {
+      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
+      label: "Delta.🇳🇬 NIG ",
+      link: "https://chat.whatsapp.com/GV9otAWfA1d05QPMtpLUSW",
+      creator: "chizimuzoridenyi@outlook.com",
+    },
+    
+    
   ];
 </script>
 
