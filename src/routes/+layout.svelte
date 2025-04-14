@@ -296,7 +296,12 @@
       link: "https://chat.whatsapp.com/GV9otAWfA1d05QPMtpLUSW",
       creator: "chizimuzoridenyi@outlook.com",
     },
-    
+    {
+      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
+      label: "Delta Daily📜 ",
+      link: "https://www.whatsapp.com/channel/0029Vb5JN2JJf05avNH0WE2Q",
+      creator: "",
+    },
     
   ];
 </script>
