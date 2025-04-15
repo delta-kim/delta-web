@@ -308,6 +308,14 @@
       link: "https://chat.whatsapp.com/Erg4ErXlbTh7LUfBwOq3Ik",
       creator: "",
     },
+    {
+      icon: `<i class="fa-brands fa-telegram" style="color:#0088CC"></i>`,
+      label: "Delta Coin",
+      link: "https://t.me/DeltaCoinMiners",
+      creator: "magnohoved@gmail.com",
+    },
+
+    
 
   ];
 </script>
