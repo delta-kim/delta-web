@@ -293,16 +293,22 @@
     {
       icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
       label: "Delta.🇳🇬 NIG ",
-      link: "https://chat.whatsapp.com/GV9otAWfA1d05QPMtpLUSW",
+      link: "https://chat.whatsapp.com/KJgeBseETecELV3zU6Jvnz",
       creator: "chizimuzoridenyi@outlook.com",
     },
     {
       icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
-      label: "Delta Daily📜 ",
+      label: "Delta Daily📜",
       link: "https://www.whatsapp.com/channel/0029Vb5JN2JJf05avNH0WE2Q",
       creator: "",
     },
-    
+    {
+      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
+      label: "Delta Pioneers",
+      link: "https://chat.whatsapp.com/Erg4ErXlbTh7LUfBwOq3Ik",
+      creator: "",
+    },
+
   ];
 </script>
 
@@ -356,7 +362,7 @@
                   <TabAnchor
                     href="./DSMSAccessTerminal"
                     selected={$page.url.pathname.endsWith(
-                      "/DSMSAccessTerminal"
+                      "/DSMSAccessTerminal",
                     )}
                   >
                     <span>{$t("access_terminal")}</span>
