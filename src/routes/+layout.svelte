@@ -86,6 +86,12 @@
       creator: "CoreTeam",
     },
     {
+      icon: `<i class="fa-brands fa-telegram" style="color:#0088CC"></i>`,
+      label: "Delta Coin",
+      link: "https://t.me/DeltaCoinMiners",
+      creator: "magnohoved@gmail.com",
+    },
+    {
       icon: `<i class="fa-brands fa-square-x-twitter" style="color:black"></i>`,
       label: "DeltaCoinNews",
       link: "https://x.com/DeltaCoinNews",
@@ -310,13 +316,22 @@
     },
     {
       icon: `<i class="fa-brands fa-telegram" style="color:#0088CC"></i>`,
-      label: "Delta Coin",
-      link: "https://t.me/DeltaCoinMiners",
-      creator: "magnohoved@gmail.com",
+      label: "Delta Romania 🇷🇴",
+      link: "https://t.me/DeltaRomania",
+      creator: "cristian.nicula@icloud.com",
     },
-
-    
-
+    {
+      icon: `<i class="fa-brands fa-tiktok" style="color:#000000"></i>`,
+      label: "Delta Romania 🇷🇴",
+      link: "https://tiktok.com/@deltaromania",
+      creator: "cristian.nicula@icloud.com",
+    },
+    {
+      icon: `<i class="fa-brands fa-telegram" style="color:#0088CC"></i>`,
+      label: "Delta Fan Sanni",
+      link: "https://t.me/DeltaSanni",
+      creator: "",
+    },
   ];
 </script>
 
@@ -370,7 +385,7 @@
                   <TabAnchor
                     href="./DSMSAccessTerminal"
                     selected={$page.url.pathname.endsWith(
-                      "/DSMSAccessTerminal",
+                      "/DSMSAccessTerminal"
                     )}
                   >
                     <span>{$t("access_terminal")}</span>
@@ -495,7 +510,7 @@
               {/each}
             </ul>
           </div>
-          <div class="footerLogoBack p-4 mt-5 md:mt-0 md:w-1/2">
+          <div class="footerLogoBack p-4 mt-5 md:mt-0 md:w-[75%]">
             <div class="flex justify-between mb-2">
               <p class="text-xl font-bold text-primary">
                 Community social media channels
@@ -506,9 +521,9 @@
                 class="w-[60px] object-contain"
               />
             </div>
-            <div class="flex flex-row justify-between">
+            <div class="flex flex-row justify-between mb-1">
               <ul
-                class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-2 justify-between"
+                class="grid md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 gap-2 justify-between"
               >
                 {#each communities as community}
                   <li class="font-[500] text-blue-600">
