@@ -297,6 +297,12 @@
       link: "https://x.com/DeltaSanni",
       creator: "young.muhammedd@gmail.com",
     },
+    {
+      icon: `<i class="fa-brands fa-telegram" style="color:#0088CC"></i>`,
+      label: "Delta Iran 🇮🇷",
+      link: "https://t.me/DeltaIranian",
+      creator: "alirezanoori38404@gamil.com",
+    },
   ];
 </script>
 
