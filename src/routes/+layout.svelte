@@ -86,6 +86,12 @@
       creator: "CoreTeam",
     },
     {
+      icon: `<i class="fa-brands fa-telegram" style="color:#0088CC"></i>`,
+      label: "Delta Coin",
+      link: "https://t.me/DeltaCoinMiners",
+      creator: "magnohoved@gmail.com",
+    },
+    {
       icon: `<i class="fa-brands fa-square-x-twitter" style="color:black"></i>`,
       label: "DeltaCoinNews",
       link: "https://x.com/DeltaCoinNews",
@@ -170,12 +176,7 @@
       link: "https://chat.whatsapp.com/HelA80BXOt6JpfJBAUTWKU",
       creator: "josephangengang@gmail.com",
     },
-    {
-      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
-      label: "Deploy DSMS t.",
-      link: "https://chat.whatsapp.com/D45kYvG8EH7GQkouqYvmH2",
-      creator: "josephangengang@gmail.com",
-    },
+
     {
       icon: `<i class="fa-brands fa-telegram" style="color:#0088CC"></i>`,
       label: "Delta Türkiye",
@@ -195,12 +196,6 @@
       creator: "josephangengang@gmail.com",
     },
     {
-      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
-      label: "DELTA FORCE",
-      link: "https://chat.whatsapp.com/HeUXuQtdP390MDu6pnpAij",
-      creator: "kbuhfils@gmail.com",
-    },
-    {
       icon: `<i class="fa-brands fa-telegram" style="color:#0088CC"></i>`,
       label: "Delta.🇮🇳 India",
       link: "https://t.me/delta_in",
@@ -218,40 +213,16 @@
       link: "https://www.youtube.com/@deltakimfr",
       creator: "",
     },
-    {
-      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
-      label: "Deploy DSMS t.",
-      link: "https://chat.whatsapp.com/KdLc4CnGYIl1fjAd49G7jy",
-      creator: "",
-    },
-    {
-      icon: `<i class="fa-brands fa-telegram" style="color:#0088CC"></i>`,
-      label: "DELTA MINAGE",
-      link: "https://t.me/deltacoinmining",
-      creator: "kbuhfils@gmail.com",
-    },
-    {
-      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
-      label: "DELTA NETWORK",
-      link: "https://chat.whatsapp.com/KM17LYtiafpCbkmkQa8Pau",
-      creator: "",
-    },
+    // {
+    //   icon: `<i class="fa-brands fa-telegram" style="color:#0088CC"></i>`,
+    //   label: "DELTA MINAGE",
+    //   link: "https://t.me/deltacoinmining",
+    //   creator: "kbuhfils@gmail.com",
+    // },
     {
       icon: `<i class="fa-brands fa-facebook" style="color: rgb(8, 102, 255);"></i>`,
       label: "DELTA Minage",
       link: "https://www.facebook.com/share/195yPi4xKa/",
-      creator: "",
-    },
-    {
-      icon: `<i class="fa-brands fa-telegram" style="color:#0088CC"></i>`,
-      label: "DSMS validators",
-      link: "https://t.me/+9CtwcPRD3-YxNGY0",
-      creator: "",
-    },
-    {
-      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
-      label: "DELTA.🇳🇬 Nigerian",
-      link: "https://chat.whatsapp.com/IspshMN2PTA2UCl27Jg48V",
       creator: "",
     },
     {
@@ -310,13 +281,22 @@
     },
     {
       icon: `<i class="fa-brands fa-telegram" style="color:#0088CC"></i>`,
-      label: "Delta Coin",
-      link: "https://t.me/DeltaCoinMiners",
-      creator: "magnohoved@gmail.com",
+      label: "Delta Romania 🇷🇴",
+      link: "https://t.me/DeltaRomania",
+      creator: "cristian.nicula@icloud.com",
     },
-
-    
-
+    {
+      icon: `<i class="fa-brands fa-tiktok" style="color:#000000"></i>`,
+      label: "Delta Romania 🇷🇴",
+      link: "https://tiktok.com/@deltaromania",
+      creator: "cristian.nicula@icloud.com",
+    },
+    {
+      icon: `<i class="fa-brands fa-square-x-twitter" style="color:black"></i>`,
+      label: "Delta Fan Sanni",
+      link: "https://x.com/DeltaSanni",
+      creator: "young.muhammedd@gmail.com",
+    },
   ];
 </script>
 
@@ -370,7 +350,7 @@
                   <TabAnchor
                     href="./DSMSAccessTerminal"
                     selected={$page.url.pathname.endsWith(
-                      "/DSMSAccessTerminal",
+                      "/DSMSAccessTerminal"
                     )}
                   >
                     <span>{$t("access_terminal")}</span>
@@ -495,7 +475,7 @@
               {/each}
             </ul>
           </div>
-          <div class="footerLogoBack p-4 mt-5 md:mt-0 md:w-1/2">
+          <div class="footerLogoBack p-4 mt-5 md:mt-0 md:w-[75%]">
             <div class="flex justify-between mb-2">
               <p class="text-xl font-bold text-primary">
                 Community social media channels
@@ -506,9 +486,9 @@
                 class="w-[60px] object-contain"
               />
             </div>
-            <div class="flex flex-row justify-between">
+            <div class="flex flex-row justify-between mb-1">
               <ul
-                class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-2 justify-between"
+                class="grid md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 gap-2 justify-between"
               >
                 {#each communities as community}
                   <li class="font-[500] text-blue-600">
