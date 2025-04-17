@@ -238,12 +238,6 @@
     },
     {
       icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
-      label: "DELTA discussions",
-      link: "https://chat.whatsapp.com/KERNMTagC5I3xvOw33Whp3",
-      creator: "",
-    },
-    {
-      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
       label: "Delta.🇹🇿",
       link: "https://chat.whatsapp.com/HxNu5J2sO8yGRAYWgSTvvu",
       creator: "joshuanicholaus22@gmail.com",
