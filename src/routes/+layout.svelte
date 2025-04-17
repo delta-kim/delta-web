@@ -159,24 +159,11 @@
       creator: "josephangengang@gmail.com",
     },
     {
-      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
-      label: "Delta Pioneers",
-      link: "https://chat.whatsapp.com/EKPHb5BuX5p3yiQVEJ5z72",
-      creator: "josephangengang@gmail.com",
-    },
-    {
       icon: `<i class="fa-brands fa-telegram" style="color:#0088CC"></i>`,
       label: "Delta Pioneers",
       link: "https://t.me/DeltaNetworkPioneers",
       creator: "josephangengang@gmail.com",
     },
-    {
-      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
-      label: "DTC NETWORK",
-      link: "https://chat.whatsapp.com/HelA80BXOt6JpfJBAUTWKU",
-      creator: "josephangengang@gmail.com",
-    },
-
     {
       icon: `<i class="fa-brands fa-telegram" style="color:#0088CC"></i>`,
       label: "Delta Türkiye",
@@ -264,7 +251,7 @@
     {
       icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
       label: "Delta.🇳🇬 NIG ",
-      link: "https://chat.whatsapp.com/KJgeBseETecELV3zU6Jvnz",
+      link: "https://chat.whatsapp.com/DEAD9pAQ9dmH60SVRqzZ9G",
       creator: "chizimuzoridenyi@outlook.com",
     },
     {
@@ -302,6 +289,12 @@
       label: "Delta Iran 🇮🇷",
       link: "https://t.me/DeltaIranian",
       creator: "alirezanoori38404@gamil.com",
+    },
+    {
+      icon: `<i class="fa-brands fa-discord"style="color:rgb(88, 101, 242)"></i>`,
+      label: "Delta Romania 🇷🇴",
+      link: "https://discord.gg/s2aJ5PF9",
+      creator: "cristian.nicula@icloud.com",
     },
   ];
 </script>
