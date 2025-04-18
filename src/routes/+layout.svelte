@@ -290,6 +290,12 @@
       link: "https://discord.gg/s2aJ5PF9",
       creator: "cristian.nicula@icloud.com",
     },
+    {
+      icon: `<i class="fa-brands fa-telegram" style="color:#0088CC"></i>`,
+      label: "Delta 🇳🇬 NIG ",
+      link: "https://t.me/OfficialDeltakimNIG",
+      creator: "chizimuzoridenyi@outlook.com",
+    },
   ];
 </script>
 
