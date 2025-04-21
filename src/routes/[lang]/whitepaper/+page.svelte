@@ -81,7 +81,7 @@
 <svelte:head>
   <title>{$t("title_prefix")} - {$t("whitepaper")}</title>
 </svelte:head>
-<div class="container mx-auto py-5 md:py-14 px-4 md:px-0">
+<div class="container mx-auto py-1 md:py-14 px-4 md:px-0">
   <div class="flex-auto w-full h-full flex flex-col md:flex-row gap-8">
     <aside
       id="sidebar-left"

@@ -12,7 +12,9 @@
 <svelte:head>
   <title>{$t("title_prefix")} - {$t("support")}</title>
 </svelte:head>
-<div class="flex-auto w-full h-full flex flex-col md:flex-row gap-8 xl:px-20">
+<div
+  class="flex-auto w-full h-full flex flex-col md:flex-row gap-8 px-4 xl:px-20"
+>
   <aside
     id="sidebar-left"
     class="md:sticky md:top-0 md:w-1/3"
@@ -54,13 +56,14 @@
         </AccordionItem>
       {/each}
     </Accordion>
-    <h2 class="h2 mt-10" id="contact_via_email">discord support</h2>
+    <h2 class="h2 mt-10" id="contact_via_email">Discord support</h2>
     <div class="card p-4 my-4">
       <article>Community support has moved to Discord</article>
       <a
         href="https://discord.com/invite/fw7mTD8Gha"
         target="_blank"
-        class="h3 mt-10 font-bold">https://discord.com/invite/fw7mTD8Gha</a
+        class="text-md font-medium md:h3 mt-10 md:font-bold underline"
+        >https://discord.com/invite/fw7mTD8Gha</a
       >
     </div>
     <h3 class="h2 mt-10" id="contact_via_email">
@@ -74,7 +77,8 @@
       <a
         href="mailto:socio@delta.kim"
         target="_blank"
-        class="h3 mt-10 font-bold">socio@delta.kim</a
+        class="text-md font-medium md:h3 mt-10 md:font-bold underline"
+        >socio@delta.kim</a
       >
     </div>
   </div>

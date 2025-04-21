@@ -9,7 +9,7 @@
   });
 </script>
 
-<div class="mx-4 sm:mx-8 xl:mx-80 py-10">
+<div class="mx-4 sm:mx-8 xl:mx-80 py-10 px-5 md:px-0">
   <h1 class="h1">{$t("faq")}</h1>
   <Accordion autocollapse class="card p-4 my-4 text-token">
     {#each data.items as group}
