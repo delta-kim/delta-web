@@ -200,24 +200,13 @@
       link: "https://www.youtube.com/@deltakimfr",
       creator: "",
     },
-    // {
-    //   icon: `<i class="fa-brands fa-telegram" style="color:#0088CC"></i>`,
-    //   label: "DELTA MINAGE",
-    //   link: "https://t.me/deltacoinmining",
-    //   creator: "kbuhfils@gmail.com",
-    // },
     {
       icon: `<i class="fa-brands fa-facebook" style="color: rgb(8, 102, 255);"></i>`,
       label: "DELTA Minage",
       link: "https://www.facebook.com/share/195yPi4xKa/",
       creator: "",
     },
-    {
-      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
-      label: "Delta miners",
-      link: "https://chat.whatsapp.com/KoRkXd7VqSeDtu0DlxbYIS",
-      creator: "",
-    },
+
     {
       icon: `<i class="fa-brands fa-facebook" style="color: rgb(8, 102, 255);"></i>`,
       label: "DELTA کوردی",
@@ -295,12 +284,6 @@
       label: "Delta 🇳🇬 NIG ",
       link: "https://t.me/OfficialDeltakimNIG",
       creator: "chizimuzoridenyi@outlook.com",
-    },
-    {
-      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
-      label: "GLOBAL DELTA PIONEERS",
-      link: "https://chat.whatsapp.com/KERNMTagC5I3xvOw33Whp3",
-      creator: "mujabone@gmail.com",
     },
   ];
 </script>
