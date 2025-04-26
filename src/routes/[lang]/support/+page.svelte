@@ -70,16 +70,29 @@
       {$t("contact_via_email")}
     </h3>
     <div class="card p-4 my-4">
-      <article>
-        Please send any community link you'd like us to add to our website
-        communities list to the email below.
-      </article>
-      <a
-        href="mailto:socio@delta.kim"
-        target="_blank"
-        class="text-md font-medium md:h3 mt-10 md:font-bold underline"
-        >socio@delta.kim</a
-      >
+      <div class="mb-2">
+        <article>
+          Please send any community link you'd like us to add to our website
+          communities list to the email below.
+        </article>
+        <a
+          href="mailto:socio@delta.kim"
+          target="_blank"
+          class="text-md font-medium md:h3 mt-10 md:font-bold underline"
+          >socio@delta.kim</a
+        >
+      </div>
+      <div class="mb-2">
+        <article>
+          Advertising cooperation. Please send email to the address below.
+        </article>
+        <a
+          href="mailto:delta.ad.cooperation@gmail.com"
+          target="_blank"
+          class="text-md font-medium md:h3 mt-10 md:font-bold underline"
+          >delta.ad.cooperation@gmail.com</a
+        >
+      </div>
     </div>
   </div>
 </div>
