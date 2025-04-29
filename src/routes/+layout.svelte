@@ -285,6 +285,42 @@
       link: "https://t.me/OfficialDeltakimNIG",
       creator: "chizimuzoridenyi@outlook.com",
     },
+    {
+      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
+      label: "Delta Naija Connect ",
+      link: "https://chat.whatsapp.com/E9va1NFe0zf8dcnGW3WYFD",
+      creator: "johnnex16@gmail.com",
+    },
+    {
+      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
+      label: "#DELTA(δ) EIMI",
+      link: "https://chat.whatsapp.com/LlMnlHyGJtB1JBsU3rDLNt",
+      creator: "",
+    },
+    {
+      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
+      label: "DELTA COIN (δ)",
+      link: "https://chat.whatsapp.com/I4y8APe0kByBbwwoPN9GaJ",
+      creator: "",
+    },
+    {
+      icon: `<i class="fa-brands fa-square-x-twitter" style="color:black"></i>`,
+      label: "Delta Naija Connect ",
+      link: "https://x.com/DeltaKimIndia",
+      creator: "andrei_madalin@yahoo.com",
+    },
+    {
+      icon: `<i class="fa-brands fa-instagram" style="color:#000000"></i>`,
+      label: "Delta Kim Romania",
+      link: "https://www.instagram.com/delta.kimromania?igsh=MTdrYndqdjJrc25mMw%3D%3D&utm_source=qr",
+      creator: "andrei_madalin@yahoo.com",
+    },
+    {
+      icon: `<i class="fa-brands fa-youtube"style="color:rgb(255, 0, 51)"></i>`,
+      label: "Delta Kim Romania",
+      link: "https://www.youtube.com/@DeltaKimRomania",
+      creator: "andrei_madalin@yahoo.com",
+    },
   ];
 </script>
 
