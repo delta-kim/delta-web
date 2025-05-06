@@ -321,6 +321,24 @@
       link: "https://www.youtube.com/@DeltaKimRomania",
       creator: "andrei_madalin@yahoo.com",
     },
+    {
+      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
+      label: "DELTA INTERNATIONAL (δ)",
+      link: "https://whatsapp.com/channel/0029VbAP8Oa1CYoPxixKtC3B",
+      creator: "",
+    },
+    {
+      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
+      label: "DELTA COIN",
+      link: "https://chat.whatsapp.com/Fwoc1RkrkrLHsUmAKLh3hP",
+      creator: "",
+    },
+    {
+      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
+      label: "DELTA Kim Benin",
+      link: "https://chat.whatsapp.com/IlniwHBT6X49gaDSkiEBWG",
+      creator: "",
+    },
   ];
 </script>
 
