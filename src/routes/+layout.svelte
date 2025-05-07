@@ -206,7 +206,6 @@
       link: "https://www.facebook.com/share/195yPi4xKa/",
       creator: "",
     },
-
     {
       icon: `<i class="fa-brands fa-facebook" style="color: rgb(8, 102, 255);"></i>`,
       label: "DELTA کوردی",
@@ -236,12 +235,6 @@
       label: "Delta.🇳🇬 NIG ",
       link: "https://chat.whatsapp.com/DEAD9pAQ9dmH60SVRqzZ9G",
       creator: "chizimuzoridenyi@outlook.com",
-    },
-    {
-      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
-      label: "Delta Daily📜",
-      link: "https://www.whatsapp.com/channel/0029Vb5JN2JJf05avNH0WE2Q",
-      creator: "",
     },
     {
       icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
@@ -287,7 +280,7 @@
     },
     {
       icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
-      label: "Delta Naija Connect ",
+      label: "Delta Naija ",
       link: "https://chat.whatsapp.com/E9va1NFe0zf8dcnGW3WYFD",
       creator: "johnnex16@gmail.com",
     },
@@ -305,7 +298,7 @@
     },
     {
       icon: `<i class="fa-brands fa-square-x-twitter" style="color:black"></i>`,
-      label: "Delta Naija",
+      label: "Delta Kim India",
       link: "https://x.com/DeltaKimIndia",
       creator: "andrei_madalin@yahoo.com",
     },
