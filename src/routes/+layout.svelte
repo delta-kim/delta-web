@@ -305,7 +305,7 @@
     },
     {
       icon: `<i class="fa-brands fa-square-x-twitter" style="color:black"></i>`,
-      label: "Delta Naija Connect ",
+      label: "Delta Naija",
       link: "https://x.com/DeltaKimIndia",
       creator: "andrei_madalin@yahoo.com",
     },
@@ -323,7 +323,7 @@
     },
     {
       icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
-      label: "DELTA INTERNATIONAL (δ)",
+      label: "DELTA INT'L (δ)",
       link: "https://whatsapp.com/channel/0029VbAP8Oa1CYoPxixKtC3B",
       creator: "",
     },
