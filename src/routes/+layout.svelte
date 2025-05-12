@@ -332,6 +332,24 @@
       link: "https://chat.whatsapp.com/IlniwHBT6X49gaDSkiEBWG",
       creator: "",
     },
+    {
+      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
+      label: "Delta DRC",
+      link: "https://chat.whatsapp.com/IdHMRAx90t6E4Fdl1qYgfV",
+      creator: "",
+    },
+    {
+      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
+      label: "Delta Pakistan",
+      link: "https://chat.whatsapp.com/IwZFddlph7m1m8UNOkYdqS",
+      creator: "",
+    },
+    {
+      icon: `<i class="fa-brands fa-telegram" style="color:#0088CC"></i>`,
+      label: "Delta Romania",
+      link: "https://t.me/deltakimnetworkromania",
+      creator: "",
+    },
   ];
 </script>
 
