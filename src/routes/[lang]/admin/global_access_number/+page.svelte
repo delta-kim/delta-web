@@ -16,7 +16,7 @@
     onMount(async () => {
         if ($delta != null) {
             let globalAccessNumbers =
-                await $delta.filterOptionalAccessNumbers("global");
+                await $delta.filterOptionalAccessNumbers2("global");
             for (const row of globalAccessNumbers) {
                 let obj = row[1];
                 accessNumberList.push({

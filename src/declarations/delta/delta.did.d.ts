@@ -3,6 +3,7 @@ import type { ActorMethod } from '@dfinity/agent';
 import type { IDL } from '@dfinity/candid';
 
 export interface AccessNumberRecordAgrs {
+  'status' : string,
   'reqNum' : bigint,
   'accessNumber' : MobileNumber,
   'expiration' : Expiration,
@@ -11,11 +12,28 @@ export interface AccessNumberRecordAgrs {
   'carrier' : string,
   'online' : Timestamp,
 }
+export interface AccessNumberRecordAgrs2 {
+  'did' : DID,
+  'status' : string,
+  'reqNum' : bigint,
+  'accessNumber' : MobileNumber,
+  'expiration' : Expiration,
+  'rewards' : bigint,
+  'succNum' : bigint,
+  'carrier' : string,
+  'online' : Timestamp,
+}
+export interface AccessNumberRecordAgrsAndTip {
+  'tip' : string,
+  'record' : Array<AccessNumberRecordAgrs2>,
+}
 export type ActorCanisterId = [
   string,
   { 'one' : CanisterId } |
     { 'list' : Array<CanisterId> },
 ];
+export type AdvanceAmount = { 'ECIF' : bigint } |
+  { 'MiningCredit' : bigint };
 export interface AppIdentityTokenArgs {
   'dAppIdentToken' : IdentityToken,
   'accCanisterId' : CanisterId,
@@ -23,6 +41,7 @@ export interface AppIdentityTokenArgs {
 export interface BasicInfo { 'population' : bigint, 'baseRate' : bigint }
 export type CanisterCodeType = { 'ICPfunds' : null } |
   { 'DappCenter' : null } |
+  { 'LedgerArchive' : null } |
   { 'stats' : null } |
   { 'Ledgers' : CoinCode } |
   { 'account' : null } |
@@ -38,18 +57,15 @@ export interface CanisterDate {
   'canisterId' : CanisterId,
 }
 export type CanisterId = string;
-export interface CanisterSettings {
-  'freezing_threshold' : [] | [bigint],
-  'controllers' : [] | [Array<Principal>],
-  'memory_allocation' : [] | [bigint],
-  'compute_allocation' : [] | [bigint],
-}
-export interface CanisterStatus {
-  'status' : Status,
-  'memory_size' : bigint,
-  'cycles' : bigint,
-  'settings' : CanisterSettings,
-  'module_hash' : [] | [Uint8Array | number[]],
+export interface CanisterMapArgs {
+  'mobileCanisterId' : CanisterId,
+  'statsCanisterId' : CanisterId,
+  'pendingUSCTCanisterId' : CanisterId,
+  'accountCanisters' : Array<CanisterDate>,
+  'mcWalletCanisterId' : CanisterId,
+  'ICPfundsCanisterId' : CanisterId,
+  'Ledgers' : Array<[CoinCode, CanisterId]>,
+  'dappCenterCanisterId' : CanisterId,
 }
 export type ChainIdent = string;
 export type CoinCode = string;
@@ -75,49 +91,78 @@ export type CrossChainConf = {
   { 'contract' : ContractConf } |
   { 'Delta' : null };
 export type DID = string;
-export type DID__1 = string;
-export type DID__2 = string;
-export interface DTCTHistory64 {
-  'did' : DID__1,
-  'summary' : Summary,
-  'timestamp' : bigint,
-  'index' : bigint,
-  'amount' : bigint,
-}
 export interface Delta {
-  '_isAdmin' : ActorMethod<[CanisterId], boolean>,
+  '_advanceAmount' : ActorMethod<[AdvanceAmount], bigint>,
+  '_debugShowAccessNumberList' : ActorMethod<
+    [CountryCode],
+    Array<[DID, AccessNumberRecordAgrs]>
+  >,
+  '_delAccessNumber' : ActorMethod<[DID, CountryCode, string], boolean>,
+  '_isAdmin' : ActorMethod<[Principal], boolean>,
   '_ledgerArchive_wasm_module' : ActorMethod<[], Uint8Array | number[]>,
+  'activeAccessNumber2online' : ActorMethod<
+    [string, CountryCode, AppIdentityTokenArgs],
+    Result
+  >,
   'addAccessNumber' : ActorMethod<[DID, string, string, Expiration], boolean>,
-  'addNewLedgerCanister' : ActorMethod<[CoinCode], CanisterId>,
-  'appendCredits' : ActorMethod<[HistoryByType], boolean>,
+  'addNewLedgerCanister' : ActorMethod<
+    [CoinCode, [] | [LedgerInitArgs]],
+    CanisterId
+  >,
+  'appendMainCyclesLog' : ActorMethod<[bigint], boolean>,
+  'applyNewDTCTCanister' : ActorMethod<[], CanisterId>,
   'basicInfo' : ActorMethod<[], BasicInfo>,
+  'buildAccessNumberActiveCode' : ActorMethod<
+    [CanisterId, CountryCode, IdentityToken],
+    string
+  >,
   'callbackVerification' : ActorMethod<[string, AppIdentityTokenArgs], string>,
   'checkAccessNumberLimit' : ActorMethod<
     [CountryCode],
     { 'err' : string, 'allowedNum' : bigint, 'acNum' : bigint }
   >,
   'countAccessNumberRecord' : ActorMethod<[], Array<[CountryCode, bigint]>>,
+  'countAccessNumberRecord2' : ActorMethod<
+    [],
+    Array<[CountryCode, bigint, bigint]>
+  >,
   'countDids' : ActorMethod<[], Index>,
   'createLogin' : ActorMethod<[string, DID, string], [CanisterId, DID, Token]>,
   'createVerification' : ActorMethod<
     [Array<string>, Array<DID>, string, E164Code, CountryCode, string],
     VerificationPack
   >,
+  'createVerification2' : ActorMethod<
+    [
+      Array<string>,
+      Array<DID>,
+      string,
+      E164Code,
+      CountryCode,
+      SecurityCircleVerify,
+    ],
+    VerificationPack
+  >,
   'cyclesBalance' : ActorMethod<[], bigint>,
+  'deleteAccount' : ActorMethod<
+    [IdentityToken, string, [] | [DID]],
+    Array<Uid>
+  >,
+  'distributeECIF' : ActorMethod<[DID, bigint, string], Index>,
   'filterOptionalAccessNumbers' : ActorMethod<
     [CountryCode],
     Array<[DID, AccessNumberRecordAgrs]>
   >,
+  'filterOptionalAccessNumbers2' : ActorMethod<
+    [CountryCode],
+    AccessNumberRecordAgrsAndTip
+  >,
   'getAccessNumberRecord' : ActorMethod<
     [CountryCode, DID],
-    AccessNumberRecordAgrs
+    [] | [AccessNumberRecordAgrs]
   >,
   'getCanisterId' : ActorMethod<[CanisterCodeType], CanisterId>,
   'getCanisterIdMap' : ActorMethod<[], Array<ActorCanisterId>>,
-  'getCanisterStatus' : ActorMethod<
-    [Array<CanisterId>],
-    Array<[CanisterId, CanisterStatus]>
-  >,
   'getDSMSencryptKey' : ActorMethod<
     [MobileNumber, AppIdentityTokenArgs],
     string
@@ -130,7 +175,6 @@ export interface Delta {
     [CreditType],
     Array<CreditCanisterData>
   >,
-  'httpTransform' : ActorMethod<[TransformArgs], HttpResponsePayload>,
   'init' : ActorMethod<
     [Uint8Array | number[], Uint8Array | number[]],
     Array<string>
@@ -141,10 +185,6 @@ export interface Delta {
     boolean
   >,
   'listAccountCanisterDate' : ActorMethod<[], Array<CanisterDate>>,
-  'listAllCanisterStatus' : ActorMethod<
-    [],
-    Array<[CanisterId, CanisterStatus]>
-  >,
   'listE164map' : ActorMethod<[], Array<E164AndISOCode>>,
   'matchAccountCanister' : ActorMethod<[DID], [] | [CanisterId]>,
   'matchAccountCanisters' : ActorMethod<
@@ -152,31 +192,53 @@ export interface Delta {
     Array<[CanisterId, Array<DID>]>
   >,
   'parseDID' : ActorMethod<[DID], Index>,
+  'parseMoneyAddress' : ActorMethod<[string], [Index, bigint, bigint]>,
+  'pauseAccessNumber' : ActorMethod<
+    [CountryCode, AppIdentityTokenArgs],
+    AccessNumberRecordAgrs
+  >,
   'queryVerifyStatus' : ActorMethod<[string], VerifyStatus>,
   'receiveUpdates' : ActorMethod<[Update2Main], undefined>,
   'reconcileUSCT' : ActorMethod<
     [string, Array<string>, BigUint64Array | bigint[], bigint],
     boolean
   >,
+  'reinstallCanister' : ActorMethod<
+    [CanisterCodeType, Uint8Array | number[]],
+    string
+  >,
   'remainingTotalCredit' : ActorMethod<[], TotalCredit>,
   'renewalAccessNumber' : ActorMethod<[DID, CountryCode, Expiration], boolean>,
-  'reset' : ActorMethod<[], boolean>,
   'rts_info' : ActorMethod<[], Array<[string, bigint]>>,
   'setGlobalAccessNumber' : ActorMethod<
     [string, string, [] | [string]],
     string
   >,
-  'test' : ActorMethod<[], Array<[string, string]>>,
-  'testAppend_DTCT' : ActorMethod<[], boolean>,
-  'testWalletAddress' : ActorMethod<
-    [Index, bigint],
-    [string, bigint, bigint, bigint]
+  'showAccessToken' : ActorMethod<
+    [{ 'global' : null } | { 'gsmsToken' : null }],
+    string
   >,
+  'updateAccessNumberOnline' : ActorMethod<
+    [CountryCode, AppIdentityTokenArgs],
+    AccessNumberRecordAgrs
+  >,
+  'updateCanisterStatus' : ActorMethod<[CanisterId], boolean>,
   'updateLedgersArgs' : ActorMethod<[LedgerInitArgs], undefined>,
-  'updateMobileApplastVersion' : ActorMethod<[MobileApplastVersion], boolean>,
+  'updateMobileApplastVersion' : ActorMethod<
+    [Array<MobileApplastVersion>],
+    boolean
+  >,
+  'upgradeAccountArg' : ActorMethod<
+    [],
+    Array<[CanisterId, [bigint, CanisterMapArgs]]>
+  >,
   'upgradeCanister' : ActorMethod<
     [CanisterCodeType, Uint8Array | number[]],
     string
+  >,
+  'upgradeCanisterArg' : ActorMethod<
+    [CanisterCodeType],
+    Array<[CanisterId, Uint8Array | number[]]>
   >,
   'upload_wasm_module' : ActorMethod<
     [Uint8Array | number[], Uint8Array | number[]],
@@ -189,14 +251,9 @@ export type E164AndISOCode = [E164Code, E164Code2, CountryCode];
 export type E164Code = string;
 export type E164Code2 = string;
 export type Expiration = bigint;
-export type HistoryByType = { 'DTCT' : Array<DTCTHistory64> } |
-  { 'USCT' : Array<USCTHistory64> };
-export interface HttpHeader { 'value' : string, 'name' : string }
-export interface HttpResponsePayload {
-  'status' : bigint,
-  'body' : Uint8Array | number[],
-  'headers' : Array<HttpHeader>,
-}
+export type IcNetwork = { 'Mainnet' : null } |
+  { 'Local' : null } |
+  { 'Testnet' : null };
 export interface IdentityToken { 'did' : DID, 'token' : Token }
 export type Index = bigint;
 export interface LedgerInitArgs {
@@ -211,22 +268,22 @@ export interface LedgerInitArgs {
 export type MobileAppType = { 'ios' : null } |
   { 'android' : null };
 export type MobileApplastVersion = {
-    'ios' : { 'version' : string, 'store' : string }
+    'ios' : { 'version' : string, 'store' : string, 'notes' : string }
   } |
-  { 'android' : { 'apk' : string, 'version' : string, 'store' : string } };
+  {
+    'android' : {
+      'apk' : string,
+      'version' : string,
+      'store' : string,
+      'notes' : string,
+    }
+  };
 export type MobileNumber = string;
-export type Status = { 'stopped' : null } |
-  { 'stopping' : null } |
-  { 'running' : null };
-export type Summary = { 'ReleaseToMintDTC' : bigint } |
-  { 'PreMint1DTCInEcosystem' : bigint } |
-  { 'RecommendNewcomers' : DID__1 } |
-  { 'DSMSVerifyReward' : DID__1 } |
-  { 'RegisterFromReferrer' : DID__1 } |
-  { 'Mining' : string } |
-  { 'ICPCrowdfunding' : number } |
-  { 'MiningReferralLevel1' : string } |
-  { 'MiningReferralLevel2' : string };
+export type Result = { 'ok' : AccessNumberRecordAgrs } |
+  { 'err' : string };
+export type SecurityCircleVerify = { 'code' : string } |
+  { 'mobs' : Array<{ 'did' : DID, 'mob' : MobileNumber }> } |
+  { 'identity' : IdentityToken };
 export type Timestamp = bigint;
 export type Token = string;
 export interface TotalCredit {
@@ -236,26 +293,10 @@ export interface TotalCredit {
   'consensusDev' : bigint,
 }
 export interface TransferFee { 'max' : bigint, 'min' : bigint, 'rate' : bigint }
-export interface TransformArgs {
-  'context' : Uint8Array | number[],
-  'response' : HttpResponsePayload,
-}
-export interface USCTHistory64 {
-  'did' : DID__2,
-  'created' : bigint,
-  'adId' : string,
-  'summary' : USCTSummary,
-  'checkTime' : bigint,
-  'advertiser' : string,
-  'index' : bigint,
-  'amount' : bigint,
-}
-export type USCTSummary = { 'ConvertToUSDT' : [number, bigint] } |
-  { 'AdRewards' : null } |
-  { 'AdRewardsReferralLevel1' : DID__2 } |
-  { 'AdRewardsReferralLevel2' : DID__2 };
+export type Uid = bigint;
 export type Update2Main = { 'LedgerArchiveId' : [CoinCode, CanisterId] } |
-  { 'SubMiningCredit' : bigint };
+  { 'SubMiningCredit' : bigint } |
+  { 'SubECIF' : bigint };
 export interface VerificationPack {
   'verifyText' : string,
   'encryptKey' : string,
