@@ -115,12 +115,12 @@
       link: "https://www.youtube.com/@DeltaCoinNews",
       creator: "princejames.biz@gmail.com",
     },
-    {
-      icon: `<i class="fa-brands fa-facebook" style="color: rgb(8, 102, 255);"></i>`,
-      label: "Delta in Africa",
-      link: "https://t.co/JlN1ieKUeQ",
-      creator: "adimadojoel08@gmail.com",
-    },
+    // {
+    //   icon: `<i class="fa-brands fa-facebook" style="color: rgb(8, 102, 255);"></i>`,
+    //   label: "Delta in Africa",
+    //   link: "https://t.co/JlN1ieKUeQ",
+    //   creator: "adimadojoel08@gmail.com",
+    // },
     {
       icon: ` <i class="fa-brands fa-telegram" style="color:#0088CC"></i>`,
       label: "DELTA.🇫🇷 Kim",
@@ -298,25 +298,25 @@
     },
     {
       icon: `<i class="fa-brands fa-square-x-twitter" style="color:black"></i>`,
-      label: "Delta Kim India",
+      label: "Delta India",
       link: "https://x.com/DeltaKimIndia",
       creator: "andrei_madalin@yahoo.com",
     },
     {
       icon: `<i class="fa-brands fa-instagram" style="color:#000000"></i>`,
-      label: "Delta Kim Romania",
+      label: "Delta Romania",
       link: "https://www.instagram.com/delta.kimromania?igsh=MTdrYndqdjJrc25mMw%3D%3D&utm_source=qr",
       creator: "andrei_madalin@yahoo.com",
     },
     {
       icon: `<i class="fa-brands fa-youtube"style="color:rgb(255, 0, 51)"></i>`,
-      label: "Delta Kim Romania",
+      label: "Delta Romania",
       link: "https://www.youtube.com/@DeltaKimRomania",
       creator: "andrei_madalin@yahoo.com",
     },
     {
       icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
-      label: "DELTA INT'L (δ)",
+      label: "DELTA ACADEMY",
       link: "https://whatsapp.com/channel/0029VbAP8Oa1CYoPxixKtC3B",
       creator: "",
     },
@@ -344,12 +344,12 @@
       link: "https://chat.whatsapp.com/IwZFddlph7m1m8UNOkYdqS",
       creator: "",
     },
-    {
-      icon: `<i class="fa-brands fa-telegram" style="color:#0088CC"></i>`,
-      label: "Delta Romania",
-      link: "https://t.me/deltakimnetworkromania",
-      creator: "",
-    },
+    // {
+    //   icon: `<i class="fa-brands fa-telegram" style="color:#0088CC"></i>`,
+    //   label: "Delta Romania",
+    //   link: "https://t.me/deltakimnetworkromania",
+    //   creator: "",
+    // },
   ];
 </script>
 
