@@ -15,19 +15,18 @@
     let accessNumberList: AccessNumberObj[] = [];
     onMount(async () => {
         if ($delta != null) {
-            let globalAccessNumbers =
+            let accessNumberRecordAgrsAndTip =
                 await $delta.filterOptionalAccessNumbers2("global");
-            for (const row of globalAccessNumbers) {
-                let obj = row[1];
+            for (const row of accessNumberRecordAgrsAndTip.record) {
                 accessNumberList.push({
-                    did: row[0],
-                    accessNumber: obj.accessNumber,
-                    carrier: obj.carrier,
-                    expiration: obj.expiration,
-                    online: obj.online,
-                    reqNum: obj.reqNum,
-                    rewards: obj.rewards,
-                    succNum: obj.succNum,
+                    did: row.did,
+                    accessNumber: row.accessNumber,
+                    carrier: row.carrier,
+                    expiration: row.expiration,
+                    online: row.online,
+                    reqNum: row.reqNum,
+                    rewards: row.rewards,
+                    succNum: row.succNum,
                 });
             }
             accessNumberList = accessNumberList;
@@ -54,6 +53,10 @@
         globalDidOpt: string[],
     ) {
         try {
+            if (globalDidOpt.length > 0) {
+                globalDidOpt[0] = globalDidOpt[0].split(".")[0];
+            }
+            console.log({ accessNumber, carrier, globalDidOpt });
             if (window.confirm("Are you sure to submit?")) {
                 let res = await $delta.setGlobalAccessNumber(
                     accessNumber,
@@ -118,15 +121,23 @@
                     <td>
                         <button
                             class="btn variant-filled"
-                            on:click={() => setGlobalAccessNumber(row.accessNumber, row.carrier,[row.did])}
-                        > 更新</button>
+                            on:click={() =>
+                                setGlobalAccessNumber(
+                                    row.accessNumber,
+                                    row.carrier,
+                                    [row.did],
+                                )}
+                        >
+                            更新</button
+                        >
 
                         <button
                             class="btn bg-initial"
                             on:click={() =>
                                 setGlobalAccessNumber("", row.carrier, [
                                     row.did,
-                                ])}>删除</button>
+                                ])}>删除</button
+                        >
                     </td>
                 </tr>
             {/each}

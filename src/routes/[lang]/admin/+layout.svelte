@@ -26,6 +26,9 @@
         <TabAnchor href="/en/admin/app_version">
             app version
         </TabAnchor>
+        <TabAnchor href="/en/admin/app_version_old">
+            app versionOld
+        </TabAnchor>
         <TabAnchor href="/en/admin/reconcileUSCT">
             reconcile USCT
         </TabAnchor>
