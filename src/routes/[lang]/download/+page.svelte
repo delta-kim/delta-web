@@ -69,7 +69,7 @@
           <a
             target="_blank"
             href={lang == "zh-CN"
-              ? "http://delta.cdn.paibi.vip/apk/delta_mobile_1.1.7.apk"
+              ? "https://developer-oss.lanrar.com/file/?B2EFO1loU2IEDVdvBTBdMVVqAzsFPlQzUTpVJ1ZrA10Cb1ZuDjFTbgY8U2AKAVJiWi4EMFIjBzIFLAFmUn4HbQchBTRZbVNrBDdXXgU4XThVMgM0BWlUblFhVWZWPwM1AjVWMQ51U2EGI1M4CmdSZ1ozBDFSNAc0BToBNVIoB3YHdwVvWTZTNwRgVzQFfl1sVToDKQVoVGJReVVrVj0DNwIyVjUOalMxBmlTNQpuUmNaZAQ3UjgHMAVnATRSOgdjBz4FalkzUz4EYVdiBWFdaFVpAzMFOFQ3UWBVfVZrA3ICaVYnDiZTdAY1U3cKN1I3Wj0EMFI1BzwFMQEzUjYHNwchBSZZbVNqBDdXZwVsXW1VOAMyBWJUZ1FkVWZWPwMzAjNWLw59UyEGNlNpCilSbloxBDZSOQc9BTMBN1I+BzIHMwViWSJTcgQiV3YFbF1tVTgDMgViVGZRb1VqVjkDMAIzVicOJlNuBiBTOApvUmJaMgQvUjwHPAUwASlSNgc+BykFYFk3Uz4EfFcnBTVdM1V4A2gFBVQ1UT1VblY6AywCJFZ1DipTdwY1U1oKK1IyWj0EMQ=="
               : "https://github.com/delta-kim/delta_mobile_app/releases/download/1.1.7/delta_mobile_1.1.7.apk"}
           >
             <img
