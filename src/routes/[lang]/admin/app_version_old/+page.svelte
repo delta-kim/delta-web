@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { delta } from "../../../../lib/store";
+    import { roadMap } from "../../../../lib/store";
     import { onMount } from "svelte";
 
     let androidVersion = {
@@ -15,14 +15,14 @@
     };
 
     onMount(async () => {
-        if ($delta != null) {
-            let androidData = await $delta.getMobileApplastVersion({
+        if ($roadMap != null) {
+            let androidData = await $roadMap.getMobileApplastVersion({
                 android: null,
             });
 
             androidVersion = androidData["android"];
             console.log(androidVersion);
-            let iosData = await $delta.getMobileApplastVersion({
+            let iosData = await $roadMap.getMobileApplastVersion({
                 ios: null,
             });
             iosVersion = iosData["ios"];
@@ -38,7 +38,7 @@
         console.log("MobileApplastVersions", MobileApplastVersions);
         try {
             if (window.confirm("Are you sure to submit?")) {
-                let bool = await $delta.updateMobileApplastVersion(
+                let bool = await $roadMap.updateMobileApplastVersion(
                     MobileApplastVersions,
                 );
                 alert(`Execution result: ${bool}`);
@@ -51,7 +51,7 @@
 </script>
 
 <section class="2xl:px-9 h-full flex flex-col justify-center">
-    {#if $delta == null}
+    {#if $roadMap == null}
         <a
             href="/en/admin"
             class="btn variant-filled"
