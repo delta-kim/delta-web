@@ -344,12 +344,12 @@
       link: "https://chat.whatsapp.com/IwZFddlph7m1m8UNOkYdqS",
       creator: "",
     },
-    // {
-    //   icon: `<i class="fa-brands fa-telegram" style="color:#0088CC"></i>`,
-    //   label: "Delta Romania",
-    //   link: "https://t.me/deltakimnetworkromania",
-    //   creator: "",
-    // },
+    {
+      icon: `<i class="fa-brands fa-telegram" style="color:#0088CC"></i>`,
+      label: "Comunitatea Delta 🇷🇴",
+      link: "https://t.me/deltakimnetworkromania",
+      creator: "",
+    },
   ];
 </script>
 
