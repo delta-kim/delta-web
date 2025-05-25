@@ -73,7 +73,7 @@
           <a
             target="_blank"
             href={lang == "zh-CN"
-              ? "https://wwrm.lanzoue.com/iXtms2x67kwb"
+              ? "https://wwrm.lanzoue.com/delta-mobile"
               : "https://github.com/delta-kim/delta_mobile_app/releases/download/1.1.9/delta_mobile_1.1.9.apk"}
           >
             <img
