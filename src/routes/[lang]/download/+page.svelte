@@ -36,56 +36,22 @@
         </li>
         <li class="my-2">{$t("download_desc2")}</li>
       </ul>
-      <!--
-			<div class="flex flex-row justify-evenly mb-2 lg:w-5/6">
-				<figure class="w-2/6">
-					<a
-						target="_blank"
-						href="https://global.app.mi.com/details?id=kim.delta.mobile"
-					>
-						<img
-							class="border-2 rounded-md w-full card-hover"
-							src="/img/xiaomi_GetApps.png"
-							alt="Xiaomi GetApps"
-							title="Xiaomi GetApps"
-						/>
-					</a>
-				</figure>
-				<figure class="w-2/6">
-					<a target="_blank" href="https://pub-127e19f7b07747c6b37b142adc82ba6b.r2.dev/delta_mobile_1.0.4.apk">
-						<img
-							style="aspect-ratio:165/61"
-							class="border-2 rounded-md w-full card-hover"
-							src="/img/android_apk.png"
-							alt="Android apk"
-							title="Android apk"
-						/>
-					</a>
-				</figure>
-			</div>
- -->
-      <div class="flex flex-row items-center gap-8 mb-10">
-        <figure class="mt-7">
+
+      <div class="flex flex-row items-center gap-8">
+        <figure>
           <a
             target="_blank"
-            href={lang == "zh-CN"
-              ? "https://wwrm.lanzoue.com/iqErk2x4c3pa"
-              : "https://github.com/delta-kim/delta_mobile_app/releases/download/1.1.7/delta_mobile_1.1.7.apk"}
+            href="https://play.google.com/store/apps/details?id=kim.delta.mobile"
           >
+            <!-- https://global.app.mi.com/details?id=kim.delta.mobile -->
             <img
-              class="rounded-md w-[180px] object-contain"
-              src="/img/android_apk.png"
-              alt="Android apk"
-              title="Android apk"
+              style="aspect-ratio:165/61"
+              class="rounded-[20px] w-[190px] object-contain"
+              src="/img/google_play.svg"
+              alt="Google Play"
+              title="Google Play"
             />
           </a>
-          <div style="font-size:xx-small " class="text-center">
-            <a
-              style="text-decoration: underline;"
-              href="https://github.com/delta-kim/delta_mobile_app/releases"
-              target="_blank">Version:1.1.7 Latest:2025-04-22</a
-            >
-          </div>
         </figure>
         <figure>
           <a
@@ -100,6 +66,30 @@
               title="Apple store"
             />
           </a>
+        </figure>
+      </div>
+      <div class="flex flex-row items-center gap-8">
+        <figure class="mt-4">
+          <a
+            target="_blank"
+            href={lang == "zh-CN"
+              ? "https://wwrm.lanzoue.com/iXtms2x67kwb"
+              : "https://github.com/delta-kim/delta_mobile_app/releases/download/1.1.9/delta_mobile_1.1.9.apk"}
+          >
+            <img
+              class="rounded-md w-[190px] object-contain"
+              src="/img/android_apk.png"
+              alt="Android apk"
+              title="Android apk"
+            />
+          </a>
+          <div style="font-size:xx-small " class="text-center">
+            <a
+              style="text-decoration: underline;"
+              href="https://github.com/delta-kim/delta_mobile_app/releases"
+              target="_blank">Version:1.1.9 Latest:2025-05-25</a
+            >
+          </div>
         </figure>
       </div>
     </div>
