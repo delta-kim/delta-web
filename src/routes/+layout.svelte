@@ -104,6 +104,12 @@
       creator: "princejames.biz@gmail.com",
     },
     {
+      icon: `<i class="fa-brands fa-telegram" style="color:#0088CC"></i>`,
+      label: "Delta Global",
+      link: "https://t.me/GlobalDeltaCoin",
+      creator: "josephangengang@gmail.com",
+    },
+    {
       icon: `<img style="width: 15px;display: inline;"alt="delta medium"src="/img/medium.png"/>`,
       label: "DeltaCoinNews",
       link: "https://medium.com/@DeltaCoinNews",
@@ -115,12 +121,6 @@
       link: "https://www.youtube.com/@DeltaCoinNews",
       creator: "princejames.biz@gmail.com",
     },
-    // {
-    //   icon: `<i class="fa-brands fa-facebook" style="color: rgb(8, 102, 255);"></i>`,
-    //   label: "Delta in Africa",
-    //   link: "https://t.co/JlN1ieKUeQ",
-    //   creator: "adimadojoel08@gmail.com",
-    // },
     {
       icon: ` <i class="fa-brands fa-telegram" style="color:#0088CC"></i>`,
       label: "DELTA.🇫🇷 Kim",
@@ -175,12 +175,6 @@
       label: "Delta Crypto",
       link: "https://www.reddit.com/r/Delta_Crypto",
       creator: "princejames.biz@gmail.com",
-    },
-    {
-      icon: `<i class="fa-brands fa-telegram" style="color:#0088CC"></i>`,
-      label: "Delta Global",
-      link: "https://t.me/GlobalDeltaCoin",
-      creator: "josephangengang@gmail.com",
     },
     {
       icon: `<i class="fa-brands fa-telegram" style="color:#0088CC"></i>`,
@@ -243,12 +237,6 @@
       creator: "cristian.nicula@icloud.com",
     },
     {
-      icon: `<i class="fa-brands fa-square-x-twitter" style="color:black"></i>`,
-      label: "Delta Fan Sanni",
-      link: "https://x.com/DeltaSanni",
-      creator: "young.muhammedd@gmail.com",
-    },
-    {
       icon: `<i class="fa-brands fa-telegram" style="color:#0088CC"></i>`,
       label: "Delta Iran 🇮🇷",
       link: "https://t.me/DeltaIranian",
@@ -257,7 +245,7 @@
     {
       icon: `<i class="fa-brands fa-discord"style="color:rgb(88, 101, 242)"></i>`,
       label: "Delta Romania 🇷🇴",
-      link: "https://discord.gg/s2aJ5PF9",
+      link: "https://discord.gg/avywUbKDvh",
       creator: "cristian.nicula@icloud.com",
     },
     {
@@ -268,7 +256,7 @@
     },
     {
       icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
-      label: "Delta Naija ",
+      label: "Delta Naija",
       link: "https://chat.whatsapp.com/E9va1NFe0zf8dcnGW3WYFD",
       creator: "johnnex16@gmail.com",
     },
