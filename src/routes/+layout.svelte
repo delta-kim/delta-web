@@ -201,18 +201,6 @@
       creator: "",
     },
     {
-      icon: `<i class="fa-brands fa-facebook" style="color: rgb(8, 102, 255);"></i>`,
-      label: "DELTA Minage",
-      link: "https://www.facebook.com/share/195yPi4xKa/",
-      creator: "",
-    },
-    {
-      icon: `<i class="fa-brands fa-facebook" style="color: rgb(8, 102, 255);"></i>`,
-      label: "DELTA کوردی",
-      link: "https://www.facebook.com/share/g/1A9jYD7BnQ/",
-      creator: "viko.bradosty@gmail.com",
-    },
-    {
       icon: `<i class="fa-brands fa-telegram" style="color:#0088CC"></i>`,
       label: "Delta کوردی",
       link: "https://t.me/deltakurdish",
@@ -286,12 +274,6 @@
     },
     {
       icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
-      label: "#DELTA(δ) EIMI",
-      link: "https://chat.whatsapp.com/LlMnlHyGJtB1JBsU3rDLNt",
-      creator: "",
-    },
-    {
-      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
       label: "DELTA COIN (δ)",
       link: "https://chat.whatsapp.com/I4y8APe0kByBbwwoPN9GaJ",
       creator: "",
@@ -348,6 +330,30 @@
       icon: `<i class="fa-brands fa-telegram" style="color:#0088CC"></i>`,
       label: "Comunitatea Delta 🇷🇴",
       link: "https://t.me/deltakimnetworkromania",
+      creator: "",
+    },
+    {
+      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
+      label: "DELTA Kuki",
+      link: "https://chat.whatsapp.com/LpHxuiy5VhVKOyTCVj9xNE",
+      creator: "",
+    },
+    {
+      icon: `<i class="fa-brands fa-telegram" style="color:#0088CC"></i>`,
+      label: "Delta Astuces",
+      link: "https://t.me/delta_astuces",
+      creator: "",
+    },
+    {
+      icon: `<i class="fa-brands fa-telegram" style="color:#0088CC"></i>`,
+      label: "Delta Mozambique🇲🇿",
+      link: "https://t.me/deltacoinmozambique",
+      creator: "",
+    },
+    {
+      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
+      label: "DELTA TURKIYE 🇹🇷",
+      link: "https://chat.whatsapp.com/KaAAoxxuBzq7rtATZtU5TP",
       creator: "",
     },
   ];
