@@ -24,15 +24,24 @@
   import { t } from "svelte-i18n";
   import { langs } from "$lib/i18n/langs";
   import { onMount } from "svelte";
+  import { afterNavigate, beforeNavigate } from "$app/navigation";
   import type { LayoutData } from "./$types";
 
   export let data: LayoutData;
 
   storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
   onMount(() => {
-    console.log("layout onMount");
-    // console.log($page.url);
-    // console.log(data.lang);
+    // Disable browser scroll restoration
+    if ("scrollRestoration" in history) {
+      history.scrollRestoration = "manual";
+    }
+
+    afterNavigate(() => {
+      // Force scroll to top after navigation
+      requestAnimationFrame(() => {
+        window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+      });
+    });
   });
 
   const deltaApps = [
@@ -55,7 +64,7 @@
       label: $t("roadmap"),
     },
     {
-      link: "./whitepaper",
+      link: "./whitepaper#introduction",
       label: $t("whitepaper"),
     },
     // {
@@ -350,6 +359,12 @@
       link: "https://chat.whatsapp.com/JFpabdspkczGlhW1MGwwpS",
       creator: "",
     },
+    {
+      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
+      label: "DELTA Tanzania 🇹🇿",
+      link: "https://chat.whatsapp.com/CFk7onF96YE6XajMdJ5dcD",
+      creator: "",
+    },
   ];
 </script>
 
@@ -410,7 +425,7 @@
                   </TabAnchor>
 
                   <TabAnchor
-                    href="./whitepaper"
+                    href="./whitepaper#introduction"
                     selected={$page.url.pathname.endsWith("/whitepaper")}
                   >
                     <span>{$t("whitepaper")}</span>
@@ -541,7 +556,7 @@
             </div>
             <div class="flex flex-row justify-between mb-1">
               <ul
-                class="grid md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 gap-2 justify-between"
+                class="grid md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-2 justify-between"
               >
                 {#each communities as community}
                   <li class="font-[500] text-blue-600">
