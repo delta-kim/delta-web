@@ -210,12 +210,6 @@
       creator: "viko.bradosty@gmail.com",
     },
     {
-      icon: `<i class="fa-brands fa-square-x-twitter" style="color:black"></i>`,
-      label: "δ Network",
-      link: "https://x.com/DeltaCoreTeam",
-      creator: "joshuanicholaus22@gmail.com",
-    },
-    {
       icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
       label: "Delta.🇹🇿",
       link: "https://chat.whatsapp.com/HxNu5J2sO8yGRAYWgSTvvu",
