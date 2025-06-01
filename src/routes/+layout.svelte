@@ -24,15 +24,24 @@
   import { t } from "svelte-i18n";
   import { langs } from "$lib/i18n/langs";
   import { onMount } from "svelte";
+  import { afterNavigate, beforeNavigate } from "$app/navigation";
   import type { LayoutData } from "./$types";
 
   export let data: LayoutData;
 
   storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
   onMount(() => {
-    console.log("layout onMount");
-    // console.log($page.url);
-    // console.log(data.lang);
+    // Disable browser scroll restoration
+    if ("scrollRestoration" in history) {
+      history.scrollRestoration = "manual";
+    }
+
+    afterNavigate(() => {
+      // Force scroll to top after navigation
+      requestAnimationFrame(() => {
+        window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+      });
+    });
   });
 
   const deltaApps = [
@@ -55,7 +64,7 @@
       label: $t("roadmap"),
     },
     {
-      link: "./whitepaper",
+      link: "./whitepaper#introduction",
       label: $t("whitepaper"),
     },
     // {
@@ -104,6 +113,12 @@
       creator: "princejames.biz@gmail.com",
     },
     {
+      icon: `<i class="fa-brands fa-telegram" style="color:#0088CC"></i>`,
+      label: "Delta Global",
+      link: "https://t.me/GlobalDeltaCoin",
+      creator: "josephangengang@gmail.com",
+    },
+    {
       icon: `<img style="width: 15px;display: inline;"alt="delta medium"src="/img/medium.png"/>`,
       label: "DeltaCoinNews",
       link: "https://medium.com/@DeltaCoinNews",
@@ -115,12 +130,6 @@
       link: "https://www.youtube.com/@DeltaCoinNews",
       creator: "princejames.biz@gmail.com",
     },
-    // {
-    //   icon: `<i class="fa-brands fa-facebook" style="color: rgb(8, 102, 255);"></i>`,
-    //   label: "Delta in Africa",
-    //   link: "https://t.co/JlN1ieKUeQ",
-    //   creator: "adimadojoel08@gmail.com",
-    // },
     {
       icon: ` <i class="fa-brands fa-telegram" style="color:#0088CC"></i>`,
       label: "DELTA.🇫🇷 Kim",
@@ -178,12 +187,6 @@
     },
     {
       icon: `<i class="fa-brands fa-telegram" style="color:#0088CC"></i>`,
-      label: "Delta Global",
-      link: "https://t.me/GlobalDeltaCoin",
-      creator: "josephangengang@gmail.com",
-    },
-    {
-      icon: `<i class="fa-brands fa-telegram" style="color:#0088CC"></i>`,
       label: "Delta.🇮🇳 India",
       link: "https://t.me/delta_in",
       creator: "",
@@ -201,28 +204,10 @@
       creator: "",
     },
     {
-      icon: `<i class="fa-brands fa-facebook" style="color: rgb(8, 102, 255);"></i>`,
-      label: "DELTA Minage",
-      link: "https://www.facebook.com/share/195yPi4xKa/",
-      creator: "",
-    },
-    {
-      icon: `<i class="fa-brands fa-facebook" style="color: rgb(8, 102, 255);"></i>`,
-      label: "DELTA کوردی",
-      link: "https://www.facebook.com/share/g/1A9jYD7BnQ/",
-      creator: "viko.bradosty@gmail.com",
-    },
-    {
       icon: `<i class="fa-brands fa-telegram" style="color:#0088CC"></i>`,
       label: "Delta کوردی",
       link: "https://t.me/deltakurdish",
       creator: "viko.bradosty@gmail.com",
-    },
-    {
-      icon: `<i class="fa-brands fa-square-x-twitter" style="color:black"></i>`,
-      label: "δ Network",
-      link: "https://x.com/DeltaCoreTeam",
-      creator: "joshuanicholaus22@gmail.com",
     },
     {
       icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
@@ -255,12 +240,6 @@
       creator: "cristian.nicula@icloud.com",
     },
     {
-      icon: `<i class="fa-brands fa-square-x-twitter" style="color:black"></i>`,
-      label: "Delta Fan Sanni",
-      link: "https://x.com/DeltaSanni",
-      creator: "young.muhammedd@gmail.com",
-    },
-    {
       icon: `<i class="fa-brands fa-telegram" style="color:#0088CC"></i>`,
       label: "Delta Iran 🇮🇷",
       link: "https://t.me/DeltaIranian",
@@ -269,7 +248,7 @@
     {
       icon: `<i class="fa-brands fa-discord"style="color:rgb(88, 101, 242)"></i>`,
       label: "Delta Romania 🇷🇴",
-      link: "https://discord.gg/s2aJ5PF9",
+      link: "https://discord.gg/avywUbKDvh",
       creator: "cristian.nicula@icloud.com",
     },
     {
@@ -280,15 +259,9 @@
     },
     {
       icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
-      label: "Delta Naija ",
+      label: "Delta Naija",
       link: "https://chat.whatsapp.com/E9va1NFe0zf8dcnGW3WYFD",
       creator: "johnnex16@gmail.com",
-    },
-    {
-      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
-      label: "#DELTA(δ) EIMI",
-      link: "https://chat.whatsapp.com/LlMnlHyGJtB1JBsU3rDLNt",
-      creator: "",
     },
     {
       icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
@@ -348,6 +321,42 @@
       icon: `<i class="fa-brands fa-telegram" style="color:#0088CC"></i>`,
       label: "Comunitatea Delta 🇷🇴",
       link: "https://t.me/deltakimnetworkromania",
+      creator: "",
+    },
+    {
+      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
+      label: "DELTA Kuki",
+      link: "https://chat.whatsapp.com/LpHxuiy5VhVKOyTCVj9xNE",
+      creator: "",
+    },
+    {
+      icon: `<i class="fa-brands fa-telegram" style="color:#0088CC"></i>`,
+      label: "Delta Astuces",
+      link: "https://t.me/delta_astuces",
+      creator: "",
+    },
+    {
+      icon: `<i class="fa-brands fa-telegram" style="color:#0088CC"></i>`,
+      label: "Delta Mozambique🇲🇿",
+      link: "https://t.me/deltacoinmozambique",
+      creator: "",
+    },
+    {
+      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
+      label: "DELTA TURKIYE 🇹🇷",
+      link: "https://chat.whatsapp.com/KaAAoxxuBzq7rtATZtU5TP",
+      creator: "",
+    },
+    {
+      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
+      label: "DELTA BURKINA 🇧🇫",
+      link: "https://chat.whatsapp.com/JFpabdspkczGlhW1MGwwpS",
+      creator: "",
+    },
+    {
+      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
+      label: "DELTA Tanzania 🇹🇿",
+      link: "https://chat.whatsapp.com/CFk7onF96YE6XajMdJ5dcD",
       creator: "",
     },
   ];
@@ -410,7 +419,7 @@
                   </TabAnchor>
 
                   <TabAnchor
-                    href="./whitepaper"
+                    href="./whitepaper#introduction"
                     selected={$page.url.pathname.endsWith("/whitepaper")}
                   >
                     <span>{$t("whitepaper")}</span>
@@ -541,7 +550,7 @@
             </div>
             <div class="flex flex-row justify-between mb-1">
               <ul
-                class="grid md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 gap-2 justify-between"
+                class="grid md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-2 justify-between"
               >
                 {#each communities as community}
                   <li class="font-[500] text-blue-600">
