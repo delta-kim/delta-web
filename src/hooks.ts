@@ -19,6 +19,9 @@ export const handle: Handle = async ({ event, resolve }) => {
             headers: { 'Content-Type': 'text/plain' }
         });
     }
+    if (event.url.pathname.startsWith("/api/")) {
+        return resolve(event);
+    }
     if (event.url.pathname == "/") {
         const negotiator = new Neg({
             headers: {
