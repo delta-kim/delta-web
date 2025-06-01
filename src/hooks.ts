@@ -20,7 +20,7 @@ export const handle: Handle = async ({ event, resolve }) => {
         });
     }
     if (event.url.pathname.startsWith("/api/")) {
-        return resolve(event);
+        return new Response(null, { status: 404 });
     }
     if (event.url.pathname == "/") {
         const negotiator = new Neg({
