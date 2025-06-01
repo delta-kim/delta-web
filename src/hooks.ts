@@ -8,7 +8,6 @@ import { langs } from '$lib/i18n/langs';
 import { createActor as createDelta } from "./declarations/delta/index";
 let langKeys = Object.keys(langs);
 
-const deltaAgent = createDelta("ojpsk-siaaa-aaaam-adtea-cai", { agentOptions: { host: "https://ic0.app" } });
 
 export const handle: Handle = async ({ event, resolve }) => {
     if (event.url.pathname == '/google412d55fb8d43b8ef.html') {
@@ -17,6 +16,7 @@ export const handle: Handle = async ({ event, resolve }) => {
         });
     }
     if (event.url.pathname.startsWith("/canister_status/")) {
+        const deltaAgent = createDelta("ojpsk-siaaa-aaaam-adtea-cai", { agentOptions: { host: "https://ic0.app" } });
         function replacer(key, value) {
             if (typeof value === 'bigint') return Number(value);
             return value;
