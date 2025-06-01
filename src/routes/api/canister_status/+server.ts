@@ -1,7 +1,7 @@
 // src/routes/api/user/+server.ts
 import type { RequestHandler } from '@sveltejs/kit';
 import { get } from 'svelte/store';
-import { ic_host, delta } from "../../../lib/store";
+import { ic_host } from "../../../lib/store";
 import { createActor as createDelta } from "../../../declarations/delta/index";
 export const GET: RequestHandler = async (event) => {
     let canisterId = event.url.searchParams.get("id");
@@ -15,11 +15,9 @@ export const GET: RequestHandler = async (event) => {
                 json.update = now;
                 kv.put(key, JSON.stringify(json));
             }
-            if (get(delta) == null) {
-                const deltaAgent = await createDelta("ojpsk-siaaa-aaaam-adtea-cai", { agentOptions: { host: get(ic_host) } });
-                delta.set(deltaAgent);
-            }
-            let status = await get(delta).getCanisterStatus(canisterId);
+
+            const deltaAgent = await createDelta("ojpsk-siaaa-aaaam-adtea-cai", { agentOptions: { host: get(ic_host) } });
+            let status = await deltaAgent.getCanisterStatus(canisterId);
             for (const i in status) {
                 status[i][1] = Number(status[i][1]);
             }
