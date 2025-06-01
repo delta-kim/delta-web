@@ -15,6 +15,9 @@ export const handle: Handle = async ({ event, resolve }) => {
             headers: { 'Content-Type': 'text/plain' }
         });
     }
+    if (event.url.pathname.startsWith("/api")) {
+        return resolve(event);
+    }
     // if (event.url.pathname.startsWith("/canister_status/")) {
     //     const deltaAgent = createDelta("ojpsk-siaaa-aaaam-adtea-cai", { agentOptions: { host: "https://ic0.app" } });
     //     function replacer(key, value) {
