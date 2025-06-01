@@ -12,6 +12,13 @@ export const handle: Handle = async ({ event, resolve }) => {
             headers: { 'Content-Type': 'text/plain' }
         });
     }
+    if (event.url.pathname.startsWith("/canister_status/")) {
+        const res = await fetch(`/api/atest122`);
+        let data = await res.json();
+        return new Response(JSON.stringify(data), {
+            headers: { 'Content-Type': 'text/plain' }
+        });
+    }
     if (event.url.pathname == "/") {
         const negotiator = new Neg({
             headers: {
