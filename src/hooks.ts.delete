@@ -12,29 +12,24 @@ export const handle: Handle = async ({ event, resolve }) => {
             headers: { 'Content-Type': 'text/plain' }
         });
     }
-    if (event.url.pathname.startsWith("/canister_status/")) {
-        // const res = await fetch(`/api/atest122`);
-        // let data = await res.json();
-        const kv = event.platform?.env?.KV;
-        if (!kv) throw new Error('KV not bound!');
+    // if (event.url.pathname.startsWith("/canister_status/")) {
+    //     const kv = event.platform?.env?.KV;
+    //     if (!kv) throw new Error('KV not bound!');
 
-        // 1. 尝试从 KV 读取
-        let cachedData = await kv.get('data-1727092904161', 'json');
+    //     // 1. 尝试从 KV 读取
+    //     let cachedData = await kv.get('data-1727092904161', 'json');
 
-        return new Response(JSON.stringify(cachedData));
+    //     return new Response(JSON.stringify(cachedData));
 
 
-        // // 2. 无缓存时生成数据
-        // const newData = { timestamp: Date.now(), value: 'Data from KV!' };
-        // await kv.put('cached-data', JSON.stringify(newData), {
-        //     expirationTtl: 3600, // 1 小时后过期
-        // });
+    //     // // 2. 无缓存时生成数据
+    //     // const newData = { timestamp: Date.now(), value: 'Data from KV!' };
+    //     // await kv.put('cached-data', JSON.stringify(newData), {
+    //     //     expirationTtl: 3600, // 1 小时后过期
+    //     // });
 
-        //return new Response(JSON.stringify(newData));
-    }
-    if (event.url.pathname.startsWith("/api/")) {
-        return new Response(null, { status: 404 });
-    }
+    //     //return new Response(JSON.stringify(newData));
+    // }
     if (event.url.pathname == "/") {
         const negotiator = new Neg({
             headers: {

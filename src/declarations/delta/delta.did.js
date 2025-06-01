@@ -65,7 +65,13 @@ export const idlFactory = ({ IDL }) => {
     'crossChainConfs' : IDL.Vec(CrossChainConf),
     'symbol' : IDL.Text,
   });
+  const BasicInfo__1 = IDL.Record({
+    'population' : IDL.Nat,
+    'baseRate' : IDL.Nat,
+  });
+  const MobileAppType = IDL.Variant({ 'ios' : IDL.Null, 'android' : IDL.Null });
   const BasicInfo = IDL.Record({
+    'appVersion' : IDL.Text,
     'population' : IDL.Nat,
     'baseRate' : IDL.Nat,
   });
@@ -82,6 +88,11 @@ export const idlFactory = ({ IDL }) => {
     'identity' : IdentityToken,
   });
   const Uid = IDL.Nat;
+  const SendECIFargs = IDL.Record({
+    'did' : DID,
+    'qty' : IDL.Nat,
+    'reason' : IDL.Text,
+  });
   const AccessNumberRecordAgrs2 = IDL.Record({
     'did' : DID,
     'status' : IDL.Text,
@@ -109,12 +120,12 @@ export const idlFactory = ({ IDL }) => {
     'MultiChainWallet' : IDL.Null,
     'mobile' : IDL.Null,
     'RoadMap' : IDL.Null,
+    'SettleUSCT' : IDL.Null,
   });
   const ActorCanisterId = IDL.Tuple(
     IDL.Text,
     IDL.Variant({ 'one' : CanisterId, 'list' : IDL.Vec(CanisterId) }),
   );
-  const MobileAppType = IDL.Variant({ 'ios' : IDL.Null, 'android' : IDL.Null });
   const MobileApplastVersion = IDL.Variant({
     'ios' : IDL.Record({
       'version' : IDL.Text,
@@ -171,6 +182,11 @@ export const idlFactory = ({ IDL }) => {
   });
   const Delta = IDL.Service({
     '_advanceAmount' : IDL.Func([AdvanceAmount], [IDL.Nat], []),
+    '_createUSCTSettlReport' : IDL.Func(
+        [IDL.Float64, IDL.Nat32, IDL.Nat32, IDL.Text],
+        [IDL.Bool],
+        [],
+      ),
     '_debugShowAccessNumberList' : IDL.Func(
         [CountryCode],
         [IDL.Vec(IDL.Tuple(DID, AccessNumberRecordAgrs))],
@@ -196,7 +212,8 @@ export const idlFactory = ({ IDL }) => {
       ),
     'appendMainCyclesLog' : IDL.Func([IDL.Nat64], [IDL.Bool], []),
     'applyNewDTCTCanister' : IDL.Func([], [CanisterId], []),
-    'basicInfo' : IDL.Func([], [BasicInfo], ['query']),
+    'basicInfo' : IDL.Func([], [BasicInfo__1], ['query']),
+    'basicInfo2' : IDL.Func([MobileAppType], [BasicInfo], ['query']),
     'buildAccessNumberActiveCode' : IDL.Func(
         [CanisterId, CountryCode, IdentityToken],
         [IDL.Text],
@@ -218,6 +235,7 @@ export const idlFactory = ({ IDL }) => {
         ],
         ['composite_query'],
       ),
+    'check_deposit_cycles' : IDL.Func([], [IDL.Bool], []),
     'countAccessNumberRecord' : IDL.Func(
         [],
         [IDL.Vec(IDL.Tuple(CountryCode, IDL.Nat))],
@@ -265,6 +283,7 @@ export const idlFactory = ({ IDL }) => {
         [],
       ),
     'distributeECIF' : IDL.Func([DID, IDL.Nat, IDL.Text], [Index], []),
+    'distributeECIF2' : IDL.Func([SendECIFargs, IDL.Text], [Index], []),
     'filterOptionalAccessNumbers' : IDL.Func(
         [CountryCode],
         [IDL.Vec(IDL.Tuple(DID, AccessNumberRecordAgrs))],
@@ -282,6 +301,11 @@ export const idlFactory = ({ IDL }) => {
       ),
     'getCanisterId' : IDL.Func([CanisterCodeType], [CanisterId], ['query']),
     'getCanisterIdMap' : IDL.Func([], [IDL.Vec(ActorCanisterId)], ['query']),
+    'getCanisterStatus' : IDL.Func(
+        [CanisterId],
+        [IDL.Vec(IDL.Tuple(IDL.Text, IDL.Nat))],
+        [],
+      ),
     'getDSMSencryptKey' : IDL.Func(
         [MobileNumber, AppIdentityTokenArgs],
         [IDL.Text],
@@ -313,6 +337,11 @@ export const idlFactory = ({ IDL }) => {
         [IDL.Vec(CanisterDate)],
         ['query'],
       ),
+    'listCanisterStatus' : IDL.Func(
+        [IDL.Vec(CanisterId)],
+        [IDL.Vec(IDL.Tuple(CanisterId, IDL.Vec(IDL.Tuple(IDL.Text, IDL.Nat))))],
+        [],
+      ),
     'listE164map' : IDL.Func([], [IDL.Vec(E164AndISOCode)], ['query']),
     'matchAccountCanister' : IDL.Func([DID], [IDL.Opt(CanisterId)], ['query']),
     'matchAccountCanisters' : IDL.Func(
@@ -333,17 +362,12 @@ export const idlFactory = ({ IDL }) => {
       ),
     'queryVerifyStatus' : IDL.Func([IDL.Text], [VerifyStatus], ['query']),
     'receiveUpdates' : IDL.Func([Update2Main], [], ['oneway']),
-    'reconcileUSCT' : IDL.Func(
-        [IDL.Text, IDL.Vec(IDL.Text), IDL.Vec(IDL.Nat64), IDL.Nat64],
-        [IDL.Bool],
-        [],
-      ),
     'reinstallCanister' : IDL.Func(
         [CanisterCodeType, IDL.Vec(IDL.Nat8)],
         [IDL.Text],
         [],
       ),
-    'remainingTotalCredit' : IDL.Func([], [TotalCredit], ['query']),
+    'remainingTotalCredit' : IDL.Func([], [TotalCredit], ['composite_query']),
     'renewalAccessNumber' : IDL.Func(
         [DID, CountryCode, Expiration],
         [IDL.Bool],
@@ -385,11 +409,6 @@ export const idlFactory = ({ IDL }) => {
         [CanisterCodeType, IDL.Vec(IDL.Nat8)],
         [IDL.Text],
         [],
-      ),
-    'upgradeCanisterArg' : IDL.Func(
-        [CanisterCodeType],
-        [IDL.Vec(IDL.Tuple(CanisterId, IDL.Vec(IDL.Nat8)))],
-        ['composite_query'],
       ),
     'upload_wasm_module' : IDL.Func(
         [IDL.Vec(IDL.Nat8), IDL.Vec(IDL.Nat8)],
