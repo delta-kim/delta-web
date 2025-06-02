@@ -38,7 +38,12 @@ export interface AppIdentityTokenArgs {
   'dAppIdentToken' : IdentityToken,
   'accCanisterId' : CanisterId,
 }
-export interface BasicInfo { 'population' : bigint, 'baseRate' : bigint }
+export interface BasicInfo {
+  'appVersion' : string,
+  'population' : bigint,
+  'baseRate' : bigint,
+}
+export interface BasicInfo__1 { 'population' : bigint, 'baseRate' : bigint }
 export type CanisterCodeType = { 'ICPfunds' : null } |
   { 'DappCenter' : null } |
   { 'LedgerArchive' : null } |
@@ -49,7 +54,8 @@ export type CanisterCodeType = { 'ICPfunds' : null } |
   { 'xCredits' : null } |
   { 'MultiChainWallet' : null } |
   { 'mobile' : null } |
-  { 'RoadMap' : null };
+  { 'RoadMap' : null } |
+  { 'SettleUSCT' : null };
 export interface CanisterDate {
   'end' : Index,
   'fulled' : boolean,
@@ -93,6 +99,10 @@ export type CrossChainConf = {
 export type DID = string;
 export interface Delta {
   '_advanceAmount' : ActorMethod<[AdvanceAmount], bigint>,
+  '_createUSCTSettlReport' : ActorMethod<
+    [number, number, number, string],
+    boolean
+  >,
   '_debugShowAccessNumberList' : ActorMethod<
     [CountryCode],
     Array<[DID, AccessNumberRecordAgrs]>
@@ -111,7 +121,8 @@ export interface Delta {
   >,
   'appendMainCyclesLog' : ActorMethod<[bigint], boolean>,
   'applyNewDTCTCanister' : ActorMethod<[], CanisterId>,
-  'basicInfo' : ActorMethod<[], BasicInfo>,
+  'basicInfo' : ActorMethod<[], BasicInfo__1>,
+  'basicInfo2' : ActorMethod<[MobileAppType], BasicInfo>,
   'buildAccessNumberActiveCode' : ActorMethod<
     [CanisterId, CountryCode, IdentityToken],
     string
@@ -121,6 +132,7 @@ export interface Delta {
     [CountryCode],
     { 'err' : string, 'allowedNum' : bigint, 'acNum' : bigint }
   >,
+  'check_deposit_cycles' : ActorMethod<[], boolean>,
   'countAccessNumberRecord' : ActorMethod<[], Array<[CountryCode, bigint]>>,
   'countAccessNumberRecord2' : ActorMethod<
     [],
@@ -149,6 +161,7 @@ export interface Delta {
     Array<Uid>
   >,
   'distributeECIF' : ActorMethod<[DID, bigint, string], Index>,
+  'distributeECIF2' : ActorMethod<[SendECIFargs, string], Index>,
   'filterOptionalAccessNumbers' : ActorMethod<
     [CountryCode],
     Array<[DID, AccessNumberRecordAgrs]>
@@ -163,6 +176,7 @@ export interface Delta {
   >,
   'getCanisterId' : ActorMethod<[CanisterCodeType], CanisterId>,
   'getCanisterIdMap' : ActorMethod<[], Array<ActorCanisterId>>,
+  'getCanisterStatus' : ActorMethod<[CanisterId], Array<[string, bigint]>>,
   'getDSMSencryptKey' : ActorMethod<
     [MobileNumber, AppIdentityTokenArgs],
     string
@@ -185,6 +199,10 @@ export interface Delta {
     boolean
   >,
   'listAccountCanisterDate' : ActorMethod<[], Array<CanisterDate>>,
+  'listCanisterStatus' : ActorMethod<
+    [Array<CanisterId>],
+    Array<[CanisterId, Array<[string, bigint]>]>
+  >,
   'listE164map' : ActorMethod<[], Array<E164AndISOCode>>,
   'matchAccountCanister' : ActorMethod<[DID], [] | [CanisterId]>,
   'matchAccountCanisters' : ActorMethod<
@@ -199,10 +217,6 @@ export interface Delta {
   >,
   'queryVerifyStatus' : ActorMethod<[string], VerifyStatus>,
   'receiveUpdates' : ActorMethod<[Update2Main], undefined>,
-  'reconcileUSCT' : ActorMethod<
-    [string, Array<string>, BigUint64Array | bigint[], bigint],
-    boolean
-  >,
   'reinstallCanister' : ActorMethod<
     [CanisterCodeType, Uint8Array | number[]],
     string
@@ -235,10 +249,6 @@ export interface Delta {
   'upgradeCanister' : ActorMethod<
     [CanisterCodeType, Uint8Array | number[]],
     string
-  >,
-  'upgradeCanisterArg' : ActorMethod<
-    [CanisterCodeType],
-    Array<[CanisterId, Uint8Array | number[]]>
   >,
   'upload_wasm_module' : ActorMethod<
     [Uint8Array | number[], Uint8Array | number[]],
@@ -284,6 +294,7 @@ export type Result = { 'ok' : AccessNumberRecordAgrs } |
 export type SecurityCircleVerify = { 'code' : string } |
   { 'mobs' : Array<{ 'did' : DID, 'mob' : MobileNumber }> } |
   { 'identity' : IdentityToken };
+export interface SendECIFargs { 'did' : DID, 'qty' : bigint, 'reason' : string }
 export type Timestamp = bigint;
 export type Token = string;
 export interface TotalCredit {

@@ -41,8 +41,8 @@ pages_build_output_dir = ".svelte-kit/cloudflare"
 # Bind a KV Namespace. Use KV as persistent storage for small key-value pairs.
 # Docs: https://developers.cloudflare.com/pages/functions/bindings/#kv-namespaces
 # [[kv_namespaces]]
-# binding = "MY_KV_NAMESPACE"
-# id = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+# binding = "KV"
+# id = "0f090c2637c34c2bb3cdc97ffcf06fa0"
 
 # Bind a Queue producer. Use this binding to schedule an arbitrary task that may be processed later by a Queue consumer.
 # Docs: https://developers.cloudflare.com/pages/functions/bindings/#queue-producers
@@ -85,3 +85,6 @@ pages_build_output_dir = ".svelte-kit/cloudflare"
 # id = "<PRODUCTION_NAMESPACE_ID>"
 
 compatibility_flags = ["nodejs_compat_v2"]
+kv_namespaces = [
+  { binding = "KV", id = "0f090c2637c34c2bb3cdc97ffcf06fa0" }
+]

@@ -1,16 +1,22 @@
+// hooks.server.ts
 import type { Handle, HandleFetch, RequestHandler } from '@sveltejs/kit';
 import { redirect } from '@sveltejs/kit';
 //var Negotiator = require('negotiator')
 import Neg from 'negotiator';
 import { initialLocale } from '$lib/i18n'; // Import to initialize. Important :)
 import { langs } from '$lib/i18n/langs';
+//import { createActor as createDelta } from "./declarations/delta/index";
 let langKeys = Object.keys(langs);
+
 
 export const handle: Handle = async ({ event, resolve }) => {
     if (event.url.pathname == '/google412d55fb8d43b8ef.html') {
         return new Response('google-site-verification: google412d55fb8d43b8ef.html', {
             headers: { 'Content-Type': 'text/plain' }
         });
+    }
+    if (event.url.pathname.startsWith("/api")) {
+        return resolve(event);
     }
     if (event.url.pathname == "/") {
         const negotiator = new Neg({
@@ -41,4 +47,4 @@ export const handle: Handle = async ({ event, resolve }) => {
     }
     await initialLocale(lang);
     return resolve(event);
-};
+}
