@@ -359,6 +359,18 @@
       link: "https://chat.whatsapp.com/CFk7onF96YE6XajMdJ5dcD",
       creator: "",
     },
+    {
+      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
+      label: "Delta Kim 🇨🇮",
+      link: "https://chat.whatsapp.com/LVVMk6lb5YqKCMHADWFZCg",
+      creator: "",
+    },
+    {
+      icon: `<i class="fa-brands fa-square-x-twitter" style="color:black"></i>`,
+      label: "Delta Kim 🇨🇮",
+      link: "https://x.com/Delta_Civ?t=ZfBtLfc9je3WGn9PuR5ogA&s=09",
+      creator: "",
+    },
   ];
 </script>
 

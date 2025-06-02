@@ -40,7 +40,7 @@
               {$t("access_terminal_answer1")}
               <a
                 class="text-tertiary-500 underline pl-2"
-                href="./whitepaper#3.6.3">{$t("link…")}</a
+                href="./whitepaper#3.6.3_validator_rewards">{$t("link…")}</a
               >
             </p>
           </svelte:fragment>
@@ -90,14 +90,17 @@
       <p class="lg:w-5/6 my-4">
         {$t("about_3-No-Verification_to_whitepaper_chapters")}<a
           class="text-tertiary-500 underline pl-2"
-          href="./whitepaper#3.4"
+          href="./whitepaper#3.4_3-no-verification"
         >
           {$t("link…")}
         </a>
       </p>
       <p class="mb-4">
-        <i class="fa-brands fa-youtube"style="color:rgb(255, 0, 51)"></i>
-        <a class="underline text-tertiary-500" href="https://www.youtube.com/watch?v=Y5UwsM654gU" target="_blank"
+        <i class="fa-brands fa-youtube" style="color:rgb(255, 0, 51)"></i>
+        <a
+          class="underline text-tertiary-500"
+          href="https://www.youtube.com/watch?v=Y5UwsM654gU"
+          target="_blank"
           >How to Setup DSMS Terminal + Troubleshooting!
         </a>
       </p>
