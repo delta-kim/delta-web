@@ -39,5 +39,15 @@
   "read_faqs": "اقرأ الأسئلة الشائعة",
   "contact_via_email": "الاتصال عبر البريد الإلكتروني",
   "support": "يدعم",
-  "communities": "Communities"
+  "communities": "Communities",
+  "3No-Verification_link": "./whitepaper#3.4_3-no-verification",
+  "mobile_first_link": "./whitepaper#3.2_mobile_phone_mining",
+  "environment_friendly_link": "./whitepaper#2.3_energy_consumption_and_environmental_issues",
+  "safety_circle_link": "./whitepaper#3.5_safety_circle",
+  "fair_distribution_link": "./whitepaper#3.6_economic_model",
+  "decentralized_multi-chain_wallet_link": "./whitepaper#3.15_decentralized_multi-chain_wallet",
+  "web3_application_center_link": "./whitepaper#3.10_dapp_square",
+  "ICP_smart_blockchain_link": "./whitepaper#3.16_technical_solutions_and_implementation",
+  "DAO_governance_model_link": "./whitepaper#4.3.2_dao_mode",
+  "validator_reward_link": "./whitepaper#3.6.3_validator_rewards"
 }

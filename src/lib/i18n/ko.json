@@ -62,5 +62,15 @@
   "read_faqs": "FAQ 읽기",
   "contact_via_email": "이메일로 연락하기",
   "support": "지원하다",
-  "communities": "Communities"
+  "communities": "Communities",
+  "3No-Verification_link": "./whitepaper#3.4_3-무인증",
+  "mobile_first_link": "./whitepaper#3.2_휴대폰_마이닝",
+  "environment_friendly_link": "./whitepaper#2.3_에너지_소비_및_환경_문제",
+  "safety_circle_link": "./whitepaper#3.5_보안의_원",
+  "fair_distribution_link": "./whitepaper#3.6_경제_모델링",
+  "decentralized_multi-chain_wallet_link": "./whitepaper#3.15_탈중앙화_멀티체인_지갑",
+  "web3_application_center_link": "./whitepaper#3.10_디앱_플라자",
+  "ICP_smart_blockchain_link": "./whitepaper#3.16_기술_프로그램_및_구현",
+  "DAO_governance_model_link": "./whitepaper#4.3.2_dao_모델",
+  "validator_reward_link": "./whitepaper#3.6.3_검증자_보상"
 }

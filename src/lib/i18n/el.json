@@ -62,5 +62,16 @@
   "read_faqs": "Ανάγνωση συχνών ερωτήσεων",
   "contact_via_email": "Επικοινωνία μέσω email",
   "support": "υποστήριξη",
-  "communities": "Communities"
+  "communities": "Communities",
+
+  "3No-Verification_link": "./whitepaper#3.4_3-no-verification",
+  "mobile_first_link": "./whitepaper#3.2_εξόρυξη_κινητών_τηλεφώνων",
+  "environment_friendly_link": "./whitepaper#2.3_κατανάλωση_ενέργειας_και_περιβαλλοντικά_ζητήματα",
+  "safety_circle_link": "./whitepaper#3.5_κύκλος_της_ασφάλειας",
+  "fair_distribution_link": "./whitepaper#3.6_οικονομική_μοντελοποίηση",
+  "decentralized_multi-chain_wallet_link": "./whitepaper#3.15_αποκεντρωμένο_πορτοφόλι_πολλαπλών_αλυσίδων",
+  "web3_application_center_link": "./whitepaper#3.10_dapp_plaza",
+  "ICP_smart_blockchain_link": "./whitepaper#3.16_τεχνικά_προγράμματα_και_υλοποίηση",
+  "DAO_governance_model_link": "./whitepaper#4.3.2_μοντέλο_dao",
+  "validator_reward_link": "./whitepaper#3.6.3_ανταμοιβές_επικυρωτή"
 }

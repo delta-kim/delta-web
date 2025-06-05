@@ -62,5 +62,15 @@
   "read_faqs": "閱讀常見問題",
   "contact_via_email": "透過電子郵件聯絡",
   "support": "支 援",
-  "communities": "Communities"
+  "communities": "Communities",
+  "3No-Verification_link": "./whitepaper#3.4_3-no-verification（三無驗證）",
+  "mobile_first_link": "./whitepaper#3.2_移動手機挖礦",
+  "environment_friendly_link": "./whitepaper#2.3_能耗與環境問題",
+  "safety_circle_link": "./whitepaper#3.5_安全圈",
+  "fair_distribution_link": "./whitepaper#3.6_經濟模型",
+  "decentralized_multi-chain_wallet_link": "./whitepaper#3.15_去中心化多鏈錢包",
+  "web3_application_center_link": "./whitepaper#3.10_dapp廣場",
+  "ICP_smart_blockchain_link": "./whitepaper#3.16_技術方案與實現",
+  "DAO_governance_model_link": "./whitepaper#4.3.2_dao模式",
+  "validator_reward_link": "./whitepaper#3.6.3_驗證者獎勵"
 }

@@ -40,7 +40,7 @@
               {$t("access_terminal_answer1")}
               <a
                 class="text-tertiary-500 underline pl-2"
-                href="./whitepaper#3.6.3_validator_rewards">{$t("link…")}</a
+                href={$t("validator_reward_link")}>{$t("link…")}</a
               >
             </p>
           </svelte:fragment>

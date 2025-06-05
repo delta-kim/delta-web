@@ -62,5 +62,15 @@
   "read_faqs": "Đọc câu hỏi thường gặp",
   "contact_via_email": "Liên hệ qua email",
   "support": "hỗ trợ",
-  "communities": "Communities"
+  "communities": "Communities",
+  "3No-Verification_link": "./whitepaper#3.4_3-không_xác_minh_(ba_không_xác_minh)",
+  "mobile_first_link": "./whitepaper#3.2_khai_thác_trên_điện_thoại_di_động",
+  "environment_friendly_link": "./whitepaper#2.3_tiêu_thụ_năng_lượng_và_vấn_đề_môi_trường",
+  "safety_circle_link": "./whitepaper#3.5_vòng_an_toàn",
+  "fair_distribution_link": "./whitepaper#3.6_mô_hình_kinh_tế",
+  "decentralized_multi-chain_wallet_link": "./whitepaper#3.15_ví_đa_chuỗi_phi_tập_trung",
+  "web3_application_center_link": "./whitepaper#3.10_dapp_plaza",
+  "ICP_smart_blockchain_link": "./whitepaper#3.16_giải_pháp_kỹ_thuật_và_triển_khai",
+  "DAO_governance_model_link": "./whitepaper#4.3.2_chế_độ_dao",
+  "validator_reward_link": "./whitepaper#3.6.3_phần_thưởng_cho_người_xác_thực"
 }

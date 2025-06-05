@@ -62,5 +62,15 @@
   "read_faqs": "Читать часто задаваемые вопросы",
   "contact_via_email": "Связаться по электронной почте",
   "support": "поддержка",
-  "communities": "Communities"
+  "communities": "Communities",
+  "3No-Verification_link": "./whitepaper#3.4_3-неверификация",
+  "mobile_first_link": "./whitepaper#3.2_добыча_полезных_ископаемых_с_помощью_мобильных_телефонов",
+  "environment_friendly_link": "./whitepaper#2.3_энергопотребление_и_экологические_проблемы",
+  "safety_circle_link": "./whitepaper#3.5_круг_безопасности",
+  "fair_distribution_link": "./whitepaper#3.6_экономическая_модель",
+  "decentralized_multi-chain_wallet_link": "./whitepaper#3.15_децентрализованный_многоцепочечный_кошелек",
+  "web3_application_center_link": "./whitepaper#3.10_dapp_square",
+  "ICP_smart_blockchain_link": "./whitepaper#3.16_технические_решения_и_реализация",
+  "DAO_governance_model_link": "./whitepaper#4.3.2_режим_dao",
+  "validator_reward_link": "./whitepaper#3.6.3_вознаграждения_за_валидатор"
 }
