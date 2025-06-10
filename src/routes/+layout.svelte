@@ -35,15 +35,13 @@
     if ("scrollRestoration" in history) {
       history.scrollRestoration = "manual";
     }
-
-    afterNavigate(() => {
-      // Force scroll to top after navigation
-      requestAnimationFrame(() => {
-        window.scrollTo({ top: 0, left: 0, behavior: "auto" });
-      });
+  });
+  afterNavigate(() => {
+    // Force scroll to top after navigation
+    requestAnimationFrame(() => {
+      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
     });
   });
-
   const deltaApps = [
     {
       link: "./download",
@@ -430,7 +428,7 @@
                   <TabAnchor
                     href="./DSMSAccessTerminal"
                     selected={$page.url.pathname.endsWith(
-                      "/DSMSAccessTerminal"
+                      "/DSMSAccessTerminal",
                     )}
                   >
                     <span>{$t("access_terminal")}</span>
