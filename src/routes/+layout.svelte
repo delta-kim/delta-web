@@ -371,6 +371,12 @@
       link: "https://x.com/Delta_Civ?t=ZfBtLfc9je3WGn9PuR5ogA&s=09",
       creator: "",
     },
+    {
+      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
+      label: "Delta Coin",
+      link: "https://chat.whatsapp.com/LOCGoR41yXI8hQnKtf7flL",
+      creator: "",
+    },
   ];
 </script>
 
