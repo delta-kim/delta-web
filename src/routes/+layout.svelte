@@ -371,7 +371,7 @@
     },
     {
       icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
-      label: "Delta Coin",
+      label: "Delta Kim 🇺🇬",
       link: "https://chat.whatsapp.com/LOCGoR41yXI8hQnKtf7flL",
       creator: "",
     },
@@ -428,7 +428,7 @@
                   <TabAnchor
                     href="./DSMSAccessTerminal"
                     selected={$page.url.pathname.endsWith(
-                      "/DSMSAccessTerminal",
+                      "/DSMSAccessTerminal"
                     )}
                   >
                     <span>{$t("access_terminal")}</span>
