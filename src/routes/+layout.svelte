@@ -445,6 +445,12 @@
                     <span>{$t("whitepaper")}</span>
                   </TabAnchor>
                   <TabAnchor
+                    href="./ledger"
+                    selected={$page.url.pathname.endsWith("/ledger")}
+                  >
+                    <span>Ledger</span>
+                  </TabAnchor>
+                  <TabAnchor
                     href="./support"
                     selected={$page.url.pathname.endsWith("/support")}
                   >
