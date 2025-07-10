@@ -120,7 +120,7 @@
                   <th> ID </th>
                   <th> From </th>
                   <th> To </th>
-                  <th> Chain </th>
+                  <th> Method</th>
                   <th> Amount </th>
                   <th> Fee </th>
                   <th> Timestamp </th>

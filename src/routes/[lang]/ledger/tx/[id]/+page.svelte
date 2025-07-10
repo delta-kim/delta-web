@@ -85,7 +85,7 @@
           <div
             class="flex justify-between items-center border-b border-slate-400 text-md font-[400] py-2 px-4"
           >
-            <p class="flex-2 font-bold text-black">Kind</p>
+            <p class="flex-2 font-bold text-black">Method</p>
             <p>{JSON.stringify(tnx.kind)}</p>
           </div>
           <div
