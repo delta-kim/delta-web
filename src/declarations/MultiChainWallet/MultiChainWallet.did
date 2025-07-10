@@ -1,0 +1,300 @@
+type WalletDatas = 
+ record {
+   balance: Balance;
+   lastTxhash: TxHash;
+   lastsBind: vec BindDataAgs;
+   lockAmount: Balance;
+   publicKeyId: nat;
+ };
+type Url = text;
+type TxHash = text;
+type TransformArgs = 
+ record {
+   context: blob;
+   response: HttpResponsePayload;
+ };
+type TransferOutFee = 
+ variant {
+   baseBid: record {gasPrice: nat;};
+   baseBidTip: record {
+                 gasPrice: nat;
+                 maxPriorityFeePerGas: nat;
+               };
+   smartFee: record {estimateSmartFee: float64;};
+ };
+type TransferFee = 
+ record {
+   max: nat;
+   min: nat;
+   rate: nat;
+ };
+type Timestamp = nat;
+type TaskResult = 
+ record {
+   beMonitorAddress: vec text;
+   beSentTransactions: vec PendingRawTransaction;
+ };
+type TaskCBargs = 
+ record {
+   monitoredAddress: vec text;
+   receivedAmount: vec ReceivedAmountAgrs;
+   sentTxRaw: vec record {
+                    nat;
+                    BindKey;
+                    ExportTokenResult;
+                  };
+   updateOutFee: vec record {
+                       ChainIdent;
+                       TransferOutFee;
+                     };
+ };
+type SendTrxStatus = 
+ record {
+   chainIdent: ChainIdent;
+   status: text;
+   toAddr: OutsideAdderss;
+   txId: text;
+ };
+type Satoshi = nat64;
+type ReceivedStatus = 
+ record {
+   chainIdent: ChainIdent;
+   expiryTimeDiff: Timestamp;
+   outsideAdderss: OutsideAdderss;
+   status: record {
+             confirming: opt record {
+                               TxHash;
+                               text;
+                             };
+             received: nat;
+           };
+ };
+type ReceivedAmountAgrs = 
+ record {
+   chainIdent: ChainIdent;
+   coinCode: CoinCode;
+   id: nat;
+   outsideAdderss: OutsideAdderss;
+   result:
+    variant {
+      confirming: record {
+                    TxHash;
+                    text;
+                  };
+      received: record {
+                  TxHash;
+                  nat;
+                  OutsideAdderss;
+                };
+    };
+   trxTime: Timestamp;
+ };
+type RSstatus = 
+ record {
+   received: vec ReceivedStatus;
+   sendTrx: vec SendTrxStatus;
+ };
+type QueryRawTxBindData = 
+ record {
+   amount: nat;
+   bindKey: text;
+   canisterId: CanisterId;
+   chainCoinCode: CoinCode;
+   nonce: nat;
+   raw: text;
+   sendAddr: OutsideAdderss;
+   status: text;
+   toAddr: OutsideAdderss;
+   txId: text;
+ };
+type PendingRawTransaction = 
+ record {
+   bindKey: BindKey;
+   nonce: nat;
+   raw: text;
+   sendAddr: OutsideAdderss;
+ };
+type OutsideAdderss = text;
+type Note = text;
+type Network = 
+ variant {
+   Mainnet;
+   Regtest;
+   Testnet;
+ };
+type MoneyAddress = text;
+type MillisatoshiPerByte = nat64;
+type Main = 
+ service {
+   _testFindWalletMap: (text, OutsideAdderss) ->
+    (vec record {
+           text;
+           WalletDatas;
+         }) query;
+   _testlistWalletMap: () -> (vec record {
+                                    text;
+                                    WalletDatas;
+                                  }) query;
+   activateCoinLedger: (text) -> (CanisterId);
+   bindDepositReceivWalletAddress: (MoneyAddress, CoinCode, ChainIdent) ->
+    (DepositAddress);
+   bitcoin_balance: (Network, BitcoinAddress) -> (Satoshi);
+   buildTransaction: (MoneyAddress, CoinCode, ChainIdent, nat,
+    OutsideAdderss) -> (bool);
+   callBackOfTask: (TaskCBargs) ->
+    (record {
+       receivedAmountResp: vec record {
+                                 nat;
+                                 text;
+                               };
+       sentTxRawResp: vec record {
+                            nat;
+                            text;
+                          };
+     });
+   cyclesBalance: () -> (nat) query;
+   estimateNetWorkFee: (CoinCode, ChainIdent) -> (nat, CoinCode) query;
+   fixReceivedCallback: (ReceivedAmountAgrs) -> (nat, text);
+   getBindAdderss: (text) -> (opt OutsideAdderss, nat) query;
+   getChainInfos: () -> (vec ChainInfo) query;
+   getLedgerInitArgs: (CoinCode) -> (LedgerInitArgs) query;
+   getOutFee: (ChainIdent) -> (TransferOutFee) query;
+   get_current_fee_percentiles: (Network) -> (vec MillisatoshiPerByte);
+   httpTransform: (TransformArgs) -> (HttpResponsePayload) query;
+   listLedgerInitArgs: () -> (vec LedgerInitArgs) query;
+   queryRSstatus: (MoneyAddress, CoinCode, vec ChainIdent) ->
+    (RSstatus) query;
+   queryTask: () -> (TaskResult) query;
+   removeChainInfo: (ChainIdent) -> (bool);
+   removeLedgerInitArg: (text) -> (bool);
+   rts_info: () -> (vec record {
+                          text;
+                          nat;
+                        }) query;
+   saveChainInfo: (vec ChainInfo) -> (bool);
+   saveLedgerInitArgs: (LedgerInitArgs) -> (bool);
+   testQueryRawTransactionPool: () -> (vec QueryRawTxBindData) query;
+   testTransferNetWorkFee: (CoinCode, ChainIdent, nat) ->
+    (ExportTokenFee) query;
+   transferOutBTC: (OutsideAdderss, nat) -> (text, nat);
+   transferOutICP: (AccountIdentifier, nat) -> (nat64);
+   unbindDeposit: (MoneyAddress, CoinCode, ChainIdent) -> () oneway;
+ };
+type LedgerInitArgs = 
+ record {
+   code: CoinCode;
+   crossChainConfs: vec CrossChainConf;
+   decimals: nat;
+   name: CoinName;
+   symbol: text;
+   transferFee: TransferFee;
+   web: text;
+ };
+type IcNetwork = 
+ variant {
+   Local;
+   Mainnet;
+   Testnet;
+ };
+type HttpResponsePayload = 
+ record {
+   body: vec nat8;
+   headers: vec HttpHeader;
+   status: nat;
+ };
+type HttpHeader = 
+ record {
+   name: text;
+   value: text;
+ };
+type ExportTokenResult = 
+ variant {
+   err: Note;
+   execution;
+   ok:
+    record {
+      amount: Balance;
+      chainCoinCode: CoinCode;
+      chainFee: Balance;
+      txHash: TxHash;
+    };
+   pending: TxHash;
+   rebuild;
+ };
+type ExportTokenFee = 
+ record {
+   In: nat;
+   out: record {
+          nat;
+          CoinCode;
+        };
+ };
+type DepositAddress = 
+ record {
+   address: OutsideAdderss;
+   expiryTime: Timestamp;
+ };
+type CrossChainConf = 
+ variant {
+   Delta;
+   contract: ContractConf;
+   native: record {
+             chainIdent: ChainIdent;
+             inputDecimals: nat;
+           };
+ };
+type ContractConf = 
+ record {
+   chainIdent: ChainIdent;
+   inputDecimals: nat;
+   standard: text;
+   tokenAddress: text;
+ };
+type CoinName = text;
+type CoinCode = text;
+type ChainType = 
+ variant {
+   EVM: nat;
+   Null;
+   TRON: nat;
+   UTXO;
+ };
+type ChainName = text;
+type ChainInfo = 
+ record {
+   addressLength: text;
+   addressPath: text;
+   chainType: ChainType;
+   coinCode: CoinCode;
+   confirmations: nat8;
+   explorer: Url;
+   ident: ChainIdent;
+   name: ChainName;
+   netFee: variant {
+             baseBid;
+             baseBidTip;
+             custom;
+             fixed: nat;
+             smartFee;
+           };
+   transactionPath: text;
+ };
+type ChainIdent = text;
+type CanisterId = text;
+type BitcoinAddress = text;
+type BindKey = text;
+type BindDataAgs = 
+ record {
+   canisterId: CanisterId;
+   confirming: opt record {
+                     TxHash;
+                     text;
+                   };
+   expiry: Timestamp;
+   moneyAddress: MoneyAddress;
+   received: nat;
+   startTime: Timestamp;
+ };
+type Balance = nat;
+type AccountIdentifier = vec nat8;
+service : (CanisterId, text, IcNetwork) -> Main

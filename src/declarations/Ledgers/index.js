@@ -1,8 +1,8 @@
 import { Actor, HttpAgent } from "@dfinity/agent";
 
 // Imports and re-exports candid interface
-import { idlFactory } from "./delta.did.js";
-export { idlFactory } from "./delta.did.js";
+import { idlFactory } from "./Ledgers.did.js";
+export { idlFactory } from "./Ledgers.did.js";
 
 /* CANISTER_ID is replaced by webpack based on node environment
  * Note: canister environment variable will be standardized as
@@ -11,8 +11,8 @@ export { idlFactory } from "./delta.did.js";
  */
 export const canisterId =
   typeof process !== "undefined"
-    ? process.env.CANISTER_ID_DELTA
-    : import.meta.env.VITE_CANISTER_ID_DELTA;
+    ? process.env.CANISTER_ID_LEDGERS
+    : import.meta.env.VITE_CANISTER_ID_LEDGERS;
 
 export const createActor = (canisterId, options = {}) => {
   const agent = options.agent || new HttpAgent({ ...options.agentOptions });
@@ -45,4 +45,4 @@ export const createActor = (canisterId, options = {}) => {
   });
 };
 
-export const delta = canisterId ? createActor(canisterId) : undefined;
+export const Ledgers = canisterId ? createActor(canisterId) : undefined;

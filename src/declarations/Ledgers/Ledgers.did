@@ -1,0 +1,145 @@
+type Value = 
+ variant {
+   Blob: blob;
+   Int: int;
+   Nat: nat;
+   Text: text;
+ };
+type TxIndex = nat;
+type TxId = text;
+type TransferResult = 
+ variant {
+   err: text;
+   ok: record {
+         TxIndex;
+         Balance;
+         Balance;
+       };
+ };
+type TransferFee = 
+ record {
+   max: nat;
+   min: nat;
+   rate: nat;
+ };
+type TransferArgs = 
+ record {
+   amount: nat;
+   chainFee: opt nat;
+   from: text;
+   kind: Kind;
+   memo: text;
+   to: text;
+   txId: TxId;
+ };
+type Transaction = 
+ record {
+   amount: nat;
+   chainFee: opt nat;
+   fee: nat;
+   from: AddressId;
+   id: nat;
+   kind: Kind;
+   memo: text;
+   timestamp: nat;
+   to: AddressId;
+   txId: TxId;
+ };
+type Token = 
+ service {
+   balance_of: (MoneyAddress) -> (Balance) query;
+   code: () -> (text) query;
+   cyclesBalance: () -> (nat) query;
+   decimals: () -> (nat) query;
+   entriesAccounts: () -> (vec record {
+                                 nat;
+                                 nat64;
+                               }) query;
+   fee: () -> (TransferFee) query;
+   filterTrxBuffer: (FilterArgs) -> (vec Transaction) query;
+   getCanisterData: () -> (vec CanisterData) query;
+   listTransaction: (opt FilterArgs, nat, nat8) ->
+    (vec Transaction) composite_query;
+   listTrxBuffer: () -> (vec Transaction) query;
+   metadata: () -> (vec MetaDatum) query;
+   /// Functions for the ICRC1 token standard
+   name: () -> (text) query;
+   queryTrxStatus: () -> (nat, nat) query;
+   resetArgs: (InitArgs) -> () oneway;
+   rts_info: () -> (vec record {
+                          text;
+                          nat;
+                        }) query;
+   symbol: () -> (text) query;
+   testTransferFee: (nat) -> (nat) query;
+   total_balance: () -> (Balance) query;
+   total_transactions: () -> (nat) query;
+   transfer: (TransferArgs) -> (TransferResult);
+   updateControllers: (text) -> (vec bool);
+   upgradeArchiveCanister: (blob) -> (bool);
+   xfTransaction: (text) -> (bool);
+ };
+type MoneyAddress = text;
+type MetaDatum = 
+ record {
+   text;
+   Value;
+ };
+type Kind = 
+ variant {
+   Import: ChainIdent__1;
+   burn;
+   export: ChainIdent__1;
+   mint;
+   transfer;
+ };
+type InitArgs = 
+ record {
+   code: CoinCode;
+   crossChainConfs: vec CrossChainConf;
+   decimals: nat;
+   max_supply: opt nat;
+   name: CoinName;
+   symbol: text;
+   transferFee: TransferFee;
+   web: text;
+ };
+type Index = nat;
+type FilterArgs = 
+ variant {
+   All: AddressId;
+   From: AddressId;
+   Id: Index;
+   To: AddressId;
+   TxId: text;
+ };
+type CrossChainConf = 
+ variant {
+   Delta;
+   contract: ContractConf;
+   native: record {
+             chainIdent: ChainIdent;
+             inputDecimals: nat;
+           };
+ };
+type ContractConf = 
+ record {
+   chainIdent: ChainIdent;
+   inputDecimals: nat;
+   standard: text;
+   tokenAddress: text;
+ };
+type CoinName = text;
+type CoinCode = text;
+type ChainIdent__1 = text;
+type ChainIdent = text;
+type CanisterData = 
+ record {
+   canisterId: text;
+   fulled: bool;
+   length: nat;
+   skip: nat;
+ };
+type Balance = nat;
+type AddressId = text;
+service : (InitArgs, principal) -> Token

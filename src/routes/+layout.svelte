@@ -44,25 +44,29 @@
   });
   const deltaApps = [
     {
-      link: "./download",
+      link: "/download",
       label: "Mobile App",
     },
     {
-      link: "./DSMSAccessTerminal",
+      link: "/DSMSAccessTerminal",
       label: `DSMS ${$t("access_terminal")}`,
     },
     {
-      link: "./explore",
+      link: "/explore",
       label: $t("explore"),
+    },
+    {
+      link: "/ledger",
+      label: "Ledger",
     },
   ];
   const usefulLinks = [
     {
-      link: "./roadmap",
+      link: "/roadmap",
       label: $t("roadmap"),
     },
     {
-      link: "./whitepaper#introduction",
+      link: "/whitepaper#introduction",
       label: $t("whitepaper"),
     },
     // {
@@ -70,11 +74,11 @@
     //   label: $t("communities"),
     // },
     {
-      link: "./terms_of_service",
+      link: "/terms_of_service",
       label: $t("termsOfService"),
     },
     {
-      link: "./privacy_policy",
+      link: "/privacy_policy",
       label: $t("privacy_policy"),
     },
   ];
@@ -459,38 +463,38 @@
             class="hidden lg:block text-black"
           >
             <TabAnchor
-              href="./home"
+              href="/{data.lang}/home"
               selected={$page.url.pathname.endsWith("/home")}
             >
               <span>{$t("home")}</span>
             </TabAnchor>
             <TabAnchor
-              href="./download"
+              href="/{data.lang}/download"
               selected={$page.url.pathname.endsWith("/download")}
             >
               <span>{$t("download")}</span>
             </TabAnchor>
             <TabAnchor
-              href="./explore"
+              href="/{data.lang}/explore"
               selected={$page.url.pathname.endsWith("/explore")}
             >
               <span>{$t("explore")}</span>
             </TabAnchor>
             <TabAnchor
-              href="./DSMSAccessTerminal"
+              href="/{data.lang}/DSMSAccessTerminal"
               selected={$page.url.pathname.endsWith("/DSMSAccessTerminal")}
             >
               <span>{$t("access_terminal")}</span>
             </TabAnchor>
 
             <TabAnchor
-              href="./whitepaper"
+              href="/{data.lang}/whitepaper"
               selected={$page.url.pathname.endsWith("/whitepaper")}
             >
               <span>{$t("whitepaper")}</span>
             </TabAnchor>
             <TabAnchor
-              href="./support"
+              href="/{data.lang}/support"
               selected={$page.url.pathname.endsWith("/support")}
             >
               <span>{$t("faq")}</span>
@@ -540,7 +544,7 @@
               <li class="text-lg font-[600] mb-3">Apps</li>
               {#each deltaApps as item}
                 <li class="text-lg font-[300]">
-                  <a href={item.link}>{item.label}</a>
+                  <a href={`/${data.lang}${item.link}`}>{item.label}</a>
                 </li>
               {/each}
             </ul>
@@ -548,7 +552,7 @@
               <li class="text-lg font-[600] mb-3">Useful Links</li>
               {#each usefulLinks as item}
                 <li class="text-lg font-[300]">
-                  <a href={item.link}>{item.label}</a>
+                  <a href={`/${data.lang}${item.link}`}>{item.label}</a>
                 </li>
               {/each}
             </ul>

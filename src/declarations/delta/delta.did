@@ -16,34 +16,10 @@ type Update2Main =
                       CoinCode;
                       CanisterId;
                     };
+   SubECIF: nat;
    SubMiningCredit: nat;
  };
-type USCTSummary = 
- variant {
-   AdRewards;
-   AdRewardsReferralLevel1: DID__2;
-   AdRewardsReferralLevel2: DID__2;
-   ConvertToUSDT: record {
-                    float64;
-                    nat64;
-                  };
- };
-type USCTHistory64 = 
- record {
-   adId: text;
-   advertiser: text;
-   amount: int64;
-   checkTime: nat64;
-   created: nat64;
-   did: DID__2;
-   index: nat64;
-   summary: USCTSummary;
- };
-type TransformArgs = 
- record {
-   context: blob;
-   response: HttpResponsePayload;
- };
+type Uid = nat;
 type TransferFee = 
  record {
    max: nat;
@@ -59,33 +35,31 @@ type TotalCredit =
  };
 type Token = text;
 type Timestamp = nat;
-type Summary = 
+type SecurityCircleVerify = 
  variant {
-   DSMSVerifyReward: DID__1;
-   ICPCrowdfunding: nat32;
-   Mining: text;
-   MiningReferralLevel1: text;
-   MiningReferralLevel2: text;
-   PreMint1DTCInEcosystem: nat64;
-   RecommendNewcomers: DID__1;
-   RegisterFromReferrer: DID__1;
-   ReleaseToMintDTC: nat64;
+   code: text;
+   identity: IdentityToken;
+   mobs: vec record {
+               did: DID;
+               mob: MobileNumber;
+             };
  };
-type Status = 
+type Result = 
  variant {
-   running;
-   stopped;
-   stopping;
+   err: text;
+   ok: AccessNumberRecordAgrs;
  };
 type MobileNumber = text;
 type MobileApplastVersion = 
  variant {
    android: record {
               apk: text;
+              notes: text;
               store: text;
               version: text;
             };
    ios: record {
+          notes: text;
           store: text;
           version: text;
         };
@@ -111,21 +85,11 @@ type IdentityToken =
    did: DID;
    token: Token;
  };
-type HttpResponsePayload = 
- record {
-   body: vec nat8;
-   headers: vec HttpHeader;
-   status: nat;
- };
-type HttpHeader = 
- record {
-   name: text;
-   value: text;
- };
-type HistoryByType = 
+type IcNetwork = 
  variant {
-   DTCT: vec DTCTHistory64;
-   USCT: vec USCTHistory64;
+   Local;
+   Mainnet;
+   Testnet;
  };
 type Expiration = nat;
 type E164Code2 = text;
@@ -138,12 +102,49 @@ type E164AndISOCode =
  };
 type Delta = 
  service {
-   _isAdmin: (CanisterId) -> (bool) query;
+   _advanceAmount: (AdvanceAmount) -> (nat);
+   _createSettleUSCTCanister: (blob) -> (CanisterId);
+   _createUSCTSettlReport: (float64, nat32, nat32, text) -> (bool);
+   _debugShowAccessNumberList: (CountryCode) ->
+    (vec record {
+           DID;
+           AccessNumberRecordAgrs;
+         }) query;
+   _delAccessNumber: (DID, CountryCode, text) -> (bool);
+   _isAdmin: (principal) -> (bool) query;
+   /// public query func httpTransform(raw : IC.TransformArgs) : async IC.HttpResponsePayload {
+   ///     let transformed : IC.HttpResponsePayload = {
+   ///       status = raw.response.status;
+   ///       body = raw.response.body;
+   ///       headers = [
+   ///         {
+   ///           name = "Content-Security-Policy";
+   ///           value = "default-src 'self'";
+   ///         },
+   ///         { name = "Referrer-Policy"; value = "strict-origin" },
+   ///         { name = "Permissions-Policy"; value = "geolocation=(self)" },
+   ///         {
+   ///           name = "Strict-Transport-Security";
+   ///           value = "max-age=63072000";
+   ///         },
+   ///         { name = "X-Frame-Options"; value = "DENY" },
+   ///         { name = "X-Content-Type-Options"; value = "nosniff" },
+   ///       ];
+   ///     };
+   ///     transformed;
+   ///   };
+   /// *
    _ledgerArchive_wasm_module: () -> (blob) query;
+   _settleUSCTCanisterId: () -> (CanisterId) query;
+   activeAccessNumber2online: (text, CountryCode, AppIdentityTokenArgs) ->
+    (Result);
    addAccessNumber: (DID, text, text, Expiration) -> (bool);
-   addNewLedgerCanister: (CoinCode) -> (CanisterId);
-   appendCredits: (HistoryByType) -> (bool);
+   addNewLedgerCanister: (CoinCode, opt LedgerInitArgs) -> (CanisterId);
+   appendMainCyclesLog: (nat64) -> (bool);
+   applyNewDTCTCanister: () -> (CanisterId);
    basicInfo: () -> (BasicInfo) query;
+   buildAccessNumberActiveCode: (CanisterId, CountryCode, IdentityToken) ->
+    (text);
    callbackVerification: (text, AppIdentityTokenArgs) -> (text);
    checkAccessNumberLimit: (CountryCode) ->
     (record {
@@ -155,63 +156,34 @@ type Delta =
                                          CountryCode;
                                          nat;
                                        }) query;
+   /// add online number*
+   countAccessNumberRecord2: () -> (vec record {
+                                          CountryCode;
+                                          nat;
+                                          nat;
+                                        }) query;
    countDids: () -> (Index) query;
    createLogin: (text, DID, text) -> (CanisterId, DID, Token);
    createVerification: (vec text, vec DID, text, E164Code, CountryCode,
     text) -> (VerificationPack);
+   createVerification2: (vec text, vec DID, text, E164Code, CountryCode,
+    SecurityCircleVerify) -> (VerificationPack);
    cyclesBalance: () -> (nat) query;
+   deleteAccount: (IdentityToken, text, opt DID) -> (vec Uid);
+   distributeECIF: (DID, nat, text) -> (Index);
    filterOptionalAccessNumbers: (CountryCode) ->
     (vec record {
            DID;
            AccessNumberRecordAgrs;
          }) query;
+   filterOptionalAccessNumbers2: (CountryCode) ->
+    (AccessNumberRecordAgrsAndTip) query;
    getAccessNumberRecord: (CountryCode, DID) ->
-    (AccessNumberRecordAgrs) query;
+    (opt AccessNumberRecordAgrs) query;
    getCanisterId: (CanisterCodeType) -> (CanisterId) query;
    getCanisterIdMap: () -> (vec ActorCanisterId) query;
-   getCanisterStatus: (vec CanisterId) ->
-    (vec record {
-           CanisterId;
-           CanisterStatus;
-         });
    getDSMSencryptKey: (MobileNumber, AppIdentityTokenArgs) ->
     (text) composite_query;
-   getMobileApplastVersion: (MobileAppType) -> (MobileApplastVersion) query;
-   getXCreditCanisterData: (CreditType) -> (vec CreditCanisterData) query;
-   httpTransform: (TransformArgs) -> (HttpResponsePayload) query;
-   init: (blob, blob) -> (vec text);
-   isAccountPrincipal: (principal) -> (bool) query;
-   isCanAddAccessNumber: (CountryCode, E164Code, MobileNumber) ->
-    (bool) composite_query;
-   listAccountCanisterDate: () -> (vec CanisterDate) query;
-   listAllCanisterStatus: () -> (vec record {
-                                       CanisterId;
-                                       CanisterStatus;
-                                     });
-   listE164map: () -> (vec E164AndISOCode) query;
-   matchAccountCanister: (DID) -> (opt CanisterId) query;
-   matchAccountCanisters: (vec DID) ->
-    (vec record {
-           CanisterId;
-           vec DID;
-         }) query;
-   parseDID: (DID) -> (Index) query;
-   queryVerifyStatus: (text) -> (VerifyStatus) query;
-   receiveUpdates: (Update2Main) -> () oneway;
-   reconcileUSCT: (text, vec text, vec nat64, nat64) -> (bool);
-   remainingTotalCredit: () -> (TotalCredit) query;
-   renewalAccessNumber: (DID, CountryCode, Expiration) -> (bool);
-   reset: () -> (bool);
-   rts_info: () -> (vec record {
-                          text;
-                          nat;
-                        }) query;
-   setGlobalAccessNumberByAdmin: (text, text) -> (text);
-   test: () -> (vec record {
-                      text;
-                      text;
-                    }) query;
-   testAppend_DTCT: () -> (bool);
    /// public composite query func accountIdentifierDefault() : async (Hex.Hex, Nat64) {
    ///     let accountIdentifier = LedgerAccount.accountIdentifier(Principal.fromActor(this), LedgerAccount.defaultSubaccount());
    ///     Debug.print(debug_show (Blob.fromArray(accountIdentifier)));
@@ -260,25 +232,170 @@ type Delta =
    ///       created_at_time = null;
    ///     });
    ///   };
+   /// 
+   ///   public func testWalletAddress(i : T.Index, offset : Nat) : async (Text, Nat, Nat, Nat) {
+   ///     // let did = "K2QT5F1EQLBG501";
+   ///     // Debug.print(did);
+   /// 
+   ///     // let derivation_path = [Text.encodeUtf8(did)];
+   ///     // let res = await ic.ecdsa_public_key({
+   ///     //   canister_id = ?Principal.fromActor(this);
+   ///     //   derivation_path;
+   ///     //   key_id = { curve = #secp256k1; name = ecdsa_key_name };
+   ///     // });
+   ///     let walletAddress = U.generateMoneyAddress(i, offset);
+   ///     let (index, _offset, uniId) = U.parseMoneyAddress(walletAddress);
+   ///     (walletAddress, index, _offset, uniId);
+   ///     // Debug.print(debug_show (res.public_key));
+   ///     // BitcoinWallet.public_key_to_p2pkh_address(#Testnet, Blob.toArray(blob));
+   ///   };
    /// *
-   testWalletAddress: (Index, nat) -> (text, nat, nat, nat);
+   getMobileApplastVersion: (MobileAppType) -> (MobileApplastVersion) query;
+   getXCreditCanisterData: (CreditType) -> (vec CreditCanisterData) query;
+   init: (blob, blob) -> (vec text);
+   isAccountPrincipal: (principal) -> (bool) query;
+   isCanAddAccessNumber: (CountryCode, E164Code, MobileNumber) ->
+    (bool) composite_query;
+   listAccountCanisterDate: () -> (vec CanisterDate) query;
+   listE164map: () -> (vec E164AndISOCode) query;
+   matchAccountCanister: (DID) -> (opt CanisterId) query;
+   matchAccountCanisters: (vec DID) ->
+    (vec record {
+           CanisterId;
+           vec DID;
+         }) query;
+   parseDID: (DID) -> (Index) query;
+   parseMoneyAddress: (text) -> (Index, nat, nat) query;
+   pauseAccessNumber: (CountryCode, AppIdentityTokenArgs) ->
+    (AccessNumberRecordAgrs);
+   queryVerifyStatus: (text) -> (VerifyStatus) query;
+   receiveUpdates: (Update2Main) -> () oneway;
+   reinstallCanister: (CanisterCodeType, blob) -> (text);
+   remainingTotalCredit: () -> (TotalCredit) query;
+   renewalAccessNumber: (DID, CountryCode, Expiration) -> (bool);
+   rts_info: () -> (vec record {
+                          text;
+                          nat;
+                        }) query;
+   setGlobalAccessNumber: (text, text, opt text) -> (text);
+   showAccessToken: (variant {
+                       global;
+                       gsmsToken;
+                     }) -> (text) query;
+   updateAccessNumberOnline: (CountryCode, AppIdentityTokenArgs) ->
+    (AccessNumberRecordAgrs);
+   /// public func listAllCanisterStatus() : async [(T.CanisterId, IC.CanisterStatus)] {
+   ///     let buffer = Buffer.Buffer<(T.CanisterId, IC.CanisterStatus)>(10);
+   /// 
+   ///     for (canister in Lib.useAccountCanisters().vals()) {
+   ///       let principal = Principal.fromActor(canister.Actor);
+   ///       buffer.add(("account:" # Principal.toText(principal), await ic.canister_status({ canister_id = principal })));
+   ///     };
+   ///     // for (canister in SBuffer.Use<T.CanisterDate>(CanisterMap.DTCTHistory).vals()) {
+   ///     //   let principal = Principal.fromText(canister.canisterId);
+   ///     //   buffer.add(("DTCTHistory:" # canister.canisterId, await ic.canister_status({ canister_id = principal })));
+   ///     // };
+   /// 
+   ///     let canisterId = Principal.fromActor(this);
+   ///     buffer.add(("delta:" # Principal.toText(canisterId), await ic.canister_status({ canister_id = canisterId })));
+   ///     Buffer.toArray(buffer);
+   ///   };
+   /// public func getCanisterStatus(canister_ids : [T.CanisterId]) : async [(T.CanisterId, IC.CanisterStatus)] {
+   ///     let buffer = Buffer.Buffer<(T.CanisterId, IC.CanisterStatus)>(canister_ids.size());
+   ///     for (canister_id in canister_ids.vals()) {
+   ///       buffer.add((canister_id, await ic.canister_status({ canister_id = Principal.fromText(canister_id) })));
+   ///     };
+   ///     Buffer.toArray(buffer);
+   ///   };
+   updateCanisterStatus: (CanisterId) -> (bool);
    updateLedgersArgs: (LedgerInitArgs) -> () oneway;
-   updateMobileApplastVersion: (MobileApplastVersion) -> (bool);
+   updateMobileApplastVersion: (vec MobileApplastVersion) -> (bool);
+   upgradeAccountArg: () ->
+    (vec record {
+           CanisterId;
+           record {
+             nat;
+             CanisterMapArgs;
+           };
+         }) query;
    upgradeCanister: (CanisterCodeType, blob) -> (text);
    upload_wasm_module: (blob, blob) -> (bool);
    verifyConfirmation: (text) -> (VerifyStatus, MobileNumber);
+   /// public query func test() : async [(Text,Text)] {
+   /// 
+   /// 
+   ///     // Debug.print("random1 : " # U.random(16));
+   ///     // let random = U.rangeRandom(100000, 999999);
+   ///     // Debug.print("random2 : " # debug_show(random));
+   /// 
+   ///     //Debug.print("generateToken : " # U.generateToken(Nat64.fromNat(i),13));
+   ///     // let self: Principal = Principal.fromActor(this);
+   ///     // Debug.print("self : " # Principal.toText(self));
+   ///     // Debug.print("StableMemory.size " # debug_show(StableMemory.size()));
+   /// 
+   ///     //let stableVarQuery = StableMemory.stableVarQuery();
+   ///     //Debug.print(debug_show(await stableVarQuery()));
+   /// 
+   ///   //  let buffer =  Buffer.Buffer<(Text,Text)>(15);
+   ///   //   buffer.add(("rts_version", Prim.rts_version()));
+   ///   //   buffer.add(("rts_memory_size", Nat.toText(Prim.rts_memory_size())));
+   ///   //   buffer.add(("rts_heap_size", Nat.toText(Prim.rts_heap_size())));
+   ///   //   buffer.add(("rts_total_allocation", Nat.toText(Prim.rts_total_allocation())));
+   ///   //   buffer.add(("rts_reclaimed", Nat.toText(Prim.rts_reclaimed())));
+   ///   //   buffer.add(("rts_max_live_size", Nat.toText(Prim.rts_max_live_size())));
+   ///   //   buffer.add(("rts_callback_table_count", Nat.toText(Prim.rts_callback_table_count())));
+   ///   //   buffer.add(("rts_callback_table_size", Nat.toText(Prim.rts_callback_table_size())));
+   ///   //   buffer.add(("rts_mutator_instructions", Nat.toText(Prim.rts_mutator_instructions())));
+   ///   //   buffer.add(("rts_collector_instructions", Nat.toText(Prim.rts_collector_instructions())));
+   ///   //   buffer.add(("rts_logical_stable_memory_size", Nat.toText(Prim.rts_logical_stable_memory_size())));
+   ///   //   buffer.add(("rts_max_stack_size", Nat.toText(Prim.rts_max_stack_size())));
+   ///   //   buffer.add(("rts_stable_memory_size", Nat.toText(Prim.rts_stable_memory_size())));
+   ///   // //  buffer.add(("cyclesAvailable", Nat.toText(Prim.cyclesAvailable())));
+   ///   //   buffer.add(("cyclesBalance", Nat.toText(Prim.cyclesBalance())));
+   /// 
+   ///   //  return Buffer.toArray(buffer);
+   /// 
+   ///     // Debug.print("rts_version : " # Prim.rts_version());
+   ///     // Debug.print("rts_memory_size : " # Nat.toText(Prim.rts_memory_size()));
+   ///     // Debug.print("rts_heap_size : " # Nat.toText(Prim.rts_heap_size()));
+   ///     //  Debug.print("rts_total_allocation : " # Nat.toText(Prim.rts_total_allocation()));
+   ///     //  Debug.print("rts_reclaimed : " # Nat.toText(Prim.rts_reclaimed()));
+   ///     //  Debug.print("rts_max_live_size : " # Nat.toText(Prim.rts_max_live_size()));
+   ///     //  Debug.print("rts_callback_table_count : " # Nat.toText(Prim.rts_callback_table_count()));
+   ///     //  Debug.print("rts_callback_table_size : " # Nat.toText(Prim.rts_callback_table_size()));
+   ///     // Debug.print("rts_mutator_instructions : " # Nat.toText(Prim.rts_mutator_instructions()));
+   ///     // Debug.print("rts_collector_instructions : " # Nat.toText(Prim.rts_collector_instructions()));
+   /// 
+   ///     //let utf8 = Text.encodeUtf8("E0011XVX9913;2 ryK / 6 qVvvI9 ");
+   ///     //StableMemory.storeNat32(0,11111111);
+   ///     //Debug.print("utf8.size " # debug_show(utf8.size()));
+   ///     //   Debug.print("StableMemory.size : " # debug_show(StableMemory.size()));
+   ///     //  Debug.print("StableMemory.grow : " # debug_show(StableMemory.grow(1)));
+   ///     //  Debug.print("StableMemory.size1 : " # debug_show(StableMemory.size()));
+   /// 
+   ///     // Debug.print(U.subString(" 123456789 ",1,3));
+   /// 
+   ///     // Debug.print("loadNat32 : " # debug_show(StableMemory.loadNat32(0)));
+   /// 
+   ///          let canister_id : IC.CanisterId = {canister_id = self};
+   ///          let status = await ic.canister_status(canister_id);
+   ///          Debug.print(debug_show(status));
+   /// 
+   /// 
+   /// 
+   /// 
+   ///         let str =  " 8618402010506.5545.8997787515725 ";
+   ///         let sha224 = SHA224.sum(Blob.toArray(Text.encodeUtf8(str)));
+   ///         Debug.print("sha224 hex : " # Hex.encode(sha224));
+   ///         Debug.print("sha223 Base32 : " # Option.unwrap(Text.decodeUtf8(Blob.fromArray(Base32.encode(sha224)))));
+   ///         Debug.print("sha224 base64 : " # Option.unwrap(Text.decodeUtf8(Blob.fromArray(Base64.StdEncoding.encode(sha224)))));
+   ///         let sha256 = Hex.encode(SHA256.sum(Blob.toArray(Text.encodeUtf8(str))));
+   ///         Debug.print("sha256 hex : " # sha256);
+   /// 
+   ///    };
+   ///   *
    whoami: () -> (CanisterId) query;
  };
-type DTCTHistory64 = 
- record {
-   amount: int64;
-   did: DID__1;
-   index: nat64;
-   summary: Summary;
-   timestamp: nat64;
- };
-type DID__2 = text;
-type DID__1 = text;
 type DID = text;
 type CrossChainConf = 
  variant {
@@ -312,20 +429,19 @@ type ContractConf =
 type CoinName = text;
 type CoinCode = text;
 type ChainIdent = text;
-type CanisterStatus = 
+type CanisterMapArgs = 
  record {
-   cycles: nat;
-   memory_size: nat;
-   module_hash: opt blob;
-   settings: CanisterSettings;
-   status: Status;
- };
-type CanisterSettings = 
- record {
-   compute_allocation: opt nat;
-   controllers: opt vec principal;
-   freezing_threshold: opt nat;
-   memory_allocation: opt nat;
+   ICPfundsCanisterId: CanisterId;
+   Ledgers: vec record {
+                  CoinCode;
+                  CanisterId;
+                };
+   accountCanisters: vec CanisterDate;
+   dappCenterCanisterId: CanisterId;
+   mcWalletCanisterId: CanisterId;
+   mobileCanisterId: CanisterId;
+   pendingUSCTCanisterId: CanisterId;
+   statsCanisterId: CanisterId;
  };
 type CanisterId = text;
 type CanisterDate = 
@@ -339,10 +455,12 @@ type CanisterCodeType =
  variant {
    DappCenter;
    ICPfunds;
+   LedgerArchive;
    Ledgers: CoinCode;
    MultiChainWallet;
    PendingUSCT;
    RoadMap;
+   SettleUSCT;
    account;
    mobile;
    stats;
@@ -358,6 +476,11 @@ type AppIdentityTokenArgs =
    accCanisterId: CanisterId;
    dAppIdentToken: IdentityToken;
  };
+type AdvanceAmount = 
+ variant {
+   ECIF: nat;
+   MiningCredit: nat;
+ };
 type ActorCanisterId = 
  record {
    text;
@@ -365,6 +488,23 @@ type ActorCanisterId =
      list: vec CanisterId;
      one: CanisterId;
    };
+ };
+type AccessNumberRecordAgrsAndTip = 
+ record {
+   "record": vec AccessNumberRecordAgrs2;
+   tip: text;
+ };
+type AccessNumberRecordAgrs2 = 
+ record {
+   accessNumber: MobileNumber;
+   carrier: text;
+   did: DID;
+   expiration: Expiration;
+   online: Timestamp;
+   reqNum: nat;
+   rewards: nat;
+   status: text;
+   succNum: nat;
  };
 type AccessNumberRecordAgrs = 
  record {
@@ -374,6 +514,7 @@ type AccessNumberRecordAgrs =
    online: Timestamp;
    reqNum: nat;
    rewards: nat;
+   status: text;
    succNum: nat;
  };
-service : (CanisterId) -> Delta
+service : (IcNetwork) -> Delta
