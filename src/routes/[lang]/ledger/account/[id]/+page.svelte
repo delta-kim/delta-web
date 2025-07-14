@@ -3,11 +3,13 @@
   import type { PageData } from "./$types";
   import type { Transaction } from "../../../../../declarations/Ledgers/Ledgers.did";
   import type { LedgerInitArgs } from "../../../../../declarations/MultiChainWallet/MultiChainWallet.did";
-  import { onMount } from "svelte";
+  import { onDestroy, onMount } from "svelte";
   import {
+    _balance_of,
     _clipString,
     _fetchLedgerTransactions,
     _formatCryptoAmount,
+    _formatKind,
     _formatTimestamp,
   } from "../../+page";
   import { get } from "svelte/store";
@@ -17,7 +19,8 @@
   let transactions: Transaction[] = [];
   let ledgers: LedgerInitArgs[] = [];
   let loading = true;
-  let coin = "BNB";
+  let coin: string;
+  let addressBalance = 0;
 
   export let data: PageData;
 
@@ -37,10 +40,26 @@
     console.log("locale.subscribe", _lang);
     lang = _lang || "en";
   });
+  async function getBalance() {
+    const balance = await _balance_of(id, coin_code ?? coin);
+    
+    addressBalance = Number(balance);
+  }
 
-  onMount(async () => {
+  // Subscribe to $page store to track changes to params and query
+  const unsubscribe = page.subscribe(($page) => {
+    id = $page.params.id;
+    coin_code = $page.url.searchParams.get("coin_code") ?? undefined;
+  });
+
+  onDestroy(unsubscribe);
+
+  $: if (id) {
+    loadData();
+  }
+  async function loadData() {
     loading = true;
-    // Example usage: filter by From address
+    addressBalance = 0;
     const { transactions: tnx, ledgerArgsList } =
       await _fetchLedgerTransactions(
         [{ All: id }],
@@ -50,10 +69,15 @@
           coinCode: coin_code,
         }
       );
+    const balance = await _balance_of(id, coin_code ?? coin);
+    
+    addressBalance = Number(balance);
     ledgers = ledgerArgsList;
     transactions = tnx;
     loading = false;
-  });
+
+    getBalance();
+  }
 </script>
 
 <svelte:head>
@@ -67,16 +91,26 @@
       <h1 class="border-b border-slate-400 px-4 py-3">Account</h1>
       <div class="text-[14px] text-slate-500">
         <div
-          class="flex justify-between items-center border-b border-slate-400 text-md font-[400] py-2 px-4"
+          class="flex justify-between border-b border-slate-400 text-md font-[400] py-2 px-4 gap-4"
         >
           <p class="flex-2 font-bold text-black">Address</p>
-          <p>{id}</p>
+          <p class="break-all max-w-full">
+            {id}
+            <button
+              type="button"
+              class="ml-1 bg-green-700 py-0 p-1 text-white rounded-md cursor-pointer"
+              on:click={() => {
+                navigator.clipboard.writeText(id);
+                alert("Address copied");
+              }}>Copy</button
+            >
+          </p>
         </div>
         <div
           class="flex justify-between items-center border-b border-slate-400 text-md font-[400] py-2 px-4"
         >
           <p class="flex-2 font-bold text-black">Balance</p>
-          <p>{coin_code}</p>
+          <p>{_formatCryptoAmount(addressBalance,Number(getLedger(coin_code)?.decimals ?? 8))}{coin_code}</p>
         </div>
       </div>
     </div>
@@ -92,6 +126,9 @@
             bind:value={coin}
             on:change={async (e) => {
               loading = true;
+              getBalance();
+              coin = coin;
+              coin_code = coin;
               const { transactions: tnx, ledgerArgsList } =
                 await _fetchLedgerTransactions(
                   [{ All: id }],
@@ -131,37 +168,40 @@
                   <tr>
                     <td>
                       <TabAnchor
-                        href={`./tx/${tnx.txId}?coin_code=${getLedger()?.code}`}
-                        class="text-blue-600">{_clipString(tnx.txId)}</TabAnchor
+                        href={`../tx/${tnx.txId}?coin_code=${getLedger(coin_code)?.code}`}
+                        class="text-blue-600"
+                        >{tnx?.txId != ""
+                          ? _clipString(tnx?.txId)
+                          : tnx?.id}</TabAnchor
                       >
                     </td>
                     <td
                       ><TabAnchor
-                        href={`./account/${tnx.from}?coin_code=${getLedger()?.code}`}
+                        href={`./${tnx.from}?coin_code=${getLedger(coin_code)?.code}`}
                         class="text-blue-600">{_clipString(tnx.from)}</TabAnchor
                       ></td
                     >
                     <td
                       ><TabAnchor
-                        href={`./account/${tnx.to}?coin_code=${getLedger()?.code}`}
+                        href={`./${tnx.to}?coin_code=${getLedger(coin_code)?.code}`}
                         class="text-blue-600">{_clipString(tnx.to)}</TabAnchor
                       ></td
                     >
-                    <td> <p>{JSON.stringify(tnx.kind)}</p> </td>
+                    <td> <p>{_formatKind(tnx.kind)}</p> </td>
                     <td>
                       <p>
                         {_formatCryptoAmount(
                           tnx.amount,
-                          Number(getLedger()?.decimals ?? 8)
-                        )}{getLedger()?.code}
+                          Number(getLedger(coin_code)?.decimals ?? 8)
+                        )}{getLedger(coin_code)?.code}
                       </p>
                     </td>
                     <td>
                       <p>
                         {_formatCryptoAmount(
                           tnx.fee,
-                          Number(getLedger()?.decimals ?? 8)
-                        )}{getLedger()?.code}
+                          Number(getLedger(coin_code)?.decimals ?? 8)
+                        )}{getLedger(coin_code)?.code}
                       </p>
                     </td>
                     <td> <p>{_formatTimestamp(tnx.timestamp)}</p> </td>

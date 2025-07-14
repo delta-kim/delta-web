@@ -9,6 +9,7 @@
     _clipString,
     _fetchLedgerTransactions,
     _formatCryptoAmount,
+    _formatKind,
     _formatTimestamp,
   } from "../../+page";
 
@@ -74,19 +75,19 @@
             class="flex justify-between items-center border-b border-slate-400 text-md font-[400] py-2 px-4 flex-wrap"
           >
             <p class="flex-2 font-bold text-black">ID</p>
-            <p>{_clipString(tnx?.txId)}</p>
+            <p>{tnx?.txId!=""? _clipString(tnx?.txId):tnx?.id}</p>
           </div>
           <div
             class="flex justify-between lg:items-center border-b border-slate-400 text-md font-[400] py-2 px-4"
           >
             <p class="flex-2 font-bold text-black">Coin Code</p>
-            <p>{getLedger()?.code}</p>
+            <p>{getLedger(coin_code)?.code}</p>
           </div>
           <div
             class="flex justify-between items-center border-b border-slate-400 text-md font-[400] py-2 px-4"
           >
             <p class="flex-2 font-bold text-black">Method</p>
-            <p>{JSON.stringify(tnx.kind)}</p>
+            <p>{_formatKind(tnx.kind)}</p>
           </div>
           <div
             class="flex justify-between items-center border-b border-slate-400 text-md font-[400] py-2 px-4"
@@ -100,7 +101,7 @@
             <p class="flex-2 font-bold text-black">From</p>
             <p>
               <TabAnchor
-                href={`../account/${tnx.from}?coin_code=${getLedger()?.code}`}
+                href={`../account/${tnx.from}?coin_code=${getLedger(coin_code)?.code}`}
                 class="text-blue-600">{_clipString(tnx.from)}</TabAnchor
               >
             </p>
@@ -111,7 +112,7 @@
             <p class="flex-2 font-bold text-black">To</p>
             <p>
               <TabAnchor
-                href={`../account/${tnx.to}?coin_code=${getLedger()?.code}`}
+                href={`../account/${tnx.to}?coin_code=${getLedger(coin_code)?.code}`}
                 class="text-blue-600">{_clipString(tnx.to)}</TabAnchor
               >
             </p>
@@ -123,8 +124,8 @@
             <p>
               {_formatCryptoAmount(
                 tnx.amount,
-                Number(getLedger()?.decimals ?? 8)
-              )}{getLedger()?.code}
+                Number(getLedger(coin_code)?.decimals ?? 8)
+              )}{getLedger(coin_code)?.code}
             </p>
           </div>
           <div
@@ -134,8 +135,8 @@
             <p>
               {_formatCryptoAmount(
                 tnx.fee,
-                Number(getLedger()?.decimals ?? 8)
-              )}{getLedger()?.code}
+                Number(getLedger(coin_code)?.decimals ?? 8)
+              )}{getLedger(coin_code)?.code}
             </p>
           </div>
         </div>

@@ -6,6 +6,7 @@
     _clipString,
     _fetchLedgerTransactions,
     _formatCryptoAmount,
+    _formatKind,
     _formatTimestamp,
   } from "../+page";
 
@@ -16,7 +17,7 @@
   let transactions: Transaction[] = [];
   let ledgers: LedgerInitArgs[] = [];
   let loading = true;
-  let coin = "BNB";
+  let coin: string | undefined = undefined;
 
   export let data: PageData;
 
@@ -73,9 +74,10 @@
               ledgers = ledgerArgsList;
               transactions = tnx;
               loading = false;
+              coin = coin;
             }}
           >
-            <option value="BNB">Filter by ledger</option>
+            <option>Filter by ledger</option>
             {#each ledgers as app}
               <option value={app.code}>{app.name}({app.code})</option>
             {/each}
@@ -100,37 +102,40 @@
                   <tr>
                     <td>
                       <TabAnchor
-                        href={`./tx/${tnx.txId}?coin_code=${getLedger()?.code}`}
-                        class="text-blue-600">{_clipString(tnx.txId)}</TabAnchor
+                        href={`./tx/${tnx.txId}?coin_code=${getLedger(coin)?.code}`}
+                        class="text-blue-600"
+                        >{tnx?.txId != ""
+                          ? _clipString(tnx?.txId)
+                          : tnx?.id}</TabAnchor
                       >
                     </td>
                     <td
                       ><TabAnchor
-                        href={`./account/${tnx.from}?coin_code=${getLedger()?.code}`}
+                        href={`./account/${tnx.from}?coin_code=${getLedger(coin)?.code}`}
                         class="text-blue-600">{_clipString(tnx.from)}</TabAnchor
                       ></td
                     >
                     <td
                       ><TabAnchor
-                        href={`./account/${tnx.to}?coin_code=${getLedger()?.code}`}
+                        href={`./account/${tnx.to}?coin_code=${getLedger(coin)?.code}`}
                         class="text-blue-600">{_clipString(tnx.to)}</TabAnchor
                       ></td
                     >
-                    <td> <p>{JSON.stringify(tnx.kind)}</p> </td>
+                    <td> <p>{_formatKind(tnx.kind)}</p> </td>
                     <td>
                       <p>
                         {_formatCryptoAmount(
                           tnx.amount,
-                          Number(getLedger()?.decimals ?? 8)
-                        )}{getLedger()?.code}
+                          Number(getLedger(coin)?.decimals ?? 8)
+                        )}{getLedger(coin)?.code}
                       </p>
                     </td>
                     <td>
                       <p>
                         {_formatCryptoAmount(
                           tnx.fee,
-                          Number(getLedger()?.decimals ?? 8)
-                        )}{getLedger()?.code}
+                          Number(getLedger(coin)?.decimals ?? 8)
+                        )}{getLedger(coin)?.code}
                       </p>
                     </td>
                     <td> <p>{_formatTimestamp(tnx.timestamp)}</p> </td>

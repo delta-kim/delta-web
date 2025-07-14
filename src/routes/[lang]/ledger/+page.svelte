@@ -4,6 +4,7 @@
     _clipString,
     _fetchLedgerTransactions,
     _formatCryptoAmount,
+    _formatKind,
     _formatTimestamp,
   } from "./+page";
   import { t, locale } from "svelte-i18n";
@@ -204,7 +205,7 @@
                     <td>
                       <TabAnchor
                         href={`./ledger/tx/${tnx.txId}?coin_code=${getLedger()?.code}`}
-                        class="text-blue-600">{_clipString(tnx.txId)}</TabAnchor
+                        class="text-blue-600">{tnx?.txId!=""? _clipString(tnx?.txId):tnx?.id}</TabAnchor
                       >
                     </td>
                     <td
@@ -219,7 +220,7 @@
                         class="text-blue-600">{_clipString(tnx.to)}</TabAnchor
                       ></td
                     >
-                    <td> <p>{JSON.stringify(tnx.kind)}</p> </td>
+                    <td> <p>{_formatKind(tnx.kind)}</p> </td>
                     <td>
                       <p>
                         {_formatCryptoAmount(

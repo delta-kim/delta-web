@@ -16,29 +16,47 @@ export async function _fetchLedgerTransactions(
   const delta = await createDelta(mainCanisterId, {
     agentOptions: { host: ic_host },
   });
-  console.log({ delta });
+  
   const mcWallet = await createMCWallet(mcwCanisterId, {
     agentOptions: { host: ic_host },
   });
-  console.log({ mcWallet });
+  
   let ledgerArgsList = await mcWallet.listLedgerInitArgs();
-  console.log({ ledgerArgsList });
+  
   let ledgerArgs = ledgerArgsList.at(1);
-  console.log({ ledgerArgs });
+  
   if (!ledgerArgs) {
     throw new Error("No ledger arguments found.");
   }
   let thisLedgerCanisterId = await delta.getCanisterId({
     Ledgers: coinCode ?? ledgerArgs.code,
   });
-  console.log({ thisLedgerCanisterId });
+  
   const Ledger = await createLedgers(thisLedgerCanisterId, {
     agentOptions: { host: ic_host },
   });
   // return Ledger.listTransaction(coinCode, filter, skipId, limit);
   const transactions = await Ledger.listTransaction(filter, skipId, limit);
-  console.log({ transactions });
+  
   return { transactions, ledgerArgsList };
+}
+
+export async function _balance_of(address: string, coinCode: string) {
+  const delta = await createDelta(mainCanisterId, {
+    agentOptions: { host: ic_host },
+  });
+
+  let thisLedgerCanisterId = await delta.getCanisterId({
+    Ledgers: coinCode,
+  });
+  
+  const Ledger = await createLedgers(thisLedgerCanisterId, {
+    agentOptions: { host: ic_host },
+  });
+
+  const balance = await Ledger.balance_of(address);
+
+  return balance;
 }
 
 export function _formatCryptoAmount(
@@ -72,4 +90,12 @@ export function _formatTimestamp(ts: bigint | number | string): string {
   if (!num) return "";
   const date = new Date(num * 1000);
   return date.toLocaleString(); // or use toLocaleDateString() for just the date
+}
+
+export function _formatKind(kind: Record<string, unknown>): string {
+  if (!kind || typeof kind !== "object") return "";
+  const [key, value] = Object.entries(kind)[0] ?? [];
+  if (value === null) return key;
+  if (typeof value === "string") return `${key}: ${value}`;
+  return `${key}: ${JSON.stringify(value)}`;
 }
