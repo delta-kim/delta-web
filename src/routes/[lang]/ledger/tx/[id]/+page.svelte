@@ -75,7 +75,13 @@
             class="flex justify-between items-center border-b border-slate-400 text-md font-[400] py-2 px-4 flex-wrap"
           >
             <p class="flex-2 font-bold text-black">ID</p>
-            <p>{tnx?.txId!=""? _clipString(tnx?.txId):tnx?.id}</p>
+            <p>{tnx?.id}</p>
+          </div>
+          <div
+            class="flex justify-between items-center border-b border-slate-400 text-md font-[400] py-2 px-4 flex-wrap"
+          >
+            <p class="flex-2 font-bold text-black">TxID</p>
+            <p>{tnx?.txId != "" ? _clipString(tnx?.txId) : "N/A"}</p>
           </div>
           <div
             class="flex justify-between lg:items-center border-b border-slate-400 text-md font-[400] py-2 px-4"

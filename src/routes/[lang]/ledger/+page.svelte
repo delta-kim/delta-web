@@ -185,12 +185,13 @@
             >
           </p>
         </div>
-       {#if transactions.length > 0}
+        {#if transactions.length > 0}
           <div class="w-full overflow-scroll">
             <table class="w-full">
               <thead>
                 <tr>
                   <th> ID </th>
+                  <th> TxID </th>
                   <th> From </th>
                   <th> To </th>
                   <th> Method</th>
@@ -203,21 +204,29 @@
                 {#each transactions as tnx}
                   <tr>
                     <td>
-                      <TabAnchor
-                        href={`./ledger/tx/${tnx.txId}?coin_code=${getLedger()?.code}`}
-                        class="text-blue-600">{tnx?.txId!=""? _clipString(tnx?.txId):tnx?.id}</TabAnchor
-                      >
+                      <p>{tnx?.id}</p>
+                    </td>
+                    <td>
+                      {#if tnx?.txId != ""}
+                        <TabAnchor
+                          href={`./ledger/tx/${tnx.txId}?coin_code=${getLedger()?.code}`}
+                          class="text-blue-600 text-left"
+                          >{_clipString(tnx?.txId)}</TabAnchor
+                        >
+                      {:else}
+                        <p>N/A</p>
+                      {/if}
                     </td>
                     <td
                       ><TabAnchor
                         href={`./ledger/account/${tnx.from}?coin_code=${getLedger()?.code}`}
-                        class="text-blue-600">{_clipString(tnx.from)}</TabAnchor
+                        class="text-blue-600 text-left">{_clipString(tnx.from)}</TabAnchor
                       ></td
                     >
                     <td
                       ><TabAnchor
                         href={`./ledger/account/${tnx.to}?coin_code=${getLedger()?.code}`}
-                        class="text-blue-600">{_clipString(tnx.to)}</TabAnchor
+                        class="text-blue-600 text-left">{_clipString(tnx.to)}</TabAnchor
                       ></td
                     >
                     <td> <p>{_formatKind(tnx.kind)}</p> </td>

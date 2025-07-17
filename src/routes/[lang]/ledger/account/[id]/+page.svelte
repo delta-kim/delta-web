@@ -42,7 +42,7 @@
   });
   async function getBalance() {
     const balance = await _balance_of(id, coin_code ?? coin);
-    
+
     addressBalance = Number(balance);
   }
 
@@ -70,7 +70,7 @@
         }
       );
     const balance = await _balance_of(id, coin_code ?? coin);
-    
+
     addressBalance = Number(balance);
     ledgers = ledgerArgsList;
     transactions = tnx;
@@ -110,7 +110,12 @@
           class="flex justify-between items-center border-b border-slate-400 text-md font-[400] py-2 px-4"
         >
           <p class="flex-2 font-bold text-black">Balance</p>
-          <p>{_formatCryptoAmount(addressBalance,Number(getLedger(coin_code)?.decimals ?? 8))}{coin_code}</p>
+          <p>
+            {_formatCryptoAmount(
+              addressBalance,
+              Number(getLedger(coin_code)?.decimals ?? 8)
+            )}{coin_code}
+          </p>
         </div>
       </div>
     </div>
@@ -155,6 +160,7 @@
               <thead>
                 <tr>
                   <th> ID </th>
+                  <th> TxID </th>
                   <th> From </th>
                   <th> To </th>
                   <th> Method</th>
@@ -167,13 +173,15 @@
                 {#each transactions as tnx}
                   <tr>
                     <td>
-                      <TabAnchor
-                        href={`../tx/${tnx.txId}?coin_code=${getLedger(coin_code)?.code}`}
-                        class="text-blue-600"
-                        >{tnx?.txId != ""
-                          ? _clipString(tnx?.txId)
-                          : tnx?.id}</TabAnchor
-                      >
+                      <p>{tnx?.id}</p>
+                    </td>
+                    <td
+                      >{#if tnx?.txId != ""}
+                        <TabAnchor
+                          href={`../tx/${tnx.txId}?coin_code=${getLedger(coin_code)?.code}`}
+                          class="text-blue-600"
+                          >{_clipString(tnx?.txId)}</TabAnchor
+                        >{:else}<p>N//A</p>{/if}
                     </td>
                     <td
                       ><TabAnchor

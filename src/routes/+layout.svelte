@@ -57,7 +57,7 @@
     },
     {
       link: "/ledger",
-      label: "Ledger",
+      label: $t("ledger"),
     },
   ];
   const usefulLinks = [
@@ -379,6 +379,18 @@
       link: "https://chat.whatsapp.com/LOCGoR41yXI8hQnKtf7flL",
       creator: "",
     },
+    {
+      icon: `<i class="fa-brands fa-square-x-twitter" style="color:black"></i>`,
+      label: "DeltaKimGal",
+      link: "https://x.com/DeltaKimGal?t=2O1l4QJp5yugSxdvN58yMw&s=09",
+      creator: "",
+    },
+    {
+      icon: `<i class="fa-brands fa-facebook"style="color: rgb(8, 102, 255);"></i>`,
+      label: "DeltaKim",
+      link: "https://www.facebook.com/profile.php?id=61562941726667",
+      creator: "",
+    },
   ];
 </script>
 
@@ -430,6 +442,12 @@
                     <span>{$t("explore")}</span>
                   </TabAnchor>
                   <TabAnchor
+                    href="./ledger"
+                    selected={$page.url.pathname.endsWith("/ledger")}
+                  >
+                    <span>{$t("ledger")}</span>
+                  </TabAnchor>
+                  <TabAnchor
                     href="./DSMSAccessTerminal"
                     selected={$page.url.pathname.endsWith(
                       "/DSMSAccessTerminal"
@@ -443,12 +461,6 @@
                     selected={$page.url.pathname.endsWith("/whitepaper")}
                   >
                     <span>{$t("whitepaper")}</span>
-                  </TabAnchor>
-                  <TabAnchor
-                    href="./ledger"
-                    selected={$page.url.pathname.endsWith("/ledger")}
-                  >
-                    <span>Ledger</span>
                   </TabAnchor>
                   <TabAnchor
                     href="./support"
@@ -485,6 +497,12 @@
               selected={$page.url.pathname.endsWith("/explore")}
             >
               <span>{$t("explore")}</span>
+            </TabAnchor>
+            <TabAnchor
+              href="/{data.lang}/ledger"
+              selected={$page.url.pathname.endsWith("/ledger")}
+            >
+              <span>{$t("ledger")}</span>
             </TabAnchor>
             <TabAnchor
               href="/{data.lang}/DSMSAccessTerminal"

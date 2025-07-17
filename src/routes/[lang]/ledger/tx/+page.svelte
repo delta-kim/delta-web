@@ -89,6 +89,7 @@
               <thead>
                 <tr>
                   <th> ID </th>
+                  <th> TxID </th>
                   <th> From </th>
                   <th> To </th>
                   <th> Method</th>
@@ -101,14 +102,17 @@
                 {#each transactions as tnx}
                   <tr>
                     <td>
-                      <TabAnchor
-                        href={`./tx/${tnx.txId}?coin_code=${getLedger(coin)?.code}`}
-                        class="text-blue-600"
-                        >{tnx?.txId != ""
-                          ? _clipString(tnx?.txId)
-                          : tnx?.id}</TabAnchor
-                      >
+                      <p>{tnx?.id}</p>
                     </td>
+                    <td
+                      >{#if tnx?.txId != ""}
+                        <TabAnchor
+                          href={`./tx/${tnx.txId}?coin_code=${getLedger(coin)?.code}`}
+                          class="text-blue-600"
+                          >{_clipString(tnx?.txId)}</TabAnchor
+                        >{:else}<p>N//A</p>{/if}
+                    </td>
+
                     <td
                       ><TabAnchor
                         href={`./account/${tnx.from}?coin_code=${getLedger(coin)?.code}`}
