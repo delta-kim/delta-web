@@ -44,25 +44,29 @@
   });
   const deltaApps = [
     {
-      link: "./download",
+      link: "/download",
       label: "Mobile App",
     },
     {
-      link: "./DSMSAccessTerminal",
+      link: "/DSMSAccessTerminal",
       label: `DSMS ${$t("access_terminal")}`,
     },
     {
-      link: "./explore",
+      link: "/explore",
       label: $t("explore"),
+    },
+    {
+      link: "/ledger",
+      label: $t("ledger"),
     },
   ];
   const usefulLinks = [
     {
-      link: "./roadmap",
+      link: "/roadmap",
       label: $t("roadmap"),
     },
     {
-      link: "./whitepaper#introduction",
+      link: "/whitepaper#introduction",
       label: $t("whitepaper"),
     },
     // {
@@ -70,11 +74,11 @@
     //   label: $t("communities"),
     // },
     {
-      link: "./terms_of_service",
+      link: "/terms_of_service",
       label: $t("termsOfService"),
     },
     {
-      link: "./privacy_policy",
+      link: "/privacy_policy",
       label: $t("privacy_policy"),
     },
   ];
@@ -375,6 +379,18 @@
       link: "https://chat.whatsapp.com/LOCGoR41yXI8hQnKtf7flL",
       creator: "",
     },
+    {
+      icon: `<i class="fa-brands fa-square-x-twitter" style="color:black"></i>`,
+      label: "DeltaKimGal",
+      link: "https://x.com/DeltaKimGal?t=2O1l4QJp5yugSxdvN58yMw&s=09",
+      creator: "",
+    },
+    {
+      icon: `<i class="fa-brands fa-facebook"style="color: rgb(8, 102, 255);"></i>`,
+      label: "DeltaKim",
+      link: "https://www.facebook.com/profile.php?id=61562941726667",
+      creator: "",
+    },
   ];
 </script>
 
@@ -426,6 +442,12 @@
                     <span>{$t("explore")}</span>
                   </TabAnchor>
                   <TabAnchor
+                    href="./ledger"
+                    selected={$page.url.pathname.endsWith("/ledger")}
+                  >
+                    <span>{$t("ledger")}</span>
+                  </TabAnchor>
+                  <TabAnchor
                     href="./DSMSAccessTerminal"
                     selected={$page.url.pathname.endsWith(
                       "/DSMSAccessTerminal"
@@ -459,38 +481,44 @@
             class="hidden lg:block text-black"
           >
             <TabAnchor
-              href="./home"
+              href="/{data.lang}/home"
               selected={$page.url.pathname.endsWith("/home")}
             >
               <span>{$t("home")}</span>
             </TabAnchor>
             <TabAnchor
-              href="./download"
+              href="/{data.lang}/download"
               selected={$page.url.pathname.endsWith("/download")}
             >
               <span>{$t("download")}</span>
             </TabAnchor>
             <TabAnchor
-              href="./explore"
+              href="/{data.lang}/explore"
               selected={$page.url.pathname.endsWith("/explore")}
             >
               <span>{$t("explore")}</span>
             </TabAnchor>
             <TabAnchor
-              href="./DSMSAccessTerminal"
+              href="/{data.lang}/ledger"
+              selected={$page.url.pathname.endsWith("/ledger")}
+            >
+              <span>{$t("ledger")}</span>
+            </TabAnchor>
+            <TabAnchor
+              href="/{data.lang}/DSMSAccessTerminal"
               selected={$page.url.pathname.endsWith("/DSMSAccessTerminal")}
             >
               <span>{$t("access_terminal")}</span>
             </TabAnchor>
 
             <TabAnchor
-              href="./whitepaper"
+              href="/{data.lang}/whitepaper"
               selected={$page.url.pathname.endsWith("/whitepaper")}
             >
               <span>{$t("whitepaper")}</span>
             </TabAnchor>
             <TabAnchor
-              href="./support"
+              href="/{data.lang}/support"
               selected={$page.url.pathname.endsWith("/support")}
             >
               <span>{$t("faq")}</span>
@@ -540,7 +568,7 @@
               <li class="text-lg font-[600] mb-3">Apps</li>
               {#each deltaApps as item}
                 <li class="text-lg font-[300]">
-                  <a href={item.link}>{item.label}</a>
+                  <a href={`/${data.lang}${item.link}`}>{item.label}</a>
                 </li>
               {/each}
             </ul>
@@ -548,7 +576,7 @@
               <li class="text-lg font-[600] mb-3">Useful Links</li>
               {#each usefulLinks as item}
                 <li class="text-lg font-[300]">
-                  <a href={item.link}>{item.label}</a>
+                  <a href={`/${data.lang}${item.link}`}>{item.label}</a>
                 </li>
               {/each}
             </ul>
