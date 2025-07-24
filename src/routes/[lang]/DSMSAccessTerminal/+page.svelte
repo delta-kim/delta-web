@@ -111,7 +111,7 @@
             target="_blank"
             href={lang == "zh-CN"
               ? "https://wwrm.lanzoue.com/delta-dsms-terminal"
-              : "https://github.com/delta-kim/dsms_verifier_terminal/releases/download/1.0.3/dsms_terminal_1.0.3.apk"}
+              : "https://github.com/delta-kim/dsms_verifier_terminal/releases/download/1.0.4/dsms_terminal_1.0.4.apk"}
           >
             <img
               class="rounded-md w-[185px] object-contain"
@@ -123,7 +123,7 @@
             <a
               style="text-decoration: underline;"
               href="https://github.com/delta-kim/dsms_verifier_terminal/releases"
-              target="_blank">Version:1.0.3 Latest:2025-06-09</a
+              target="_blank">Version:1.0.4 Latest:2025-07-24</a
             >
           </div>
         </figure>
