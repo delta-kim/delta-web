@@ -210,7 +210,7 @@
                       {#if tnx?.txId != ""}
                         <TabAnchor
                           href={`./ledger/tx/${tnx.txId}?coin_code=${getLedger()?.code}`}
-                          class="text-blue-600 text-left"
+                          class="text-blue-600"
                           >{_clipString(tnx?.txId)}</TabAnchor
                         >
                       {:else}
@@ -220,13 +220,13 @@
                     <td
                       ><TabAnchor
                         href={`./ledger/account/${tnx.from}?coin_code=${getLedger()?.code}`}
-                        class="text-blue-600 text-left">{_clipString(tnx.from)}</TabAnchor
+                        class="text-blue-600">{_clipString(tnx.from)}</TabAnchor
                       ></td
                     >
                     <td
                       ><TabAnchor
                         href={`./ledger/account/${tnx.to}?coin_code=${getLedger()?.code}`}
-                        class="text-blue-600 text-left">{_clipString(tnx.to)}</TabAnchor
+                        class="text-blue-600">{_clipString(tnx.to)}</TabAnchor
                       ></td
                     >
                     <td> <p>{_formatKind(tnx.kind)}</p> </td>
