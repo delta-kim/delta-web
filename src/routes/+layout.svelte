@@ -391,6 +391,12 @@
       link: "https://www.facebook.com/profile.php?id=61562941726667",
       creator: "",
     },
+    {
+      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
+      label: "Info Delta Kim ",
+      link: "https://chat.whatsapp.com/G6cH0qe5rg2KwE6vlNMSfO?mode=ac_t",
+      creator: "",
+    },
   ];
 </script>
 
