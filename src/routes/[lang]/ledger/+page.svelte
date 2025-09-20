@@ -90,26 +90,26 @@
             </figure>
             <div>
               <p class="text-sm font-[500]">
-                <b>Ledger Name:</b>
+                <b>Name:</b>
                 {@html app.name}
               </p>
               <p class="text-sm font-[500]">
-                <b>Ledger Code:</b>
+                <b>Code:</b>
                 {@html app.code}
               </p>
               <p class="text-sm font-[500]">
-                <b>Ledger Symbol:</b>
+                <b>Symbol:</b>
                 {#if app.symbol != ""}
                   {@html app.symbol}
                 {:else}
                   N/A{/if}
               </p>
               <p class="text-sm font-[500]">
-                <b>Ledger Decimal:</b>
+                <b>Decimal:</b>
                 {@html app.decimals}
               </p>
               <p class="text-sm font-[500]">
-                <b>Ledger Website:</b>
+                <b>Website:</b>
                 <a href={app.web} target="_blank">
                   {@html app.web}
                 </a>
@@ -191,13 +191,13 @@
               <thead>
                 <tr>
                   <th> ID </th>
-                  <th> TxID </th>
                   <th> From </th>
                   <th> To </th>
                   <th> Method</th>
                   <th> Amount </th>
                   <th> Fee </th>
                   <th> Timestamp </th>
+                  <th> TxID </th>
                 </tr>
               </thead>
               <tbody>
@@ -205,17 +205,6 @@
                   <tr>
                     <td>
                       <p>{tnx?.id}</p>
-                    </td>
-                    <td>
-                      {#if tnx?.txId != ""}
-                        <TabAnchor
-                          href={`./ledger/tx/${tnx.txId}?coin_code=${getLedger()?.code}`}
-                          class="text-blue-600"
-                          >{_clipString(tnx?.txId)}</TabAnchor
-                        >
-                      {:else}
-                        <p>N/A</p>
-                      {/if}
                     </td>
                     <td
                       ><TabAnchor
@@ -247,6 +236,17 @@
                       </p>
                     </td>
                     <td> <p>{_formatTimestamp(tnx.timestamp)}</p> </td>
+                    <td>
+                      {#if tnx?.txId != ""}
+                        <TabAnchor
+                          href={`./ledger/tx/${tnx.txId}?coin_code=${getLedger()?.code}`}
+                          class="text-blue-600"
+                          >{_clipString(tnx?.txId)}</TabAnchor
+                        >
+                      {:else}
+                        <p>N/A</p>
+                      {/if}
+                    </td>
                   </tr>{/each}
               </tbody>
             </table>
