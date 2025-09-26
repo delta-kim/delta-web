@@ -160,13 +160,13 @@
               <thead>
                 <tr>
                   <th> ID </th>
-                  <th> TxID </th>
                   <th> From </th>
                   <th> To </th>
                   <th> Method</th>
                   <th> Amount </th>
                   <th> Fee </th>
                   <th> Timestamp </th>
+                  <th> TxID </th>
                 </tr>
               </thead>
               <tbody>
@@ -174,14 +174,6 @@
                   <tr>
                     <td>
                       <p>{tnx?.id}</p>
-                    </td>
-                    <td
-                      >{#if tnx?.txId != ""}
-                        <TabAnchor
-                          href={`../tx/${tnx.txId}?coin_code=${getLedger(coin_code)?.code}`}
-                          class="text-blue-600"
-                          >{_clipString(tnx?.txId)}</TabAnchor
-                        >{:else}<p>N//A</p>{/if}
                     </td>
                     <td
                       ><TabAnchor
@@ -213,6 +205,14 @@
                       </p>
                     </td>
                     <td> <p>{_formatTimestamp(tnx.timestamp)}</p> </td>
+                    <td
+                      >{#if tnx?.txId != ""}
+                        <TabAnchor
+                          href={`../tx/${tnx.txId}?coin_code=${getLedger(coin_code)?.code}`}
+                          class="text-blue-600 text-left"
+                          >{_clipString(tnx?.txId)}</TabAnchor
+                        >{:else}<p>N//A</p>{/if}
+                    </td>
                   </tr>{/each}
               </tbody>
             </table>

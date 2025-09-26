@@ -397,6 +397,12 @@
       link: "https://chat.whatsapp.com/G6cH0qe5rg2KwE6vlNMSfO?mode=ac_t",
       creator: "",
     },
+    {
+      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
+      label: "Delta Francophone",
+      link: "https://chat.whatsapp.com/LkzhyLAJco91skDo3xMuL5?mode=ems_copy_c",
+      creator: "",
+    },
   ];
 </script>
 
