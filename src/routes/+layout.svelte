@@ -403,6 +403,12 @@
       link: "https://chat.whatsapp.com/LkzhyLAJco91skDo3xMuL5?mode=ems_copy_c",
       creator: "",
     },
+    {
+      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
+      label: "Delta Kim Afrique",
+      link: "https://chat.whatsapp.com/GyovOLw8T1h7kcK18n2rw0?mode=ac_t",
+      creator: "",
+    },
   ];
 </script>
 
