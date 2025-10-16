@@ -168,10 +168,8 @@
 <div class="min-h-screen">
   <div class="container mx-auto px-4 py-8">
     <!-- Header Section -->
-    <div class="mb-8">
-      <h1 class="text-3xl font-bold mb-4">
-        Delta: A keyless digital money system!
-      </h1>
+    <div class="mb-12 text-center">
+      <h1 class="text-3xl font-bold mb-4">A keyless digital money system!</h1>
       <p class="text-lg mb-6">
         Delta is 100% based on the ICP blockchain and is secured by ECDSA
         threshold signature technology.
