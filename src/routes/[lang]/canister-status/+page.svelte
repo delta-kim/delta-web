@@ -3,7 +3,8 @@
   import { afterNavigate } from "$app/navigation";
   import { onMount } from "svelte";
   import { t } from "svelte-i18n";
-  import { delta } from "../../../declarations/delta";
+  import { createActor } from "../../../declarations/delta/index";
+  import { ic_host } from "../../../lib/store";
 
   interface CanisterInfo {
     name: string;
@@ -114,7 +115,14 @@
   onMount(async () => {
     loading = true;
     try {
-      const idMap = await delta?.getCanisterIdMap();
+      // Create an actor for the Delta canister (management canister for app data)
+      // Note: this is the Delta contract canister id provided by the product spec
+      const deltaCanisterId = "ojpsk-siaaa-aaaam-adtea-cai";
+      const actor = await createActor(deltaCanisterId, {
+        agentOptions: { host: $ic_host },
+      });
+
+      const idMap = await actor.getCanisterIdMap();
       console.log(idMap);
       if (idMap) {
         canisterIdMap = [];
@@ -179,9 +187,8 @@
         <div class="text-lg">No canister information available.</div>
       </div>
     {:else}
-      <div
-        class="space-y-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
-      >
+      <!-- class="space-y-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {#each canisterIdMap as canister (canister.id)}
           <div class="rounded-lg border border-gray-700 overflow-hidden">
             <!-- Canister Header -->
@@ -194,13 +201,20 @@
               aria-controls="canister-details-{canister.id}"
             >
               <div class="flex items-center justify-between">
-                <div>
-                  <h3 class="text-xl font-semibold mb-1">
-                    Name: {canister.name}
-                  </h3>
-                  <p class="text-sm break-all">
-                    CanisterId: {canister.id}
-                  </p>
+                <div class="flex items-center gap-2">
+                  <img
+                    src="/img/container.png"
+                    class="w-10 h-10"
+                    alt="Container"
+                  />
+                  <div>
+                    <h3 class="text-xl font-semibold mb-1">
+                      {canister.name}
+                    </h3>
+                    <p class="text-sm break-all">
+                      {canister.id}
+                    </p>
+                  </div>
                 </div>
                 <div>
                   {#if expandedCanister === canister.id}
