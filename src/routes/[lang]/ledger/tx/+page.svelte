@@ -11,7 +11,10 @@
   } from "../+page";
 
   import { TabAnchor } from "@skeletonlabs/skeleton";
-  import type { Transaction } from "../../../../declarations/Ledgers/Ledgers.did";
+  import type {
+    FilterArgs,
+    Transaction,
+  } from "../../../../declarations/Ledgers/Ledgers.did";
   import type { LedgerInitArgs } from "../../../../declarations/MultiChainWallet/MultiChainWallet.did";
 
   let transactions: Transaction[] = [];
@@ -36,13 +39,29 @@
     loading = true;
     // Example usage: filter by From address
     const { transactions: tnx, ledgerArgsList } =
-      await _fetchLedgerTransactions([], Number.MAX_SAFE_INTEGER, 100, {
-        coinCode: undefined,
-      });
+      await _fetchLedgerTransactions(
+        [{} as FilterArgs],
+        Number.MAX_SAFE_INTEGER,
+        100,
+        {
+          coinCode: undefined,
+        }
+      );
     ledgers = ledgerArgsList;
     transactions = tnx;
     loading = false;
   });
+
+  const onChangeCoin = async (coin: string | undefined) => {
+    return await _fetchLedgerTransactions(
+      [{} as FilterArgs],
+      Number.MAX_SAFE_INTEGER,
+      100,
+      {
+        coinCode: coin,
+      }
+    );
+  };
 </script>
 
 <svelte:head>
@@ -63,14 +82,7 @@
             on:change={async (e) => {
               loading = true;
               const { transactions: tnx, ledgerArgsList } =
-                await _fetchLedgerTransactions(
-                  [],
-                  Number.MAX_SAFE_INTEGER,
-                  100,
-                  {
-                    coinCode: coin,
-                  }
-                );
+                await onChangeCoin(coin);
               ledgers = ledgerArgsList;
               transactions = tnx;
               loading = false;

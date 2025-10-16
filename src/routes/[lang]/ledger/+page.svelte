@@ -34,7 +34,7 @@
     loading = true;
     // Example usage: filter by From address
     const { transactions: tnx, ledgerArgsList } =
-      await _fetchLedgerTransactions([], Number.MAX_SAFE_INTEGER, 10, {
+      await _fetchLedgerTransactions([{} as any], Number.MAX_SAFE_INTEGER, 10, {
         coinCode: undefined,
       });
     ledgers = ledgerArgsList;
