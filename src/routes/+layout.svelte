@@ -59,6 +59,10 @@
       link: "/ledger",
       label: $t("ledger"),
     },
+    {
+      link: "/canister-status",
+      label: "Canister Status",
+    },
   ];
   const usefulLinks = [
     {
@@ -486,6 +490,12 @@
                   >
                     <span>{$t("faq")}</span>
                   </TabAnchor>
+                  <TabAnchor
+                    href="./canister-status"
+                    selected={$page.url.pathname.endsWith("/canister-status")}
+                  >
+                    <span>Canister Status</span>
+                  </TabAnchor>
                 </TabGroup>
               </li>
             </ul>
@@ -540,6 +550,12 @@
               selected={$page.url.pathname.endsWith("/support")}
             >
               <span>{$t("faq")}</span>
+            </TabAnchor>
+            <TabAnchor
+              href="/{data.lang}/canister-status"
+              selected={$page.url.pathname.endsWith("/canister-status")}
+            >
+              <span>Canister Status</span>
             </TabAnchor>
           </TabGroup>
           <svelte:fragment slot="trail">
