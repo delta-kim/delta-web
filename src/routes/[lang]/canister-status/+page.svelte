@@ -40,7 +40,7 @@
   ): Promise<CanisterStatus | null> {
     try {
       const response = await fetch(
-        `https://delta.kim/api/canister_status?id=${canisterId}`
+        `/api/delta_canister_status?id=${canisterId}`
       );
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -118,8 +118,9 @@
       // Create an actor for the Delta canister (management canister for app data)
       // Note: this is the Delta contract canister id provided by the product spec
       const deltaCanisterId = "ojpsk-siaaa-aaaam-adtea-cai";
+      const host = $ic_host ?? "https://icp0.io";
       const actor = await createActor(deltaCanisterId, {
-        agentOptions: { host: $ic_host },
+        agentOptions: { host },
       });
 
       const idMap = await actor.getCanisterIdMap();

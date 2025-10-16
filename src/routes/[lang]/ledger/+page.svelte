@@ -1,12 +1,10 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import {
-    _clipString,
-    _fetchLedgerTransactions,
-    _formatCryptoAmount,
-    _formatKind,
-    _formatTimestamp,
-  } from "./+page";
+  import { createActor as createDelta } from "../../../declarations/delta/index";
+  import { createActor as createLedgers } from "../../../declarations/Ledgers/index";
+  import { createActor as createMCWallet } from "../../../declarations/MultiChainWallet/index";
+  import { ic_host } from "../../../lib/store";
+  import type { FilterArgs } from "../../../declarations/Ledgers/Ledgers.did";
   import { t, locale } from "svelte-i18n";
   import type { PageData } from "./$types";
   import { TabAnchor } from "@skeletonlabs/skeleton";
@@ -22,6 +20,91 @@
 
   export let lang = data.lang;
 
+  // Utility functions
+  function _clipString(str: string): string {
+    if (!str || str.length <= 12) return str;
+    return `${str.slice(0, 6)}...${str.slice(str.length - 6)}`;
+  }
+
+  function _formatCryptoAmount(
+    value: bigint | number | string,
+    decimals = 8
+  ): string {
+    let bigValue: bigint;
+    if (typeof value === "bigint") bigValue = value;
+    else if (typeof value === "number") bigValue = BigInt(value);
+    else bigValue = BigInt(value);
+
+    const divisor = 10n ** BigInt(decimals);
+    const whole = bigValue / divisor;
+    const fraction = (bigValue % divisor).toString().padStart(decimals, "0");
+
+    // Remove trailing zeros in fraction for cleaner display
+    const fractionClean = fraction.replace(/0+$/, "");
+    return fractionClean
+      ? `${whole.toString()}.${fractionClean}`
+      : whole.toString();
+  }
+
+  function _formatTimestamp(ts: bigint | number | string): string {
+    // Convert to number (seconds), then to milliseconds
+    const num = typeof ts === "bigint" ? Number(ts) : Number(ts);
+    if (!num) return "";
+    const date = new Date(num * 1000);
+    return date.toLocaleString(); // or use toLocaleDateString() for just the date
+  }
+
+  function _formatKind(kind: Record<string, unknown>): string {
+    if (!kind || typeof kind !== "object") return "";
+    const [key, value] = Object.entries(kind)[0] ?? [];
+    if (value === null) return key;
+    if (typeof value === "string") return `${key}: ${value}`;
+    return `${key}: ${JSON.stringify(value)}`;
+  }
+
+  // IC functions
+  async function _fetchLedgerTransactions(
+    filter: [FilterArgs] | undefined,
+    skipId: any,
+    limit: number,
+    { coinCode }: { coinCode?: string }
+  ) {
+    const host = $ic_host ?? "https://icp0.io";
+    const mainCanisterId = "ojpsk-siaaa-aaaam-adtea-cai";
+    const mcwCanisterId = "o3jft-6yaaa-aaaam-adtha-cai";
+
+    const delta = await createDelta(mainCanisterId, {
+      agentOptions: { host },
+    });
+
+    const mcWallet = await createMCWallet(mcwCanisterId, {
+      agentOptions: { host },
+    });
+
+    let ledgerArgsList = await mcWallet.listLedgerInitArgs();
+
+    let ledgerArgs = ledgerArgsList.at(1);
+
+    if (!ledgerArgs) {
+      throw new Error("No ledger arguments found.");
+    }
+    let thisLedgerCanisterId = await delta.getCanisterId({
+      Ledgers: coinCode ?? ledgerArgs.code,
+    });
+
+    const Ledger = await createLedgers(thisLedgerCanisterId, {
+      agentOptions: { host },
+    });
+    // return Ledger.listTransaction(coinCode, filter, skipId, limit);
+    const transactions = await Ledger.listTransaction(
+      filter || [],
+      skipId,
+      limit
+    );
+
+    return { transactions, ledgerArgsList };
+  }
+
   const getLedger = (coin_code?: string): LedgerInitArgs | undefined => {
     return ledgers.find((l) => l.code == coin_code) || ledgers.at(1);
   };
@@ -32,13 +115,20 @@
 
   onMount(async () => {
     loading = true;
-    // Example usage: filter by From address
-    const { transactions: tnx, ledgerArgsList } =
-      await _fetchLedgerTransactions([{} as any], Number.MAX_SAFE_INTEGER, 10, {
-        coinCode: undefined,
-      });
-    ledgers = ledgerArgsList;
-    transactions = tnx;
+    try {
+      // Example usage: filter by From address
+      const { transactions: tnx, ledgerArgsList } =
+        await _fetchLedgerTransactions(undefined, Number.MAX_SAFE_INTEGER, 10, {
+          coinCode: undefined,
+        });
+      ledgers = ledgerArgsList;
+      transactions = tnx;
+    } catch (error) {
+      console.error("Error fetching ledger data:", error);
+      // Set empty arrays as fallback
+      ledgers = [];
+      transactions = [];
+    }
     loading = false;
   });
 </script>
