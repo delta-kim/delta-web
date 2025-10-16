@@ -28,7 +28,6 @@
 
   let canisterIdMap: CanisterInfo[] = [];
   let loading = true;
-  let expandedCanister: string | null = null;
 
   afterNavigate(() => {
     window.scrollTo(0, 0);
@@ -67,38 +66,6 @@
     } catch (error) {
       console.error(`Error fetching status for canister ${canisterId}:`, error);
       return null;
-    }
-  }
-
-  async function toggleCanisterDetails(canisterId: string) {
-    if (expandedCanister === canisterId) {
-      expandedCanister = null;
-      return;
-    }
-
-    expandedCanister = canisterId;
-    const canister = canisterIdMap.find((c) => c.id === canisterId);
-    if (!canister || canister.status) return;
-
-    canister.loading = true;
-    canister.error = undefined;
-
-    console.log("Fetching status for canister:", canisterId);
-    const status = await fetchCanisterStatus(canisterId);
-    console.log("Received status:", status);
-
-    canister.loading = false;
-
-    if (status) {
-      canister.status = status;
-      console.log("Status assigned to canister:", canister);
-      // Force reactivity by reassigning the array
-      canisterIdMap = [...canisterIdMap];
-    } else {
-      canister.error = "Failed to fetch canister status";
-      console.log("Failed to fetch status for canister:", canisterId);
-      // Force reactivity by reassigning the array
-      canisterIdMap = [...canisterIdMap];
     }
   }
 
@@ -150,7 +117,7 @@
             canisterIdMap.push({
               name: name,
               id: canisterData.one,
-              loading: false,
+              loading: true, // Set to loading initially
               error: undefined,
             });
           } else if (canisterData.list && Array.isArray(canisterData.list)) {
@@ -159,12 +126,33 @@
               canisterIdMap.push({
                 name: `${name} ${index + 1}`,
                 id: canisterId,
-                loading: false,
+                loading: true, // Set to loading initially
                 error: undefined,
               });
             });
           }
         });
+
+        // Fetch all canister statuses in parallel
+        console.log("Fetching statuses for all canisters...");
+        const statusPromises = canisterIdMap.map(async (canister) => {
+          try {
+            const status = await fetchCanisterStatus(canister.id);
+            canister.status = status || undefined;
+            canister.loading = false;
+            if (!status) {
+              canister.error = "Failed to fetch canister status";
+            }
+          } catch (error) {
+            console.error(`Error fetching status for ${canister.id}:`, error);
+            canister.error = "Failed to fetch canister status";
+            canister.loading = false;
+          }
+        });
+
+        // Wait for all status fetches to complete
+        await Promise.all(statusPromises);
+        console.log("All canister statuses fetched:", canisterIdMap);
       }
     } catch (e) {
       console.error("Error fetching canister ID map:", e);
@@ -205,14 +193,7 @@
         {#each canisterIdMap as canister (canister.id)}
           <div class="rounded-lg border border-gray-700 overflow-hidden">
             <!-- Canister Header -->
-            <button
-              class="w-full p-4 cursor-pointer transition-colors text-left"
-              on:click={() => toggleCanisterDetails(canister.id)}
-              on:keydown={(e) =>
-                e.key === "Enter" && toggleCanisterDetails(canister.id)}
-              aria-expanded={expandedCanister === canister.id}
-              aria-controls="canister-details-{canister.id}"
-            >
+            <div class="w-full p-4">
               <div class="flex items-center justify-between">
                 <div class="flex items-center gap-2">
                   <img
@@ -230,143 +211,144 @@
                   </div>
                 </div>
                 <div>
-                  {#if expandedCanister === canister.id}
-                    <i class="fa-solid fa-chevron-up"></i>
-                  {:else}
-                    <i class="fa-solid fa-chevron-down"></i>
+                  {#if canister.loading}
+                    <i class="fa-solid fa-spinner fa-spin text-gray-400"></i>
+                  {:else if canister.error}
+                    <i class="fa-solid fa-exclamation-triangle text-red-500"
+                    ></i>
+                  {:else if canister.status}
+                    <i class="fa-solid fa-check-circle text-green-500"></i>
                   {/if}
                 </div>
               </div>
-            </button>
+            </div>
 
-            <!-- Canister Details -->
-            {#if expandedCanister === canister.id}
-              <div
-                id="canister-details-{canister.id}"
-                class="border-t border-gray-700"
-              >
-                {#if canister.loading}
-                  <div class="p-4 text-center">
-                    <i class="fa-solid fa-spinner fa-spin mr-2"></i>
-                    Loading canister status...
+            <!-- Canister Details (always shown) -->
+            <div
+              id="canister-details-{canister.id}"
+              class="border-t border-gray-700"
+            >
+              {#if canister.loading}
+                <div class="p-4 text-center">
+                  <i class="fa-solid fa-spinner fa-spin mr-2"></i>
+                  Loading canister status...
+                </div>
+              {:else if canister.error}
+                <div class="p-4 text-center text-red-400">
+                  <i class="fa-solid fa-exclamation-triangle mr-2"></i>
+                  {canister.error}
+                </div>
+              {:else if canister.status}
+                <div class="p-4 space-y-3">
+                  <!-- Memory Size -->
+                  <div
+                    class="flex items-center justify-between py-2 border-b border-gray-700"
+                  >
+                    <span class="font-medium">memory_size</span>
+                    <span class="text-orange-600"
+                      >{formatBytes(
+                        parseInt(canister.status.memory_size)
+                      )}</span
+                    >
                   </div>
-                {:else if canister.error}
-                  <div class="p-4 text-center text-red-400">
-                    <i class="fa-solid fa-exclamation-triangle mr-2"></i>
-                    {canister.error}
+
+                  <!-- Freezing Threshold -->
+                  <div
+                    class="flex items-center justify-between py-2 border-b border-gray-700"
+                  >
+                    <span class="font-medium">freezing_threshold</span>
+                    <span class="text-orange-600"
+                      >{canister.status.freezing_threshold}</span
+                    >
                   </div>
-                {:else if canister.status}
-                  <div class="p-4 space-y-3">
-                    <!-- Memory Size -->
-                    <div
-                      class="flex items-center justify-between py-2 border-b border-gray-700"
-                    >
-                      <span class="font-medium">memory_size</span>
-                      <span class="text-green-400"
-                        >{formatBytes(
-                          parseInt(canister.status.memory_size)
-                        )}</span
-                      >
-                    </div>
 
-                    <!-- Freezing Threshold -->
-                    <div
-                      class="flex items-center justify-between py-2 border-b border-gray-700"
+                  <!-- Memory Allocation -->
+                  <div
+                    class="flex items-center justify-between py-2 border-b border-gray-700"
+                  >
+                    <span class="font-medium">memory_allocation</span>
+                    <span class="text-orange-600"
+                      >{canister.status.memory_allocation}</span
                     >
-                      <span class="font-medium">freezing_threshold</span>
-                      <span class="text-green-400"
-                        >{canister.status.freezing_threshold}</span
-                      >
-                    </div>
-
-                    <!-- Memory Allocation -->
-                    <div
-                      class="flex items-center justify-between py-2 border-b border-gray-700"
-                    >
-                      <span class="font-medium">memory_allocation</span>
-                      <span class="text-green-400"
-                        >{canister.status.memory_allocation}</span
-                      >
-                    </div>
-
-                    <!-- Stable Memory Size -->
-                    <div
-                      class="flex items-center justify-between py-2 border-b border-gray-700"
-                    >
-                      <span class="font-medium">stable_memory_size</span>
-                      <span class="text-green-400"
-                        >{formatBytes(
-                          parseInt(canister.status.stable_memory_size)
-                        )}</span
-                      >
-                    </div>
-
-                    <!-- Snapshots Size -->
-                    <div
-                      class="flex items-center justify-between py-2 border-b border-gray-700"
-                    >
-                      <span class="font-medium">snapshots_size</span>
-                      <span class="text-green-400"
-                        >{canister.status.snapshots_size}</span
-                      >
-                    </div>
-
-                    <!-- WASM Memory Size -->
-                    <div
-                      class="flex items-center justify-between py-2 border-b border-gray-700"
-                    >
-                      <span class="font-medium">wasm_memory_size</span>
-                      <span class="text-green-400"
-                        >{formatBytes(
-                          parseInt(canister.status.wasm_memory_size)
-                        )}</span
-                      >
-                    </div>
-
-                    <!-- Global Memory Size -->
-                    <div
-                      class="flex items-center justify-between py-2 border-b border-gray-700"
-                    >
-                      <span class="font-medium">global_memory_size</span>
-                      <span>{canister.status.global_memory_size}</span>
-                    </div>
-
-                    <!-- Cycles Balance -->
-                    <div
-                      class="flex items-center justify-between py-2 border-b border-gray-700"
-                    >
-                      <span class="font-medium">cyclesBalance</span>
-                      <span>{formatCycles(canister.status.cyclesBalance)}</span>
-                    </div>
-
-                    <!-- Timestamp -->
-                    <div
-                      class="flex items-center justify-between py-2 border-b border-gray-700"
-                    >
-                      <span class="font-medium">timestamp</span>
-                      <span>{canister.status.timestamp}</span>
-                    </div>
-
-                    <!-- Interface -->
-                    {#if canister.status.interface}
-                      <div class="flex items-center justify-between py-2">
-                        <span class="font-medium">Interface:</span>
-                        <a
-                          href={canister.status.interface}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          class="text-blue-400 hover:text-blue-300 underline break-all"
-                        >
-                          {canister.status.interface.length > 30
-                            ? canister.status.interface.substring(0, 30) + "..."
-                            : canister.status.interface}
-                        </a>
-                      </div>
-                    {/if}
                   </div>
-                {/if}
-              </div>
-            {/if}
+
+                  <!-- Stable Memory Size -->
+                  <div
+                    class="flex items-center justify-between py-2 border-b border-gray-700"
+                  >
+                    <span class="font-medium">stable_memory_size</span>
+                    <span class="text-orange-600"
+                      >{formatBytes(
+                        parseInt(canister.status.stable_memory_size)
+                      )}</span
+                    >
+                  </div>
+
+                  <!-- Snapshots Size -->
+                  <div
+                    class="flex items-center justify-between py-2 border-b border-gray-700"
+                  >
+                    <span class="font-medium">snapshots_size</span>
+                    <span class="text-orange-600"
+                      >{canister.status.snapshots_size}</span
+                    >
+                  </div>
+
+                  <!-- WASM Memory Size -->
+                  <div
+                    class="flex items-center justify-between py-2 border-b border-gray-700"
+                  >
+                    <span class="font-medium">wasm_memory_size</span>
+                    <span class="text-orange-600"
+                      >{formatBytes(
+                        parseInt(canister.status.wasm_memory_size)
+                      )}</span
+                    >
+                  </div>
+
+                  <!-- Global Memory Size -->
+                  <div
+                    class="flex items-center justify-between py-2 border-b border-gray-700"
+                  >
+                    <span class="font-medium">global_memory_size</span>
+                    <span>{canister.status.global_memory_size}</span>
+                  </div>
+
+                  <!-- Cycles Balance -->
+                  <div
+                    class="flex items-center justify-between py-2 border-b border-gray-700"
+                  >
+                    <span class="font-medium">cyclesBalance</span>
+                    <span>{formatCycles(canister.status.cyclesBalance)}</span>
+                  </div>
+
+                  <!-- Timestamp -->
+                  <div
+                    class="flex items-center justify-between py-2 border-b border-gray-700"
+                  >
+                    <span class="font-medium">timestamp</span>
+                    <span>{canister.status.timestamp}</span>
+                  </div>
+
+                  <!-- Interface -->
+                  {#if canister.status.interface}
+                    <div class="flex items-center justify-between py-2">
+                      <span class="font-medium">Interface:</span>
+                      <a
+                        href={canister.status.interface}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="text-blue-400 hover:text-blue-300 underline break-all"
+                      >
+                        {canister.status.interface.length > 30
+                          ? canister.status.interface.substring(0, 30) + "..."
+                          : canister.status.interface}
+                      </a>
+                    </div>
+                  {/if}
+                </div>
+              {/if}
+            </div>
           </div>
         {/each}
       </div>
