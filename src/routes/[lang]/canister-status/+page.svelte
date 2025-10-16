@@ -45,7 +45,7 @@
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const data = (await response.json()) as any;
-      console.log(data);
+      console.log("Raw API response:", data);
 
       // Convert the array format to our expected object format
       // The response is an array of [key, value] pairs
@@ -62,6 +62,7 @@
         interface: `https://dashboard.internetcomputer.org/canister/${canisterId}`,
       };
 
+      console.log("Parsed status object:", statusObj);
       return statusObj;
     } catch (error) {
       console.error(`Error fetching status for canister ${canisterId}:`, error);
@@ -82,13 +83,22 @@
     canister.loading = true;
     canister.error = undefined;
 
+    console.log("Fetching status for canister:", canisterId);
     const status = await fetchCanisterStatus(canisterId);
+    console.log("Received status:", status);
+
     canister.loading = false;
 
     if (status) {
       canister.status = status;
+      console.log("Status assigned to canister:", canister);
+      // Force reactivity by reassigning the array
+      canisterIdMap = [...canisterIdMap];
     } else {
       canister.error = "Failed to fetch canister status";
+      console.log("Failed to fetch status for canister:", canisterId);
+      // Force reactivity by reassigning the array
+      canisterIdMap = [...canisterIdMap];
     }
   }
 
