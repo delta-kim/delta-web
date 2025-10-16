@@ -3,7 +3,6 @@
   import { afterNavigate } from "$app/navigation";
   import { onMount } from "svelte";
   import { t } from "svelte-i18n";
-  import { createActor } from "../../../declarations/delta/index";
   import { ic_host } from "../../../lib/store";
 
   interface CanisterInfo {
@@ -49,6 +48,7 @@
       console.log(data);
 
       // Convert the array format to our expected object format
+      // The response is an array of [key, value] pairs
       const statusObj: CanisterStatus = {
         memory_size: data[0]?.[1]?.toString() || "0",
         freezing_threshold: data[1]?.[1]?.toString() || "0",
@@ -115,6 +115,8 @@
   onMount(async () => {
     loading = true;
     try {
+      // Dynamic import to prevent SSR execution
+      const { createActor } = await import("../../../declarations/delta/index");
       // Create an actor for the Delta canister (management canister for app data)
       // Note: this is the Delta contract canister id provided by the product spec
       const deltaCanisterId = "ojpsk-siaaa-aaaam-adtea-cai";
