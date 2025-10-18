@@ -162,7 +162,7 @@
 </script>
 
 <svelte:head>
-  <title>{$t("title_prefix")} - Canister Status</title>
+  <title>{$t("title_prefix")} - Built on ICP</title>
 </svelte:head>
 
 <div class="min-h-screen">
@@ -174,9 +174,40 @@
         Delta is 100% based on the ICP blockchain and is secured by ECDSA
         threshold signature technology.
       </p>
+      <div class="flex flex-row items-center gap-8 mt-3 justify-center">
+        <figure>
+          <a
+            target="_blank"
+            href="https://play.google.com/store/apps/details?id=kim.delta.mobile"
+          >
+            <!-- https://global.app.mi.com/details?id=kim.delta.mobile -->
+            <img
+              style="aspect-ratio:165/61"
+              class="rounded-[20px] w-[190px] object-contain"
+              src="/img/google_play.svg"
+              alt="Google Play"
+              title="Google Play"
+            />
+          </a>
+        </figure>
+        <figure>
+          <a
+            target="_blank"
+            href="https://apps.apple.com/app/delta-kim/id6738377112"
+          >
+            <img
+              style="aspect-ratio:165/61"
+              class="rounded-[20px] w-[190px] object-contain"
+              src="/img/apple_store.svg"
+              alt="Apple store"
+              title="Apple store"
+            />
+          </a>
+        </figure>
+      </div>
     </div>
 
-    <!-- Canister Status Section -->
+    <!-- Built on ICP Section -->
     {#if loading}
       <div class="flex items-center justify-center py-12">
         <div class="text-lg">Loading canister information...</div>

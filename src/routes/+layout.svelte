@@ -61,7 +61,7 @@
     },
     {
       link: "/canister-status",
-      label: "Canister Status",
+      label: "Built on ICP",
     },
   ];
   const usefulLinks = [
@@ -494,7 +494,15 @@
                     href="./canister-status"
                     selected={$page.url.pathname.endsWith("/canister-status")}
                   >
-                    <span>Canister Status</span>
+                    <span class="flex items-center"
+                      >Built on ICP <img
+                        src="/img/icp-logo.svg"
+                        width="30"
+                        height="30"
+                        class="inline-block ml-1"
+                        alt="ICP Logo"
+                      /></span
+                    >
                   </TabAnchor>
                 </TabGroup>
               </li>
@@ -555,7 +563,15 @@
               href="/{data.lang}/canister-status"
               selected={$page.url.pathname.endsWith("/canister-status")}
             >
-              <span>Canister Status</span>
+              <span class="flex items-center"
+                >Built on ICP <img
+                  src="/img/icp-logo.svg"
+                  width="30"
+                  height="30"
+                  class="inline-block ml-1"
+                  alt="ICP Logo"
+                /></span
+              >
             </TabAnchor>
           </TabGroup>
           <svelte:fragment slot="trail">
