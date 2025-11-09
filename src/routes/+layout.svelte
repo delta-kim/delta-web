@@ -107,6 +107,12 @@
       creator: "magnohoved@gmail.com",
     },
     {
+      icon: `<i class="fa-brands fa-telegram" style="color:#0088CC"></i>`,
+      label: "Delta.🇮🇳 India",
+      link: "https://t.me/delta_in",
+      creator: "",
+    },
+    {
       icon: `<i class="fa-brands fa-square-x-twitter" style="color:black"></i>`,
       label: "DeltaCoinNews",
       link: "https://x.com/DeltaCoinNews",
@@ -154,13 +160,6 @@
       link: "https://www.youtube.com/@DeltaOnICPBlockchain",
       creator: "choudharysushobhan97@gmail.com",
     },
-
-    {
-      icon: `<i class="fa-brands fa-facebook"style="color:rgb(8, 102, 255)"></i>`,
-      label: "Delta δ بالعربي",
-      link: "https://www.facebook.com/groups/9774910459215134",
-      creator: "kbuhfils@gmail.com",
-    },
     {
       icon: `<i class="fa-brands fa-square-x-twitter" style="color:black"></i>`,
       label: "DeltaPioneers",
@@ -180,22 +179,10 @@
       creator: "josephangengang@gmail.com",
     },
     {
-      icon: `<i class="fa-brands fa-telegram" style="color:#0088CC"></i>`,
-      label: "Delta Türkiye",
-      link: "https://t.me/deltakimtr",
-      creator: "josephangengang@gmail.com",
-    },
-    {
       icon: `<i class="fa-brands fa-reddit" style="color:rgb(255, 69, 0);"></i>`,
       label: "Delta Crypto",
       link: "https://www.reddit.com/r/Delta_Crypto",
       creator: "princejames.biz@gmail.com",
-    },
-    {
-      icon: `<i class="fa-brands fa-telegram" style="color:#0088CC"></i>`,
-      label: "Delta.🇮🇳 India",
-      link: "https://t.me/delta_in",
-      creator: "",
     },
     {
       icon: `<img style="width: 15px;display: inline;"alt="delta medium"src="/img/medium.png"/>`,
