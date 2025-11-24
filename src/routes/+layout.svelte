@@ -330,7 +330,7 @@
     },
     {
       icon: `<i class="fa-brands fa-telegram" style="color:#0088CC"></i>`,
-      label: "Delta Mozambique🇲🇿",
+      label: "Delta Português 🇵🇹",
       link: "https://t.me/deltacoinmozambique",
       creator: "",
     },
