@@ -400,6 +400,12 @@
       link: "https://chat.whatsapp.com/GyovOLw8T1h7kcK18n2rw0?mode=ac_t",
       creator: "",
     },
+    {
+      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
+      label: "Delta Rwanda",
+      link: "https://chat.whatsapp.com/L3L4Ynpnhfu4FvSHBYAW2n",
+      creator: "",
+    },
   ];
 </script>
 
