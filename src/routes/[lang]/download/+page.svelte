@@ -74,7 +74,7 @@
             target="_blank"
             href={lang == "zh-CN"
               ? "https://wwrm.lanzoue.com/delta-mobile"
-              : "https://github.com/delta-kim/delta_mobile_app/releases/download/1.2.9/delta_mobile_1.2.9.apk"}
+              : "https://github.com/delta-kim/delta_mobile_app/releases/download/1.3.0/delta_mobile_1.3.0.apk"}
           >
             <img
               class="rounded-md w-[190px] object-contain"
@@ -87,7 +87,7 @@
             <a
               style="text-decoration: underline;"
               href="https://github.com/delta-kim/delta_mobile_app/releases"
-              target="_blank">Version:1.2.9 Latest:2025-11-28
+              target="_blank">Version:1.3.0 Latest:2025-12-05
             </a>
           </div>
         </figure>
