@@ -204,12 +204,6 @@
     },
     {
       icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
-      label: "Delta.🇹🇿",
-      link: "https://chat.whatsapp.com/HxNu5J2sO8yGRAYWgSTvvu",
-      creator: "joshuanicholaus22@gmail.com",
-    },
-    {
-      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
       label: "Delta.🇳🇬 NIG ",
       link: "https://chat.whatsapp.com/DEAD9pAQ9dmH60SVRqzZ9G",
       creator: "chizimuzoridenyi@outlook.com",
@@ -249,12 +243,6 @@
       label: "Delta 🇳🇬 NIG ",
       link: "https://t.me/OfficialDeltakimNIG",
       creator: "chizimuzoridenyi@outlook.com",
-    },
-    {
-      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
-      label: "Delta Naija",
-      link: "https://chat.whatsapp.com/E9va1NFe0zf8dcnGW3WYFD",
-      creator: "johnnex16@gmail.com",
     },
     {
       icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
