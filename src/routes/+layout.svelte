@@ -245,12 +245,6 @@
       creator: "chizimuzoridenyi@outlook.com",
     },
     {
-      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
-      label: "DELTA COIN (δ)",
-      link: "https://chat.whatsapp.com/I4y8APe0kByBbwwoPN9GaJ",
-      creator: "",
-    },
-    {
       icon: `<i class="fa-brands fa-square-x-twitter" style="color:black"></i>`,
       label: "Delta India",
       link: "https://x.com/DeltaKimIndia",
@@ -293,12 +287,6 @@
       creator: "",
     },
     {
-      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
-      label: "Delta Pakistan",
-      link: "https://chat.whatsapp.com/IwZFddlph7m1m8UNOkYdqS",
-      creator: "",
-    },
-    {
       icon: `<i class="fa-brands fa-telegram" style="color:#0088CC"></i>`,
       label: "Comunitatea Delta 🇷🇴",
       link: "https://t.me/deltakimnetworkromania",
@@ -320,12 +308,6 @@
       icon: `<i class="fa-brands fa-telegram" style="color:#0088CC"></i>`,
       label: "Delta Português 🇵🇹",
       link: "https://t.me/deltacoinmozambique",
-      creator: "",
-    },
-    {
-      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
-      label: "DELTA TURKIYE 🇹🇷",
-      link: "https://chat.whatsapp.com/KaAAoxxuBzq7rtATZtU5TP",
       creator: "",
     },
     {
@@ -392,6 +374,13 @@
       icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
       label: "Delta Rwanda",
       link: "https://chat.whatsapp.com/L3L4Ynpnhfu4FvSHBYAW2n",
+      creator: "",
+    },
+    {
+      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
+     label: "Delta 🇮🇳 India",
+      link: "https://chat.whatsapp.com/FZCpCo39DaC3QV5X4DKxBu",
+      creator: "",
       creator: "",
     },
   ];
