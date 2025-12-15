@@ -381,7 +381,6 @@
      label: "Delta 🇮🇳 India",
       link: "https://chat.whatsapp.com/FZCpCo39DaC3QV5X4DKxBu",
       creator: "",
-      creator: "",
     },
   ];
 </script>

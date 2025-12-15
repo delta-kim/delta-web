@@ -44,7 +44,7 @@
 
   function _formatCryptoAmount(
     value: bigint | number | string,
-    decimals = 8
+    decimals = 8,
   ): string {
     let bigValue: bigint;
     if (typeof value === "bigint") bigValue = value;
@@ -79,7 +79,7 @@
     filter: any,
     skipId: any,
     limit: number,
-    { coinCode }: { coinCode?: string }
+    { coinCode }: { coinCode?: string },
   ) {
     const host = $ic_host ?? "https://icp0.io";
     const mainCanisterId = "ojpsk-siaaa-aaaam-adtea-cai";
@@ -104,7 +104,7 @@
     const transactions = await Ledger.listTransaction(
       filter || [],
       skipId,
-      limit
+      limit,
     );
     return { transactions, ledgerArgsList };
   }
@@ -119,7 +119,7 @@
         100,
         {
           coinCode: coin_code,
-        }
+        },
       );
     ledgers = ledgerArgsList;
     tnx = $tnx.length > 0 ? $tnx[0] : undefined;
@@ -137,83 +137,136 @@
   <div
     class="container mx-auto h-full flex flex-col justify-center items-center pb-10"
   >
-    <div class="gap-4 w-full md:w-[50vw] my-10 px-2">
-      <div class="bg-white w-full rounded-lg pb-10">
-        <h1 class="border-b border-slate-400 px-4 py-3">Transaction</h1>
-        <div class="text-[14px] text-slate-500">
-          <div
-            class="flex justify-between items-center border-b border-slate-400 text-md font-[400] py-2 px-4 flex-wrap"
-          >
-            <p class="flex-2 font-bold text-black">ID</p>
-            <p>{tnx?.id}</p>
+    <div class="gap-4 w-full md:w-[60vw] my-10 px-2">
+      <div
+        class="bg-white w-full rounded-2xl shadow-sm border border-slate-100 p-6"
+      >
+        <h2
+          class="text-xl font-bold text-slate-800 mb-6 pb-4 border-b border-slate-100"
+        >
+          Transaction Details
+        </h2>
+
+        <div class="space-y-6">
+          <!-- Main Info -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <p class="text-sm font-medium text-slate-500 mb-1">
+                Transaction ID
+              </p>
+              <div class="flex items-center gap-2">
+                <p class="text-slate-800 font-mono text-sm break-all">
+                  {tnx?.txId || "N/A"}
+                </p>
+                {#if tnx?.txId}
+                  <button
+                    type="button"
+                    class="p-1 text-slate-400 hover:text-blue-600 transition-colors"
+                    title="Copy TxID"
+                    on:click={() => {
+                      navigator.clipboard.writeText(tnx?.txId || "");
+                      alert("TxID copied");
+                    }}
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-4 w-4"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+                      />
+                    </svg>
+                  </button>
+                {/if}
+              </div>
+            </div>
+            <div>
+              <p class="text-sm font-medium text-slate-500 mb-1">Internal ID</p>
+              <p class="text-slate-800 font-mono text-sm">{tnx?.id}</p>
+            </div>
           </div>
+
+          <!-- Amounts -->
           <div
-            class="flex justify-between items-center border-b border-slate-400 text-md font-[400] py-2 px-4 flex-wrap"
+            class="bg-slate-50 rounded-xl p-4 border border-slate-100 grid grid-cols-1 md:grid-cols-2 gap-6"
           >
-            <p class="flex-2 font-bold text-black">TxID</p>
-            <p>{tnx?.txId != "" ? _clipString(tnx?.txId) : "N/A"}</p>
+            <div>
+              <p class="text-sm font-medium text-slate-500 mb-1">Amount</p>
+              <p class="text-xl font-bold text-slate-800">
+                {_formatCryptoAmount(
+                  tnx.amount,
+                  Number(getLedger(coin_code)?.decimals ?? 8),
+                )}
+                <span class="text-sm font-medium text-slate-500 ml-1"
+                  >{getLedger(coin_code)?.code}</span
+                >
+              </p>
+            </div>
+            <div>
+              <p class="text-sm font-medium text-slate-500 mb-1">Fee</p>
+              <p class="text-xl font-bold text-slate-800">
+                {_formatCryptoAmount(
+                  tnx.fee,
+                  Number(getLedger(coin_code)?.decimals ?? 8),
+                )}
+                <span class="text-sm font-medium text-slate-500 ml-1"
+                  >{getLedger(coin_code)?.code}</span
+                >
+              </p>
+            </div>
           </div>
-          <div
-            class="flex justify-between lg:items-center border-b border-slate-400 text-md font-[400] py-2 px-4"
-          >
-            <p class="flex-2 font-bold text-black">Coin Code</p>
-            <p>{getLedger(coin_code)?.code}</p>
-          </div>
-          <div
-            class="flex justify-between items-center border-b border-slate-400 text-md font-[400] py-2 px-4"
-          >
-            <p class="flex-2 font-bold text-black">Method</p>
-            <p>{_formatKind(tnx.kind)}</p>
-          </div>
-          <div
-            class="flex justify-between items-center border-b border-slate-400 text-md font-[400] py-2 px-4"
-          >
-            <p class="flex-2 font-bold text-black">Timestamp</p>
-            <p>{_formatTimestamp(tnx.timestamp)}</p>
-          </div>
-          <div
-            class="flex justify-between items-center border-b border-slate-400 text-md font-[400] py-2 px-4"
-          >
-            <p class="flex-2 font-bold text-black">From</p>
-            <p>
-              <TabAnchor
+
+          <!-- Details -->
+          <div class="grid grid-cols-1 gap-4">
+            <div
+              class="flex flex-col sm:flex-row sm:justify-between py-3 border-b border-slate-50"
+            >
+              <span class="text-sm font-medium text-slate-500">Method</span>
+              <span
+                class="text-sm font-medium text-slate-800 bg-slate-100 px-2 py-1 rounded inline-block w-fit mt-1 sm:mt-0"
+              >
+                {_formatKind(tnx.kind)}
+              </span>
+            </div>
+
+            <div
+              class="flex flex-col sm:flex-row sm:justify-between py-3 border-b border-slate-50"
+            >
+              <span class="text-sm font-medium text-slate-500">Timestamp</span>
+              <span class="text-sm text-slate-800 mt-1 sm:mt-0"
+                >{_formatTimestamp(tnx.timestamp)}</span
+              >
+            </div>
+
+            <div
+              class="flex flex-col sm:flex-row sm:justify-between py-3 border-b border-slate-50"
+            >
+              <span class="text-sm font-medium text-slate-500">From</span>
+              <a
                 href={`../account/${tnx.from}?coin_code=${getLedger(coin_code)?.code}`}
-                class="text-blue-600">{_clipString(tnx.from)}</TabAnchor
+                class="text-sm font-medium text-blue-600 hover:text-blue-800 break-all mt-1 sm:mt-0"
               >
-            </p>
-          </div>
-          <div
-            class="flex justify-between items-center border-b border-slate-400 text-md font-[400] py-2 px-4"
-          >
-            <p class="flex-2 font-bold text-black">To</p>
-            <p>
-              <TabAnchor
+                {tnx.from}
+              </a>
+            </div>
+
+            <div
+              class="flex flex-col sm:flex-row sm:justify-between py-3 border-b border-slate-50"
+            >
+              <span class="text-sm font-medium text-slate-500">To</span>
+              <a
                 href={`../account/${tnx.to}?coin_code=${getLedger(coin_code)?.code}`}
-                class="text-blue-600">{_clipString(tnx.to)}</TabAnchor
+                class="text-sm font-medium text-blue-600 hover:text-blue-800 break-all mt-1 sm:mt-0"
               >
-            </p>
-          </div>
-          <div
-            class="flex justify-between items-center border-b border-slate-400 text-md font-[400] py-2 px-4"
-          >
-            <p class="flex-2 font-bold text-black">Amount</p>
-            <p>
-              {_formatCryptoAmount(
-                tnx.amount,
-                Number(getLedger(coin_code)?.decimals ?? 8)
-              )}{getLedger(coin_code)?.code}
-            </p>
-          </div>
-          <div
-            class="flex justify-between items-center border-b border-slate-400 text-md font-[400] py-2 px-4"
-          >
-            <p class="flex-2 font-bold text-black">Fee</p>
-            <p>
-              {_formatCryptoAmount(
-                tnx.fee,
-                Number(getLedger(coin_code)?.decimals ?? 8)
-              )}{getLedger(coin_code)?.code}
-            </p>
+                {tnx.to}
+              </a>
+            </div>
           </div>
         </div>
       </div>
