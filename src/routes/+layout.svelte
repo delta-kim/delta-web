@@ -376,6 +376,12 @@
       link: "https://chat.whatsapp.com/FZCpCo39DaC3QV5X4DKxBu",
       creator: "",
     },
+    {
+      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
+      label: "Informations Sur Le🇧🇯",
+      link: "https://chat.whatsapp.com/G6cH0qe5rg2KwE6vlNMSfO?mode=wwt",
+      creator: "",
+    },
   ];
 </script>
 
