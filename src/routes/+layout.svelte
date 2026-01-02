@@ -137,6 +137,18 @@
       creator: "princejames.biz@gmail.com",
     },
     {
+      icon: `<i class="fa-brands fa-square-x-twitter" style="color:black"></i>`,
+      label: "DeltaPioneers",
+      link: "https://x.com/Deltapioneers",
+      creator: "josephangengang@gmail.com",
+    },
+    {
+      icon: `<i class="fa-brands fa-square-x-twitter" style="color:black"></i>`,
+      label: "Delta Global",
+      link: "https://x.com/thedeltaglobal",
+      creator: "josephangengang@gmail.com",
+    },
+    {
       icon: `<i class="fa-brands fa-youtube"style="color:rgb(255, 0, 51)"></i>`,
       label: "DeltaCoinNews",
       link: "https://www.youtube.com/@DeltaCoinNews",
@@ -159,12 +171,6 @@
       label: "Delta On ICP",
       link: "https://www.youtube.com/@DeltaOnICPBlockchain",
       creator: "choudharysushobhan97@gmail.com",
-    },
-    {
-      icon: `<i class="fa-brands fa-square-x-twitter" style="color:black"></i>`,
-      label: "DeltaPioneers",
-      link: "https://x.com/Deltapioneers",
-      creator: "josephangengang@gmail.com",
     },
     {
       icon: `<i class="fa-brands fa-facebook"style="color: rgb(8, 102, 255);"></i>`,
