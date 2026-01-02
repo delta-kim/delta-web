@@ -19,6 +19,23 @@
   let loading = true;
   let coin: string | undefined = undefined;
 
+  // Pagination
+  let currentPage = 1;
+  let itemsPerPage = 10;
+  $: totalPages = Math.ceil(transactions.length / itemsPerPage);
+  $: paginatedTransactions = transactions.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage,
+  );
+
+  function nextPage() {
+    if (currentPage < totalPages) currentPage++;
+  }
+
+  function prevPage() {
+    if (currentPage > 1) currentPage--;
+  }
+
   export let data: PageData;
 
   export let lang = data.lang;
@@ -40,7 +57,7 @@
 
   function _formatCryptoAmount(
     value: bigint | number | string,
-    decimals = 8
+    decimals = 8,
   ): string {
     let bigValue: bigint;
     if (typeof value === "bigint") bigValue = value;
@@ -76,7 +93,7 @@
     filter: [FilterArgs] | undefined,
     skipId: any,
     limit: number,
-    { coinCode }: { coinCode?: string }
+    { coinCode }: { coinCode?: string },
   ) {
     const host = $ic_host ?? "https://icp0.io";
     const mainCanisterId = "ojpsk-siaaa-aaaam-adtea-cai";
@@ -101,7 +118,7 @@
     const transactions = await Ledger.listTransaction(
       filter || [],
       skipId,
-      limit
+      limit,
     );
     return { transactions, ledgerArgsList };
   }
@@ -125,7 +142,7 @@
       100,
       {
         coinCode: coin,
-      }
+      },
     );
   };
 </script>
@@ -140,9 +157,13 @@
     class="container mx-auto h-full flex flex-col justify-center items-center pb-10"
   >
     <div class="gap-4 w-full lg:w-[70vw] my-10 px-2">
-      <div class="bg-white w-full rounded-lg pb-10">
-        <div class="flex border-b border-slate-400 px-4 py-3 justify-between">
-          <h1>Transactions</h1>
+      <div
+        class="bg-white w-full rounded-2xl shadow-sm border border-slate-100 p-6"
+      >
+        <div
+          class="flex flex-col md:flex-row justify-between items-center mb-6 gap-4"
+        >
+          <h2 class="text-xl font-bold text-slate-800">Transactions</h2>
           <select
             bind:value={coin}
             on:change={async (e) => {
@@ -153,7 +174,9 @@
               transactions = tnx;
               loading = false;
               coin = coin;
+              currentPage = 1; // Reset to first page on filter change
             }}
+            class="form-select block w-full md:w-auto px-3 py-2 text-base border-slate-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md"
           >
             <option>Filter by ledger</option>
             {#each ledgers as app}
@@ -161,71 +184,138 @@
             {/each}
           </select>
         </div>
+
         {#if transactions.length > 0}
-          <div class="w-full overflow-scroll">
-            <table class="w-full">
+          <div class="w-full overflow-x-auto">
+            <table class="w-full text-left border-collapse">
               <thead>
-                <tr>
-                  <th> ID </th>
-                  <th> From </th>
-                  <th> To </th>
-                  <th> Method</th>
-                  <th> Amount </th>
-                  <th> Fee </th>
-                  <th> Timestamp </th>
-                  <th> TxID </th>
+                <tr class="border-b border-slate-100">
+                  <th class="py-3 px-4 text-sm font-semibold text-slate-500"
+                    >ID</th
+                  >
+                  <th class="py-3 px-4 text-sm font-semibold text-slate-500"
+                    >From</th
+                  >
+                  <th class="py-3 px-4 text-sm font-semibold text-slate-500"
+                    >To</th
+                  >
+                  <th class="py-3 px-4 text-sm font-semibold text-slate-500"
+                    >Method</th
+                  >
+                  <th class="py-3 px-4 text-sm font-semibold text-slate-500"
+                    >Amount</th
+                  >
+                  <th class="py-3 px-4 text-sm font-semibold text-slate-500"
+                    >Fee</th
+                  >
+                  <th class="py-3 px-4 text-sm font-semibold text-slate-500"
+                    >Time</th
+                  >
+                  <th class="py-3 px-4 text-sm font-semibold text-slate-500"
+                    >TxID</th
+                  >
                 </tr>
               </thead>
               <tbody>
-                {#each transactions as tnx}
-                  <tr>
-                    <td>
-                      <p>{tnx?.id}</p>
-                    </td>
-                    <td
-                      ><TabAnchor
+                {#each paginatedTransactions as tnx}
+                  <tr
+                    class="border-b border-slate-50 last:border-0 hover:bg-slate-50 transition-colors"
+                  >
+                    <td class="py-3 px-4 text-sm text-slate-600">{tnx?.id}</td>
+                    <td class="py-3 px-4 text-sm">
+                      <a
                         href={`./account/${tnx.from}?coin_code=${getLedger(coin)?.code}`}
-                        class="text-blue-600">{_clipString(tnx.from)}</TabAnchor
-                      ></td
-                    >
-                    <td
-                      ><TabAnchor
+                        class="text-blue-600 hover:text-blue-800 font-medium"
+                      >
+                        {_clipString(tnx.from)}
+                      </a>
+                    </td>
+                    <td class="py-3 px-4 text-sm">
+                      <a
                         href={`./account/${tnx.to}?coin_code=${getLedger(coin)?.code}`}
-                        class="text-blue-600">{_clipString(tnx.to)}</TabAnchor
-                      ></td
-                    >
-                    <td> <p>{_formatKind(tnx.kind)}</p> </td>
-                    <td>
-                      <p>
-                        {_formatCryptoAmount(
-                          tnx.amount,
-                          Number(getLedger(coin)?.decimals ?? 8)
-                        )}{getLedger(coin)?.code}
-                      </p>
+                        class="text-blue-600 hover:text-blue-800 font-medium"
+                      >
+                        {_clipString(tnx.to)}
+                      </a>
                     </td>
-                    <td>
-                      <p>
-                        {_formatCryptoAmount(
-                          tnx.fee,
-                          Number(getLedger(coin)?.decimals ?? 8)
-                        )}{getLedger(coin)?.code}
-                      </p>
+                    <td class="py-3 px-4 text-sm">
+                      <span
+                        class="bg-slate-100 text-slate-600 px-2 py-1 rounded text-xs font-medium"
+                      >
+                        {_formatKind(tnx.kind)}
+                      </span>
                     </td>
-                    <td> <p>{_formatTimestamp(tnx.timestamp)}</p> </td>
+                    <td class="py-3 px-4 text-sm font-medium text-slate-700">
+                      {_formatCryptoAmount(
+                        tnx.amount,
+                        Number(getLedger(coin)?.decimals ?? 8),
+                      )}
+                      <span class="text-xs text-slate-500 ml-1"
+                        >{getLedger(coin)?.code}</span
+                      >
+                    </td>
+                    <td class="py-3 px-4 text-sm text-slate-500">
+                      {_formatCryptoAmount(
+                        tnx.fee,
+                        Number(getLedger(coin)?.decimals ?? 8),
+                      )}
+                      <span class="text-xs ml-1">{getLedger(coin)?.code}</span>
+                    </td>
                     <td
-                      >{#if tnx?.txId != ""}
-                        <TabAnchor
-                          href={`./tx/${tnx.txId}?coin_code=${getLedger(coin)?.code}`}
-                          class="text-blue-600"
-                          >{_clipString(tnx?.txId)}</TabAnchor
-                        >{:else}<p>N//A</p>{/if}
+                      class="py-3 px-4 text-sm text-slate-500 whitespace-nowrap"
+                    >
+                      {_formatTimestamp(tnx.timestamp)}
                     </td>
-                  </tr>{/each}
+                    <td class="py-3 px-4 text-sm">
+                      {#if tnx?.txId != ""}
+                        <a
+                          href={`./tx/${tnx.txId}?coin_code=${getLedger(coin)?.code}`}
+                          class="text-blue-600 hover:text-blue-800 font-medium"
+                        >
+                          {_clipString(tnx?.txId)}
+                        </a>
+                      {:else}
+                        <span class="text-slate-400">N/A</span>
+                      {/if}
+                    </td>
+                  </tr>
+                {/each}
               </tbody>
             </table>
           </div>
+
+          <!-- Pagination Controls -->
+          <div
+            class="flex justify-between items-center mt-6 pt-4 border-t border-slate-100"
+          >
+            <span class="text-sm text-slate-500">
+              Showing {(currentPage - 1) * itemsPerPage + 1} to {Math.min(
+                currentPage * itemsPerPage,
+                transactions.length,
+              )} of {transactions.length} entries
+            </span>
+            <div class="flex space-x-2">
+              <button
+                class="px-3 py-1 border border-slate-200 rounded-md text-sm font-medium text-slate-600 hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                on:click={prevPage}
+                disabled={currentPage === 1}
+              >
+                Previous
+              </button>
+              <button
+                class="px-3 py-1 border border-slate-200 rounded-md text-sm font-medium text-slate-600 hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                on:click={nextPage}
+                disabled={currentPage === totalPages}
+              >
+                Next
+              </button>
+            </div>
+          </div>
         {:else}
-          <p>No transactions found</p>{/if}
+          <div class="text-center py-10 text-slate-500">
+            <p>No transactions found</p>
+          </div>
+        {/if}
       </div>
     </div>
   </div>

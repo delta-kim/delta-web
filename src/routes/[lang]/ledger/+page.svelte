@@ -16,6 +16,23 @@
   let loading = true;
   const COIN_CODE = "BNB";
 
+  // Pagination
+  let currentPage = 1;
+  let itemsPerPage = 10;
+  $: totalPages = Math.ceil(transactions.length / itemsPerPage);
+  $: paginatedTransactions = transactions.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage,
+  );
+
+  function nextPage() {
+    if (currentPage < totalPages) currentPage++;
+  }
+
+  function prevPage() {
+    if (currentPage > 1) currentPage--;
+  }
+
   export let data: PageData;
 
   export let lang = data.lang;
@@ -28,7 +45,7 @@
 
   function _formatCryptoAmount(
     value: bigint | number | string,
-    decimals = 8
+    decimals = 8,
   ): string {
     let bigValue: bigint;
     if (typeof value === "bigint") bigValue = value;
@@ -67,7 +84,7 @@
     filter: [FilterArgs] | undefined,
     skipId: any,
     limit: number,
-    { coinCode }: { coinCode?: string }
+    { coinCode }: { coinCode?: string },
   ) {
     const host = $ic_host ?? "https://icp0.io";
     const mainCanisterId = "ojpsk-siaaa-aaaam-adtea-cai";
@@ -99,7 +116,7 @@
     const transactions = await Ledger.listTransaction(
       filter || [],
       skipId,
-      limit
+      limit,
     );
 
     return { transactions, ledgerArgsList };
@@ -148,6 +165,13 @@
       </h2>
       <form
         class="w-[90vw] md:w-[55vw] mx-auto flex justify-between bg-slate-200 rounded-full p-1 mt-5"
+        on:submit|preventDefault={(e) => {
+          // @ts-ignore
+          const val = e.target[0].value;
+          if (val) {
+            window.location.href = `./ledger/search?q=${val}`;
+          }
+        }}
       >
         <input
           class="w-[90%] rounded-full border-none bg-transparent px-4"
@@ -156,58 +180,84 @@
         <button class="bg-black px-5 rounded-full text-white">Search</button>
       </form>
     </div>
-    <div
-      class="bg-white shadow-xl rounded-md lg:rounded-3xl flex flex-wrap justify-center my-5 lg:my-10 w-full lg:w-[80vw]"
-    >
-      <div class="flex justify-between px-4 py-3 w-full">
-        <h1>Ledgers</h1>
-        <p>
-          Total: {ledgers.length}
-        </p>
-      </div>
-      {#each ledgers as app}
-        <div
-          class="border border-slate-400 p-2 lg:p-5 rounded-md lg:rounded-3xl w-full lg:w-[33%]"
+    <div class="w-full lg:w-[80vw] my-5 lg:my-10">
+      <div class="flex justify-between items-center px-2 mb-6">
+        <h1 class="text-2xl font-bold text-slate-800">Ledgers</h1>
+        <span
+          class="bg-slate-100 text-slate-600 px-3 py-1 rounded-full text-sm font-medium"
         >
-          <div class="flex">
-            <figure
-              class="mr-2 flex-none text-md bg-slate-200 rounded-lg w-10 h-10 flex items-center justify-center"
-            >
-              {#if app.symbol != ""}
-                {@html app.symbol}
-              {:else}
-                {@html app.code}{/if}
-            </figure>
-            <div>
-              <p class="text-sm font-[500]">
-                <b>Name:</b>
-                {@html app.name}
-              </p>
-              <p class="text-sm font-[500]">
-                <b>Code:</b>
-                {@html app.code}
-              </p>
-              <p class="text-sm font-[500]">
-                <b>Symbol:</b>
+          Total: {ledgers.length}
+        </span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-2">
+        {#each ledgers as app}
+          <div
+            class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 hover:shadow-md transition-all duration-200 flex flex-col h-full"
+          >
+            <div class="flex items-start justify-between mb-4">
+              <figure
+                class="flex-none text-xl bg-slate-50 rounded-xl w-14 h-14 flex items-center justify-center border border-slate-100"
+              >
                 {#if app.symbol != ""}
                   {@html app.symbol}
                 {:else}
-                  N/A{/if}
-              </p>
-              <p class="text-sm font-[500]">
-                <b>Decimal:</b>
-                {@html app.decimals}
-              </p>
-              <p class="text-sm font-[500]">
-                <b>Website:</b>
-                <a href={app.web} target="_blank">
-                  {@html app.web}
-                </a>
-              </p>
+                  {@html app.code}
+                {/if}
+              </figure>
+              <span
+                class="bg-blue-50 text-blue-600 px-2 py-1 rounded-md text-xs font-bold uppercase tracking-wider"
+              >
+                {@html app.code}
+              </span>
+            </div>
+
+            <div class="mb-4 flex-grow">
+              <h3 class="text-lg font-bold text-slate-800 mb-1">
+                {@html app.name}
+              </h3>
+              <div class="flex items-center text-slate-500 text-sm space-x-4">
+                <span class="flex items-center" title="Symbol">
+                  <span class="font-medium mr-1">Sym:</span>
+                  {#if app.symbol != ""}
+                    {@html app.symbol}
+                  {:else}
+                    N/A
+                  {/if}
+                </span>
+                <span class="flex items-center" title="Decimals">
+                  <span class="font-medium mr-1">Dec:</span>
+                  {@html app.decimals}
+                </span>
+              </div>
+            </div>
+
+            <div class="mt-auto pt-4 border-t border-slate-50">
+              <a
+                href={app.web}
+                target="_blank"
+                class="text-sm text-blue-600 hover:text-blue-800 font-medium flex items-center transition-colors"
+              >
+                Visit Website
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-4 w-4 ml-1"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                  />
+                </svg>
+              </a>
             </div>
           </div>
-        </div>
-      {/each}
+        {/each}
+      </div>
     </div>
     <!-- <div
       class="grid md:grid-cols-2 gap-4 w-full lg:w-[80vw] my-5 lg:my-10 px-2"
@@ -266,83 +316,150 @@
           </p>
         </div>
       </div> -->
-      <div class="bg-white w-full rounded-lg">
-        <div class="flex justify-between border-b border-slate-400 px-4 py-3">
-          <h1>Transactions</h1>
-          <p>
-            <TabAnchor href="./ledger/tx" class="text-blue-600"
-              >View All Transaction</TabAnchor
-            >
-          </p>
+      <div
+        class="bg-white w-full rounded-2xl shadow-sm border border-slate-100 p-6"
+      >
+        <div class="flex justify-between items-center mb-6">
+          <h2 class="text-xl font-bold text-slate-800">Transactions</h2>
+          <a
+            href="./ledger/tx"
+            class="text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors"
+          >
+            View All Transactions &rarr;
+          </a>
         </div>
+
         {#if transactions.length > 0}
-          <div class="w-full overflow-scroll">
-            <table class="w-full">
+          <div class="w-full overflow-x-auto">
+            <table class="w-full text-left border-collapse">
               <thead>
-                <tr>
-                  <th> ID </th>
-                  <th> From </th>
-                  <th> To </th>
-                  <th> Method</th>
-                  <th> Amount </th>
-                  <th> Fee </th>
-                  <th> Timestamp </th>
-                  <th> TxID </th>
+                <tr class="border-b border-slate-100">
+                  <th class="py-3 px-4 text-sm font-semibold text-slate-500"
+                    >ID</th
+                  >
+                  <th class="py-3 px-4 text-sm font-semibold text-slate-500"
+                    >From</th
+                  >
+                  <th class="py-3 px-4 text-sm font-semibold text-slate-500"
+                    >To</th
+                  >
+                  <th class="py-3 px-4 text-sm font-semibold text-slate-500"
+                    >Method</th
+                  >
+                  <th class="py-3 px-4 text-sm font-semibold text-slate-500"
+                    >Amount</th
+                  >
+                  <th class="py-3 px-4 text-sm font-semibold text-slate-500"
+                    >Fee</th
+                  >
+                  <th class="py-3 px-4 text-sm font-semibold text-slate-500"
+                    >Time</th
+                  >
+                  <th class="py-3 px-4 text-sm font-semibold text-slate-500"
+                    >TxID</th
+                  >
                 </tr>
               </thead>
               <tbody>
-                {#each transactions as tnx}
-                  <tr>
-                    <td>
-                      <p>{tnx?.id}</p>
-                    </td>
-                    <td
-                      ><TabAnchor
+                {#each paginatedTransactions as tnx}
+                  <tr
+                    class="border-b border-slate-50 last:border-0 hover:bg-slate-50 transition-colors"
+                  >
+                    <td class="py-3 px-4 text-sm text-slate-600">{tnx?.id}</td>
+                    <td class="py-3 px-4 text-sm">
+                      <a
                         href={`./ledger/account/${tnx.from}?coin_code=${getLedger()?.code}`}
-                        class="text-blue-600">{_clipString(tnx.from)}</TabAnchor
-                      ></td
-                    >
-                    <td
-                      ><TabAnchor
+                        class="text-blue-600 hover:text-blue-800 font-medium"
+                      >
+                        {_clipString(tnx.from)}
+                      </a>
+                    </td>
+                    <td class="py-3 px-4 text-sm">
+                      <a
                         href={`./ledger/account/${tnx.to}?coin_code=${getLedger()?.code}`}
-                        class="text-blue-600">{_clipString(tnx.to)}</TabAnchor
-                      ></td
+                        class="text-blue-600 hover:text-blue-800 font-medium"
+                      >
+                        {_clipString(tnx.to)}
+                      </a>
+                    </td>
+                    <td class="py-3 px-4 text-sm">
+                      <span
+                        class="bg-slate-100 text-slate-600 px-2 py-1 rounded text-xs font-medium"
+                      >
+                        {_formatKind(tnx.kind)}
+                      </span>
+                    </td>
+                    <td class="py-3 px-4 text-sm font-medium text-slate-700">
+                      {_formatCryptoAmount(
+                        tnx.amount,
+                        Number(getLedger()?.decimals ?? 8),
+                      )}
+                      <span class="text-xs text-slate-500 ml-1"
+                        >{getLedger()?.code}</span
+                      >
+                    </td>
+                    <td class="py-3 px-4 text-sm text-slate-500">
+                      {_formatCryptoAmount(
+                        tnx.fee,
+                        Number(getLedger()?.decimals ?? 8),
+                      )}
+                      <span class="text-xs ml-1">{getLedger()?.code}</span>
+                    </td>
+                    <td
+                      class="py-3 px-4 text-sm text-slate-500 whitespace-nowrap"
                     >
-                    <td> <p>{_formatKind(tnx.kind)}</p> </td>
-                    <td>
-                      <p>
-                        {_formatCryptoAmount(
-                          tnx.amount,
-                          Number(getLedger()?.decimals ?? 8)
-                        )}{getLedger()?.code}
-                      </p>
+                      {_formatTimestamp(tnx.timestamp)}
                     </td>
-                    <td>
-                      <p>
-                        {_formatCryptoAmount(
-                          tnx.fee,
-                          Number(getLedger()?.decimals ?? 8)
-                        )}{getLedger()?.code}
-                      </p>
-                    </td>
-                    <td> <p>{_formatTimestamp(tnx.timestamp)}</p> </td>
-                    <td>
+                    <td class="py-3 px-4 text-sm">
                       {#if tnx?.txId != ""}
-                        <TabAnchor
+                        <a
                           href={`./ledger/tx/${tnx.txId}?coin_code=${getLedger()?.code}`}
-                          class="text-blue-600"
-                          >{_clipString(tnx?.txId)}</TabAnchor
+                          class="text-blue-600 hover:text-blue-800 font-medium"
                         >
+                          {_clipString(tnx?.txId)}
+                        </a>
                       {:else}
-                        <p>N/A</p>
+                        <span class="text-slate-400">N/A</span>
                       {/if}
                     </td>
-                  </tr>{/each}
+                  </tr>
+                {/each}
               </tbody>
             </table>
           </div>
+
+          <!-- Pagination Controls -->
+          <div
+            class="flex justify-between items-center mt-6 pt-4 border-t border-slate-100"
+          >
+            <span class="text-sm text-slate-500">
+              Showing {(currentPage - 1) * itemsPerPage + 1} to {Math.min(
+                currentPage * itemsPerPage,
+                transactions.length,
+              )} of {transactions.length} entries
+            </span>
+            <div class="flex space-x-2">
+              <button
+                class="px-3 py-1 border border-slate-200 rounded-md text-sm font-medium text-slate-600 hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                on:click={prevPage}
+                disabled={currentPage === 1}
+              >
+                Previous
+              </button>
+              <button
+                class="px-3 py-1 border border-slate-200 rounded-md text-sm font-medium text-slate-600 hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                on:click={nextPage}
+                disabled={currentPage === totalPages}
+              >
+                Next
+              </button>
+            </div>
+          </div>
         {:else}
-          <p>No transactions found</p>{/if}
+          <div class="text-center py-10 text-slate-500">
+            <p>No transactions found</p>
+          </div>
+        {/if}
       </div>
     </div>
   </div>

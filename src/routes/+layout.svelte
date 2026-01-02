@@ -204,12 +204,6 @@
     },
     {
       icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
-      label: "Delta.🇹🇿",
-      link: "https://chat.whatsapp.com/HxNu5J2sO8yGRAYWgSTvvu",
-      creator: "joshuanicholaus22@gmail.com",
-    },
-    {
-      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
       label: "Delta.🇳🇬 NIG ",
       link: "https://chat.whatsapp.com/DEAD9pAQ9dmH60SVRqzZ9G",
       creator: "chizimuzoridenyi@outlook.com",
@@ -249,18 +243,6 @@
       label: "Delta 🇳🇬 NIG ",
       link: "https://t.me/OfficialDeltakimNIG",
       creator: "chizimuzoridenyi@outlook.com",
-    },
-    {
-      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
-      label: "Delta Naija",
-      link: "https://chat.whatsapp.com/E9va1NFe0zf8dcnGW3WYFD",
-      creator: "johnnex16@gmail.com",
-    },
-    {
-      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
-      label: "DELTA COIN (δ)",
-      link: "https://chat.whatsapp.com/I4y8APe0kByBbwwoPN9GaJ",
-      creator: "",
     },
     {
       icon: `<i class="fa-brands fa-square-x-twitter" style="color:black"></i>`,
@@ -305,12 +287,6 @@
       creator: "",
     },
     {
-      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
-      label: "Delta Pakistan",
-      link: "https://chat.whatsapp.com/IwZFddlph7m1m8UNOkYdqS",
-      creator: "",
-    },
-    {
       icon: `<i class="fa-brands fa-telegram" style="color:#0088CC"></i>`,
       label: "Comunitatea Delta 🇷🇴",
       link: "https://t.me/deltakimnetworkromania",
@@ -332,12 +308,6 @@
       icon: `<i class="fa-brands fa-telegram" style="color:#0088CC"></i>`,
       label: "Delta Português 🇵🇹",
       link: "https://t.me/deltacoinmozambique",
-      creator: "",
-    },
-    {
-      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
-      label: "DELTA TURKIYE 🇹🇷",
-      link: "https://chat.whatsapp.com/KaAAoxxuBzq7rtATZtU5TP",
       creator: "",
     },
     {
@@ -384,12 +354,6 @@
     },
     {
       icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
-      label: "Info Delta Kim 🇧🇯",
-      link: "https://chat.whatsapp.com/G6cH0qe5rg2KwE6vlNMSfO?mode=ac_t",
-      creator: "",
-    },
-    {
-      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
       label: "Delta Francophone",
       link: "https://chat.whatsapp.com/LkzhyLAJco91skDo3xMuL5?mode=ems_copy_c",
       creator: "",
@@ -404,6 +368,18 @@
       icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
       label: "Delta Rwanda",
       link: "https://chat.whatsapp.com/L3L4Ynpnhfu4FvSHBYAW2n",
+      creator: "",
+    },
+    {
+      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
+      label: "Delta 🇮🇳 India",
+      link: "https://chat.whatsapp.com/FZCpCo39DaC3QV5X4DKxBu",
+      creator: "",
+    },
+    {
+      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
+      label: "Infos DELTA Kim 🇧🇯",
+      link: "https://chat.whatsapp.com/G6cH0qe5rg2KwE6vlNMSfO?mode=wwt",
       creator: "",
     },
   ];
@@ -465,7 +441,7 @@
                   <TabAnchor
                     href="./DSMSAccessTerminal"
                     selected={$page.url.pathname.endsWith(
-                      "/DSMSAccessTerminal"
+                      "/DSMSAccessTerminal",
                     )}
                   >
                     <span>{$t("access_terminal")}</span>
