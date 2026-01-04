@@ -16,18 +16,33 @@
 
   // Define ICPfunds IDL
   const icpfundsIDL = ({ IDL }: any) => {
-    const Transaction = IDL.Record({
-      soldDTCTqty: IDL.Nat,
+    const ECIFDistLog = IDL.Record({
+      did: IDL.Text,
       DTCTqty: IDL.Nat,
-      addressId: IDL.Text,
       timestamp: IDL.Nat,
       index: IDL.Nat,
-      ICPqty: IDL.Nat,
+      reason: IDL.Text,
     });
     return IDL.Service({
       get_transactions: IDL.Func(
         [IDL.Nat, IDL.Nat],
-        [IDL.Vec(Transaction)],
+        [
+          IDL.Vec(
+            IDL.Record({
+              soldDTCTqty: IDL.Nat,
+              DTCTqty: IDL.Nat,
+              addressId: IDL.Text,
+              timestamp: IDL.Nat,
+              index: IDL.Nat,
+              ICPqty: IDL.Nat,
+            }),
+          ),
+        ],
+        ["query"],
+      ),
+      getECIFDistLogs: IDL.Func(
+        [IDL.Nat, IDL.Nat],
+        [IDL.Vec(ECIFDistLog)],
         ["query"],
       ),
       stateInfo: IDL.Func(
@@ -48,7 +63,10 @@
     return Actor.createActor(icpfundsIDL, { agent, canisterId });
   }
 
-  async function fetchRandomParticipant() {
+  let participants: any[] = [];
+  let selectedParticipant: any = null;
+
+  async function fetchParticipantsBatch() {
     loading = true;
     error = null;
     try {
@@ -58,7 +76,6 @@
         agentOptions: { host },
       });
 
-      // Get ICPfunds canister ID from delta
       const canisterMap = await deltaActor.getCanisterIdMap();
       const icpFundsEntry = canisterMap.find(
         ([name]: [string, any]) => name === "ICPfunds",
@@ -71,55 +88,39 @@
         icpFundsId = await deltaActor.getCanisterId({ ICPfunds: null });
       }
 
-      console.log("Using ICPfunds Canister ID:", icpFundsId);
       const icpFundsActor = await createICPfundsActor(icpFundsId);
 
-      // Get population from delta basic info
-      const basicInfo = await deltaActor.basicInfo();
-      const population = basicInfo.population;
+      // Fetch last 10 logs
+      const start = 100;
+      const count = 10;
+      const logs: any = await icpFundsActor.getECIFDistLogs(start, count);
 
-      // stateInfo returns 4 Nats: [fundedICPAmount, soldDTCTqty, participationTimes, exchangeRate]
-      const stateInfo: any = await icpFundsActor.stateInfo(population);
-      console.log("State Info:", stateInfo);
-      totalParticipants = Number(stateInfo[2]);
-
-      if (totalParticipants > 0) {
-        const randomIndex = Math.floor(Math.random() * totalParticipants);
-        console.log("totalParticipants:", totalParticipants);
-        console.log("Random Index:", randomIndex);
-        // get_transactions returns vec TransactionRecord
-        const transactions: any = await icpFundsActor.get_transactions(
-          randomIndex,
-          0,
-        );
-
-        if (transactions && transactions.length > 0) {
-          const row = transactions[0];
-          participant = {
-            index: row.index.toString(),
-            addressId: row.addressId,
-            icpQty: row.ICPqty.toString(),
-            dtctQty: row.DTCTqty.toString(),
-            exchangeRate: (Number(row.DTCTqty) / Number(row.ICPqty)).toFixed(2),
-            timestamp: new Date(Number(row.timestamp) * 1000).toLocaleString(),
-          };
-        }
+      if (logs && logs.length > 0) {
+        participants = logs
+          .map((log: any) => ({
+            index: log.index.toString(),
+            addressId: log.did,
+            dtctQty: log.DTCTqty.toString(),
+            reason: log.reason,
+            timestamp: new Date(Number(log.timestamp) * 1000).toLocaleString(),
+          }))
+          .reverse();
+        selectedParticipant = participants[0];
       }
     } catch (e: any) {
-      console.error("Error fetching participant:", e);
+      console.error("Error fetching participants:", e);
       error = e.message || "Failed to fetch participant data";
     } finally {
       loading = false;
     }
   }
 
-  function clipAddress(addr: string) {
-    if (!addr) return "";
-    return `${addr.slice(0, 6)}...${addr.slice(-6)}`;
+  function selectParticipant(p: any) {
+    selectedParticipant = p;
   }
 
   onMount(() => {
-    fetchRandomParticipant();
+    fetchParticipantsBatch();
   });
 </script>
 
@@ -135,11 +136,11 @@
       <h1
         class="text-4xl md:text-6xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-emerald-400"
       >
-        CrowdFunding Spotlight
+        ECIF Spotlight
       </h1>
       <p class="text-black text-lg md:text-xl max-w-2xl mx-auto font-medium">
-        Acknowledging the incredible work and dedication of our CrowdFunding
-        participants. Together, we're building the decentralized future.
+        If you don't have a DID, pick one from the below. These are ECIF users
+        who were rewarded for their contributions to the community.
       </p>
     </header>
 
@@ -152,78 +153,149 @@
           Rolling the DID dice...
         </p>
       </div>
-    {:else if error}
-      <div
-        class="bg-red-500/10 border border-red-500/20 p-6 rounded-2xl text-center max-w-md animate-shake"
-      >
-        <p class="text-red-400 font-semibold mb-4">{error}</p>
-        <button
-          on:click={fetchRandomParticipant}
-          class="px-6 py-2 bg-red-500 hover:bg-red-600 rounded-full transition-colors font-bold"
-        >
-          Try Again
-        </button>
-      </div>
-    {:else if participant}
-      <div class="w-full max-w-2xl perspective-1000">
+    {:else if participants.length > 0}
+      <!-- DID Selection List -->
+      <div class="w-full max-w-4xl mb-8 overflow-hidden">
         <div
-          class="relative group bg-black border border-white/10 rounded-[2.5rem] p-8 md:p-14 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.5)] transition-all duration-700 hover:scale-[1.02] hover:border-white/20 animate-float"
+          class="flex items-center gap-4 overflow-x-auto pb-4 px-4 no-scrollbar"
         >
-          <!-- Premium Glow Effect -->
-          <div
-            class="absolute -top-12 -left-12 w-64 h-64 bg-blue-500/10 blur-[100px] rounded-full group-hover:bg-blue-500/20 transition-all duration-1000"
-          ></div>
-          <div
-            class="absolute -bottom-12 -right-12 w-64 h-64 bg-emerald-500/10 blur-[100px] rounded-full group-hover:bg-emerald-500/20 transition-all duration-1000"
-          ></div>
+          {#each participants as p}
+            <button
+              on:click={() => selectParticipant(p)}
+              class="flex-shrink-0 px-6 py-3 rounded-2xl border transition-all duration-300 font-mono text-sm {selectedParticipant ===
+              p
+                ? 'bg-blue-500 border-blue-400 text-white shadow-lg shadow-blue-500/20 scale-105'
+                : 'bg-black/40 border-white/10 text-slate-400 hover:border-white/30 hover:bg-black/60'}"
+            >
+              {p.addressId}
+            </button>
+          {/each}
+        </div>
+      </div>
 
-          <!-- Decorative Gradient Border -->
+      {#if selectedParticipant}
+        <div class="w-full max-w-2xl perspective-1000">
           <div
-            class="absolute inset-0 rounded-[2.5rem] p-[1px] bg-gradient-to-br from-white/20 via-white/5 to-white/20 pointer-events-none"
+            class="relative group bg-black border border-white/10 rounded-[2.5rem] p-8 md:p-14 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.5)] transition-all duration-700 hover:scale-[1.02] hover:border-white/20 animate-float"
           >
-            <div class="absolute inset-0 bg-black/10 rounded-[2.5rem]"></div>
-          </div>
+            <!-- Premium Glow Effect -->
+            <div
+              class="absolute -top-12 -left-12 w-64 h-64 bg-blue-500/10 blur-[100px] rounded-full group-hover:bg-blue-500/20 transition-all duration-1000"
+            ></div>
+            <div
+              class="absolute -bottom-12 -right-12 w-64 h-64 bg-emerald-500/10 blur-[100px] rounded-full group-hover:bg-emerald-500/20 transition-all duration-1000"
+            ></div>
 
-          <div class="relative space-y-10">
-            <div class="flex items-center justify-between">
-              <div class="flex items-center gap-3">
-                <div
-                  class="h-2 w-2 rounded-full bg-emerald-400 animate-pulse"
-                ></div>
-                <span
-                  class="text-blue-400 text-sm font-bold tracking-[0.2em] uppercase"
-                >
-                  Participant #{participant.index}
-                </span>
-              </div>
-              <span class="text-slate-500 text-sm font-medium font-mono">
-                {participant.timestamp}
-              </span>
+            <!-- Decorative Gradient Border -->
+            <div
+              class="absolute inset-0 rounded-[2.5rem] p-[1px] bg-gradient-to-br from-white/20 via-white/5 to-white/20 pointer-events-none"
+            >
+              <div class="absolute inset-0 bg-black/10 rounded-[2.5rem]"></div>
             </div>
 
-            <div class="space-y-4">
-              <label
-                class="text-xs uppercase tracking-[0.15em] font-black text-white"
-                >DID</label
-              >
-              <div
-                class="flex items-center gap-4 bg-black/5 p-4 rounded-2xl border border-white/5 group/addr hover:bg-black/10 transition-colors font-black"
-              >
-                <p
-                  class="text-xl md:text-2xl font-mono text-emerald-400 truncate w-full"
-                  title={participant.addressId}
+            <div class="relative space-y-10">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                  <div
+                    class="h-2 w-2 rounded-full bg-emerald-400 animate-pulse"
+                  ></div>
+                  <span
+                    class="text-blue-400 text-sm font-bold tracking-[0.2em] uppercase"
+                  >
+                    Log #{selectedParticipant.index}
+                  </span>
+                </div>
+                <span class="text-slate-500 text-sm font-medium font-mono">
+                  {selectedParticipant.timestamp}
+                </span>
+              </div>
+
+              <div class="space-y-4">
+                <label
+                  class="text-xs uppercase tracking-[0.15em] font-black text-white"
+                  >DID</label
                 >
-                  {participant.addressId}
-                </p>
+                <div
+                  class="flex items-center gap-4 bg-black/5 p-4 rounded-2xl border border-white/5 group/addr hover:bg-black/10 transition-colors font-black"
+                >
+                  <p
+                    class="text-xl md:text-2xl font-mono text-emerald-400 truncate w-full"
+                    title={selectedParticipant.addressId}
+                  >
+                    {selectedParticipant.addressId}
+                  </p>
+                  <button
+                    on:click={() =>
+                      navigator.clipboard.writeText(
+                        selectedParticipant.addressId,
+                      )}
+                    class="p-2 hover:bg-blue-500/20 rounded-xl transition-all text-slate-400 hover:text-blue-400 active:scale-90"
+                    title="Copy DID"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-6 w-6"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-10">
+                <div
+                  class="bg-gradient-to-br from-white/[0.08] to-transparent p-6 rounded-3xl border border-white/10 hover:border-blue-500/30 transition-colors group/stat"
+                >
+                  <span
+                    class="font-black text-white text-xs font-bold uppercase tracking-widest block mb-2"
+                    >DTCT Distributed</span
+                  >
+                  <div class="flex items-end gap-2">
+                    <span
+                      class="text-3xl font-black text-white group-hover/stat:text-blue-400 transition-colors"
+                      >{selectedParticipant.dtctQty}</span
+                    >
+                    <span class="text-slate-400 font-bold mb-1">DTCT</span>
+                  </div>
+                </div>
+                <div
+                  class="bg-gradient-to-br from-white/[0.08] to-transparent p-6 rounded-3xl border border-white/10 hover:border-emerald-500/30 transition-colors group/stat"
+                >
+                  <span
+                    class="font-black text-white text-xs font-bold uppercase tracking-widest block mb-2"
+                    >Distribution Reason</span
+                  >
+                  <div class="flex items-center min-h-[44px]">
+                    <span
+                      class="text-lg font-bold text-white group-hover/stat:text-emerald-400 transition-colors"
+                      >{selectedParticipant.reason}</span
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex items-center justify-center pt-10">
                 <button
-                  on:click={() =>
-                    navigator.clipboard.writeText(participant.addressId)}
-                  class="p-2 hover:bg-blue-500/20 rounded-xl transition-all text-slate-400 hover:text-blue-400 active:scale-90"
-                  title="Copy DID"
+                  on:click={fetchParticipantsBatch}
+                  class="group/btn relative px-10 py-5 bg-white text-slate-900 rounded-[2rem] font-black text-lg shadow-[0_20px_40px_-12px_rgba(255,255,255,0.2)] hover:shadow-[0_24px_48px_-12px_rgba(59,130,246,0.3)] hover:bg-blue-500 hover:text-white active:scale-95 transition-all duration-500 flex items-center gap-3 overflow-hidden"
                 >
+                  <!-- Button Inner Glow -->
+                  <div
+                    class="absolute inset-0 bg-gradient-to-r from-blue-400/0 via-white/20 to-blue-400/0 -translate-x-full group-hover/btn:animate-shimmer"
+                  ></div>
+
+                  <span class="relative">Refresh Logs</span>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    class="h-6 w-6"
+                    class="h-6 w-6 group-hover/btn:rotate-180 transition-transform duration-700 relative"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -231,77 +303,16 @@
                     <path
                       stroke-linecap="round"
                       stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+                      stroke-width="2.5"
+                      d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
                     />
                   </svg>
                 </button>
               </div>
             </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-10">
-              <div
-                class="bg-gradient-to-br from-white/[0.08] to-transparent p-6 rounded-3xl border border-white/10 hover:border-blue-500/30 transition-colors group/stat"
-              >
-                <span
-                  class="font-black text-white text-xs font-bold uppercase tracking-widest block mb-2"
-                  >ICP Contributed</span
-                >
-                <div class="flex items-end gap-2">
-                  <span
-                    class="text-3xl font-black text-white group-hover/stat:text-blue-400 transition-colors"
-                    >{participant.icpQty}</span
-                  >
-                  <span class="text-slate-400 font-bold mb-1">ICP</span>
-                </div>
-              </div>
-              <div
-                class="bg-gradient-to-br from-white/[0.08] to-transparent p-6 rounded-3xl border border-white/10 hover:border-emerald-500/30 transition-colors group/stat"
-              >
-                <span
-                  class="font-black text-white text-xs font-bold uppercase tracking-widest block mb-2"
-                  >DTCT Received</span
-                >
-                <div class="flex items-end gap-2">
-                  <span
-                    class="text-3xl font-black text-white group-hover/stat:text-emerald-400 transition-colors"
-                    >{participant.dtctQty}</span
-                  >
-                  <span class="text-slate-400 font-bold mb-1">DTCT</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="flex items-center justify-center pt-10">
-              <button
-                on:click={fetchRandomParticipant}
-                class="group/btn relative px-10 py-5 bg-white text-slate-900 rounded-[2rem] font-black text-lg shadow-[0_20px_40px_-12px_rgba(255,255,255,0.2)] hover:shadow-[0_24px_48px_-12px_rgba(59,130,246,0.3)] hover:bg-blue-500 hover:text-white active:scale-95 transition-all duration-500 flex items-center gap-3 overflow-hidden"
-              >
-                <!-- Button Inner Glow -->
-                <div
-                  class="absolute inset-0 bg-gradient-to-r from-blue-400/0 via-white/20 to-blue-400/0 -translate-x-full group-hover/btn:animate-shimmer"
-                ></div>
-
-                <span class="relative">Spotlight Another</span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-6 w-6 group-hover/btn:rotate-180 transition-transform duration-700 relative"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2.5"
-                    d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
-                  />
-                </svg>
-              </button>
-            </div>
           </div>
         </div>
-      </div>
+      {/if}
     {:else}
       <div class="text-center py-20">
         <p class="text-slate-500 text-xl font-medium">
@@ -309,14 +320,6 @@
         </p>
       </div>
     {/if}
-
-    <footer
-      class="mt-20 text-center opacity-40 hover:opacity-100 transition-opacity"
-    >
-      <p class="text-sm font-mono text-black font-black tracking-tighter">
-        TOTAL UNIQUE PARTICIPANTS FOUND: {totalParticipants}
-      </p>
-    </footer>
   </div>
 </div>
 
@@ -383,5 +386,13 @@
 
   .perspective-1000 {
     perspective: 1000px;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
 </style>
