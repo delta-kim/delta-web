@@ -10,8 +10,6 @@
   export let data: PageData;
 
   let loading = true;
-  let participant: any = null;
-  let totalParticipants = 0;
   let error: string | null = null;
 
   // Define ICPfunds IDL
