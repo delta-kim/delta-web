@@ -385,7 +385,7 @@
     {
       icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
       label: "Infos DELTA Kim 🇧🇯",
-      link: "https://chat.whatsapp.com/G6cH0qe5rg2KwE6vlNMSfO?mode=wwt",
+      link: "https://chat.whatsapp.com/IW7CNmVD9Nv45CveABfkKh",
       creator: "",
     },
   ];

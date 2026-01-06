@@ -103,7 +103,8 @@
             timestamp: new Date(Number(log.timestamp) * 1000).toLocaleString(),
           }))
           .reverse();
-        selectedParticipant = participants[0];
+        selectedParticipant =
+          participants[Math.floor(Math.random() * participants.length)];
       }
     } catch (e: any) {
       console.error("Error fetching participants:", e);
