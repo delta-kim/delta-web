@@ -129,7 +129,7 @@
 
 <div class="min-h-screen text-white font-sans selection:bg-blue-500/30">
   <div
-    class="container mx-auto px-4 py-16 flex flex-col items-center justify-center min-h-[80vh]"
+    class="container mx-auto px-4 py-5 md:py-16 flex flex-col items-center justify-center min-h-[80vh]"
   >
     <header class="text-center mb-12 space-y-4 animate-fade-in">
       <h1
@@ -138,8 +138,9 @@
         ECIF Spotlight
       </h1>
       <p class="text-black text-lg md:text-xl max-w-2xl mx-auto font-medium">
-        If you don't have a DID, pick one from the below. These are ECIF users
-        who were rewarded for their contributions to the community.
+        If you don't have a DID, pick one from below. These DIDs correspond to
+        the users who've been rewarded from the ECIF Fund for their exemplary
+        contributions to the Delta Ecosystem.
       </p>
     </header>
 
