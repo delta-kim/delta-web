@@ -259,7 +259,7 @@
     {
       icon: `<i class="fa-brands fa-instagram" style="color:#000000"></i>`,
       label: "Delta Romania",
-      link: "https://www.instagram.com/delta.kimromania?igsh=MTdrYndqdjJrc25mMw%3D%3D&utm_source=qr",
+      link: "https://www.instagram.com/delta.kimromania",
       creator: "andrei_madalin@yahoo.com",
     },
     {
@@ -337,7 +337,7 @@
     {
       icon: `<i class="fa-brands fa-square-x-twitter" style="color:black"></i>`,
       label: "Delta Kim 🇨🇮",
-      link: "https://x.com/Delta_Civ?t=ZfBtLfc9je3WGn9PuR5ogA&s=09",
+      link: "https://x.com/Delta_Civ",
       creator: "",
     },
     {
@@ -348,8 +348,8 @@
     },
     {
       icon: `<i class="fa-brands fa-square-x-twitter" style="color:black"></i>`,
-      label: "DeltaKimGal",
-      link: "https://x.com/DeltaKimGal?t=2O1l4QJp5yugSxdvN58yMw&s=09",
+      label: "Deltakimafrica",
+      link: "https://x.com/Deltakimafrica",
       creator: "",
     },
     {
