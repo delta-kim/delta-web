@@ -153,9 +153,9 @@
           Rolling the DID dice...
         </p>
       </div>
-    {:else if participants.length > 0}
+      <!-- {:else if participants.length > 0} -->
       <!-- DID Selection List -->
-      <div class="w-full max-w-4xl mb-8 overflow-hidden">
+      <!-- <div class="w-full max-w-4xl mb-8 overflow-hidden">
         <div
           class="flex items-center gap-4 overflow-x-auto pb-4 px-4 no-scrollbar"
         >
@@ -171,7 +171,7 @@
             </button>
           {/each}
         </div>
-      </div>
+      </div> -->
 
       {#if selectedParticipant}
         <div class="w-full max-w-2xl perspective-1000">
