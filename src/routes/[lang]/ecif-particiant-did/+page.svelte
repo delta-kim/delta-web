@@ -92,7 +92,6 @@
       const start = 100;
       const count = 10;
       const logs: any = await icpFundsActor.getECIFDistLogs(start, count);
-
       if (logs && logs.length > 0) {
         participants = logs
           .map((log: any) => ({
@@ -153,149 +152,80 @@
           Rolling the DID dice...
         </p>
       </div>
-      <!-- {:else if participants.length > 0} -->
-      <!-- DID Selection List -->
-      <!-- <div class="w-full max-w-4xl mb-8 overflow-hidden">
-        <div
-          class="flex items-center gap-4 overflow-x-auto pb-4 px-4 no-scrollbar"
+    {:else if error}
+      <div class="text-center py-20">
+        <p class="text-red-400 text-xl font-medium">
+          {error}
+        </p>
+        <button
+          on:click={fetchParticipantsBatch}
+          class="mt-4 px-6 py-2 bg-white/10 hover:bg-white/20 rounded-xl transition-colors"
         >
-          {#each participants as p}
-            <button
-              on:click={() => selectParticipant(p)}
-              class="flex-shrink-0 px-6 py-3 rounded-2xl border transition-all duration-300 font-mono text-sm {selectedParticipant ===
-              p
-                ? 'bg-blue-500 border-blue-400 text-white shadow-lg shadow-blue-500/20 scale-105'
-                : 'bg-black/40 border-white/10 text-slate-400 hover:border-white/30 hover:bg-black/60'}"
-            >
-              {p.addressId}
-            </button>
-          {/each}
-        </div>
-      </div> -->
-
-      {#if selectedParticipant}
-        <div class="w-full max-w-2xl perspective-1000">
+          Try Again
+        </button>
+      </div>
+    {:else if selectedParticipant}
+      <div class="w-full max-w-2xl perspective-1000">
+        <div
+          class="relative group bg-black border border-white/10 rounded-[2.5rem] p-8 md:p-14 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.5)] transition-all duration-700 hover:scale-[1.02] hover:border-white/20 animate-float"
+        >
+          <!-- Premium Glow Effect -->
           <div
-            class="relative group bg-black border border-white/10 rounded-[2.5rem] p-8 md:p-14 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.5)] transition-all duration-700 hover:scale-[1.02] hover:border-white/20 animate-float"
+            class="absolute -top-12 -left-12 w-64 h-64 bg-blue-500/10 blur-[100px] rounded-full group-hover:bg-blue-500/20 transition-all duration-1000"
+          ></div>
+          <div
+            class="absolute -bottom-12 -right-12 w-64 h-64 bg-emerald-500/10 blur-[100px] rounded-full group-hover:bg-emerald-500/20 transition-all duration-1000"
+          ></div>
+
+          <!-- Decorative Gradient Border -->
+          <div
+            class="absolute inset-0 rounded-[2.5rem] p-[1px] bg-gradient-to-br from-white/20 via-white/5 to-white/20 pointer-events-none"
           >
-            <!-- Premium Glow Effect -->
-            <div
-              class="absolute -top-12 -left-12 w-64 h-64 bg-blue-500/10 blur-[100px] rounded-full group-hover:bg-blue-500/20 transition-all duration-1000"
-            ></div>
-            <div
-              class="absolute -bottom-12 -right-12 w-64 h-64 bg-emerald-500/10 blur-[100px] rounded-full group-hover:bg-emerald-500/20 transition-all duration-1000"
-            ></div>
+            <div class="absolute inset-0 bg-black/10 rounded-[2.5rem]"></div>
+          </div>
 
-            <!-- Decorative Gradient Border -->
-            <div
-              class="absolute inset-0 rounded-[2.5rem] p-[1px] bg-gradient-to-br from-white/20 via-white/5 to-white/20 pointer-events-none"
-            >
-              <div class="absolute inset-0 bg-black/10 rounded-[2.5rem]"></div>
-            </div>
-
-            <div class="relative space-y-10">
-              <div class="flex items-center justify-between">
-                <div class="flex items-center gap-3">
-                  <div
-                    class="h-2 w-2 rounded-full bg-emerald-400 animate-pulse"
-                  ></div>
-                  <span
-                    class="text-blue-400 text-sm font-bold tracking-[0.2em] uppercase"
-                  >
-                    Log #{selectedParticipant.index}
-                  </span>
-                </div>
-                <span class="text-slate-500 text-sm font-medium font-mono">
-                  {selectedParticipant.timestamp}
+          <div class="relative space-y-10">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div
+                  class="h-2 w-2 rounded-full bg-emerald-400 animate-pulse"
+                ></div>
+                <span
+                  class="text-blue-400 text-sm font-bold tracking-[0.2em] uppercase"
+                >
+                  Log #{selectedParticipant.index}
                 </span>
               </div>
+              <span class="text-slate-500 text-sm font-medium font-mono">
+                {selectedParticipant.timestamp}
+              </span>
+            </div>
 
-              <div class="space-y-4">
-                <label
-                  class="text-xs uppercase tracking-[0.15em] font-black text-white"
-                  >DID</label
+            <div class="space-y-4">
+              <label
+                class="text-xs uppercase tracking-[0.15em] font-black text-white"
+                >DID</label
+              >
+              <div
+                class="flex items-center gap-4 bg-black/5 p-4 rounded-2xl border border-white/5 group/addr hover:bg-black/10 transition-colors font-black"
+              >
+                <p
+                  class="text-xl md:text-2xl font-mono text-emerald-400 truncate w-full"
+                  title={selectedParticipant.addressId}
                 >
-                <div
-                  class="flex items-center gap-4 bg-black/5 p-4 rounded-2xl border border-white/5 group/addr hover:bg-black/10 transition-colors font-black"
-                >
-                  <p
-                    class="text-xl md:text-2xl font-mono text-emerald-400 truncate w-full"
-                    title={selectedParticipant.addressId}
-                  >
-                    {selectedParticipant.addressId}
-                  </p>
-                  <button
-                    on:click={() =>
-                      navigator.clipboard.writeText(
-                        selectedParticipant.addressId,
-                      )}
-                    class="p-2 hover:bg-blue-500/20 rounded-xl transition-all text-slate-400 hover:text-blue-400 active:scale-90"
-                    title="Copy DID"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      class="h-6 w-6"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
-                      />
-                    </svg>
-                  </button>
-                </div>
-              </div>
-
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-10">
-                <div
-                  class="bg-gradient-to-br from-white/[0.08] to-transparent p-6 rounded-3xl border border-white/10 hover:border-blue-500/30 transition-colors group/stat"
-                >
-                  <span
-                    class="font-black text-white text-xs font-bold uppercase tracking-widest block mb-2"
-                    >DTCT Distributed</span
-                  >
-                  <div class="flex items-end gap-2">
-                    <span
-                      class="text-3xl font-black text-white group-hover/stat:text-blue-400 transition-colors"
-                      >{selectedParticipant.dtctQty}</span
-                    >
-                    <span class="text-slate-400 font-bold mb-1">DTCT</span>
-                  </div>
-                </div>
-                <div
-                  class="bg-gradient-to-br from-white/[0.08] to-transparent p-6 rounded-3xl border border-white/10 hover:border-emerald-500/30 transition-colors group/stat"
-                >
-                  <span
-                    class="font-black text-white text-xs font-bold uppercase tracking-widest block mb-2"
-                    >Distribution Reason</span
-                  >
-                  <div class="flex items-center min-h-[44px]">
-                    <span
-                      class="text-lg font-bold text-white group-hover/stat:text-emerald-400 transition-colors"
-                      >{selectedParticipant.reason}</span
-                    >
-                  </div>
-                </div>
-              </div>
-
-              <div class="flex items-center justify-center pt-10">
+                  {selectedParticipant.addressId}
+                </p>
                 <button
-                  on:click={fetchParticipantsBatch}
-                  class="group/btn relative px-10 py-5 bg-white text-slate-900 rounded-[2rem] font-black text-lg shadow-[0_20px_40px_-12px_rgba(255,255,255,0.2)] hover:shadow-[0_24px_48px_-12px_rgba(59,130,246,0.3)] hover:bg-blue-500 hover:text-white active:scale-95 transition-all duration-500 flex items-center gap-3 overflow-hidden"
+                  on:click={() =>
+                    navigator.clipboard.writeText(
+                      selectedParticipant.addressId,
+                    )}
+                  class="p-2 hover:bg-blue-500/20 rounded-xl transition-all text-slate-400 hover:text-blue-400 active:scale-90"
+                  title="Copy DID"
                 >
-                  <!-- Button Inner Glow -->
-                  <div
-                    class="absolute inset-0 bg-gradient-to-r from-blue-400/0 via-white/20 to-blue-400/0 -translate-x-full group-hover/btn:animate-shimmer"
-                  ></div>
-
-                  <span class="relative">Refresh Logs</span>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    class="h-6 w-6 group-hover/btn:rotate-180 transition-transform duration-700 relative"
+                    class="h-6 w-6"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -303,16 +233,76 @@
                     <path
                       stroke-linecap="round"
                       stroke-linejoin="round"
-                      stroke-width="2.5"
-                      d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                      stroke-width="2"
+                      d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
                     />
                   </svg>
                 </button>
               </div>
             </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-10">
+              <div
+                class="bg-gradient-to-br from-white/[0.08] to-transparent p-6 rounded-3xl border border-white/10 hover:border-blue-500/30 transition-colors group/stat"
+              >
+                <span
+                  class="font-black text-white text-xs font-bold uppercase tracking-widest block mb-2"
+                  >DTCT Distributed</span
+                >
+                <div class="flex items-end gap-2">
+                  <span
+                    class="text-3xl font-black text-white group-hover/stat:text-blue-400 transition-colors"
+                    >{selectedParticipant.dtctQty}</span
+                  >
+                  <span class="text-slate-400 font-bold mb-1">DTCT</span>
+                </div>
+              </div>
+              <div
+                class="bg-gradient-to-br from-white/[0.08] to-transparent p-6 rounded-3xl border border-white/10 hover:border-emerald-500/30 transition-colors group/stat"
+              >
+                <span
+                  class="font-black text-white text-xs font-bold uppercase tracking-widest block mb-2"
+                  >Distribution Reason</span
+                >
+                <div class="flex items-center min-h-[44px]">
+                  <span
+                    class="text-lg font-bold text-white group-hover/stat:text-emerald-400 transition-colors"
+                    >{selectedParticipant.reason}</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-center pt-10">
+              <button
+                on:click={fetchParticipantsBatch}
+                class="group/btn relative px-10 py-5 bg-white text-slate-900 rounded-[2rem] font-black text-lg shadow-[0_20px_40px_-12px_rgba(255,255,255,0.2)] hover:shadow-[0_24px_48px_-12px_rgba(59,130,246,0.3)] hover:bg-blue-500 hover:text-white active:scale-95 transition-all duration-500 flex items-center gap-3 overflow-hidden"
+              >
+                <!-- Button Inner Glow -->
+                <div
+                  class="absolute inset-0 bg-gradient-to-r from-blue-400/0 via-white/20 to-blue-400/0 -translate-x-full group-hover/btn:animate-shimmer"
+                ></div>
+
+                <span class="relative">Refresh Logs</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6 group-hover/btn:rotate-180 transition-transform duration-700 relative"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2.5"
+                    d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                  />
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
-      {/if}
+      </div>
     {:else}
       <div class="text-center py-20">
         <p class="text-slate-500 text-xl font-medium">
