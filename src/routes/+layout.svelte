@@ -373,7 +373,7 @@
     {
       icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
       label: "Delta Rwanda",
-      link: "https://chat.whatsapp.com/L3L4Ynpnhfu4FvSHBYAW2n",
+      link: "https://chat.whatsapp.com/Ca8YMneT48w0a5UbVJzQPc",
       creator: "",
     },
     {
@@ -386,6 +386,18 @@
       icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
       label: "Infos DELTA Kim 🇧🇯",
       link: "https://chat.whatsapp.com/IW7CNmVD9Nv45CveABfkKh",
+      creator: "",
+    },
+    {
+      icon: `<i class="fa-brands fa-telegram" style="color:#0088CC"></i>`,
+      label: "Delta Indonesia 🇮🇩",
+      link: "https://t.me/deltakim_indonesia",
+      creator: "",
+    },
+    {
+      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
+      label: "DELTA News EN/FR",
+      link: "https://whatsapp.com/channel/0029VbCSAhu9Gv7MKg5cSN2S",
       creator: "",
     },
   ];
