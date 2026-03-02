@@ -127,7 +127,7 @@
     {
       icon: `<i class="fa-brands fa-telegram" style="color:#0088CC"></i>`,
       label: "Delta Global",
-      link: "https://t.me/GlobalDeltaCoin",
+      link: "https://t.me/TheDeltaKim",
       creator: "josephangengang@gmail.com",
     },
     {
@@ -398,6 +398,30 @@
       icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
       label: "DELTA News EN/FR",
       link: "https://whatsapp.com/channel/0029VbCSAhu9Gv7MKg5cSN2S",
+      creator: "",
+    },
+    {
+      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
+      label: "DELTA Togo 🇹🇬",
+      link: "https://chat.whatsapp.com/CTo8sfLSm1EHgytMGuI60x",
+      creator: "",
+    },
+    {
+      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
+      label: "DELTA Francophone",
+      link: "https://whatsapp.com/channel/0029Vb76kFtJpe8YiGxAei31",
+      creator: "",
+    },
+    {
+      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
+      label: "DELTA Tanzania 🇹🇿",
+      link: "https://chat.whatsapp.com/C4uNO50NXM95K9ooG6RPvS",
+      creator: "",
+    },
+    {
+      icon: `<i class="fa-brands fa-facebook"style="color: rgb(8, 102, 255);"></i>`,
+      label: "DeltaKim Nigeria",
+      link: "https://www.facebook.com/groups/1220053980248582/",
       creator: "",
     },
   ];
