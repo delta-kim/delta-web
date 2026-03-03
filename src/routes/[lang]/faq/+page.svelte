@@ -1,13 +1,21 @@
 <script lang="ts">
+  import type { PageData } from "./$types";
   import { onMount } from "svelte";
   import { t } from "svelte-i18n";
   import { Accordion, AccordionItem } from "@skeletonlabs/skeleton";
-  import type { PageData } from "./$types";
+  import SEO from "../../../components/SEO.svelte";
+
   export let data: PageData;
   onMount(() => {
     console.log("faq", data);
   });
 </script>
+
+<SEO
+  title="{$t('title_prefix')} - {$t('faq')}"
+  description="Frequently Asked Questions about Delta Kim - Learn about mining, security, and the ecosystem."
+  lang={data.lang}
+/>
 
 <div class="mx-4 sm:mx-8 xl:mx-80 py-10 px-5 md:px-0">
   <h1 class="h1">{$t("faq")}</h1>

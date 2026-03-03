@@ -11,9 +11,30 @@
 			inlineMath: [['$i', '$i']], //行内公式
 		  }
 		};
-		</script>
+	</script>
+	<!-- Standardizes dark mode state on load -->
+	<script>
+		if (localStorage.getItem('modeCurrent') === 'false' || (!('modeCurrent' in localStorage) && window.matchMedia('(prefers-color-scheme: light)').matches)) {
+			document.documentElement.classList.remove('dark');
+		} else {
+			document.documentElement.classList.add('dark');
+		}
+	</script>
 	<link rel="icon" href="%sveltekit.assets%/favicon.png" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<!-- Global Social Preview Meta Tags -->
+	<meta property="og:site_name" content="Delta Kim" />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="Delta Kim - Next Generation Web3 Ecosystem" />
+	<meta property="og:description" content="Explore the Delta ecosystem: Keyless access, mobile mining, and a decentralized web built on ICP. Secure, fast, and eco-friendly." />
+	<meta property="og:image" content="https://delta.kim/img/delta.logo.png" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:site" content="@TheDeltaKim" />
+	<meta name="twitter:title" content="Delta Kim - Next Generation Web3 Ecosystem" />
+	<meta name="twitter:description" content="Explore the Delta ecosystem: Keyless access, mobile mining, and a decentralized web built on ICP. Secure, fast, and eco-friendly." />
+	<meta name="twitter:image" content="https://delta.kim/img/delta.logo.png" />
+
 	%sveltekit.head%
 </head>
 

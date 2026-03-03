@@ -1,8 +1,8 @@
-<!-- YOU CAN DELETE EVERYTHING IN THIS PAGE -->
 <script lang="ts">
+  import type { PageData } from "./$types";
   import { t, locale } from "svelte-i18n";
   import { onMount } from "svelte";
-  import type { PageData } from "./$types";
+  import SEO from "../../../components/SEO.svelte";
 
   export let data: PageData;
 
@@ -172,9 +172,12 @@
   ];
 </script>
 
-<svelte:head>
-  <title>{$t("title_prefix")} - {$t("explore")}</title>
-</svelte:head>
+<SEO
+  title="{$t('title_prefix')} - Communities"
+  description="Connect with the global Delta Kim community across Telegram, Discord, Facebook, and more."
+  lang={data.lang}
+/>
+
 <div
   class="container mx-auto h-full flex flex-col justify-center items-center mt-8 m:px-0"
 >

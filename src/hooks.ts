@@ -46,5 +46,7 @@ export const handle: Handle = async ({ event, resolve }) => {
         throw redirect(302, `/${lang}/home`);
     }
     await initialLocale(lang);
-    return resolve(event);
+    return resolve(event, {
+        transformPageChunk: ({ html }) => html.replace('<html lang="en">', `<html lang="${lang}">`)
+    });
 }

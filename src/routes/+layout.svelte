@@ -1,4 +1,5 @@
 <script lang="ts">
+  import type { LayoutData } from "./$types";
   import "../app.postcss";
   import "@fortawesome/fontawesome-free/css/fontawesome.css";
   import "@fortawesome/fontawesome-free/css/brands.css";
@@ -10,6 +11,9 @@
     TabGroup,
     TabAnchor,
     popup,
+    LightSwitch,
+    modeCurrent,
+    autoModeWatcher,
   } from "@skeletonlabs/skeleton";
   import {
     computePosition,
@@ -25,21 +29,39 @@
   import { langs } from "$lib/i18n/langs";
   import { onMount } from "svelte";
   import { afterNavigate, beforeNavigate } from "$app/navigation";
-  import type { LayoutData } from "./$types";
+  import SEO from "../components/SEO.svelte";
 
   export let data: LayoutData;
 
   storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
   onMount(() => {
+    // Skeleton auto-mode watcher
+    autoModeWatcher();
+
     // Disable browser scroll restoration
     if ("scrollRestoration" in history) {
       history.scrollRestoration = "manual";
     }
   });
   afterNavigate(() => {
-    // Force scroll to top after navigation
+    // Force scroll to top or hash after navigation
     requestAnimationFrame(() => {
-      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+      const pageWrapper = document.querySelector("#page");
+      const hash = window.location.hash;
+
+      if (hash && document.querySelector(hash)) {
+        // Scroll to hash target
+        const targetElement = document.querySelector(hash) as HTMLElement;
+        if (pageWrapper && targetElement) {
+          const topPos = targetElement.offsetTop - 120; // offset for sticky nav
+          pageWrapper.scrollTo({ top: topPos, left: 0, behavior: "smooth" });
+        }
+      } else {
+        if (pageWrapper) {
+          pageWrapper.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+        }
+        window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+      }
     });
   });
   const deltaApps = [
@@ -73,6 +95,10 @@
       link: "/whitepaper#introduction",
       label: $t("whitepaper"),
     },
+    {
+      link: "/blog",
+      label: "Blog",
+    },
     // {
     //   link: "./communities",
     //   label: $t("communities"),
@@ -95,10 +121,16 @@
       creator: "CoreTeam",
     },
     {
-      icon: `<i class="fa-brands fa-square-x-twitter" style="color:black"></i>`,
+      icon: `<i class="fa-brands fa-square-x-twitter" style="color:white"></i>`,
       label: "Delta Kim DAO",
       link: "https://x.com/TheDeltaKim",
       creator: "CoreTeam",
+    },
+    {
+      icon: `<i class="fa-brands fa-telegram" style="color:#0088CC"></i>`,
+      label: "Delta Kim",
+      link: "https://t.me/TheDeltaKim",
+      creator: "josephangengang@gmail.com",
     },
     {
       icon: `<i class="fa-brands fa-telegram" style="color:#0088CC"></i>`,
@@ -113,7 +145,7 @@
       creator: "",
     },
     {
-      icon: `<i class="fa-brands fa-square-x-twitter" style="color:black"></i>`,
+      icon: `<i class="fa-brands fa-square-x-twitter" style="color:white"></i>`,
       label: "DeltaCoinNews",
       link: "https://x.com/DeltaCoinNews",
       creator: "princejames.biz@gmail.com",
@@ -125,25 +157,19 @@
       creator: "princejames.biz@gmail.com",
     },
     {
-      icon: `<i class="fa-brands fa-telegram" style="color:#0088CC"></i>`,
-      label: "Delta Global",
-      link: "https://t.me/TheDeltaKim",
-      creator: "josephangengang@gmail.com",
-    },
-    {
       icon: `<img style="width: 15px;display: inline;"alt="delta medium"src="/img/medium.png"/>`,
       label: "DeltaCoinNews",
       link: "https://medium.com/@DeltaCoinNews",
       creator: "princejames.biz@gmail.com",
     },
     {
-      icon: `<i class="fa-brands fa-square-x-twitter" style="color:black"></i>`,
+      icon: `<i class="fa-brands fa-square-x-twitter" style="color:white"></i>`,
       label: "DeltaPioneers",
       link: "https://x.com/Deltapioneers",
       creator: "josephangengang@gmail.com",
     },
     {
-      icon: `<i class="fa-brands fa-square-x-twitter" style="color:black"></i>`,
+      icon: `<i class="fa-brands fa-square-x-twitter" style="color:white"></i>`,
       label: "Delta Global",
       link: "https://x.com/thedeltaglobal",
       creator: "josephangengang@gmail.com",
@@ -251,13 +277,13 @@
       creator: "chizimuzoridenyi@outlook.com",
     },
     {
-      icon: `<i class="fa-brands fa-square-x-twitter" style="color:black"></i>`,
+      icon: `<i class="fa-brands fa-square-x-twitter" style="color:white"></i>`,
       label: "Delta India",
       link: "https://x.com/DeltaKimIndia",
       creator: "andrei_madalin@yahoo.com",
     },
     {
-      icon: `<i class="fa-brands fa-instagram" style="color:#000000"></i>`,
+      icon: `<i class="fa-brands fa-instagram" style="color:white"></i>`,
       label: "Delta Romania",
       link: "https://www.instagram.com/delta.kimromania",
       creator: "andrei_madalin@yahoo.com",
@@ -335,7 +361,7 @@
       creator: "",
     },
     {
-      icon: `<i class="fa-brands fa-square-x-twitter" style="color:black"></i>`,
+      icon: `<i class="fa-brands fa-square-x-twitter" style="color:white"></i>`,
       label: "Delta Kim 🇨🇮",
       link: "https://x.com/Delta_Civ",
       creator: "",
@@ -347,7 +373,7 @@
       creator: "",
     },
     {
-      icon: `<i class="fa-brands fa-square-x-twitter" style="color:black"></i>`,
+      icon: `<i class="fa-brands fa-square-x-twitter" style="color:white"></i>`,
       label: "Deltakimafrica",
       link: "https://x.com/Deltakimafrica",
       creator: "",
@@ -428,275 +454,409 @@
 </script>
 
 <!-- App Shell -->
-<AppShell regionPage="relative" slotHeader="top-0" slotPageFooter="mt-4">
+<AppShell
+  regionPage="relative bg-transparent"
+  slotHeader="top-0"
+  slotPageHeader="bg-transparent"
+  slotPageFooter="mt-0"
+>
   <!-- <svelte:fragment slot="header">header</svelte:fragment> -->
   <!--  <svelte:fragment slot="pageHeader"> -->
   <svelte:fragment slot="header">
     <!-- App Bar -->
     <!-- <div class="bg-primary"> -->
-    <div>
-      <div class="container mx-auto">
-        <AppBar background="">
+    <div
+      class="sticky top-0 z-50 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-gray-100 dark:border-slate-800 shadow-sm transition-colors duration-300"
+    >
+      <div class="container mx-auto px-4 lg:px-8">
+        <AppBar background="bg-transparent dark:bg-transparent" padding="py-3">
           <svelte:fragment slot="lead">
-            <figure class="ml-4 hidden lg:block">
+            <!-- Desktop Logo -->
+            <a
+              href="/{data.lang}/home"
+              class="flex items-center mr-6 hidden lg:flex"
+            >
               <img
                 src="/img/delta.logo.png"
-                width="300"
                 alt="Delta"
-                class="object-contain"
+                class="h-10 object-contain"
               />
-            </figure>
-            <ul class="menu lg:hidden">
-              <li><i class="fa-solid fa-bars"></i></li>
-              <li class="list">
-                <TabGroup
-                  justify="flex-col"
-                  active="bg-surface-500"
-                  border=""
-                  rounded="rounded-full"
-                  class="text-black"
-                >
-                  <TabAnchor
-                    href="./home"
-                    selected={$page.url.pathname.endsWith("/home")}
-                  >
-                    <span>{$t("home")}</span>
-                  </TabAnchor>
-                  <TabAnchor
-                    href="./download"
-                    selected={$page.url.pathname.endsWith("/download")}
-                  >
-                    <span>{$t("download")}</span>
-                  </TabAnchor>
-                  <TabAnchor
-                    href="./explore"
-                    selected={$page.url.pathname.endsWith("/explore")}
-                  >
-                    <span>{$t("explore")}</span>
-                  </TabAnchor>
-                  <TabAnchor
-                    href="./ledger"
-                    selected={$page.url.pathname.endsWith("/ledger")}
-                  >
-                    <span>{$t("ledger")}</span>
-                  </TabAnchor>
-                  <TabAnchor
-                    href="./DSMSAccessTerminal"
-                    selected={$page.url.pathname.endsWith(
-                      "/DSMSAccessTerminal",
-                    )}
-                  >
-                    <span>{$t("access_terminal")}</span>
-                  </TabAnchor>
-
-                  <TabAnchor
-                    href="./whitepaper#introduction"
-                    selected={$page.url.pathname.endsWith("/whitepaper")}
-                  >
-                    <span>{$t("whitepaper")}</span>
-                  </TabAnchor>
-                  <TabAnchor
-                    href="./support"
-                    selected={$page.url.pathname.endsWith("/support")}
-                  >
-                    <span>{$t("faq")}</span>
-                  </TabAnchor>
-                  <TabAnchor
-                    href="./canister-status"
-                    selected={$page.url.pathname.endsWith("/canister-status")}
-                  >
-                    <span class="flex items-center"
-                      >Built on ICP <img
-                        src="/img/icp-logo.svg"
-                        width="30"
-                        height="30"
-                        class="inline-block ml-1"
-                        alt="ICP Logo"
-                      /></span
-                    >
-                  </TabAnchor>
-                </TabGroup>
-              </li>
-            </ul>
-          </svelte:fragment>
-          <figure class="w-5/6 sm:w-4/6 lg:hidden">
-            <img src="/img/delta.logo.png" alt="Delta" />
-          </figure>
-          <TabGroup
-            justify="justify-center"
-            border=""
-            class="hidden lg:block text-black"
-          >
-            <TabAnchor
-              href="/{data.lang}/home"
-              selected={$page.url.pathname.endsWith("/home")}
-            >
-              <span>{$t("home")}</span>
-            </TabAnchor>
-            <TabAnchor
-              href="/{data.lang}/download"
-              selected={$page.url.pathname.endsWith("/download")}
-            >
-              <span>{$t("download")}</span>
-            </TabAnchor>
-            <TabAnchor
-              href="/{data.lang}/explore"
-              selected={$page.url.pathname.endsWith("/explore")}
-            >
-              <span>{$t("explore")}</span>
-            </TabAnchor>
-            <TabAnchor
-              href="/{data.lang}/ledger"
-              selected={$page.url.pathname.endsWith("/ledger")}
-            >
-              <span>{$t("ledger")}</span>
-            </TabAnchor>
-            <TabAnchor
-              href="/{data.lang}/DSMSAccessTerminal"
-              selected={$page.url.pathname.endsWith("/DSMSAccessTerminal")}
-            >
-              <span>{$t("access_terminal")}</span>
-            </TabAnchor>
-
-            <TabAnchor
-              href="/{data.lang}/whitepaper"
-              selected={$page.url.pathname.endsWith("/whitepaper")}
-            >
-              <span>{$t("whitepaper")}</span>
-            </TabAnchor>
-            <TabAnchor
-              href="/{data.lang}/support"
-              selected={$page.url.pathname.endsWith("/support")}
-            >
-              <span>{$t("faq")}</span>
-            </TabAnchor>
-            <TabAnchor
-              href="/{data.lang}/canister-status"
-              selected={$page.url.pathname.endsWith("/canister-status")}
-            >
-              <span class="flex items-center"
-                >Built on ICP <img
-                  src="/img/icp-logo.svg"
-                  width="30"
-                  height="30"
-                  class="inline-block ml-1"
-                  alt="ICP Logo"
-                /></span
-              >
-            </TabAnchor>
-          </TabGroup>
-          <svelte:fragment slot="trail">
-            <ul class="lang">
-              <li class="lable">
-                <i class="fa-solid fa-language text-black text-xl"></i>
-                <span class="hidden md:inline">{langs[data.lang]}</span>
-              </li>
-              <li class="list">
-                <ul>
-                  {#each Object.keys(langs) as key}
-                    <li>
-                      <a href={$page.url.pathname.replace(data.lang, key)}>
-                        {langs[key]}</a
-                      >
-                    </li>
-                  {/each}
-                </ul>
-              </li>
-            </ul>
-            <a
-              class="btn btn-sm border border-black"
-              href="https://github.com/delta-kim"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <i class="fa-brands fa-github"></i>
-              <span class="hidden md:inline">GitHub</span>
             </a>
+
+            <!-- Mobile Menu & Logo -->
+            <div class="flex items-center lg:hidden w-full justify-between">
+              <div class="mr-4 relative">
+                <button
+                  use:popup={{
+                    event: "click",
+                    target: "mobileMenu",
+                    placement: "bottom-start",
+                    closeQuery: "a",
+                    middleware: { offset: 12, shift: { padding: 8 } },
+                  }}
+                >
+                  <i
+                    class="fa-solid fa-bars text-2xl text-slate-800 dark:text-slate-200 transition-colors duration-300"
+                  ></i>
+                </button>
+                <div
+                  data-popup="mobileMenu"
+                  class="z-[100] shadow-2xl rounded-2xl"
+                >
+                  <div
+                    class="flex flex-col bg-white dark:bg-slate-900 rounded-2xl w-[280px] max-h-[75vh] overflow-y-auto p-4 gap-1 text-slate-800 dark:text-slate-100 font-bold border border-slate-100 dark:border-slate-800 transition-colors duration-300 overscroll-contain shadow-2xl"
+                  >
+                    <a
+                      href="/{data.lang}/home"
+                      class="p-3 hover:bg-slate-50 dark:hover:bg-slate-700/50 rounded-xl transition-colors"
+                      >{$t("home")}</a
+                    >
+                    <!-- <a
+                      href="/{data.lang}/explore"
+                      class="p-3 hover:bg-slate-50 dark:hover:bg-slate-700/50 rounded-xl transition-colors"
+                      >{$t("explore")}</a
+                    > -->
+                    <a
+                      href="/{data.lang}/ledger"
+                      class="p-3 hover:bg-slate-50 dark:hover:bg-slate-700/50 rounded-xl transition-colors"
+                      >{$t("ledger")}</a
+                    >
+                    <a
+                      href="/{data.lang}/roadmap"
+                      class="p-3 hover:bg-slate-50 dark:hover:bg-slate-700/50 rounded-xl transition-colors"
+                      >{$t("roadmap")}</a
+                    >
+                    <a
+                      href="/{data.lang}/whitepaper"
+                      class="p-3 hover:bg-slate-50 dark:hover:bg-slate-700/50 rounded-xl transition-colors {$page.url.pathname.includes(
+                        '/whitepaper',
+                      )
+                        ? 'text-primary'
+                        : ''}">{$t("whitepaper")}</a
+                    >
+                    <a
+                      href="/{data.lang}/blog"
+                      class="p-3 hover:bg-slate-50 dark:hover:bg-slate-700/50 rounded-xl transition-colors {$page.url.pathname.includes(
+                        '/blog',
+                      )
+                        ? 'text-primary'
+                        : ''}">Blog</a
+                    >
+                    <a
+                      href="/{data.lang}/support"
+                      class="p-3 hover:bg-slate-50 dark:hover:bg-slate-700/50 rounded-xl transition-colors"
+                      >{$t("faq")}</a
+                    >
+                    <a
+                      href="/{data.lang}/DSMSAccessTerminal"
+                      class="p-3 hover:bg-slate-50 dark:hover:bg-slate-700/50 rounded-xl transition-colors"
+                      >{$t("access_terminal")}</a
+                    >
+                    <a
+                      href="/{data.lang}/canister-status"
+                      class="p-3 hover:bg-slate-50 dark:hover:bg-slate-700/50 rounded-xl transition-colors flex items-center"
+                    >
+                      Built on ICP <img
+                        src="/img/icp-logo.svg"
+                        width="20"
+                        height="20"
+                        class="inline-block ml-2"
+                        alt="ICP Logo"
+                      />
+                    </a>
+                    <div
+                      class="border-t border-slate-100 dark:border-slate-700 mt-2 mx-2 pt-4 pb-2 flex items-center justify-between pointer-events-auto"
+                    >
+                      <span class="text-sm font-medium"
+                        >Theme ({$modeCurrent === true
+                          ? "Light"
+                          : "Dark"})</span
+                      >
+                      <div class="scale-90 origin-right">
+                        <LightSwitch />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <a
+                href="/{data.lang}/home"
+                class="flex-1 flex justify-center mr-8"
+              >
+                <img
+                  src="/img/delta.logo.png"
+                  alt="Delta"
+                  class="h-8 object-contain"
+                />
+              </a>
+            </div>
+          </svelte:fragment>
+
+          <!-- Desktop Center Navigation -->
+          <div
+            class="hidden lg:flex items-center justify-center gap-6 xl:gap-8 text-[15px] font-bold text-slate-700 dark:text-slate-200 transition-colors duration-300 w-full"
+          >
+            <a
+              href="/{data.lang}/home"
+              class="hover:text-primary transition-colors {$page.url.pathname.endsWith(
+                '/home',
+              )
+                ? 'text-primary'
+                : ''}">{$t("home")}</a
+            >
+            <!-- <a
+              href="/{data.lang}/explore"
+              class="hover:text-primary transition-colors {$page.url.pathname.endsWith(
+                '/explore',
+              )
+                ? 'text-primary'
+                : ''}">{$t("explore")}</a
+            > -->
+            <a
+              href="/{data.lang}/ledger"
+              class="hover:text-primary transition-colors {$page.url.pathname.endsWith(
+                '/ledger',
+              )
+                ? 'text-primary'
+                : ''}">{$t("ledger")}</a
+            >
+            <a
+              href="/{data.lang}/roadmap"
+              class="hover:text-primary transition-colors {$page.url.pathname.endsWith(
+                '/roadmap',
+              )
+                ? 'text-primary'
+                : ''}">{$t("roadmap")}</a
+            >
+            <a
+              href="/{data.lang}/whitepaper"
+              class="hover:text-primary transition-colors {$page.url.pathname.endsWith(
+                '/whitepaper',
+              )
+                ? 'text-primary'
+                : ''}">{$t("whitepaper")}</a
+            >
+            <a
+              href="/{data.lang}/blog"
+              class="hover:text-primary transition-colors {$page.url.pathname.endsWith(
+                '/blog',
+              )
+                ? 'text-primary'
+                : ''}">Blog</a
+            >
+            <a
+              href="/{data.lang}/support"
+              class="hover:text-primary transition-colors {$page.url.pathname.endsWith(
+                '/support',
+              )
+                ? 'text-primary'
+                : ''}">{$t("faq")}</a
+            >
+            <a
+              href="/{data.lang}/DSMSAccessTerminal"
+              class="hover:text-primary transition-colors {$page.url.pathname.endsWith(
+                '/DSMSAccessTerminal',
+              )
+                ? 'text-primary'
+                : ''}">{$t("access_terminal")}</a
+            >
+            <a
+              href="/{data.lang}/canister-status"
+              class="hover:text-primary transition-colors flex items-center gap-1.5 {$page.url.pathname.endsWith(
+                '/canister-status',
+              )
+                ? 'text-primary'
+                : ''}"
+            >
+              Build on ICP <img
+                src="/img/icp-logo.svg"
+                width="16"
+                height="16"
+                class="inline-block"
+                alt="ICP Logo"
+              />
+            </a>
+          </div>
+
+          <svelte:fragment slot="trail">
+            <div class="flex items-center gap-4 lg:gap-6">
+              <ul class="lang relative z-50">
+                <li
+                  class="lable cursor-pointer flex items-center gap-1.5 text-slate-700 dark:text-slate-200 font-bold hover:text-primary transition-colors duration-300"
+                >
+                  <i class="fa-solid fa-language text-xl"></i>
+                  <span class="hidden md:inline uppercase text-sm"
+                    >{langs[data.lang]}</span
+                  >
+                </li>
+                <li
+                  class="list bg-white/90 dark:bg-slate-800/95 backdrop-blur-sm rounded-xl shadow-2xl border border-slate-100 dark:border-slate-700 mt-2 absolute right-0 w-32 max-h-64 overflow-y-auto no-scrollbar transition-colors duration-300"
+                >
+                  <ul class="p-2 flex flex-col gap-1">
+                    {#each Object.keys(langs) as key}
+                      <li>
+                        <a
+                          href={$page.url.pathname.replace(data.lang, key)}
+                          class="block px-4 py-2 hover:bg-slate-50 dark:hover:bg-slate-700/50 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 transition-colors"
+                        >
+                          {langs[key]}
+                        </a>
+                      </li>
+                    {/each}
+                  </ul>
+                </li>
+              </ul>
+
+              <div
+                class="hidden md:flex items-center gap-3 mr-2 bg-slate-50 dark:bg-slate-800/50 px-3 py-1.5 rounded-full border border-slate-100 dark:border-slate-700 transition-colors duration-300"
+              >
+                <span
+                  class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider"
+                  >{$modeCurrent === true ? "Light" : "Dark"}</span
+                >
+                <LightSwitch />
+              </div>
+
+              <a
+                href="/{data.lang}/download"
+                class="hidden md:flex bg-orange-500 hover:bg-orange-600 active:bg-orange-700 text-white px-5 lg:px-6 py-2.5 rounded-full font-extrabold transition-all items-center gap-2 shadow-sm text-[15px] hover:-translate-y-0.5"
+              >
+                {$t("download")} <i class="fa-solid fa-arrow-right ml-1"></i>
+              </a>
+            </div>
           </svelte:fragment>
         </AppBar>
       </div>
     </div>
   </svelte:fragment>
   <!-- Page Route Content -->
-  <slot />
+  <main class="min-h-screen">
+    <SEO
+      title={$t("title_home")}
+      description={$t("home_subheading")}
+      lang={data.lang}
+    />
+    <slot />
+  </main>
 
   <svelte:fragment slot="pageFooter">
-    <div class="footerBack bg-slate-900 text-white px-6 md:px-0">
-      <div class="py-9 container mx-auto">
-        <div class="flex md:flex-row flex-col justify-around items-start">
-          <div class="flex flex-row flex-wrap md:justify-around md:w-1/2 gap-5">
-            <ul>
-              <li class="text-lg font-[600] mb-3">Apps</li>
+    <footer class="bg-[#0f172a] text-slate-300 py-16 border-t border-slate-800">
+      <div class="container mx-auto px-6 lg:px-8">
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16"
+        >
+          <!-- Brand Column -->
+          <div class="flex flex-col gap-6">
+            <img
+              src="/img/delta.logo.png"
+              alt="Delta Logo"
+              class="h-12 w-auto object-contain object-left opacity-90"
+            />
+            <p class="text-slate-400 text-sm leading-relaxed max-w-xs">
+              {$t("home_subheading")}
+            </p>
+            <div class="flex items-center gap-4 mt-2">
+              <a
+                href="https://github.com/delta-kim/"
+                target="_blank"
+                rel="noreferrer"
+                class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-300 hover:bg-primary hover:text-white transition-colors"
+                aria-label="GitHub Repository"
+              >
+                <i class="fa-brands fa-github text-lg"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Apps Column -->
+          <div>
+            <h4 class="text-white font-bold text-lg mb-6 tracking-wide">
+              Apps
+            </h4>
+            <ul class="flex flex-col gap-4">
               {#each deltaApps as item}
-                <li class="text-lg font-[300]">
-                  <a href={`/${data.lang}${item.link}`}>{item.label}</a>
-                </li>
-              {/each}
-            </ul>
-            <ul>
-              <li class="text-lg font-[600] mb-3">Useful Links</li>
-              {#each usefulLinks as item}
-                <li class="text-lg font-[300]">
-                  <a href={`/${data.lang}${item.link}`}>{item.label}</a>
+                <li>
+                  <a
+                    href={`/${data.lang}${item.link}`}
+                    class="hover:text-primary transition-colors duration-300 font-light"
+                  >
+                    {item.label}
+                  </a>
                 </li>
               {/each}
             </ul>
           </div>
-          <div class="footerLogoBack p-4 mt-5 md:mt-0 md:w-[75%]">
-            <div class="flex justify-between mb-2">
-              <p class="text-xl font-bold text-primary">
-                Community social media channels
-              </p>
-              <img
-                src="/img/delta.logo.png"
-                alt="DELTA LOGO"
-                class="w-[60px] object-contain"
-              />
-            </div>
-            <div class="flex flex-row justify-between mb-1">
-              <ul
-                class="grid md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-2 justify-between"
-              >
-                {#each communities as community}
-                  <li class="font-[500] text-blue-600">
-                    <a
-                      href={community.link}
-                      target="_blank"
-                      class="flex items-center gap-x-1"
-                    >
-                      {@html community.icon}
 
-                      <span style="font-size: small;" class="underline"
-                        >{community.label}</span
-                      >
-                    </a>
-                  </li>
-                {/each}
-              </ul>
-            </div>
-            <div
-              class="hidden lg:block text-sm text-center"
-              style="color: orange;"
-            >
-              "ann.: New links are not accepted for the time being. Since some
-              channels are found to spread pornographic content, we plan to
-              develop a "media center" driven and managed by the community in
-              the future to eliminate unhealthy content (2025-03-16)"
-            </div>
+          <!-- Links Column -->
+          <div>
+            <h4 class="text-white font-bold text-lg mb-6 tracking-wide">
+              Ecosystem
+            </h4>
+            <ul class="flex flex-col gap-4">
+              {#each usefulLinks as item}
+                <li>
+                  <a
+                    href={`/${data.lang}${item.link}`}
+                    class="hover:text-primary transition-colors duration-300 font-light"
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              {/each}
+            </ul>
+          </div>
+
+          <!-- Community Column -->
+          <div>
+            <h4 class="text-white font-bold text-lg mb-6 tracking-wide">
+              Community
+            </h4>
+            <ul class="grid grid-cols-2 gap-y-4 gap-x-2">
+              {#each communities as community}
+                <li>
+                  <a
+                    href={community.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="flex items-center gap-2 hover:text-primary hover:-translate-y-0.5 transition-all duration-300"
+                  >
+                    <span class="text-xl opacity-80"
+                      >{@html community.icon}</span
+                    >
+                    <span class="text-sm font-light">{community.label}</span>
+                  </a>
+                </li>
+              {/each}
+            </ul>
           </div>
         </div>
-        <p class="text-center text-md mt-10">
-          {`© Delta Web Project 2023-${new Date().getFullYear()} Released under the
-          MIT license`}
-        </p>
+
+        <!-- Footer Bottom -->
+        <div
+          class="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4"
+        >
+          <p class="text-sm text-slate-500 font-light">
+            © {new Date().getFullYear()} Delta Web Project. Released under the MIT
+            license.
+          </p>
+          <div class="flex gap-6 text-sm font-light">
+            <a
+              href="/{data.lang}/privacy_policy"
+              class="hover:text-white transition-colors">Privacy Policy</a
+            >
+            <a
+              href="/{data.lang}/terms_of_service"
+              class="hover:text-white transition-colors">Terms of Service</a
+            >
+          </div>
+        </div>
       </div>
-    </div>
+    </footer>
   </svelte:fragment>
 </AppShell>
 
 <style lang="postcss">
-  ul.lang,
-  ul.menu {
+  ul.lang {
     position: relative;
   }
   ul.lang .lable::after {
@@ -709,40 +869,23 @@
     transform: rotate(90deg);
   }
 
-  ul.lang .list,
-  ul.menu .list {
+  ul.lang .list {
     display: none;
     right: 0;
     position: absolute;
-    background-color: #ffffffd9;
-    padding: 13px;
-    border: 1px solid #dfdfdf;
+    @apply bg-white/90 dark:bg-slate-800/95 backdrop-blur-sm p-4 border border-slate-100 dark:border-slate-700 rounded-xl shadow-2xl;
     white-space: nowrap;
     z-index: 100;
   }
-  ul.menu .list {
-    right: unset;
-  }
-  ul.lang:hover .list,
-  ul.menu:hover .list {
+  ul.lang:hover .list {
     display: block;
   }
   ul.lang .list a:hover {
-    text-decoration: underline;
+    @apply text-primary no-underline bg-slate-50 dark:bg-slate-700/50 rounded-lg;
   }
 
   footer {
     margin-top: 0 !important;
-  }
-  .footerBack .container {
-    padding: 5rem 0;
-    background-image: url(/img/footer-bg.svg);
-    background-repeat: no-repeat;
-  }
-
-  .footerLogoBack {
-    background-color: white;
-    border-radius: 20px;
   }
 
   ul.lang .list:hover {

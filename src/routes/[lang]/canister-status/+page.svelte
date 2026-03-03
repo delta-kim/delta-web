@@ -4,6 +4,9 @@
   import { onMount } from "svelte";
   import { t } from "svelte-i18n";
   import { ic_host } from "../../../lib/store";
+  import SEO from "../../../components/SEO.svelte";
+
+  export let data;
 
   interface CanisterInfo {
     name: string;
@@ -34,11 +37,11 @@
   });
 
   async function fetchCanisterStatus(
-    canisterId: string
+    canisterId: string,
   ): Promise<CanisterStatus | null> {
     try {
       const response = await fetch(
-        `/api/delta_canister_status?id=${canisterId}`
+        `/api/delta_canister_status?id=${canisterId}`,
       );
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -161,9 +164,11 @@
   });
 </script>
 
-<svelte:head>
-  <title>{$t("title_prefix")} - Built on ICP</title>
-</svelte:head>
+<SEO
+  title="{$t('title_prefix')} - Canister Status"
+  description="Real-time status and metrics of the canisters powering the Delta ecosystem on the Internet Computer."
+  lang={data.lang}
+/>
 
 <div class="min-h-screen">
   <div class="container mx-auto px-4 py-8">
@@ -276,7 +281,7 @@
                     <span class="font-medium">memory_size</span>
                     <span class="text-orange-600"
                       >{formatBytes(
-                        parseInt(canister.status.memory_size)
+                        parseInt(canister.status.memory_size),
                       )}</span
                     >
                   </div>
@@ -308,7 +313,7 @@
                     <span class="font-medium">stable_memory_size</span>
                     <span class="text-orange-600"
                       >{formatBytes(
-                        parseInt(canister.status.stable_memory_size)
+                        parseInt(canister.status.stable_memory_size),
                       )}</span
                     >
                   </div>
@@ -330,7 +335,7 @@
                     <span class="font-medium">wasm_memory_size</span>
                     <span class="text-orange-600"
                       >{formatBytes(
-                        parseInt(canister.status.wasm_memory_size)
+                        parseInt(canister.status.wasm_memory_size),
                       )}</span
                     >
                   </div>

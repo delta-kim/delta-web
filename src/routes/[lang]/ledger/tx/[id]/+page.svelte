@@ -1,9 +1,9 @@
 <script lang="ts">
-  import { t, locale } from "svelte-i18n";
-  import { TabAnchor } from "@skeletonlabs/skeleton";
   import type { PageData } from "../../$types";
   import type { Transaction } from "../../../../../declarations/Ledgers/Ledgers.did";
   import type { LedgerInitArgs } from "../../../../../declarations/MultiChainWallet/MultiChainWallet.did";
+  import { t, locale } from "svelte-i18n";
+  import { TabAnchor } from "@skeletonlabs/skeleton";
   import { onMount } from "svelte";
   import { createActor as createDelta } from "../../../../../declarations/delta/index";
   import { createActor as createLedgers } from "../../../../../declarations/Ledgers/index";
@@ -130,142 +130,199 @@
 <svelte:head>
   <title>{$t("title_prefix")} - {$t("explore")}</title>
 </svelte:head>{#if loading}
-  <p class="text-center">Loading...</p>
+  <div
+    class="min-h-screen flex items-center justify-center bg-[#f8fafc] dark:bg-slate-900"
+  >
+    <div
+      class="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"
+    ></div>
+  </div>
 {:else if tnx == undefined}
-  <p>Transaction no found</p>
+  <div
+    class="min-h-screen flex items-center justify-center bg-[#f8fafc] dark:bg-slate-900"
+  >
+    <p class="text-slate-500 dark:text-slate-400">Transaction not found</p>
+  </div>
 {:else}
   <div
-    class="container mx-auto h-full flex flex-col justify-center items-center pb-10"
+    class="min-h-screen bg-[#f8fafc] dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-sans selection:bg-primary/30 relative pb-32 transition-colors duration-300"
   >
-    <div class="gap-4 w-full md:w-[60vw] my-10 px-2">
+    <!-- Background Glow -->
+    <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
       <div
-        class="bg-white w-full rounded-2xl shadow-sm border border-slate-100 p-6"
-      >
-        <h2
-          class="text-xl font-bold text-slate-800 mb-6 pb-4 border-b border-slate-100"
-        >
-          Transaction Details
-        </h2>
+        class="absolute top-0 right-1/4 w-[500px] h-[500px] bg-primary/5 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob"
+      ></div>
+      <div
+        class="absolute bottom-1/4 left-1/4 w-[500px] h-[500px] bg-secondary/5 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000"
+      ></div>
+    </div>
 
-        <div class="space-y-6">
-          <!-- Main Info -->
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <p class="text-sm font-medium text-slate-500 mb-1">
-                Transaction ID
-              </p>
-              <div class="flex items-center gap-2">
-                <p class="text-slate-800 font-mono text-sm break-all">
-                  {tnx?.txId || "N/A"}
+    <div
+      class="container mx-auto px-6 pt-20 relative z-10 max-w-7xl flex flex-col items-center"
+    >
+      <div class="gap-4 w-full md:w-[60vw] my-10 px-2">
+        <div
+          class="bg-white dark:bg-slate-800 w-full rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 p-6"
+        >
+          <h2
+            class="text-xl font-bold text-slate-800 dark:text-white mb-6 pb-4 border-b border-slate-100 dark:border-slate-700"
+          >
+            Transaction Details
+          </h2>
+
+          <div class="space-y-6">
+            <!-- Main Info -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <p
+                  class="text-sm font-medium text-slate-500 dark:text-slate-400 mb-1"
+                >
+                  Transaction ID
                 </p>
-                {#if tnx?.txId}
-                  <button
-                    type="button"
-                    class="p-1 text-slate-400 hover:text-blue-600 transition-colors"
-                    title="Copy TxID"
-                    on:click={() => {
-                      navigator.clipboard.writeText(tnx?.txId || "");
-                      alert("TxID copied");
-                    }}
+                <div class="flex items-center gap-2">
+                  <p
+                    class="text-slate-800 dark:text-slate-200 font-mono text-sm break-all"
                   >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      class="h-4 w-4"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
+                    {tnx?.txId || "N/A"}
+                  </p>
+                  {#if tnx?.txId}
+                    <button
+                      type="button"
+                      class="p-1 text-slate-400 dark:text-slate-500 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                      title="Copy TxID"
+                      on:click={() => {
+                        navigator.clipboard.writeText(tnx?.txId || "");
+                        alert("TxID copied");
+                      }}
                     >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
-                      />
-                    </svg>
-                  </button>
-                {/if}
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-4 w-4"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+                        />
+                      </svg>
+                    </button>
+                  {/if}
+                </div>
+              </div>
+              <div>
+                <p
+                  class="text-sm font-medium text-slate-500 dark:text-slate-400 mb-1"
+                >
+                  Internal ID
+                </p>
+                <p class="text-slate-800 dark:text-slate-200 font-mono text-sm">
+                  {tnx?.id}
+                </p>
               </div>
             </div>
-            <div>
-              <p class="text-sm font-medium text-slate-500 mb-1">Internal ID</p>
-              <p class="text-slate-800 font-mono text-sm">{tnx?.id}</p>
-            </div>
-          </div>
 
-          <!-- Amounts -->
-          <div
-            class="bg-slate-50 rounded-xl p-4 border border-slate-100 grid grid-cols-1 md:grid-cols-2 gap-6"
-          >
-            <div>
-              <p class="text-sm font-medium text-slate-500 mb-1">Amount</p>
-              <p class="text-xl font-bold text-slate-800">
-                {_formatCryptoAmount(
-                  tnx.amount,
-                  Number(getLedger(coin_code)?.decimals ?? 8),
-                )}
-                <span class="text-sm font-medium text-slate-500 ml-1"
-                  >{getLedger(coin_code)?.code}</span
+            <!-- Amounts -->
+            <div
+              class="bg-slate-50 dark:bg-slate-700/50 rounded-xl p-4 border border-slate-100 dark:border-slate-700/50 grid grid-cols-1 md:grid-cols-2 gap-6"
+            >
+              <div>
+                <p
+                  class="text-sm font-medium text-slate-500 dark:text-slate-400 mb-1"
                 >
-              </p>
-            </div>
-            <div>
-              <p class="text-sm font-medium text-slate-500 mb-1">Fee</p>
-              <p class="text-xl font-bold text-slate-800">
-                {_formatCryptoAmount(
-                  tnx.fee,
-                  Number(getLedger(coin_code)?.decimals ?? 8),
-                )}
-                <span class="text-sm font-medium text-slate-500 ml-1"
-                  >{getLedger(coin_code)?.code}</span
+                  Amount
+                </p>
+                <p class="text-xl font-bold text-slate-800 dark:text-white">
+                  {_formatCryptoAmount(
+                    tnx.amount,
+                    Number(getLedger(coin_code)?.decimals ?? 8),
+                  )}
+                  <span
+                    class="text-sm font-medium text-slate-500 dark:text-slate-400 ml-1"
+                    >{getLedger(coin_code)?.code}</span
+                  >
+                </p>
+              </div>
+              <div>
+                <p
+                  class="text-sm font-medium text-slate-500 dark:text-slate-400 mb-1"
                 >
-              </p>
-            </div>
-          </div>
-
-          <!-- Details -->
-          <div class="grid grid-cols-1 gap-4">
-            <div
-              class="flex flex-col sm:flex-row sm:justify-between py-3 border-b border-slate-50"
-            >
-              <span class="text-sm font-medium text-slate-500">Method</span>
-              <span
-                class="text-sm font-medium text-slate-800 bg-slate-100 px-2 py-1 rounded inline-block w-fit mt-1 sm:mt-0"
-              >
-                {_formatKind(tnx.kind)}
-              </span>
+                  Fee
+                </p>
+                <p class="text-xl font-bold text-slate-800 dark:text-white">
+                  {_formatCryptoAmount(
+                    tnx.fee,
+                    Number(getLedger(coin_code)?.decimals ?? 8),
+                  )}
+                  <span
+                    class="text-sm font-medium text-slate-500 dark:text-slate-400 ml-1"
+                    >{getLedger(coin_code)?.code}</span
+                  >
+                </p>
+              </div>
             </div>
 
-            <div
-              class="flex flex-col sm:flex-row sm:justify-between py-3 border-b border-slate-50"
-            >
-              <span class="text-sm font-medium text-slate-500">Timestamp</span>
-              <span class="text-sm text-slate-800 mt-1 sm:mt-0"
-                >{_formatTimestamp(tnx.timestamp)}</span
+            <!-- Details -->
+            <div class="grid grid-cols-1 gap-4">
+              <div
+                class="flex flex-col sm:flex-row sm:justify-between py-3 border-b border-slate-50 dark:border-slate-700/50"
               >
-            </div>
+                <span
+                  class="text-sm font-medium text-slate-500 dark:text-slate-400"
+                  >Method</span
+                >
+                <span
+                  class="text-sm font-medium text-slate-800 dark:text-slate-200 bg-slate-100 dark:bg-slate-700 px-2 py-1 rounded inline-block w-fit mt-1 sm:mt-0"
+                >
+                  {_formatKind(tnx.kind)}
+                </span>
+              </div>
 
-            <div
-              class="flex flex-col sm:flex-row sm:justify-between py-3 border-b border-slate-50"
-            >
-              <span class="text-sm font-medium text-slate-500">From</span>
-              <a
-                href={`../account/${tnx.from}?coin_code=${getLedger(coin_code)?.code}`}
-                class="text-sm font-medium text-blue-600 hover:text-blue-800 break-all mt-1 sm:mt-0"
+              <div
+                class="flex flex-col sm:flex-row sm:justify-between py-3 border-b border-slate-50 dark:border-slate-700/50"
               >
-                {tnx.from}
-              </a>
-            </div>
+                <span
+                  class="text-sm font-medium text-slate-500 dark:text-slate-400"
+                  >Timestamp</span
+                >
+                <span
+                  class="text-sm text-slate-800 dark:text-slate-200 mt-1 sm:mt-0"
+                  >{_formatTimestamp(tnx.timestamp)}</span
+                >
+              </div>
 
-            <div
-              class="flex flex-col sm:flex-row sm:justify-between py-3 border-b border-slate-50"
-            >
-              <span class="text-sm font-medium text-slate-500">To</span>
-              <a
-                href={`../account/${tnx.to}?coin_code=${getLedger(coin_code)?.code}`}
-                class="text-sm font-medium text-blue-600 hover:text-blue-800 break-all mt-1 sm:mt-0"
+              <div
+                class="flex flex-col sm:flex-row sm:justify-between py-3 border-b border-slate-50 dark:border-slate-700/50"
               >
-                {tnx.to}
-              </a>
+                <span
+                  class="text-sm font-medium text-slate-500 dark:text-slate-400"
+                  >From</span
+                >
+                <a
+                  href={`../account/${tnx.from}?coin_code=${getLedger(coin_code)?.code}`}
+                  class="text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 break-all mt-1 sm:mt-0"
+                >
+                  {tnx.from}
+                </a>
+              </div>
+
+              <div
+                class="flex flex-col sm:flex-row sm:justify-between py-3 border-b border-slate-50 dark:border-slate-700/50"
+              >
+                <span
+                  class="text-sm font-medium text-slate-500 dark:text-slate-400"
+                  >To</span
+                >
+                <a
+                  href={`../account/${tnx.to}?coin_code=${getLedger(coin_code)?.code}`}
+                  class="text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 break-all mt-1 sm:mt-0"
+                >
+                  {tnx.to}
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -277,5 +334,26 @@
 <style lang="postcss">
   figure {
     @apply flex relative flex-col;
+  }
+
+  @keyframes blob {
+    0% {
+      transform: translate(0px, 0px) scale(1);
+    }
+    33% {
+      transform: translate(30px, -50px) scale(1.1);
+    }
+    66% {
+      transform: translate(-20px, 20px) scale(0.9);
+    }
+    100% {
+      transform: translate(0px, 0px) scale(1);
+    }
+  }
+  .animate-blob {
+    animation: blob 7s infinite;
+  }
+  .animation-delay-2000 {
+    animation-delay: 2s;
   }
 </style>

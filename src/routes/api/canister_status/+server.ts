@@ -6,7 +6,7 @@ export const GET: RequestHandler = async (event) => {
         return new Response("Parameter exception");
     }
     try {
-        const kv = event.platform?.env?.KV;
+        const kv = (event.platform as any)?.env?.KV;
         const key = `CanisterStatus:${canisterId}`;
         let json = await kv.get(key, 'json');
         if (json == null) {
@@ -18,6 +18,6 @@ export const GET: RequestHandler = async (event) => {
             headers: { "Content-Type": "application/json" },
         });
     } catch (error) {
-        return new Response(error.message);
+        return new Response((error as Error).message);
     }
 };
