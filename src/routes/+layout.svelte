@@ -128,7 +128,7 @@
     },
     {
       icon: `<i class="fa-brands fa-telegram" style="color:#0088CC"></i>`,
-      label: "Delta Kim",
+      label: "Delta Kim DAO",
       link: "https://t.me/TheDeltaKim",
       creator: "josephangengang@gmail.com",
     },
@@ -448,6 +448,18 @@
       icon: `<i class="fa-brands fa-facebook"style="color: rgb(8, 102, 255);"></i>`,
       label: "DeltaKim Nigeria",
       link: "https://www.facebook.com/groups/1220053980248582/",
+      creator: "",
+    },
+    {
+      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
+      label: "DELTA Turkey 🇹🇷",
+      link: "https://chat.whatsapp.com/KaAAoxxuBzq7rtATZtU5TP",
+      creator: "",
+    },
+    {
+      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
+      label: "DELTA Brasil 🇧🇷",
+      link: "https://chat.whatsapp.com/El0Z4nGVNguJNg8YnjLtNV",
       creator: "",
     },
   ];
