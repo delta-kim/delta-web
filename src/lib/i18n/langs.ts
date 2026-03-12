@@ -23,6 +23,8 @@ export const langs: langObject = {
   pl: "Polski", // 波兰语
   uk: "українська", // 乌克兰语
   el: "Ελληνικά", //希腊语
+  yo: "Yorùbá", //约鲁巴语
+  ha: "Hausa", //豪萨语
   bg: "български", //български google
   ckb: "کوردی", // 库尔德语（索拉尼）
 };

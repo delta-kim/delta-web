@@ -462,6 +462,12 @@
       link: "https://chat.whatsapp.com/El0Z4nGVNguJNg8YnjLtNV",
       creator: "",
     },
+    {
+      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
+      label: "DELTA Africa (EN)",
+      link: "https://chat.whatsapp.com/BxQSIW8XhPF3Um9ECDiFQo",
+      creator: "",
+    },
   ];
 </script>
 
@@ -516,31 +522,31 @@
                   class="z-[100] shadow-2xl rounded-2xl"
                 >
                   <div
-                    class="flex flex-col bg-white dark:bg-slate-900 rounded-2xl w-[280px] max-h-[75vh] overflow-y-auto p-4 gap-1 text-slate-800 dark:text-slate-100 font-bold border border-slate-100 dark:border-slate-800 transition-colors duration-300 overscroll-contain shadow-2xl"
+                    class="flex flex-col bg-white dark:bg-slate-900 rounded-2xl w-[280px] max-h-[60vh] overflow-y-auto p-3 gap-0.5 text-slate-800 dark:text-slate-100 font-bold border border-slate-100 dark:border-slate-800 transition-colors duration-300 overscroll-contain shadow-2xl"
                   >
                     <a
                       href="/{data.lang}/home"
-                      class="p-3 hover:bg-slate-50 dark:hover:bg-slate-700/50 rounded-xl transition-colors"
+                      class="p-2.5 hover:bg-slate-50 dark:hover:bg-slate-700/50 rounded-xl transition-colors"
                       >{$t("home")}</a
                     >
                     <!-- <a
                       href="/{data.lang}/explore"
-                      class="p-3 hover:bg-slate-50 dark:hover:bg-slate-700/50 rounded-xl transition-colors"
+                      class="p-2.5 hover:bg-slate-50 dark:hover:bg-slate-700/50 rounded-xl transition-colors"
                       >{$t("explore")}</a
                     > -->
                     <a
                       href="/{data.lang}/ledger"
-                      class="p-3 hover:bg-slate-50 dark:hover:bg-slate-700/50 rounded-xl transition-colors"
+                      class="p-2.5 hover:bg-slate-50 dark:hover:bg-slate-700/50 rounded-xl transition-colors"
                       >{$t("ledger")}</a
                     >
                     <a
                       href="/{data.lang}/roadmap"
-                      class="p-3 hover:bg-slate-50 dark:hover:bg-slate-700/50 rounded-xl transition-colors"
+                      class="p-2.5 hover:bg-slate-50 dark:hover:bg-slate-700/50 rounded-xl transition-colors"
                       >{$t("roadmap")}</a
                     >
                     <a
                       href="/{data.lang}/whitepaper"
-                      class="p-3 hover:bg-slate-50 dark:hover:bg-slate-700/50 rounded-xl transition-colors {$page.url.pathname.includes(
+                      class="p-2.5 hover:bg-slate-50 dark:hover:bg-slate-700/50 rounded-xl transition-colors {$page.url.pathname.includes(
                         '/whitepaper',
                       )
                         ? 'text-primary'
@@ -548,7 +554,7 @@
                     >
                     <a
                       href="/{data.lang}/blog"
-                      class="p-3 hover:bg-slate-50 dark:hover:bg-slate-700/50 rounded-xl transition-colors {$page.url.pathname.includes(
+                      class="p-2.5 hover:bg-slate-50 dark:hover:bg-slate-700/50 rounded-xl transition-colors {$page.url.pathname.includes(
                         '/blog',
                       )
                         ? 'text-primary'
@@ -556,17 +562,17 @@
                     >
                     <a
                       href="/{data.lang}/support"
-                      class="p-3 hover:bg-slate-50 dark:hover:bg-slate-700/50 rounded-xl transition-colors"
+                      class="p-2.5 hover:bg-slate-50 dark:hover:bg-slate-700/50 rounded-xl transition-colors"
                       >{$t("faq")}</a
                     >
                     <a
                       href="/{data.lang}/DSMSAccessTerminal"
-                      class="p-3 hover:bg-slate-50 dark:hover:bg-slate-700/50 rounded-xl transition-colors"
+                      class="p-2.5 hover:bg-slate-50 dark:hover:bg-slate-700/50 rounded-xl transition-colors"
                       >{$t("access_terminal")}</a
                     >
                     <a
                       href="/{data.lang}/canister-status"
-                      class="p-3 hover:bg-slate-50 dark:hover:bg-slate-700/50 rounded-xl transition-colors flex items-center"
+                      class="p-2.5 hover:bg-slate-50 dark:hover:bg-slate-700/50 rounded-xl transition-colors flex items-center"
                     >
                       Built on ICP <img
                         src="/img/icp-logo.svg"
@@ -692,17 +698,29 @@
 
           <svelte:fragment slot="trail">
             <div class="flex items-center gap-4 lg:gap-6">
-              <ul class="lang relative z-50">
-                <li
-                  class="lable cursor-pointer flex items-center gap-1.5 text-slate-700 dark:text-slate-200 font-bold hover:text-primary transition-colors duration-300"
+              <div class="lang relative z-50">
+                <button
+                  use:popup={{
+                    event: "click",
+                    target: "langDropdown",
+                    placement: "bottom-end",
+                    closeQuery: "a",
+                    middleware: { offset: 12, shift: { padding: 8 } },
+                  }}
+                  class="flex items-center gap-1.5 text-slate-700 dark:text-slate-200 font-bold hover:text-primary transition-colors duration-300"
                 >
                   <i class="fa-solid fa-language text-xl"></i>
                   <span class="hidden md:inline uppercase text-sm"
                     >{langs[data.lang]}</span
                   >
-                </li>
-                <li
-                  class="list bg-white/90 dark:bg-slate-800/95 backdrop-blur-sm rounded-xl shadow-2xl border border-slate-100 dark:border-slate-700 mt-2 absolute right-0 w-32 max-h-64 overflow-y-auto no-scrollbar transition-colors duration-300"
+                  <i
+                    class="fa-solid fa-chevron-down text-[10px] opacity-50 transition-transform duration-300"
+                    class:rotate-180={false}
+                  ></i>
+                </button>
+                <div
+                  data-popup="langDropdown"
+                  class="z-[100] bg-white/90 dark:bg-slate-800/95 backdrop-blur-sm rounded-xl shadow-2xl border border-slate-100 dark:border-slate-700 overflow-y-auto no-scrollbar max-h-64 min-w-[140px]"
                 >
                   <ul class="p-2 flex flex-col gap-1">
                     {#each Object.keys(langs) as key}
@@ -716,8 +734,8 @@
                       </li>
                     {/each}
                   </ul>
-                </li>
-              </ul>
+                </div>
+              </div>
 
               <div
                 class="hidden md:flex items-center gap-3 mr-2 bg-slate-50 dark:bg-slate-800/50 px-3 py-1.5 rounded-full border border-slate-100 dark:border-slate-700 transition-colors duration-300"
@@ -868,39 +886,7 @@
 </AppShell>
 
 <style lang="postcss">
-  ul.lang {
-    position: relative;
-  }
-  ul.lang .lable::after {
-    content: ">";
-    display: inline-block;
-    padding-left: 5px;
-    opacity: 0.6;
-  }
-  ul.lang:hover .lable::after {
-    transform: rotate(90deg);
-  }
-
-  ul.lang .list {
-    display: none;
-    right: 0;
-    position: absolute;
-    @apply bg-white/90 dark:bg-slate-800/95 backdrop-blur-sm p-4 border border-slate-100 dark:border-slate-700 rounded-xl shadow-2xl;
-    white-space: nowrap;
-    z-index: 100;
-  }
-  ul.lang:hover .list {
-    display: block;
-  }
-  ul.lang .list a:hover {
-    @apply text-primary no-underline bg-slate-50 dark:bg-slate-700/50 rounded-lg;
-  }
-
   footer {
     margin-top: 0 !important;
-  }
-
-  ul.lang .list:hover {
-    display: block;
   }
 </style>
