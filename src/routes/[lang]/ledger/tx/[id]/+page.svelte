@@ -141,7 +141,9 @@
   <div
     class="min-h-screen flex items-center justify-center bg-[#f8fafc] dark:bg-slate-900"
   >
-    <p class="text-slate-500 dark:text-slate-400">Transaction not found</p>
+    <p class="text-slate-500 dark:text-slate-400">
+      {$t("error_transaction_not_found")}
+    </p>
   </div>
 {:else}
   <div
@@ -167,7 +169,7 @@
           <h2
             class="text-xl font-bold text-slate-800 dark:text-white mb-6 pb-4 border-b border-slate-100 dark:border-slate-700"
           >
-            Transaction Details
+            {$t("transaction_details")}
           </h2>
 
           <div class="space-y-6">
@@ -177,7 +179,7 @@
                 <p
                   class="text-sm font-medium text-slate-500 dark:text-slate-400 mb-1"
                 >
-                  Transaction ID
+                  {$t("transaction_id")}
                 </p>
                 <div class="flex items-center gap-2">
                   <p
@@ -217,7 +219,7 @@
                 <p
                   class="text-sm font-medium text-slate-500 dark:text-slate-400 mb-1"
                 >
-                  Internal ID
+                  {$t("internal_id")}
                 </p>
                 <p class="text-slate-800 dark:text-slate-200 font-mono text-sm">
                   {tnx?.id}
@@ -233,7 +235,7 @@
                 <p
                   class="text-sm font-medium text-slate-500 dark:text-slate-400 mb-1"
                 >
-                  Amount
+                  {$t("amount")}
                 </p>
                 <p class="text-xl font-bold text-slate-800 dark:text-white">
                   {_formatCryptoAmount(
@@ -250,7 +252,7 @@
                 <p
                   class="text-sm font-medium text-slate-500 dark:text-slate-400 mb-1"
                 >
-                  Fee
+                  {$t("fee")}
                 </p>
                 <p class="text-xl font-bold text-slate-800 dark:text-white">
                   {_formatCryptoAmount(
@@ -272,7 +274,7 @@
               >
                 <span
                   class="text-sm font-medium text-slate-500 dark:text-slate-400"
-                  >Method</span
+                  >{$t("method")}</span
                 >
                 <span
                   class="text-sm font-medium text-slate-800 dark:text-slate-200 bg-slate-100 dark:bg-slate-700 px-2 py-1 rounded inline-block w-fit mt-1 sm:mt-0"
@@ -286,7 +288,7 @@
               >
                 <span
                   class="text-sm font-medium text-slate-500 dark:text-slate-400"
-                  >Timestamp</span
+                  >{$t("timestamp")}</span
                 >
                 <span
                   class="text-sm text-slate-800 dark:text-slate-200 mt-1 sm:mt-0"
@@ -299,7 +301,7 @@
               >
                 <span
                   class="text-sm font-medium text-slate-500 dark:text-slate-400"
-                  >From</span
+                  >{$t("from")}</span
                 >
                 <a
                   href={`../account/${tnx.from}?coin_code=${getLedger(coin_code)?.code}`}
@@ -314,7 +316,7 @@
               >
                 <span
                   class="text-sm font-medium text-slate-500 dark:text-slate-400"
-                  >To</span
+                  >{$t("to")}</span
                 >
                 <a
                   href={`../account/${tnx.to}?coin_code=${getLedger(coin_code)?.code}`}

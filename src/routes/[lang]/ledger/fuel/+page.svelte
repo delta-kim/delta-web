@@ -37,7 +37,7 @@
         <h1
           class="text-xl font-bold text-slate-800 dark:text-white mb-6 pb-4 border-b border-slate-100 dark:border-slate-700"
         >
-          Fueling
+          {$t("fueling")}
         </h1>
         <div class="w-full overflow-x-auto">
           <table class="w-full text-left border-collapse">
@@ -45,35 +45,35 @@
               <tr class="border-b border-slate-100 dark:border-slate-700">
                 <th
                   class="py-3 px-4 text-sm font-semibold text-slate-500 dark:text-slate-400"
-                  >S/N</th
+                  >{$t("sn")}</th
                 >
                 <th
                   class="py-3 px-4 text-sm font-semibold text-slate-500 dark:text-slate-400"
-                  >Hash</th
+                  >{$t("hash")}</th
                 >
                 <th
                   class="py-3 px-4 text-sm font-semibold text-slate-500 dark:text-slate-400"
-                  >Method</th
+                  >{$t("method")}</th
                 >
                 <th
                   class="py-3 px-4 text-sm font-semibold text-slate-500 dark:text-slate-400"
-                  >Age</th
+                  >{$t("age")}</th
                 >
                 <th
                   class="py-3 px-4 text-sm font-semibold text-slate-500 dark:text-slate-400"
-                  >From</th
+                  >{$t("from")}</th
                 >
                 <th
                   class="py-3 px-4 text-sm font-semibold text-slate-500 dark:text-slate-400"
-                  >To</th
+                  >{$t("to")}</th
                 >
                 <th
                   class="py-3 px-4 text-sm font-semibold text-slate-500 dark:text-slate-400"
-                  >Amount</th
+                  >{$t("amount")}</th
                 >
                 <th
                   class="py-3 px-4 text-sm font-semibold text-slate-500 dark:text-slate-400"
-                  >Fee</th
+                  >{$t("fee")}</th
                 >
               </tr>
             </thead>
@@ -93,7 +93,7 @@
                   ></td
                 >
                 <td class="py-3 px-4 text-sm text-slate-600 dark:text-slate-300"
-                  >Transfer</td
+                  >{$t("transaction")}</td
                 >
                 <td class="py-3 px-4 text-sm text-slate-500 dark:text-slate-400"
                   >1 sec</td
@@ -118,24 +118,6 @@
                 >
                 <td class="py-3 px-4 text-sm text-slate-500 dark:text-slate-400"
                   >0DTC</td
-                >
-              </tr>
-              <!-- Repeat for other dummy rows with same styling -->
-              <tr
-                class="border-b border-slate-50 dark:border-slate-700/50 last:border-0 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"
-              >
-                <td class="py-3 px-4 text-sm text-slate-600 dark:text-slate-300"
-                  >2</td
-                >
-                <td class="py-3 px-4 text-sm"
-                  ><a
-                    href="./fuel/123456"
-                    class="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium"
-                    >DeltaCoin</a
-                  ></td
-                >
-                <td class="py-3 px-4 text-sm text-slate-600 dark:text-slate-300"
-                  >Transfer</td
                 >
                 <td class="py-3 px-4 text-sm text-slate-500 dark:text-slate-400"
                   >5 sec</td

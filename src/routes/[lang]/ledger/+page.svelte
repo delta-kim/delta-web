@@ -185,7 +185,7 @@
         <h1
           class="text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-6 drop-shadow-sm transition-colors duration-300"
         >
-          Delta Kim's Ledger
+          {$t("ledger_title")}
         </h1>
         <div
           class="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full opacity-80 mb-8"
@@ -203,11 +203,11 @@
         >
           <input
             class="flex-grow rounded-full border-none bg-transparent px-6 py-3 text-slate-700 dark:text-slate-200 focus:ring-0 focus:outline-none placeholder-slate-400 dark:placeholder-slate-500 transition-colors duration-300"
-            placeholder="Search by Address / Hash"
+            placeholder={$t("search_placeholder")}
           />
           <button
             class="bg-slate-900 hover:bg-primary px-8 py-3 rounded-full text-white font-bold transition-colors shadow-md"
-            >Search</button
+            >{$t("search_button")}</button
           >
         </form>
       </header>
@@ -220,12 +220,12 @@
           <h2
             class="text-2xl font-bold text-slate-800 dark:text-white transition-colors duration-300"
           >
-            Ledgers
+            {$t("ledgers")}
           </h2>
           <span
             class="bg-primary/5 text-primary border border-primary/20 px-3 py-1 rounded-full text-sm font-bold"
           >
-            Total: {ledgers.length}
+            {$t("total")}: {ledgers.length}
           </span>
         </div>
 
@@ -354,13 +354,13 @@
         >
           <div class="flex justify-between items-center mb-6">
             <h2 class="text-xl font-bold text-slate-800 dark:text-white">
-              Transactions
+              {$t("transactions")}
             </h2>
             <a
               href="./ledger/tx"
               class="text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors"
             >
-              View All Transactions &rarr;
+              {$t("view_all_transactions")}
             </a>
           </div>
 
@@ -371,35 +371,35 @@
                   <tr class="border-b border-slate-100 dark:border-slate-700">
                     <th
                       class="py-3 px-4 text-sm font-semibold text-slate-500 dark:text-slate-400"
-                      >ID</th
+                      >{$t("id")}</th
                     >
                     <th
                       class="py-3 px-4 text-sm font-semibold text-slate-500 dark:text-slate-400"
-                      >From</th
+                      >{$t("from")}</th
                     >
                     <th
                       class="py-3 px-4 text-sm font-semibold text-slate-500 dark:text-slate-400"
-                      >To</th
+                      >{$t("to")}</th
                     >
                     <th
                       class="py-3 px-4 text-sm font-semibold text-slate-500 dark:text-slate-400"
-                      >Method</th
+                      >{$t("method")}</th
                     >
                     <th
                       class="py-3 px-4 text-sm font-semibold text-slate-500 dark:text-slate-400"
-                      >Amount</th
+                      >{$t("amount")}</th
                     >
                     <th
                       class="py-3 px-4 text-sm font-semibold text-slate-500 dark:text-slate-400"
-                      >Fee</th
+                      >{$t("fee")}</th
                     >
                     <th
                       class="py-3 px-4 text-sm font-semibold text-slate-500 dark:text-slate-400"
-                      >Time</th
+                      >{$t("time")}</th
                     >
                     <th
                       class="py-3 px-4 text-sm font-semibold text-slate-500 dark:text-slate-400"
-                      >TxID</th
+                      >{$t("txid")}</th
                     >
                   </tr>
                 </thead>
@@ -486,10 +486,13 @@
               class="flex justify-between items-center mt-6 pt-4 border-t border-slate-100 dark:border-slate-700"
             >
               <span class="text-sm text-slate-500">
-                Showing {(currentPage - 1) * itemsPerPage + 1} to {Math.min(
-                  currentPage * itemsPerPage,
-                  transactions.length,
-                )} of {transactions.length} entries
+                {$t("showing")}
+                {(currentPage - 1) * itemsPerPage + 1}
+                {$t("to_word")}
+                {Math.min(currentPage * itemsPerPage, transactions.length)}
+                {$t("of")}
+                {transactions.length}
+                {$t("entries")}
               </span>
               <div class="flex space-x-2">
                 <button
@@ -497,20 +500,20 @@
                   on:click={prevPage}
                   disabled={currentPage === 1}
                 >
-                  Previous
+                  {$t("previous")}
                 </button>
                 <button
                   class="px-3 py-1 border border-slate-200 dark:border-slate-700 rounded-md text-sm font-medium text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700 disabled:opacity-50 disabled:cursor-not-allowed"
                   on:click={nextPage}
                   disabled={currentPage === totalPages}
                 >
-                  Next
+                  {$t("next")}
                 </button>
               </div>
             </div>
           {:else}
             <div class="text-center py-10 text-slate-500">
-              <p>No transactions found</p>
+              <p>{$t("no_transactions_found")}</p>
             </div>
           {/if}
         </div>

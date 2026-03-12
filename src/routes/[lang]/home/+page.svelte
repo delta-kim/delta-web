@@ -251,19 +251,18 @@
         />
       </div>
       <h2 class="text-4xl md:text-6xl font-extrabold mb-8 tracking-tight">
-        A keyless digital money system!
+        {$t("canister_status_title")}
       </h2>
       <p
         class="text-xl md:text-2xl text-slate-300 max-w-3xl mx-auto leading-relaxed mb-12 font-light"
       >
-        Delta is 100% based on the ICP blockchain and is secured by ECDSA
-        threshold signature technology.
+        {$t("canister_status_desc")}
       </p>
       <a
         href="./canister-status"
         class="inline-block px-10 py-5 rounded-full bg-white text-slate-900 font-bold text-lg hover:bg-slate-100 hover:scale-105 transition-all shadow-[0_0_30px_rgba(255,255,255,0.3)]"
       >
-        View Canister Status
+        {$t("view_canister_status")}
       </a>
     </div>
   </section>

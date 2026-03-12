@@ -174,10 +174,9 @@
   <div class="container mx-auto px-4 py-8">
     <!-- Header Section -->
     <div class="mb-12 text-center">
-      <h1 class="text-3xl font-bold mb-4">A keyless digital money system!</h1>
+      <h1 class="text-3xl font-bold mb-4">{$t("canister_status_title")}</h1>
       <p class="text-lg mb-6">
-        Delta is 100% based on the ICP blockchain and is secured by ECDSA
-        threshold signature technology.
+        {$t("canister_status_desc")}
       </p>
       <div class="flex flex-row items-center gap-8 mt-3 justify-center">
         <figure>
@@ -215,11 +214,11 @@
     <!-- Built on ICP Section -->
     {#if loading}
       <div class="flex items-center justify-center py-12">
-        <div class="text-lg">Loading canister information...</div>
+        <div class="text-lg">{$t("loading_canister_info")}</div>
       </div>
     {:else if canisterIdMap.length === 0}
       <div class="flex items-center justify-center py-12">
-        <div class="text-lg">No canister information available.</div>
+        <div class="text-lg">{$t("no_canister_info")}</div>
       </div>
     {:else}
       <!-- class="space-y-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" -->
@@ -265,7 +264,7 @@
               {#if canister.loading}
                 <div class="p-4 text-center">
                   <i class="fa-solid fa-spinner fa-spin mr-2"></i>
-                  Loading canister status...
+                  {$t("loading_canister_status")}
                 </div>
               {:else if canister.error}
                 <div class="p-4 text-center text-red-400">

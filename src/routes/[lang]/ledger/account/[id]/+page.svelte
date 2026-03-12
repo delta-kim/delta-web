@@ -199,7 +199,7 @@
         class="bg-white dark:bg-slate-800 w-full rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 p-6 mb-6"
       >
         <h2 class="text-xl font-bold text-slate-800 dark:text-white mb-4">
-          Account Details
+          {$t("account_details")}
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div
@@ -208,7 +208,7 @@
             <p
               class="text-sm font-medium text-slate-500 dark:text-slate-400 mb-1"
             >
-              Address
+              {$t("address")}
             </p>
             <div class="flex items-center gap-2">
               <p
@@ -248,7 +248,7 @@
             <p
               class="text-sm font-medium text-slate-500 dark:text-slate-400 mb-1"
             >
-              Balance
+              {$t("balance")}
             </p>
             <p class="text-2xl font-bold text-slate-800 dark:text-white">
               {_formatCryptoAmount(
@@ -278,7 +278,7 @@
             class="flex flex-col md:flex-row justify-between items-center mb-6 gap-4"
           >
             <h2 class="text-xl font-bold text-slate-800 dark:text-white">
-              Transactions
+              {$t("transactions")}
             </h2>
             <select
               bind:value={coin}
@@ -303,7 +303,7 @@
               }}
               class="form-select block w-full md:w-auto px-3 py-2 text-base border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md"
             >
-              <option value="BNB">Filter by ledger</option>
+              <option value="BNB">{$t("filter_by_ledger")}</option>
               {#each ledgers as app}
                 <option value={app.code}>{app.name}({app.code})</option>
               {/each}
@@ -317,35 +317,35 @@
                   <tr class="border-b border-slate-100 dark:border-slate-700">
                     <th
                       class="py-3 px-4 text-sm font-semibold text-slate-500 dark:text-slate-400"
-                      >ID</th
+                      >{$t("id")}</th
                     >
                     <th
                       class="py-3 px-4 text-sm font-semibold text-slate-500 dark:text-slate-400"
-                      >From</th
+                      >{$t("from")}</th
                     >
                     <th
                       class="py-3 px-4 text-sm font-semibold text-slate-500 dark:text-slate-400"
-                      >To</th
+                      >{$t("to")}</th
                     >
                     <th
                       class="py-3 px-4 text-sm font-semibold text-slate-500 dark:text-slate-400"
-                      >Method</th
+                      >{$t("method")}</th
                     >
                     <th
                       class="py-3 px-4 text-sm font-semibold text-slate-500 dark:text-slate-400"
-                      >Amount</th
+                      >{$t("amount")}</th
                     >
                     <th
                       class="py-3 px-4 text-sm font-semibold text-slate-500 dark:text-slate-400"
-                      >Fee</th
+                      >{$t("fee")}</th
                     >
                     <th
                       class="py-3 px-4 text-sm font-semibold text-slate-500 dark:text-slate-400"
-                      >Time</th
+                      >{$t("time")}</th
                     >
                     <th
                       class="py-3 px-4 text-sm font-semibold text-slate-500 dark:text-slate-400"
-                      >TxID</th
+                      >{$t("txid")}</th
                     >
                   </tr>
                 </thead>
@@ -434,10 +434,13 @@
               class="flex justify-between items-center mt-6 pt-4 border-t border-slate-100 dark:border-slate-700"
             >
               <span class="text-sm text-slate-500 dark:text-slate-400">
-                Showing {(currentPage - 1) * itemsPerPage + 1} to {Math.min(
-                  currentPage * itemsPerPage,
-                  transactions.length,
-                )} of {transactions.length} entries
+                {$t("showing")}
+                {(currentPage - 1) * itemsPerPage + 1}
+                {$t("to_word")}
+                {Math.min(currentPage * itemsPerPage, transactions.length)}
+                {$t("of")}
+                {transactions.length}
+                {$t("entries")}
               </span>
               <div class="flex space-x-2">
                 <button
@@ -445,20 +448,20 @@
                   on:click={prevPage}
                   disabled={currentPage === 1}
                 >
-                  Previous
+                  {$t("previous")}
                 </button>
                 <button
                   class="px-3 py-1 border border-slate-200 dark:border-slate-700 rounded-md text-sm font-medium text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700 disabled:opacity-50 disabled:cursor-not-allowed"
                   on:click={nextPage}
                   disabled={currentPage === totalPages}
                 >
-                  Next
+                  {$t("next")}
                 </button>
               </div>
             </div>
           {:else}
             <div class="text-center py-10 text-slate-500 dark:text-slate-400">
-              <p>No transactions found</p>
+              <p>{$t("no_transactions_found")}</p>
             </div>
           {/if}
         </div>

@@ -22,9 +22,7 @@ export const GET = async () => {
         'faq'
     ];
 
-    // Mock blog posts (mirroring the one in blog routes)
     const blogPosts = [
-        'safety-circle',
         'open-letter-delta-day-2026'
     ];
 
