@@ -131,8 +131,7 @@
             target="_blank"
             class="text-sm font-medium text-slate-500 hover:text-primary transition-colors mt-3"
           >
-            Version: 2.0.2 &bull; Released: 2026-03-13
-          </a>
+            Version: 2.0.2 &bull; Released: 2026-03-13</a>
         </div>
       </div>
     </div>
