@@ -117,7 +117,7 @@
             target="_blank"
             href={lang == "zh-CN"
               ? "https://wwrm.lanzoue.com/delta-mobile"
-              : "https://github.com/delta-kim/delta_mobile_app/releases/download/2.0.0/delta_mobile_2.0.0.apk"}
+              : "https://github.com/delta-kim/delta_mobile_app/releases/download/2.0.2/delta_mobile_2.0.2.apk"}
             class="transform hover:scale-105 hover:-translate-y-1 transition-all inline-block"
           >
             <img
@@ -131,8 +131,7 @@
             target="_blank"
             class="text-sm font-medium text-slate-500 hover:text-primary transition-colors mt-3"
           >
-            Version: 2.0.0 &bull; Released: 2026-02-07
-          </a>
+            Version: 2.0.2 &bull; Released: 2026-03-13</a>
         </div>
       </div>
     </div>
