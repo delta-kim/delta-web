@@ -140,7 +140,7 @@
   </div>
 
   <div
-    class="container mx-auto px-6 py-20 lg:py-32 flex flex-col items-center justify-center min-h-[85vh] relative z-10"
+    class="container mx-auto px-6 py-10 flex flex-col items-center justify-center min-h-[85vh] relative z-10"
   >
     <header class="text-center mb-16 max-w-3xl animate-fade-in">
       <h1

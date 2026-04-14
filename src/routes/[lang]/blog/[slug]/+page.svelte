@@ -117,7 +117,7 @@
         ></div>
     </div>
 
-    <div class="container mx-auto px-6 py-20 lg:py-32 relative z-10 max-w-4xl">
+    <div class="container mx-auto px-2 md:px-6 py-10 relative z-10 max-w-4xl">
         <a
             href="/{$page.params.lang}/blog"
             class="inline-flex items-center gap-2 text-primary hover:text-secondary font-medium transition-colors mb-12 animate-fade-in"
@@ -150,7 +150,7 @@
         </header>
 
         <div
-            class="bg-white dark:bg-slate-800 rounded-[2.5rem] p-8 md:p-14 shadow-xl border border-slate-100 dark:border-slate-700 content-wrapper transition-colors duration-300 animate-fade-in"
+            class="bg-white dark:bg-slate-800 rounded-lg p-4 md:p-8 shadow-xl border border-slate-100 dark:border-slate-700 content-wrapper transition-colors duration-300 animate-fade-in"
             style="animation-delay: 0.2s; animation-fill-mode: both;"
         >
             <article

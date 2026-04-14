@@ -37,7 +37,7 @@
         ></div>
     </div>
 
-    <div class="container mx-auto px-6 py-20 lg:py-32 relative z-10 max-w-5xl">
+    <div class="container mx-auto px-2 md:px-6 py-10 relative z-10 max-w-5xl">
         <header class="text-center mb-20 animate-fade-in">
             <h1
                 class="text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-6 drop-shadow-sm transition-colors duration-300"
@@ -61,7 +61,7 @@
                     class="group block h-full"
                 >
                     <div
-                        class="bg-white dark:bg-slate-800 rounded-3xl p-8 shadow-md hover:shadow-xl border border-slate-100 dark:border-slate-700 h-full flex flex-col transition-all duration-300 transform group-hover:scale-[1.02]"
+                        class="bg-white dark:bg-slate-800 rounded-lg p-4 shadow-md hover:shadow-xl border border-slate-100 dark:border-slate-700 h-full flex flex-col transition-all duration-300 transform group-hover:scale-[1.02]"
                     >
                         <div class="flex items-center justify-between mb-6">
                             <span

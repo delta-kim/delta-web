@@ -48,8 +48,8 @@
     ></div>
   </div>
 
-  <div class="container mx-auto px-6 py-20 lg:py-32 relative z-10 max-w-6xl">
-    <header class="text-center mb-24 animate-fade-in">
+  <div class="container mx-auto px-2 md:px-6 py-10 relative z-10 max-w-6xl">
+    <header class="text-center mb-6 md:mb-24 animate-fade-in">
       <h1
         class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-6 drop-shadow-sm transition-colors duration-300"
       >
@@ -74,7 +74,7 @@
         >
           <!-- LEFT CARD -->
           <div
-            class="bg-white dark:bg-slate-800 rounded-[2rem] p-6 md:p-8 shadow-xl border border-slate-100 dark:border-slate-700 hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 w-full md:w-1/3 relative z-10 group"
+            class="bg-white dark:bg-slate-800 rounded-lg p-2 md:p-8 shadow-xl border border-slate-100 dark:border-slate-700 hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 w-full md:w-1/3 relative z-10 group"
           >
             <h3
               class="text-xl font-bold text-slate-900 dark:text-white mb-4 transition-colors duration-300"
@@ -139,7 +139,7 @@
 
           <!-- RIGHT CARD -->
           <div
-            class="bg-white dark:bg-slate-800 rounded-[2rem] p-6 md:p-8 shadow-xl border border-slate-100 dark:border-slate-700 hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 w-full md:w-1/3 relative z-10 group"
+            class="bg-white dark:bg-slate-800 rounded-lg p-2 md:p-8 shadow-xl border border-slate-100 dark:border-slate-700 hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 w-full md:w-1/3 relative z-10 group"
           >
             <h3
               class="text-xl font-bold text-slate-900 dark:text-white mb-4 transition-colors duration-300"
@@ -217,7 +217,7 @@
         >
           <div class="flex flex-row justify-center w-1/3" style="height: 6rem">
             <div
-              class="bg-white rounded-[2rem] p-4 w-full md:w-1/3 shadow-xl border border-slate-100 flex flex-col items-center justify-center transform hover:scale-105 transition-transform duration-500"
+              class="bg-white rounded-lg p-2 md:p-8 w-full md:w-1/3 shadow-xl border border-slate-100 flex flex-col items-center justify-center transform hover:scale-105 transition-transform duration-500"
             >
               <img
                 alt="launch"
@@ -254,7 +254,7 @@
           class="flex flex-col md:flex-row items-center w-full animate-fade-in"
         >
           <div
-            class="bg-white rounded-[2rem] p-6 md:p-8 shadow-xl border border-slate-100 hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 w-full md:w-1/3 relative z-10 group"
+            class="bg-white rounded-lg p-2 md:p-8 md:p-8 shadow-xl border border-slate-100 hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 w-full md:w-1/3 relative z-10 group"
           >
             <h3 class="text-xl font-bold text-slate-900 mb-4">
               {roadNodes[roadNodes.length - 1].title}
@@ -314,7 +314,7 @@
           ></div>
 
           <div
-            class="bg-white rounded-[2rem] p-6 md:p-8 shadow-xl border border-slate-100 flex flex-col items-center justify-center transform hover:scale-105 transition-transform duration-500 w-full md:w-1/3"
+            class="bg-white rounded-lg p-2 md:p-8 shadow-xl border border-slate-100 flex flex-col items-center justify-center transform hover:scale-105 transition-transform duration-500 w-full md:w-1/3"
           >
             <img
               alt="launch"

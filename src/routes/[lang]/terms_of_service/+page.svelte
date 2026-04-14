@@ -24,8 +24,8 @@
 		></div>
 	</div>
 
-	<div class="container mx-auto px-6 py-20 lg:py-32 relative z-10 max-w-4xl">
-		<header class="text-center mb-16 animate-fade-in">
+	<div class="container mx-auto px-6 py-10 relative z-10 max-w-4xl">
+		<header class="text-center mb-10 animate-fade-in">
 			<h1
 				class="text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-6 drop-shadow-sm transition-colors duration-300"
 			>
@@ -37,7 +37,7 @@
 		</header>
 
 		<div
-			class="bg-white dark:bg-slate-800 rounded-[2.5rem] p-8 md:p-14 shadow-xl border border-slate-100 dark:border-slate-700 content-wrapper animate-fade-in transition-colors duration-300"
+			class="bg-white dark:bg-slate-800 rounded-lg p-4 md:p-8 shadow-xl border border-slate-100 dark:border-slate-700 content-wrapper animate-fade-in transition-colors duration-300"
 			style="animation-delay: 0.2s; animation-fill-mode: both;"
 		>
 			<p>
@@ -345,6 +345,9 @@
 		color: #475569;
 		font-size: 1.125rem;
 	}
+	:global(.dark) .content-wrapper p {
+		color: #cbd5e1;
+	}
 	.content-wrapper h3 {
 		margin-top: 3rem;
 		margin-bottom: 1.5rem;
@@ -353,8 +356,8 @@
 		color: #0f172a;
 		letter-spacing: -0.025em;
 	}
-	.content-wrapper h3.italic {
-		font-style: italic;
+	:global(.dark) .content-wrapper h3 {
+		color: #ffffff;
 	}
 	.content-wrapper a {
 		color: #3b82f6; /* blue-500 equivalent typically, matching primary if needed */
@@ -362,8 +365,14 @@
 		text-decoration: underline;
 		text-underline-offset: 4px;
 	}
+	:global(.dark) .content-wrapper a {
+		color: #60a5fa;
+	}
 	.content-wrapper a:hover {
 		color: #2563eb;
+	}
+	:global(.dark) .content-wrapper a:hover {
+		color: #93c5fd;
 	}
 	.content-wrapper ul {
 		list-style-type: disc;
@@ -371,6 +380,9 @@
 		margin-bottom: 1.5rem;
 		color: #475569;
 		font-size: 1.125rem;
+	}
+	:global(.dark) .content-wrapper ul {
+		color: #cbd5e1;
 	}
 	.content-wrapper li {
 		margin-bottom: 0.75rem;

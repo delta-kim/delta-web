@@ -195,10 +195,10 @@
       >
         {#each explore_apps as app}
           <div
-            class="bg-white dark:bg-slate-800 rounded-[2rem] p-8 shadow-sm border border-slate-100 dark:border-slate-700 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group"
+            class="bg-white dark:bg-slate-800 rounded-lg p-4 shadow-sm border border-slate-100 dark:border-slate-700 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group"
           >
             <div
-              class="mb-8 w-16 h-16 rounded-2xl bg-slate-50 dark:bg-slate-700/50 flex items-center justify-center group-hover:bg-primary/10 transition-colors"
+              class="mb-8 w-16 h-16 rounded-lg bg-slate-50 dark:bg-slate-700/50 flex items-center justify-center group-hover:bg-primary/10 transition-colors"
             >
               <img
                 src={app.image}

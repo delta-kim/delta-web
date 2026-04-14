@@ -524,11 +524,11 @@
                   <div
                     class="flex flex-col bg-white dark:bg-slate-900 rounded-2xl w-[280px] max-h-[60vh] overflow-y-auto p-3 gap-0.5 text-slate-800 dark:text-slate-100 font-bold border border-slate-100 dark:border-slate-800 transition-colors duration-300 overscroll-contain shadow-2xl"
                   >
-                    <a
+                    <!-- <a
                       href="/{data.lang}/home"
                       class="p-2.5 hover:bg-slate-50 dark:hover:bg-slate-700/50 rounded-xl transition-colors"
                       >{$t("home")}</a
-                    >
+                    > -->
                     <!-- <a
                       href="/{data.lang}/explore"
                       class="p-2.5 hover:bg-slate-50 dark:hover:bg-slate-700/50 rounded-xl transition-colors"
@@ -614,14 +614,14 @@
           <div
             class="hidden lg:flex items-center justify-center gap-6 xl:gap-8 text-[15px] font-bold text-slate-700 dark:text-slate-200 transition-colors duration-300 w-full"
           >
-            <a
+            <!-- <a
               href="/{data.lang}/home"
               class="hover:text-primary transition-colors {$page.url.pathname.endsWith(
                 '/home',
               )
                 ? 'text-primary'
                 : ''}">{$t("home")}</a
-            >
+            > -->
             <!-- <a
               href="/{data.lang}/explore"
               class="hover:text-primary transition-colors {$page.url.pathname.endsWith(

@@ -34,10 +34,10 @@ export const load: PageLoad = async ({ params, fetch }) => {
             elem.addClass('h2 mb-4 mt-8')
         } else if (element.tagName == 'h3') {
             elem.addClass('h3 mb-3 mt-6')
-            addClass.push('ml-4');
+            addClass.push('ps-4');
         } else if (element.tagName == 'h4') {
             elem.addClass('h3 mb-2 mt-4')
-            addClass.push('ml-8');
+            addClass.push('ps-8');
         }
         let cata: Cata = {
             id,

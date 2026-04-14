@@ -9,13 +9,13 @@
   /** @type {import('svelte/action').Action}  */
   function tocCrawler(node: HTMLDivElement) {
     node.querySelectorAll("p").forEach((p) => {
-      p.classList.add("indent-8");
+      p.classList.add(isRtl ? "text-right" : "text-left");
       p.classList.add("mb-2");
     });
     node.querySelectorAll("ul").forEach((ul) => {
       ul.classList.add("mb-2");
       ul.classList.add("list-inside");
-      ul.classList.add("ml-4");
+      ul.classList.add(isRtl ? "mr-4" : "ml-4");
     });
     let headlines = node.querySelectorAll("h2,h3,h4");
 
@@ -73,6 +73,7 @@
       (window as any).MathJax.typeset();
     }
   });
+  $: isRtl = data.lang === "ar" || data.lang === "ckb";
 </script>
 
 <SEO
@@ -83,6 +84,7 @@
 
 <div
   class="min-h-screen bg-[#f8fafc] dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-sans selection:bg-primary/30 relative transition-colors duration-300"
+  dir={isRtl ? "rtl" : "ltr"}
 >
   <!-- Background Glow -->
   <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
@@ -94,8 +96,8 @@
     ></div>
   </div>
 
-  <div class="container mx-auto px-6 py-20 lg:py-32 relative z-10 max-w-7xl">
-    <header class="text-center mb-16 animate-fade-in">
+  <div class="container mx-auto px-2 md:px-6 py-10 relative z-10 max-w-7xl">
+    <!-- <header class="text-center mb-16 animate-fade-in">
       <h1
         class="text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-6 drop-shadow-sm transition-colors duration-300"
       >
@@ -104,7 +106,7 @@
       <div
         class="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full opacity-80"
       ></div>
-    </header>
+    </header> -->
 
     <div
       class="flex-auto w-full h-full flex flex-col md:flex-row items-start gap-8 text-slate-700 animate-fade-in"
@@ -112,15 +114,21 @@
     >
       <aside
         id="sidebar-left"
-        class="w-full md:w-1/4 md:sticky md:top-32 bg-white/50 dark:bg-slate-800/80 backdrop-blur-md rounded-3xl p-6 border border-slate-100 dark:border-slate-700/50 shadow-sm self-start h-auto max-h-[80vh] overflow-y-auto no-scrollbar transition-colors duration-300"
+        class="w-full md:w-1/4 md:sticky md:top-12 bg-white/50 dark:bg-slate-800/80 backdrop-blur-md rounded-lg p-2 md:p-6 border border-slate-100 dark:border-slate-700/50 shadow-sm self-start h-auto max-h-[80vh] overflow-y-auto no-scrollbar transition-colors duration-300"
       >
         <h3
-          class="text-xl font-bold text-slate-900 dark:text-white mb-6 transition-colors duration-300"
+          class="text-xl font-bold text-slate-900 dark:text-white mb-6 transition-colors duration-300 {isRtl
+            ? 'text-right'
+            : 'text-left'}"
         >
           {data.catas.length > 0 ? data.catas[0]?.text : "Contents"}
         </h3>
         <nav class="toc space-y-4" data-testid="toc">
-          <ul class="toc-list space-y-3">
+          <ul
+            class="toc-list space-y-3 {isRtl
+              ? 'text-right overflow-hidden'
+              : ''}"
+          >
             {#each data.catas as cata, idx}
               {#if idx !== 0}
                 <li class="toc-list-item block {cata.addClass.join(' ')}">
@@ -137,9 +145,13 @@
       </aside>
 
       <div
-        class="w-full md:w-3/4 bg-white dark:bg-slate-800 rounded-[2.5rem] p-6 md:p-14 shadow-xl border border-slate-100 dark:border-slate-700 content-wrapper transition-colors duration-300 overflow-x-hidden"
+        class="w-full md:w-3/4 bg-white dark:bg-slate-800 rounded-lg p-2 md:p-14 shadow-xl border border-slate-100 dark:border-slate-700 content-wrapper transition-colors duration-300 overflow-x-hidden"
       >
-        <div use:tocCrawler id="whitePaper">
+        <div
+          use:tocCrawler
+          id="whitePaper"
+          class={isRtl ? "text-right" : "text-left"}
+        >
           {@html data.content}
         </div>
       </div>
@@ -187,7 +199,7 @@
   }
   :global(#whitePaper ul) {
     list-style-type: disc !important;
-    padding-left: 1.5rem !important;
+    padding-inline-start: 1.5rem !important;
     margin-bottom: 1.5rem;
   }
   :global(#whitePaper li) {
