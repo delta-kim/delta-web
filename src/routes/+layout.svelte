@@ -429,7 +429,7 @@
     {
       icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
       label: "DELTA Togo 🇹🇬",
-      link: "https://chat.whatsapp.com/CTo8sfLSm1EHgytMGuI60x",
+      link: "https://chat.whatsapp.com/Gy6RYOH0YRD3Na6RMrf12l",
       creator: "",
     },
     {
@@ -466,6 +466,42 @@
       icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
       label: "DELTA Africa (EN)",
       link: "https://chat.whatsapp.com/BxQSIW8XhPF3Um9ECDiFQo",
+      creator: "",
+    },
+    {
+      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
+      label: "Yemen DELTA",
+      link: "https://chat.whatsapp.com/H69F237eOE6Lfjp8sILQQJ",
+      creator: "",
+    },
+    {
+      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
+      label: "DELTA News|Benin",
+      link: "https://chat.whatsapp.com/EOCVVa0h4BNKtHPrSQJMB8",
+      creator: "",
+    },
+    {
+      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
+      label: "DELTA Coin|Force",
+      link: "https://chat.whatsapp.com/FdZSk9s4wfaII4jJC7VR5Z",
+      creator: "",
+    },
+    {
+      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
+      label: "DELTA Mining",
+      link: "https://chat.whatsapp.com/I11mZ9qkZxWLhBDXaxzKdH",
+      creator: "",
+    },
+    {
+      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
+      label: "DELTA Coin AAJL",
+      link: "https://chat.whatsapp.com/F785DgF9QFW6m9TCW4p0FP",
+      creator: "",
+    },
+    {
+      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
+      label: "DELTA KIM AFRIQUE",
+      link: "https://whatsapp.com/channel/0029VbCyazbHwXbKkaN4GT2u",
       creator: "",
     },
   ];
