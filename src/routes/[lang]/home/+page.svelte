@@ -120,17 +120,11 @@
           <div
             class="relative w-full aspect-[4/5] flex justify-center items-center"
           >
-            <!-- Light Mode Image -->
+            <!-- New Handheld App Image -->
             <img
-              src="/img/delta_new_screen_2.png"
-              alt="Delta App"
-              class="relative z-20 w-3/4 max-w-sm rounded-[2.5rem] shadow-2xl transform lg:rotate-[-5deg] hover:rotate-0 transition-transform duration-500 block dark:hidden"
-            />
-            <!-- Dark Mode Image (delta_new_screen_1.png) -->
-            <img
-              src="/img/delta_new_screen_1.png"
-              alt="Delta App"
-              class="relative z-20 w-3/4 max-w-sm rounded-[2.5rem] shadow-2xl transform lg:rotate-[-5deg] hover:rotate-0 transition-transform duration-500 hidden dark:block"
+              src="/img/handheld.delta.app1.png"
+              alt="Delta App Handheld"
+              class="relative z-20 w-full max-w-md transform lg:rotate-[-5deg] hover:rotate-0 transition-transform duration-500 drop-shadow-2xl"
             />
           </div>
         </div>
