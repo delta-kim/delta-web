@@ -202,6 +202,13 @@
               communities list to the email below.
             </p>
             <a
+              href="mailto:support@delta.kim"
+              target="_blank"
+              class="text-primary font-bold hover:underline decoration-2 underline-offset-4"
+            >
+              support@delta.kim
+            </a>
+            <a
               href="mailto:socio@delta.kim"
               target="_blank"
               class="text-primary font-bold hover:underline decoration-2 underline-offset-4"
@@ -224,11 +231,11 @@
               please send an email to the address below.
             </p>
             <a
-              href="mailto:delta.ad.cooperation@gmail.com"
+              href="mailto:contact@delta.kim"
               target="_blank"
               class="text-primary font-bold hover:underline decoration-2 underline-offset-4"
             >
-              delta.ad.cooperation@gmail.com
+              contact@delta.kim
             </a>
           </div>
         </div>
