@@ -504,6 +504,12 @@
       link: "https://whatsapp.com/channel/0029VbCyazbHwXbKkaN4GT2u",
       creator: "",
     },
+    {
+      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
+      label: "Delta DApp",
+      link: "https://whatsapp.com/channel/0029Vb8v4NVInlqHOwln940o",
+      creator: "",
+    },
   ];
 </script>
 
