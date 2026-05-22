@@ -345,7 +345,7 @@
     {
       icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
       label: "DELTA BURKINA 🇧🇫",
-      link: "https://chat.whatsapp.com/I2SjVUY2xkGDNdJRNZLTRw",
+      link: "https://chat.whatsapp.com/Eujvvo9JIOT54AchwkQJxH",
       creator: "",
     },
     {
