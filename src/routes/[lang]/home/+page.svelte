@@ -120,12 +120,21 @@
           <div
             class="relative w-full aspect-[4/5] flex justify-center items-center"
           >
-            <!-- New Handheld App Image -->
-            <img
-              src="/img/handheld.delta.app1.png"
-              alt="Delta App Handheld"
-              class="relative z-20 w-full max-w-md transform lg:rotate-[-5deg] hover:rotate-0 transition-transform duration-500 drop-shadow-2xl"
-            />
+            <!-- New Handheld App Image Container -->
+            <div class="relative z-20 w-full max-w-md group transform lg:rotate-[-5deg] hover:rotate-0 hover:scale-[1.02] transition-all duration-500 ease-out">
+              <!-- Default Image -->
+              <img
+                src="/img/handheld.delta.png"
+                alt="Delta App Handheld"
+                class="w-full h-auto object-contain drop-shadow-2xl transition-opacity duration-500 ease-in-out group-hover:opacity-0"
+              />
+              <!-- Hover Image -->
+              <img
+                src="/img/handheld.delta.home.png"
+                alt="Delta App Handheld Home"
+                class="absolute inset-0 w-full h-auto object-contain drop-shadow-2xl opacity-0 transition-opacity duration-500 ease-in-out group-hover:opacity-100"
+              />
+            </div>
           </div>
         </div>
       </div>
