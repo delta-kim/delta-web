@@ -15,3 +15,13 @@ html, body { @apply h-full overflow-hidden; }
 body[data-theme="skeleton"] {
     background-image: none !important;
 }
+
+:root {
+  --color-primary: 44 95 52;     /* RGB of #2C5F34 */
+  --color-secondary: 230 145 56; /* RGB of #e69138 */
+}
+
+.dark {
+  --color-primary: 230 145 56;   /* Swapped to secondary in dark mode */
+  --color-secondary: 44 95 52;   /* Swapped to primary in dark mode */
+}

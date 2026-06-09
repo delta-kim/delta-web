@@ -88,6 +88,10 @@
   ];
   const usefulLinks = [
     {
+      link: "/about",
+      label: $t("about"),
+    },
+    {
       link: "/roadmap",
       label: $t("roadmap"),
     },
@@ -398,12 +402,6 @@
     },
     {
       icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
-      label: "Delta Rwanda",
-      link: "https://chat.whatsapp.com/Ca8YMneT48w0a5UbVJzQPc",
-      creator: "",
-    },
-    {
-      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
       label: "Delta 🇮🇳 India",
       link: "https://chat.whatsapp.com/FZCpCo39DaC3QV5X4DKxBu",
       creator: "",
@@ -577,6 +575,14 @@
                       >{$t("explore")}</a
                     > -->
                     <a
+                      href="/{data.lang}/about"
+                      class="p-2.5 hover:bg-slate-50 dark:hover:bg-slate-700/50 rounded-xl transition-colors {$page.url.pathname.includes(
+                        '/about',
+                      )
+                        ? 'text-primary'
+                        : ''}">{$t("about")}</a
+                    >
+                    <a
                       href="/{data.lang}/ledger"
                       class="p-2.5 hover:bg-slate-50 dark:hover:bg-slate-700/50 rounded-xl transition-colors"
                       >{$t("ledger")}</a
@@ -673,6 +679,14 @@
                 : ''}">{$t("explore")}</a
             > -->
             <a
+              href="/{data.lang}/about"
+              class="hover:text-primary transition-colors {$page.url.pathname.includes(
+                '/about',
+              )
+                ? 'text-primary'
+                : ''}">{$t("about")}</a
+            >
+            <a
               href="/{data.lang}/ledger"
               class="hover:text-primary transition-colors {$page.url.pathname.endsWith(
                 '/ledger',
@@ -680,14 +694,14 @@
                 ? 'text-primary'
                 : ''}">{$t("ledger")}</a
             >
-            <a
+            <!-- <a
               href="/{data.lang}/roadmap"
               class="hover:text-primary transition-colors {$page.url.pathname.endsWith(
                 '/roadmap',
               )
                 ? 'text-primary'
                 : ''}">{$t("roadmap")}</a
-            >
+            > -->
             <a
               href="/{data.lang}/whitepaper"
               class="hover:text-primary transition-colors {$page.url.pathname.endsWith(
@@ -696,22 +710,22 @@
                 ? 'text-primary'
                 : ''}">{$t("whitepaper")}</a
             >
-            <a
+            <!-- <a
               href="/{data.lang}/blog"
               class="hover:text-primary transition-colors {$page.url.pathname.endsWith(
                 '/blog',
               )
                 ? 'text-primary'
                 : ''}">Blog</a
-            >
-            <a
+            > -->
+            <!-- <a
               href="/{data.lang}/support"
               class="hover:text-primary transition-colors {$page.url.pathname.endsWith(
                 '/support',
               )
                 ? 'text-primary'
                 : ''}">{$t("faq")}</a
-            >
+            > -->
             <a
               href="/{data.lang}/DSMSAccessTerminal"
               class="hover:text-primary transition-colors {$page.url.pathname.endsWith(
