@@ -508,6 +508,12 @@
       link: "https://whatsapp.com/channel/0029Vb8v4NVInlqHOwln940o",
       creator: "",
     },
+    {
+      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
+      label: "DELTA Indonesia 🇮🇩",
+      link: "https://chat.whatsapp.com/InKr1EzytCV3Z1LMudtnJL",
+      creator: "",
+    },
   ];
 </script>
 
