@@ -514,6 +514,12 @@
       link: "https://chat.whatsapp.com/InKr1EzytCV3Z1LMudtnJL",
       creator: "",
     },
+    {
+      icon: `<i class="fa-brands fa-facebook"style="color: rgb(8, 102, 255);"></i>`,
+      label: "DeltaKim Special",
+      link: "https://www.facebook.com/share/1DbsRQwprW/",
+      creator: "",
+    },
   ];
 </script>
 
