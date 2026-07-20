@@ -1,5 +1,7 @@
 <script lang="ts">
   import type { PageData } from "./$types";
+  import { page } from "$app/stores";
+  import { goto } from "$app/navigation";
   import type {
     FilterArgs,
     Transaction,
@@ -18,22 +20,60 @@
   let ledgers: LedgerInitArgs[] = [];
   let loading = true;
   let coin: string | undefined = undefined;
+  let hasMore = true;
 
   // Pagination
   let currentPage = 1;
-  let itemsPerPage = 10;
+  const itemsPerPage = 100;
   $: totalPages = Math.ceil(transactions.length / itemsPerPage);
   $: paginatedTransactions = transactions.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage,
   );
 
-  function nextPage() {
-    if (currentPage < totalPages) currentPage++;
+  function prevPage() {
+    if (currentPage > 1) {
+      currentPage--;
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
   }
 
-  function prevPage() {
-    if (currentPage > 1) currentPage--;
+  async function loadNextPage() {
+    if (currentPage < totalPages) {
+      currentPage++;
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
+
+    if (!hasMore || transactions.length === 0) return;
+
+    loading = true;
+    try {
+      const lastId = transactions[transactions.length - 1].id;
+      if (lastId <= 0n) {
+        hasMore = false;
+        loading = false;
+        return;
+      }
+      
+      const nextStartId = lastId - 1n;
+      const { transactions: newTnx } = await _fetchLedgerTransactions(
+        undefined,
+        nextStartId,
+        itemsPerPage,
+        { coinCode: coin }
+      );
+      
+      if (newTnx.length < itemsPerPage) {
+        hasMore = false;
+      }
+      transactions = [...transactions, ...newTnx];
+      currentPage++;
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } catch (e) {
+      console.error(e);
+    }
+    loading = false;
   }
 
   export let data: PageData;
@@ -125,13 +165,15 @@
 
   onMount(async () => {
     loading = true;
+    coin = $page.url.searchParams.get("coin_code") ?? undefined;
     // Example usage: filter by From address
     const { transactions: tnx, ledgerArgsList } =
-      await _fetchLedgerTransactions(undefined, Number.MAX_SAFE_INTEGER, 100, {
-        coinCode: undefined,
+      await _fetchLedgerTransactions(undefined, Number.MAX_SAFE_INTEGER, itemsPerPage, {
+        coinCode: coin,
       });
     ledgers = ledgerArgsList;
     transactions = tnx;
+    hasMore = tnx.length >= itemsPerPage;
     loading = false;
   });
 
@@ -139,7 +181,7 @@
     return await _fetchLedgerTransactions(
       undefined,
       Number.MAX_SAFE_INTEGER,
-      100,
+      itemsPerPage,
       {
         coinCode: coin,
       },
@@ -160,7 +202,7 @@
   </div>
 {:else}
   <div
-    class="min-h-screen bg-[#f8fafc] dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-sans selection:bg-primary/30 relative pb-32 transition-colors duration-300"
+    class="min-h-screen bg-[#f8fafc] dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-sans selection:bg-primary/30 relative pb-5 md:pb-10 transition-colors duration-300"
   >
     <!-- Background Glow -->
     <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
@@ -173,33 +215,46 @@
     </div>
 
     <div
-      class="container mx-auto px-6 pt-20 relative z-10 max-w-7xl flex flex-col items-center"
+      class="container mx-auto px-1 md:px-6 md:pt-20 relative z-10 max-w-7xl flex flex-col items-center"
     >
-      <div class="gap-4 w-full lg:w-[70vw] my-10 px-2">
+      <div class="gap-4 w-full lg:w-[70vw] my-2 md:my-10 md:px-2">
         <div
-          class="bg-white dark:bg-slate-800 w-full rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 p-6"
+          class="bg-white dark:bg-slate-800 w-full rounded-md md:rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 p-2 md:p-6"
         >
-          <div
-            class="flex flex-col md:flex-row justify-between items-center mb-6 gap-4"
-          >
-            <h2 class="text-xl font-bold text-slate-800 dark:text-white">
+          <div class="flex flex-row justify-between items-center mb-6 gap-4">
+            <h2
+              class="text-md md:text-xl font-bold text-slate-800 dark:text-white"
+            >
               Transactions
             </h2>
             <select
               bind:value={coin}
               on:change={async (e) => {
                 loading = true;
+                const url = new URL($page.url);
+                if (coin) {
+                  url.searchParams.set("coin_code", coin);
+                } else {
+                  url.searchParams.delete("coin_code");
+                }
+                goto(url.pathname + url.search, {
+                  replaceState: true,
+                  noScroll: true,
+                  keepFocus: true,
+                });
+
                 const { transactions: tnx, ledgerArgsList } =
                   await onChangeCoin(coin);
                 ledgers = ledgerArgsList;
                 transactions = tnx;
+                hasMore = tnx.length >= itemsPerPage;
                 loading = false;
                 coin = coin;
                 currentPage = 1; // Reset to first page on filter change
               }}
               class="form-select block w-full md:w-auto px-3 py-2 text-base border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md"
             >
-              <option>Filter by ledger</option>
+              <option value={undefined}>Filter by ledger</option>
               {#each ledgers as app}
                 <option value={app.code}>{app.name}({app.code})</option>
               {/each}
@@ -330,10 +385,13 @@
               class="flex justify-between items-center mt-6 pt-4 border-t border-slate-100 dark:border-slate-700"
             >
               <span class="text-sm text-slate-500 dark:text-slate-400">
-                Showing {(currentPage - 1) * itemsPerPage + 1} to {Math.min(
-                  currentPage * itemsPerPage,
-                  transactions.length,
-                )} of {transactions.length} entries
+                {$t("showing")}
+                {(currentPage - 1) * itemsPerPage + 1}
+                {$t("to_word")}
+                {Math.min(currentPage * itemsPerPage, transactions.length)}
+                {$t("of")}
+                {transactions.length}
+                {$t("entries")}
               </span>
               <div class="flex space-x-2">
                 <button
@@ -341,14 +399,14 @@
                   on:click={prevPage}
                   disabled={currentPage === 1}
                 >
-                  Previous
+                  {$t("previous")}
                 </button>
                 <button
                   class="px-3 py-1 border border-slate-200 dark:border-slate-700 rounded-md text-sm font-medium text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700 disabled:opacity-50 disabled:cursor-not-allowed"
-                  on:click={nextPage}
-                  disabled={currentPage === totalPages}
+                  on:click={loadNextPage}
+                  disabled={currentPage === totalPages && !hasMore}
                 >
-                  Next
+                  {$t("next")}
                 </button>
               </div>
             </div>

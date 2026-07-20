@@ -128,7 +128,7 @@
 </svelte:head>
 
 <div
-    class="min-h-screen bg-[#f8fafc] dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-sans selection:bg-primary/30 relative pb-32 transition-colors duration-300"
+    class="min-h-screen bg-[#f8fafc] dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-sans selection:bg-primary/30 relative pb-5 md:pb-10 transition-colors duration-300"
 >
     <!-- Background Glow -->
     <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
@@ -140,10 +140,10 @@
         ></div>
     </div>
 
-    <div class="container mx-auto min-h-screen px-4 relative z-10">
-        <div class="max-w-4xl mx-auto pt-20">
+    <div class="container mx-auto min-h-screen px-2 md:px-4 relative z-10">
+        <div class="max-w-4xl mx-auto pt-10 md:pt-20">
             <h1
-                class="text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-10 drop-shadow-sm text-center transition-colors duration-300"
+                class="text-2xl md:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-2 md:mb-10 drop-shadow-sm text-center transition-colors duration-300"
             >
                 Search Results
             </h1>
@@ -177,10 +177,10 @@
                 </div>
             {:else if searched}
                 {#if results.length > 0}
-                    <div class="space-y-6">
+                    <div class="space-y-2 md:space-y-6">
                         {#each results as result}
                             <div
-                                class="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 p-6 hover:shadow-md transition-shadow"
+                                class="bg-white dark:bg-slate-800 rounded-md md:rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 p-2 md:p-6 hover:shadow-md transition-shadow"
                             >
                                 <div class="flex items-start justify-between">
                                     <div class="flex items-center gap-4">

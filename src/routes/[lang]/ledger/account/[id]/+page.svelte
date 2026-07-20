@@ -10,6 +10,7 @@
   import { ic_host } from "../../../../../lib/store";
   import { get } from "svelte/store";
   import { page } from "$app/stores";
+  import { goto } from "$app/navigation";
   import { TabAnchor } from "@skeletonlabs/skeleton";
 
   let transactions: Transaction[] = [];
@@ -20,19 +21,57 @@
 
   // Pagination
   let currentPage = 1;
-  let itemsPerPage = 10;
+  const itemsPerPage = 50;
+  let hasMore = true;
   $: totalPages = Math.ceil(transactions.length / itemsPerPage);
   $: paginatedTransactions = transactions.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage,
   );
 
-  function nextPage() {
-    if (currentPage < totalPages) currentPage++;
+  function prevPage() {
+    if (currentPage > 1) {
+      currentPage--;
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
   }
 
-  function prevPage() {
-    if (currentPage > 1) currentPage--;
+  async function loadNextPage() {
+    if (currentPage < totalPages) {
+      currentPage++;
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
+
+    if (!hasMore || transactions.length === 0) return;
+
+    loading = true;
+    try {
+      const lastId = transactions[transactions.length - 1].id;
+      if (lastId <= 0n) {
+        hasMore = false;
+        loading = false;
+        return;
+      }
+      
+      const nextStartId = lastId - 1n;
+      const { transactions: newTnx } = await _fetchLedgerTransactions(
+        [{ All: id }],
+        nextStartId,
+        itemsPerPage,
+        { coinCode: coin_code ?? coin }
+      );
+      
+      if (newTnx.length < itemsPerPage) {
+        hasMore = false;
+      }
+      transactions = [...transactions, ...newTnx];
+      currentPage++;
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } catch (e) {
+      console.error(e);
+    }
+    loading = false;
   }
 
   export let data: PageData;
@@ -156,19 +195,21 @@
   async function loadData() {
     loading = true;
     addressBalance = 0;
+    coin = coin_code ?? coin ?? "BNB";
     const { transactions: tnx, ledgerArgsList } =
       await _fetchLedgerTransactions(
         [{ All: id }],
         Number.MAX_SAFE_INTEGER,
-        100,
+        itemsPerPage,
         {
-          coinCode: coin_code,
+          coinCode: coin,
         },
       );
-    const balance = await _balance_of(id, coin_code ?? coin);
+    const balance = await _balance_of(id, coin);
     addressBalance = Number(balance);
     ledgers = ledgerArgsList;
     transactions = tnx;
+    hasMore = tnx.length >= itemsPerPage;
     loading = false;
 
     getBalance();
@@ -179,7 +220,7 @@
   <title>{$t("title_prefix")} - {$t("explore")}</title>
 </svelte:head>
 <div
-  class="min-h-screen bg-[#f8fafc] dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-sans selection:bg-primary/30 relative pb-32 transition-colors duration-300 flex justify-center items-center"
+  class="min-h-screen bg-[#f8fafc] dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-sans selection:bg-primary/30 relative pb-5 md:pb-10 transition-colors duration-300 flex justify-center items-center"
 >
   <!-- Background Glow -->
   <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
@@ -192,11 +233,11 @@
   </div>
 
   <div
-    class="container mx-auto px-6 relative z-10 max-w-7xl flex flex-col items-center"
+    class="container mx-auto px-2 md:px-6 relative z-10 max-w-7xl flex flex-col items-center"
   >
-    <div class="gap-4 w-full md:w-[70vw] my-10 px-2">
+    <div class="gap-4 w-full md:w-[70vw] my-2 md:my-10 md:px-2">
       <div
-        class="bg-white dark:bg-slate-800 w-full rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 p-6 mb-6"
+        class="bg-white dark:bg-slate-800 w-full rounded-md md:rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 p-2 md:p-6 mb-2 md:mb-6"
       >
         <h2 class="text-xl font-bold text-slate-800 dark:text-white mb-4">
           {$t("account_details")}
@@ -272,12 +313,12 @@
         </div>
       {:else}
         <div
-          class="bg-white dark:bg-slate-800 w-full rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 p-6"
+          class="bg-white dark:bg-slate-800 w-full rounded-md md:rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 p-2 md:p-6"
         >
-          <div
-            class="flex flex-col md:flex-row justify-between items-center mb-6 gap-4"
-          >
-            <h2 class="text-xl font-bold text-slate-800 dark:text-white">
+          <div class="flex flex-row justify-between items-center mb-6 gap-4">
+            <h2
+              class="text-md md:text-xl font-bold text-slate-800 dark:text-white"
+            >
               {$t("transactions")}
             </h2>
             <select
@@ -287,17 +328,27 @@
                 getBalance();
                 coin = coin;
                 coin_code = coin;
+
+                const url = new URL($page.url);
+                if (coin) {
+                  url.searchParams.set("coin_code", coin);
+                } else {
+                  url.searchParams.delete("coin_code");
+                }
+                goto(url.pathname + url.search, { replaceState: true, noScroll: true, keepFocus: true });
+
                 const { transactions: tnx, ledgerArgsList } =
                   await _fetchLedgerTransactions(
                     [{ All: id }],
                     Number.MAX_SAFE_INTEGER,
-                    100,
+                    itemsPerPage,
                     {
                       coinCode: coin,
                     },
                   );
                 ledgers = ledgerArgsList;
                 transactions = tnx;
+                hasMore = tnx.length >= itemsPerPage;
                 loading = false;
                 currentPage = 1; // Reset pagination
               }}
@@ -452,8 +503,8 @@
                 </button>
                 <button
                   class="px-3 py-1 border border-slate-200 dark:border-slate-700 rounded-md text-sm font-medium text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700 disabled:opacity-50 disabled:cursor-not-allowed"
-                  on:click={nextPage}
-                  disabled={currentPage === totalPages}
+                  on:click={loadNextPage}
+                  disabled={currentPage === totalPages && !hasMore}
                 >
                   {$t("next")}
                 </button>

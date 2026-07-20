@@ -147,7 +147,7 @@
   </div>
 {:else}
   <div
-    class="min-h-screen bg-[#f8fafc] dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-sans selection:bg-primary/30 relative pb-32 transition-colors duration-300"
+    class="min-h-screen bg-[#f8fafc] dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-sans selection:bg-primary/30 relative pb-5 md:pb-10 transition-colors duration-300"
   >
     <!-- Background Glow -->
     <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
@@ -160,11 +160,11 @@
     </div>
 
     <div
-      class="container mx-auto px-6 pt-20 relative z-10 max-w-7xl flex flex-col items-center"
+      class="container mx-auto px-2 md:px-6 md:pt-20 relative z-10 max-w-7xl flex flex-col items-center"
     >
-      <div class="gap-4 w-full md:w-[60vw] my-10 px-2">
+      <div class="gap-4 w-full md:w-[60vw] my-2 md:my-10 md:px-2">
         <div
-          class="bg-white dark:bg-slate-800 w-full rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 p-6"
+          class="bg-white dark:bg-slate-800 w-full rounded-md md:rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 p-2 md:p-6 mb-2 md:mb-6"
         >
           <h2
             class="text-xl font-bold text-slate-800 dark:text-white mb-6 pb-4 border-b border-slate-100 dark:border-slate-700"

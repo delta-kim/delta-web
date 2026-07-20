@@ -19,7 +19,7 @@
 
   // Pagination
   let currentPage = 1;
-  let itemsPerPage = 10;
+  let itemsPerPage = 50;
   $: totalPages = Math.ceil(transactions.length / itemsPerPage);
   $: paginatedTransactions = transactions.slice(
     (currentPage - 1) * itemsPerPage,
@@ -107,7 +107,8 @@
       throw new Error("No ledger arguments found.");
     }
     let thisLedgerCanisterId = await delta.getCanisterId({
-      Ledgers: coinCode ?? ledgerArgs.code,
+      // Ledgers: coinCode ?? "tCoin" ?? ledgerArgs.code,
+      Ledgers: "tCoin",
     });
 
     const Ledger = await createLedgers(thisLedgerCanisterId, {
@@ -166,7 +167,7 @@
   </div>
 {:else}
   <div
-    class="min-h-screen bg-[#f8fafc] dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-sans selection:bg-primary/30 relative pb-32 transition-colors duration-300"
+    class="min-h-screen bg-[#f8fafc] dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-sans selection:bg-primary/30 relative pb-5 md:pb-10 transition-colors duration-300"
   >
     <!-- Background Glow -->
     <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
@@ -179,11 +180,11 @@
     </div>
 
     <div
-      class="container mx-auto px-6 py-20 relative z-10 max-w-7xl flex flex-col items-center"
+      class="container mx-auto px-2 md:px-6 py-10 md:py-20 relative z-10 max-w-7xl flex flex-col items-center"
     >
       <header class="text-center mb-12 animate-fade-in w-full">
         <h1
-          class="text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-6 drop-shadow-sm transition-colors duration-300"
+          class="text-2xl md:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-2 md:mb-6 drop-shadow-sm transition-colors duration-300"
         >
           {$t("ledger_title")}
         </h1>
@@ -192,7 +193,7 @@
         ></div>
 
         <form
-          class="w-full max-w-2xl mx-auto flex bg-white dark:bg-slate-800 rounded-full p-2 mt-5 shadow-lg border border-slate-100 dark:border-slate-700 hover:shadow-xl transition-all duration-300"
+          class="w-full md:max-w-2xl mx-auto flex flex-col md:flex-row bg-white dark:bg-slate-800 rounded-md md:rounded-full p-2 mt-5 shadow-lg border border-slate-100 dark:border-slate-700 hover:shadow-xl transition-all duration-300"
           on:submit|preventDefault={(e) => {
             // @ts-ignore
             const val = e.target[0].value;
@@ -216,7 +217,7 @@
         class="w-full my-5 lg:my-10 animate-fade-in"
         style="animation-delay: 0.2s; animation-fill-mode: both;"
       >
-        <div class="flex justify-between items-center px-2 mb-6">
+        <div class="flex justify-between items-center md:px-2 mb-2 md:mb-6">
           <h2
             class="text-2xl font-bold text-slate-800 dark:text-white transition-colors duration-300"
           >
@@ -229,10 +230,12 @@
           </span>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-2">
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-6 md:px-2"
+        >
           {#each ledgers as app}
             <div
-              class="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 p-5 hover:shadow-md transition-all duration-200"
+              class="bg-white dark:bg-slate-800 rounded-md md:rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 p-2 md:p-5 hover:shadow-md transition-all duration-200"
             >
               <div class="flex items-center justify-between">
                 <div class="flex items-center gap-4">
@@ -267,10 +270,9 @@
                 </div>
 
                 <a
-                  href={app.web}
-                  target="_blank"
+                  href={`./ledger/tx?coin_code=${app.code}`}
                   class="p-2.5 text-slate-400 hover:text-blue-600 hover:bg-blue-50 dark:hover:text-blue-400 dark:hover:bg-slate-700 rounded-full transition-all"
-                  title="Visit Website"
+                  title={$t("transactions")}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -283,7 +285,7 @@
                       stroke-linecap="round"
                       stroke-linejoin="round"
                       stroke-width="2"
-                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                      d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                     />
                   </svg>
                 </a>
@@ -295,7 +297,7 @@
       <!-- <div
       class="grid md:grid-cols-2 gap-4 w-full lg:w-[80vw] my-5 lg:my-10 px-2"
     > -->
-      <div class="w-full lg:w-[80vw] my-5 px-2">
+      <div class="w-full lg:w-[80vw] md:my-5 md:px-2">
         <!-- <div class="bg-white w-full rounded-lg">
         <h1 class="border-b border-slate-400 px-4 py-3">Fueling</h1>
         <div class="text-[12px] lg:text-[14px] text-slate-500">
@@ -350,10 +352,12 @@
         </div>
       </div> -->
         <div
-          class="bg-white dark:bg-slate-800 w-full rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 p-6"
+          class="bg-white dark:bg-slate-800 w-full rounded-md md:rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 p-2 md:p-6"
         >
           <div class="flex justify-between items-center mb-6">
-            <h2 class="text-xl font-bold text-slate-800 dark:text-white">
+            <h2
+              class="text-md md:text-xl font-bold text-slate-800 dark:text-white"
+            >
               {$t("transactions")}
             </h2>
             <a
@@ -442,20 +446,28 @@
                           tnx.amount,
                           Number(getLedger()?.decimals ?? 8),
                         )}
-                        <span
+                        <!-- <span
                           class="text-xs text-slate-500 dark:text-slate-400 ml-1"
                           >{getLedger()?.code}</span
-                        >
+                        > -->
+                        <span
+                          class="text-xs text-slate-500 dark:text-slate-400 ml-1"
+                          >tCoin
+                        </span>
                       </td>
                       <td
                         class="py-3 px-4 text-sm text-slate-500 dark:text-slate-400"
                       >
-                        {_formatCryptoAmount(
+                        <!-- {_formatCryptoAmount(
                           tnx.fee,
-                          Number(getLedger()?.decimals ?? 8),
-                        )}
-                        <span class="text-xs ml-1 dark:text-slate-500"
+                          Number(getLedger()?.decimals ?? 3),
+                        )} -->
+                        {_formatCryptoAmount(tnx.fee, Number(3))}
+                        <!-- <span class="text-xs ml-1 dark:text-slate-500"
                           >{getLedger()?.code}</span
+                        > -->
+                        <span class="text-xs ml-1 dark:text-slate-500"
+                          >tCoin</span
                         >
                       </td>
                       <td
@@ -465,8 +477,9 @@
                       </td>
                       <td class="py-3 px-4 text-sm">
                         {#if tnx?.txId != ""}
+                          <!-- href={`./ledger/tx/${tnx.txId}?coin_code=${getLedger()?.code}`} -->
                           <a
-                            href={`./ledger/tx/${tnx.txId}?coin_code=${getLedger()?.code}`}
+                            href={`./ledger/tx/${tnx.txId}?coin_code=${"tCoin"}`}
                             class="text-blue-600 hover:text-blue-800 font-medium"
                           >
                             {_clipString(tnx?.txId)}
@@ -485,7 +498,7 @@
             <div
               class="flex justify-between items-center mt-6 pt-4 border-t border-slate-100 dark:border-slate-700"
             >
-              <span class="text-sm text-slate-500">
+              <span class="text-xs md:text-sm text-slate-500">
                 {$t("showing")}
                 {(currentPage - 1) * itemsPerPage + 1}
                 {$t("to_word")}
