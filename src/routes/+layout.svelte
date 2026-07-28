@@ -331,7 +331,7 @@
     {
       icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
       label: "DELTA Kuki",
-      link: "https://chat.whatsapp.com/LpHxuiy5VhVKOyTCVj9xNE",
+      link: "https://chat.whatsapp.com/FxFxDAsKfBR3XroIDKQHmi",
       creator: "",
     },
     {
