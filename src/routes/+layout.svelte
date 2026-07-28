@@ -475,7 +475,7 @@
     {
       icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
       label: "DELTA News|Benin",
-      link: "https://chat.whatsapp.com/EOCVVa0h4BNKtHPrSQJMB8",
+      link: "https://chat.whatsapp.com/KvHeCXL7yGdCinVIieXRzh",
       creator: "",
     },
     {
