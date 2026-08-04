@@ -432,12 +432,6 @@
     },
     {
       icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
-      label: "DELTA Francophone",
-      link: "https://whatsapp.com/channel/0029Vb76kFtJpe8YiGxAei31",
-      creator: "",
-    },
-    {
-      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
       label: "DELTA Tanzania 🇹🇿",
       link: "https://chat.whatsapp.com/C4uNO50NXM95K9ooG6RPvS",
       creator: "",
@@ -480,12 +474,6 @@
     },
     {
       icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
-      label: "DELTA Coin|Force",
-      link: "https://chat.whatsapp.com/FdZSk9s4wfaII4jJC7VR5Z",
-      creator: "",
-    },
-    {
-      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
       label: "DELTA Mining",
       link: "https://chat.whatsapp.com/I11mZ9qkZxWLhBDXaxzKdH",
       creator: "",
@@ -518,6 +506,12 @@
       icon: `<i class="fa-brands fa-facebook"style="color: rgb(8, 102, 255);"></i>`,
       label: "DeltaKim Special",
       link: "https://www.facebook.com/share/1DbsRQwprW/",
+      creator: "",
+    },
+    {
+      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
+      label: "DELTA New Generation",
+      link: "https://chat.whatsapp.com/EJ0o8nGh0whEaC4ux31e3J",
       creator: "",
     },
   ];
