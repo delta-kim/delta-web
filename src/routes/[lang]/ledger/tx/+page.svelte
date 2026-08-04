@@ -55,15 +55,15 @@
         loading = false;
         return;
       }
-      
+
       const nextStartId = lastId - 1n;
       const { transactions: newTnx } = await _fetchLedgerTransactions(
         undefined,
         nextStartId,
         itemsPerPage,
-        { coinCode: coin }
+        { coinCode: coin },
       );
-      
+
       if (newTnx.length < itemsPerPage) {
         hasMore = false;
       }
@@ -81,7 +81,7 @@
   export let lang = data.lang;
 
   const getLedger = (coin_code?: string): LedgerInitArgs | undefined => {
-    return ledgers.find((l) => l.code == coin_code) || ledgers.at(1);
+    return ledgers.find((l) => l.code == coin_code) || ledgers.at(8);
   };
 
   locale.subscribe((_lang) => {
@@ -145,7 +145,7 @@
     });
 
     let ledgerArgsList = await mcWallet.listLedgerInitArgs();
-    let ledgerArgs = ledgerArgsList.at(1);
+    let ledgerArgs = ledgerArgsList.at(8);
     if (!ledgerArgs) throw new Error("No ledger arguments found.");
 
     let thisLedgerCanisterId = await delta.getCanisterId({
@@ -168,9 +168,14 @@
     coin = $page.url.searchParams.get("coin_code") ?? undefined;
     // Example usage: filter by From address
     const { transactions: tnx, ledgerArgsList } =
-      await _fetchLedgerTransactions(undefined, Number.MAX_SAFE_INTEGER, itemsPerPage, {
-        coinCode: coin,
-      });
+      await _fetchLedgerTransactions(
+        undefined,
+        Number.MAX_SAFE_INTEGER,
+        itemsPerPage,
+        {
+          coinCode: coin,
+        },
+      );
     ledgers = ledgerArgsList;
     transactions = tnx;
     hasMore = tnx.length >= itemsPerPage;
