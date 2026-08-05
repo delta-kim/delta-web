@@ -447,14 +447,10 @@
                           tnx.amount,
                           Number(getLedger()?.decimals ?? 3),
                         )}
-                        <!-- <span
-                          class="text-xs text-slate-500 dark:text-slate-400 ml-1"
-                          >{getLedger()?.code}</span
-                        > -->
                         <span
                           class="text-xs text-slate-500 dark:text-slate-400 ml-1"
-                          >tCoin
-                        </span>
+                          >{getLedger()?.code}</span
+                        >
                       </td>
                       <td
                         class="py-3 px-4 text-sm text-slate-500 dark:text-slate-400"
@@ -474,9 +470,8 @@
                       </td>
                       <td class="py-3 px-4 text-sm">
                         {#if tnx?.txId != ""}
-                          <!-- href={`./ledger/tx/${tnx.txId}?coin_code=${getLedger()?.code}`} -->
                           <a
-                            href={`./ledger/tx/${tnx.txId}?coin_code=${"tCoin"}`}
+                            href={`./ledger/tx/${tnx.txId}?coin_code=${getLedger()?.code}`}
                             class="text-blue-600 hover:text-blue-800 font-medium"
                           >
                             {_clipString(tnx?.txId)}
