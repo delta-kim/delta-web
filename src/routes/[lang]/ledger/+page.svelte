@@ -125,8 +125,9 @@
   }
 
   const getLedger = (coin_code?: string): LedgerInitArgs | undefined => {
-    return ledgers.find((l) => l.code == coin_code) || ledgers.at(1);
+    return ledgers.find((l) => l.code == coin_code) || ledgers.at(8);
   };
+
   locale.subscribe((_lang) => {
     lang = _lang || "en";
   });
@@ -444,7 +445,7 @@
                       >
                         {_formatCryptoAmount(
                           tnx.amount,
-                          Number(getLedger()?.decimals ?? 8),
+                          Number(getLedger()?.decimals ?? 3),
                         )}
                         <!-- <span
                           class="text-xs text-slate-500 dark:text-slate-400 ml-1"
@@ -458,16 +459,12 @@
                       <td
                         class="py-3 px-4 text-sm text-slate-500 dark:text-slate-400"
                       >
-                        <!-- {_formatCryptoAmount(
+                        {_formatCryptoAmount(
                           tnx.fee,
                           Number(getLedger()?.decimals ?? 3),
-                        )} -->
-                        {_formatCryptoAmount(tnx.fee, Number(3))}
-                        <!-- <span class="text-xs ml-1 dark:text-slate-500"
-                          >{getLedger()?.code}</span
-                        > -->
+                        )}
                         <span class="text-xs ml-1 dark:text-slate-500"
-                          >tCoin</span
+                          >{getLedger()?.code}</span
                         >
                       </td>
                       <td
