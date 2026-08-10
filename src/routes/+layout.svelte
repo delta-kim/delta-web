@@ -499,7 +499,7 @@
     {
       icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
       label: "DELTA Indonesia 🇮🇩",
-      link: "https://chat.whatsapp.com/InKr1EzytCV3Z1LMudtnJL",
+      link: "https://chat.whatsapp.com/KQSQpTQnVjGLQYl8FrDQQD",
       creator: "",
     },
     {
