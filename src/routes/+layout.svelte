@@ -514,6 +514,12 @@
       link: "https://chat.whatsapp.com/EJ0o8nGh0whEaC4ux31e3J",
       creator: "",
     },
+    {
+      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
+      label: "The DELTA Indonesia 🇮🇩",
+      link: "https://whatsapp.com/channel/0029VbCqqB805MUlOfQDPd0L",
+      creator: "",
+    },
   ];
 </script>
 
