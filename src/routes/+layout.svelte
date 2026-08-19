@@ -407,12 +407,6 @@
       creator: "",
     },
     {
-      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
-      label: "Infos DELTA Kim 🇧🇯",
-      link: "https://chat.whatsapp.com/IW7CNmVD9Nv45CveABfkKh",
-      creator: "",
-    },
-    {
       icon: `<i class="fa-brands fa-telegram" style="color:#0088CC"></i>`,
       label: "Delta Indonesia 🇮🇩",
       link: "https://t.me/deltakim_indonesia",
@@ -499,7 +493,7 @@
     {
       icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
       label: "DELTA Indonesia 🇮🇩",
-      link: "https://chat.whatsapp.com/KQSQpTQnVjGLQYl8FrDQQD",
+      link: "https://chat.whatsapp.com/I5CJMebWJzc78tYUXEWAlD",
       creator: "",
     },
     {
@@ -518,6 +512,12 @@
       icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
       label: "The DELTA Indonesia 🇮🇩",
       link: "https://whatsapp.com/channel/0029VbCqqB805MUlOfQDPd0L",
+      creator: "",
+    },
+    {
+      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
+      label: "DELTA Coin (FORCE)",
+      link: "https://chat.whatsapp.com/FdZSk9s4wfaII4jJC7VR5Z",
       creator: "",
     },
   ];
