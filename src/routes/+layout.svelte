@@ -520,6 +520,12 @@
       link: "https://chat.whatsapp.com/FdZSk9s4wfaII4jJC7VR5Z",
       creator: "",
     },
+    {
+      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
+      label: "DELTA Coin 🇧🇯",
+      link: "https://chat.whatsapp.com/KTXLet9012T8db2z23KaNE",
+      creator: "",
+    },
   ];
 </script>
 
