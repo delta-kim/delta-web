@@ -522,7 +522,7 @@
     },
     {
       icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
-      label: "DELTA Coin 🇧🇯",
+      label: "Infos DELTA KIM 🇧🇯",
       link: "https://chat.whatsapp.com/KTXLet9012T8db2z23KaNE",
       creator: "",
     },
