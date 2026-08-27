@@ -526,6 +526,12 @@
       link: "https://chat.whatsapp.com/KTXLet9012T8db2z23KaNE",
       creator: "",
     },
+    {
+      icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
+      label: "DELTA NEWs",
+      link: "https://chat.whatsapp.com/KAewpa7x1tOJgC5iasGxxH",
+      creator: "",
+    },
   ];
 </script>
 
