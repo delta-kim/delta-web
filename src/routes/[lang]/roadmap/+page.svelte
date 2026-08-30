@@ -74,7 +74,7 @@
         >
           <!-- LEFT CARD -->
           <div
-            class="bg-white dark:bg-slate-800 rounded-lg p-2 md:p-8 shadow-xl border border-slate-100 dark:border-slate-700 hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 w-full md:w-1/3 relative z-10 group"
+            class="bg-white dark:bg-slate-800 rounded-2xl p-4 md:p-8 shadow-xl border border-slate-100 dark:border-slate-700/80 hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 w-full md:w-1/3 relative z-10 group backdrop-blur-sm"
           >
             <h3
               class="text-xl font-bold text-slate-900 dark:text-white mb-4 transition-colors duration-300"
@@ -87,10 +87,10 @@
               {@html roadNodes[i * 2].content}
             </div>
             <div
-              class="pt-4 border-t border-slate-50 dark:border-slate-700/50 flex items-center justify-between transition-colors duration-300"
+              class="pt-4 border-t border-slate-100 dark:border-slate-700/50 flex items-center justify-between transition-colors duration-300"
             >
               <button
-                class="px-4 py-2 bg-slate-50 dark:bg-slate-700/50 hover:bg-slate-100 dark:hover:bg-slate-600 rounded-xl transition-colors font-medium text-sm border border-slate-100 dark:border-slate-700/50"
+                class="px-4 py-2 bg-slate-50 dark:bg-slate-700/50 hover:bg-slate-100 dark:hover:bg-slate-600 rounded-xl transition-colors font-medium text-sm border border-slate-100 dark:border-slate-700/50 cursor-pointer"
                 use:popup={{
                   event: "hover",
                   target: "popupFeatured" + i * 2,
@@ -109,7 +109,7 @@
                   <ul class="space-y-2">
                     {#each roadNodes[i * 2].progressLine as item}
                       <li
-                        class="flex flex-row justify-between items-center text-sm border-b border-slate-50 dark:border-slate-700/50 pb-2 last:border-0 last:pb-0 transition-colors duration-300"
+                        class="flex flex-row justify-between items-center text-sm border-b border-slate-100 dark:border-slate-700/50 pb-2 last:border-0 last:pb-0 transition-colors duration-300"
                       >
                         <StatusTag status={item[0]} />
                         <span
@@ -127,19 +127,19 @@
 
           <!-- CONNECTOR X -->
           <div
-            class="hidden md:block w-1/3 line-x opacity-40 {i % 2 == 0
+            class="hidden md:block w-1/3 line-x opacity-40 dark:invert {i % 2 == 0
               ? 'transform180'
               : ''}"
           ></div>
 
           <!-- VERTICAL CONNECTOR MOBILE -->
           <div
-            class="block md:hidden h-12 w-1 bg-gradient-to-b from-slate-200 to-slate-200 mx-auto my-2"
+            class="block md:hidden h-12 w-1 bg-gradient-to-b from-slate-200 to-slate-200 dark:from-slate-700 dark:to-slate-700 mx-auto my-2"
           ></div>
 
           <!-- RIGHT CARD -->
           <div
-            class="bg-white dark:bg-slate-800 rounded-lg p-2 md:p-8 shadow-xl border border-slate-100 dark:border-slate-700 hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 w-full md:w-1/3 relative z-10 group"
+            class="bg-white dark:bg-slate-800 rounded-2xl p-4 md:p-8 shadow-xl border border-slate-100 dark:border-slate-700/80 hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 w-full md:w-1/3 relative z-10 group backdrop-blur-sm"
           >
             <h3
               class="text-xl font-bold text-slate-900 dark:text-white mb-4 transition-colors duration-300"
@@ -152,10 +152,10 @@
               {@html roadNodes[i * 2 + 1].content}
             </div>
             <div
-              class="pt-4 border-t border-slate-50 flex items-center justify-between"
+              class="pt-4 border-t border-slate-100 dark:border-slate-700/50 flex items-center justify-between transition-colors duration-300"
             >
               <button
-                class="px-4 py-2 bg-slate-50 hover:bg-slate-100 rounded-xl transition-colors font-medium text-sm border border-slate-100"
+                class="px-4 py-2 bg-slate-50 dark:bg-slate-700/50 hover:bg-slate-100 dark:hover:bg-slate-600 rounded-xl transition-colors font-medium text-sm border border-slate-100 dark:border-slate-700/50 cursor-pointer"
                 use:popup={{
                   event: "hover",
                   target: `popupFeatured${i * 2 + 1}`,
@@ -167,14 +167,14 @@
 
               <!-- Popup -->
               <div
-                class="bg-white rounded-2xl p-4 w-72 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.1)] border border-slate-100"
+                class="bg-white dark:bg-slate-800 rounded-2xl p-4 w-72 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.1)] border border-slate-100 dark:border-slate-700 transition-colors duration-300"
                 data-popup={`popupFeatured${i * 2 + 1}`}
               >
                 <div class="space-y-3">
                   <ul class="space-y-2">
                     {#each roadNodes[i * 2 + 1].progressLine as item}
                       <li
-                        class="flex flex-row justify-between items-center text-sm border-b border-slate-50 dark:border-slate-700/50 pb-2 last:border-0 last:pb-0 transition-colors duration-300"
+                        class="flex flex-row justify-between items-center text-sm border-b border-slate-100 dark:border-slate-700/50 pb-2 last:border-0 last:pb-0 transition-colors duration-300"
                       >
                         <StatusTag status={item[0]} />
                         <span
@@ -199,13 +199,13 @@
           style="animation-delay: {i * 0.1 + 0.1}s; animation-fill-mode: both;"
         >
           <div class="flex flex-row justify-center w-1/3" style="height: 6rem">
-            <div class="line-y opacity-30"></div>
+            <div class="line-y opacity-30 dark:invert"></div>
           </div>
         </div>
 
         <!-- VERTICAL CONNECTOR MOBILE -->
         <div
-          class="block md:hidden h-12 w-1 bg-gradient-to-b from-slate-200 to-slate-200 mx-auto my-2 animate-fade-in"
+          class="block md:hidden h-12 w-1 bg-gradient-to-b from-slate-200 to-slate-200 dark:from-slate-700 dark:to-slate-700 mx-auto my-2 animate-fade-in"
         ></div>
       {/each}
 
@@ -217,7 +217,7 @@
         >
           <div class="flex flex-row justify-center w-1/3" style="height: 6rem">
             <div
-              class="bg-white rounded-lg p-2 md:p-8 w-full md:w-1/3 shadow-xl border border-slate-100 flex flex-col items-center justify-center transform hover:scale-105 transition-transform duration-500"
+              class="bg-white dark:bg-slate-800 rounded-2xl p-4 md:p-8 w-full md:w-1/3 shadow-xl border border-slate-100 dark:border-slate-700/80 flex flex-col items-center justify-center transform hover:scale-105 transition-transform duration-500"
             >
               <img
                 alt="launch"
@@ -225,7 +225,7 @@
                 src="/img/launch.png"
               />
               <button
-                class="px-6 py-2 bg-gradient-to-r from-primary to-green-600 text-white font-bold rounded-full shadow-lg text-sm"
+                class="px-6 py-2 bg-gradient-to-r from-primary to-green-600 text-white font-bold rounded-full shadow-lg text-sm cursor-pointer"
                 >{$t("launch")}</button
               >
             </div>
@@ -236,7 +236,7 @@
           class="flex md:hidden flex-row justify-center w-full mt-8 animate-fade-in"
         >
           <div
-            class="bg-white rounded-[2rem] p-6 w-full max-w-sm shadow-xl border border-slate-100 flex flex-col items-center justify-center"
+            class="bg-white dark:bg-slate-800 rounded-[2rem] p-6 w-full max-w-sm shadow-xl border border-slate-100 dark:border-slate-700/80 flex flex-col items-center justify-center"
           >
             <img
               alt="launch"
@@ -244,7 +244,7 @@
               src="/img/launch.png"
             />
             <button
-              class="px-8 py-3 bg-gradient-to-r from-primary to-green-600 text-white font-bold rounded-full shadow-lg w-full"
+              class="px-8 py-3 bg-gradient-to-r from-primary to-green-600 text-white font-bold rounded-full shadow-lg w-full cursor-pointer"
               >{$t("launch")}</button
             >
           </div>
@@ -254,21 +254,21 @@
           class="flex flex-col md:flex-row items-center w-full animate-fade-in"
         >
           <div
-            class="bg-white rounded-lg p-2 md:p-8 md:p-8 shadow-xl border border-slate-100 hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 w-full md:w-1/3 relative z-10 group"
+            class="bg-white dark:bg-slate-800 rounded-2xl p-4 md:p-8 shadow-xl border border-slate-100 dark:border-slate-700/80 hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 w-full md:w-1/3 relative z-10 group"
           >
-            <h3 class="text-xl font-bold text-slate-900 mb-4">
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-4">
               {roadNodes[roadNodes.length - 1].title}
             </h3>
             <div
-              class="text-slate-600 leading-relaxed h-32 overflow-y-auto no-scrollbar mb-4 text-sm md:text-base"
+              class="text-slate-600 dark:text-slate-300 leading-relaxed h-32 overflow-y-auto no-scrollbar mb-4 text-sm md:text-base"
             >
               {@html roadNodes[roadNodes.length - 1].content}
             </div>
             <div
-              class="pt-4 border-t border-slate-50 flex items-center justify-between"
+              class="pt-4 border-t border-slate-100 dark:border-slate-700/50 flex items-center justify-between"
             >
               <button
-                class="px-4 py-2 bg-slate-50 hover:bg-slate-100 rounded-xl transition-colors font-medium text-sm border border-slate-100"
+                class="px-4 py-2 bg-slate-50 dark:bg-slate-700/50 hover:bg-slate-100 dark:hover:bg-slate-600 rounded-xl transition-colors font-medium text-sm border border-slate-100 dark:border-slate-700/50 cursor-pointer"
                 use:popup={{
                   event: "hover",
                   target: "popupFeatured" + roadNodes.length,
@@ -280,14 +280,14 @@
 
               <!-- Popup -->
               <div
-                class="bg-white rounded-2xl p-4 w-72 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.1)] border border-slate-100"
+                class="bg-white dark:bg-slate-800 rounded-2xl p-4 w-72 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.1)] border border-slate-100 dark:border-slate-700 transition-colors duration-300"
                 data-popup={`popupFeatured${roadNodes.length}`}
               >
                 <div class="space-y-3">
                   <ul class="space-y-2">
                     {#each roadNodes[roadNodes.length - 1].progressLine as item}
                       <li
-                        class="flex flex-row justify-between items-center text-sm border-b border-slate-50 dark:border-slate-700/50 pb-2 last:border-0 last:pb-0 transition-colors duration-300"
+                        class="flex flex-row justify-between items-center text-sm border-b border-slate-100 dark:border-slate-700/50 pb-2 last:border-0 last:pb-0 transition-colors duration-300"
                       >
                         <StatusTag status={item[0]} />
                         <span
@@ -304,17 +304,17 @@
           </div>
 
           <div
-            class="hidden md:block w-1/3 line-x opacity-40 {0 % 2 == 0
+            class="hidden md:block w-1/3 line-x opacity-40 dark:invert {0 % 2 == 0
               ? 'transform180'
               : ''}"
           ></div>
 
           <div
-            class="block md:hidden h-12 w-1 bg-gradient-to-b from-slate-200 to-slate-200 mx-auto my-4"
+            class="block md:hidden h-12 w-1 bg-gradient-to-b from-slate-200 to-slate-200 dark:from-slate-700 dark:to-slate-700 mx-auto my-4"
           ></div>
 
           <div
-            class="bg-white rounded-lg p-2 md:p-8 shadow-xl border border-slate-100 flex flex-col items-center justify-center transform hover:scale-105 transition-transform duration-500 w-full md:w-1/3"
+            class="bg-white dark:bg-slate-800 rounded-2xl p-4 md:p-8 shadow-xl border border-slate-100 dark:border-slate-700/80 flex flex-col items-center justify-center transform hover:scale-105 transition-transform duration-500 w-full md:w-1/3"
           >
             <img
               alt="launch"
@@ -322,7 +322,7 @@
               src="/img/launch.png"
             />
             <button
-              class="px-8 py-3 bg-gradient-to-r from-primary to-green-600 text-white font-bold rounded-full shadow-lg w-full"
+              class="px-8 py-3 bg-gradient-to-r from-primary to-green-600 text-white font-bold rounded-full shadow-lg w-full cursor-pointer"
               >{$t("launch")}</button
             >
           </div>
