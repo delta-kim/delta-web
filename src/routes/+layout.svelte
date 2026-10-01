@@ -493,7 +493,7 @@
     {
       icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
       label: "DELTA Indonesia 🇮🇩",
-      link: "https://chat.whatsapp.com/FBAMtvxeiid251Qcux32CT",
+      link: "https://chat.whatsapp.com/Jsf5nHeX4kbBD8rjAG7H7M",
       creator: "",
     },
     {
@@ -523,7 +523,7 @@
     {
       icon: `<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>`,
       label: "Infos DELTA KIM 🇧🇯",
-      link: "https://chat.whatsapp.com/KTXLet9012T8db2z23KaNE",
+      link: "https://chat.whatsapp.com/FENDJpr79zuJ8kT8jr98hA",
       creator: "",
     },
     {
